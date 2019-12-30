@@ -6,14 +6,19 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "homepage": "https://github.com/Paol-imi/muuri-react",
   "repository": {
     "type": "git",
-    "url": "github.com/Paol-imi/muuri-react.git"
+    "url": "git+https://github.com/Paol-imi/muuri-react.git"
   },
   "keywords": [
     "muuri",
     "react"
   ],
   "author": "github.com/Paol-imi",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "muuri": "^0.8.0",
+    "react": "^16.12.0"
+  }
 }

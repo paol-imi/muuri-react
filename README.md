@@ -36,7 +36,7 @@ const App = () => {
   const muuriRef = useRef()
   // states
   const [sort, setSort] = useState('By Name')
-  const [filter, setFilter] = useState('By color')
+  const [filter, setFilter] = useState('By Color')
   const [items, setItems] = useState([
     { id: 1 },
     { id: 2 },
@@ -50,7 +50,7 @@ const App = () => {
 
   // Pass the filter and the sort props.
   // The grid will call the .filter and .sort method
-  // each tiem the provided values change or an item is added
+  // each time the provided values change or an item is added
   return (
     <MuuriComponent
       sort={sort}
@@ -101,7 +101,7 @@ import { MuuriComponent } from 'muuri-react';
 - Don't use the add/remove method or set the items in the grid options. The items setted in this way will be removed on the next render.
 - This library is made with hooks so a react version > 16.8 is needed.
 
-> ⚠️ The name iof this package is **muuri-react** (react-muuri is a different package)
+> ⚠️ The name of this package is **muuri-react** (react-muuri is a different package)
 
 ## License
 
