@@ -28,7 +28,7 @@ npm install --save muuri-react
 
 You can check the codesandbox [demo](https://codesandbox.io/s/muuri-react-pqtbx).
 ```jsx
-import React, { Component } from 'react'
+import React, { useState, useRef } from 'react'
 import { MuuriComponent } from 'muuri-react';
 
 const App = () => {
@@ -43,14 +43,14 @@ const App = () => {
     { id: 3 }
   ])
 
-  // Just add e remove items in the children 
+  // Just add and remove items in the children 
   // without using the muuri method .add & .remove
   const add = (id) => setItems(items.concat({ id })) 
   const remove = (id) => setItems(items.filter(item => item.id !== id))
 
   // Pass the filter and the sort props.
-  // The grid will call the .filter and .sort method
-  // each time the provided values change or an item is added
+  // The component will call the .filter() and .sort() method
+  // each time the provided values change or an item is added.
   return (
     <MuuriComponent
       sort={sort}
@@ -68,7 +68,7 @@ const App = () => {
       }}>
       {items.map(item => 
         (
-          <div class="item" style="display: none">
+          <div class="item" key={item.id} style="display: none">
             <div class="item-content">My item</div>
           </div>
         )
