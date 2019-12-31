@@ -12,6 +12,7 @@ import Muuri from "muuri";
  *
  * @param {number[]} itemsToAdd - The indexes of the items to add.
  * @param {number[]} itemsToRemove - The indexes of the items to remove.
+ * @return {number[]} - The indexes adjusted.
  */
 function adjustIndex(itemsToAdd, itemsToRemove) {
   const array = [...itemsToAdd];
@@ -36,6 +37,7 @@ function getItems(gridElem) {
 /**
  * Return if the child has the key special prop.
  * @param {React.Component} child - The child.
+ * @return {boolean} - The result.
  */
 function hasKey(child) {
   return child.key !== undefined;
@@ -140,9 +142,10 @@ function addItems(muuri, items, itemsToAdd, itemsToAddAdjusted) {
  * Wrap the children in a div.
  * ReactDom doesn't change the element on re-render so
  * the div don't need to be memoized or something.
- * @param {React.Component[]} children
- * @param {Object} gridProps
- * @param {React.Ref} ref
+ * @param {React.Component[]} children - The children.
+ * @param {Object} gridProps - The grid element props.
+ * @param {React.Ref} ref - The ref for the grid element.
+ * @return {React.ElementType} - The react element.
  */
 function render(children, gridProps, ref) {
   if (typeof gridProps !== "object") gridProps = {};
@@ -168,8 +171,7 @@ export const MuuriComponent = forwardRef(
         oldChildren: [],
         muuri: undefined,
         addedDep: {},
-        removedDep: {},
-        itemsDragging: 0
+        removedDep: {}
       }),
       []
     );
@@ -233,11 +235,12 @@ export const MuuriComponent = forwardRef(
       if (sort) manager.muuri.sort(sort, sortOptions);
     }, [sort, sortOptions, manager.addedDep]); // eslint-disable-line
 
-    // Remove old items  if there are
+    // Remove old items if there are
     useEffect(() => {
       removeItems(manager.muuri, getItems(gridElemRef.current), itemsToRemove);
     }, [manager.removedDep]); // eslint-disable-line
 
+    // render
     return render(allChildren, gridProps, gridElemRef);
   }
 );

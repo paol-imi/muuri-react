@@ -11,9 +11,9 @@
 A React `component` is provided with the following features:
 - The muuri instance and the grid element are `generated` (on mount) and `destroyed` (on unmount) `automatically`.
 - Access to the `muuri` instance using the React [ref](https://reactjs.org/docs/refs-and-the-dom.html#creating-refs) API.
-- The `items` are passed as `children`. To add or remove items you can simply re-render the component with different items. The library will take care to add/remove the items from the muuri instance.
+- The `items` are passed as `children`. To add or remove items you can simply re-render the component with different children. The component will find out the `added`/`removed` items and it will take care to add/remove them from the muuri instance.
     - If you want to see the adding animation remember to set the display property of the item to `none`.
-    - When you use a list of components as children it's is critical to add the `key` prop to any component. See the React [docs](https://reactjs.org/docs/lists-and-keys.html).
+    - When you use a list of components as children it's is critical to add the `key` prop to each component. See the React [docs](https://reactjs.org/docs/lists-and-keys.html) (**DON'T USE THE [INDEX AS KEY](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318)**). 
 - Provide `sort`/`filter` props. The grid will be automatically sorted/filtered when the corresponding prop change or an items is added.
     - If you don't provide a primitive value (as an array) you can memoize it to avoid useless sorting/filtering. 
 - Provide `onMount`/`onUnmount` props.
@@ -44,9 +44,15 @@ const App = () => {
   ])
 
   // Just add and remove items in the children 
-  // without using the muuri method .add & .remove
+  // without using the muuri method .add() & .remove()
   const add = (id) => setItems(items.concat({ id })) 
   const remove = (id) => setItems(items.filter(item => item.id !== id))
+
+  // Generate the items on each render,
+  // The component will find out the added/removed items and will 
+  // take care to add/remove them from the muuri instance
+  // (The use of the key prop is critical)
+  const children = items.map(item => <Item key={item.id}></Item>)
 
   // Pass the filter and the sort props.
   // The component will call the .filter() and .sort() method
@@ -66,14 +72,18 @@ const App = () => {
         dragReleaseDuration: 400,
         dragReleseEasing: "ease"
       }}>
-      {items.map(item => 
-        (
-          <div class="item" key={item.id} style="display: none">
-            <div class="item-content">My item</div>
-          </div>
-        )
-      )}
+      {children}
     </MuuriComponent>
+  )
+}
+
+const Item = () => {
+  return (
+    <div className="item" style="display: none">
+      <div className="item-content">
+        My item
+      </div>
+    </div>
   )
 }
 ```
@@ -97,8 +107,8 @@ import { MuuriComponent } from 'muuri-react';
 
 ## Limitations
 
-- The the grid element is automatically setted as the drag container to avoid bug if the element re-render while an item is dragging.
-- Don't use the add/remove method or set the items in the grid options. The items setted in this way will be removed on the next render.
+- The the grid element is automatically setted as the drag container to avoid bug if the component re-render while an item is dragging.
+- You shouldn't use the add/remove method or set the items in the grid options. The items setted in this way will be removed on the next render.
 - This library is made with hooks so a react version > 16.8 is needed.
 
 > ⚠️ The name of this package is **muuri-react** (react-muuri is a different package)
