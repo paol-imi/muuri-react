@@ -2,7 +2,7 @@
 
 > A React friendly API wrapper arround [Muuri](https://github.com/haltu/muuri)
 
-[![NPM](https://img.shields.io/npm/v/muuri-react.svg)](https://www.npmjs.com/package/react-muuri) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![NPM](https://img.shields.io/npm/v/muuri-react.svg)](https://www.npmjs.com/package/muuri-react) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 ## Acknowledgements
 
@@ -13,9 +13,9 @@ A React `component` is provided with the following features:
 - Access to the `muuri` instance using the React [ref](https://reactjs.org/docs/refs-and-the-dom.html#creating-refs) API.
 - The `items` are passed as `children`. To add or remove items you can simply re-render the component with different children. The component will find out the `added`/`removed` items and it will take care to add/remove them from the muuri instance.
     - If you want to see the adding animation remember to set the display property of the item to `none`.
-    - When you use a list of components as children it's is critical to add the `key` prop to each component. See the React [docs](https://reactjs.org/docs/lists-and-keys.html) (**DON'T USE THE [INDEX AS KEY](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318)**). 
+    - When you use a list of components as children it's is critical to add the [key](https://reactjs.org/docs/lists-and-keys.html) prop to each component <br> (**DON'T USE THE [INDEX AS KEY](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318)**). 
 - Provide `sort`/`filter` props. The grid will be automatically sorted/filtered when the corresponding prop change or an items is added.
-    - If you don't provide a primitive value (as an array) you can memoize it to avoid useless sorting/filtering. 
+    - If you don't provide a primitive value (e.g. array, function) you can memoize it to avoid useless sorting/filtering. 
 - Provide `onMount`/`onUnmount` props.
 
 ## Install
@@ -44,7 +44,7 @@ const App = () => {
   ])
 
   // Just add and remove items in the children 
-  // without using the muuri method .add() & .remove()
+  // without using the muuri methods .add() & .remove()
   const add = (id) => setItems(items.concat({ id })) 
   const remove = (id) => setItems(items.filter(item => item.id !== id))
 
@@ -77,14 +77,29 @@ const App = () => {
   )
 }
 
+// A component that represents an item
 const Item = () => {
   return (
+    // Use 'display: none' to see the adding animation
     <div className="item" style="display: none">
       <div className="item-content">
         My item
       </div>
     </div>
   )
+}
+```
+
+The new items will be added in the muuri instance in the same position in which they have been added in the children array.
+
+```js
+// instead of muuri.add(item, { index })
+const addAt = (id, index) => {
+  setItems([
+    ...items.slice(0, index),
+    { id },
+    ...items.slice(index)
+  ])
 }
 ```
 
@@ -98,10 +113,10 @@ import { MuuriComponent } from 'muuri-react';
 | --- | --- | -- |
 | `ref` | `React.Ref` | The ref for the Murri instance. |
 | `options` | `object` | The options passed to the muuri instance, the grid element is automatically generated and used internally by the library. Note that the muuri instance is generated only when the component in mounted.  |
-| `sort` | `any` | The sort value. The `.sort()` method will be called automatically when this prop change or when an item is added.  |
-| `filter` | `any` | The filter value. The `.filter()` method will be called automatically when the this prop change or when an item is added. |
-| `sortOptions` | `any` | The sort options used with the sort prop. |
-| `filterOptions` | `any` | The filter options used with the filter prop. |
+| `sort` | `array` / `function` / `string` | The sort value. The `.sort()` method will be called automatically when this prop change or when an item is added.  |
+| `filter` | `function` / `string` | The filter value. The `.filter()` method will be called automatically when this prop change or when an item is added. |
+| `sortOptions` | `object` | The sort options used with the sort prop.  |
+| `filterOptions` | `object` | The filter options used with the filter prop. |
 | `onMount` | `function` | If provided this function will be called when the method is `mounted`, the first param passed is the muuri instance. This is a good place to bind the muuri events. |
 | `onUnmount` | `function` | If provided this function will be called when the method is `unmounted`, the first param passed is the muuri instance. Note that the instance is automatically destroyed after this method has been called. |
 
