@@ -1,6 +1,6 @@
 # Muuri-React
 
-> A React friendly API wrapper arround [Muuri](https://github.com/haltu/muuri)
+> A React friendly API wrapper around [Muuri](https://github.com/haltu/muuri)
 
 [![NPM](https://img.shields.io/npm/v/muuri-react.svg)](https://www.npmjs.com/package/muuri-react) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
@@ -17,6 +17,8 @@ A React `component` is provided with the following features:
 - Provide `sort`/`filter` props. The grid will be automatically sorted/filtered when the corresponding prop change or an items is added.
     - If you don't provide a primitive value (e.g. array, function) you can memoize it to avoid useless sorting/filtering. 
 - Provide `onMount`/`onUnmount` props.
+- The Items can be refreshed easily using the `useRefresh` hook.
+
 
 ## Install
 
@@ -113,17 +115,123 @@ import { MuuriComponent } from 'muuri-react';
 | --- | --- | -- |
 | `ref` | `React.Ref` | The ref for the Murri instance. |
 | `options` | `object` | The options passed to the muuri instance, the grid element is automatically generated and used internally by the library. Note that the muuri instance is generated only when the component in mounted.  |
-| `sort` | `array` / `function` / `string` | The sort value. The `.sort()` method will be called automatically when this prop change or when an item is added.  |
-| `filter` | `function` / `string` | The filter value. The `.filter()` method will be called automatically when this prop change or when an item is added. |
+| `sort` | `array` `function` `string` | The sort value. The `.sort()` method will be called automatically when this prop change or when an item is added.  |
+| `filter` | `function` `string` | The filter value. The `.filter()` method will be called automatically when this prop change or when an item is added. |
 | `sortOptions` | `object` | The sort options used with the sort prop.  |
 | `filterOptions` | `object` | The filter options used with the filter prop. |
-| `onMount` | `function` | If provided this function will be called when the method is `mounted`, the first param passed is the muuri instance. This is a good place to bind the muuri events. |
-| `onUnmount` | `function` | If provided this function will be called when the method is `unmounted`, the first param passed is the muuri instance. Note that the instance is automatically destroyed after this method has been called. |
+| `onMount` | `function` | If provided this function will be called when the component is `mounted`, the first param passed is the muuri instance. This is a good place to bind the muuri events. |
+| `onUnmount` | `function` | If provided this function will be called when the component is `unmounted`, the first param passed is the muuri instance. Note that the instance is automatically destroyed after this method has been called. |
+
+## Hook - useRefresh
+
+> A zero configuration `hook` to manage the refresh of the items dimensions.
+
+**([demo](https://codesandbox.io/s/muuri-react-pqtbx) with useRefresh avaible on codesandbox)**
+
+A custom hook `useRefresh` is provided with the following features:
+
+- The hook has to be used inside a child component of a `MuuriComponent`.
+  - The child component has to render an `item`.
+  - When the hook is triggered the dimensions and position of the item are `updated`.
+  - **muuri.refreshItems([item])** and **muuri.layout()** are called internally.
+- An array of `dependencies` can be passed to the hook.
+  - The hook will be triggered when a dependencies change (like `useEffect`, that is used internally).
+  - In the first render the hook is **not** triggered.
+- The hook has `no configuration`, it will take care of finding (without any reference):
+  - The MuuriComponent parent.
+  - The Muuri instance.
+  - The item rendered by the child.
+- Performance `optimization` when more hooks are triggered together.
+  - All the requests are collapsed in a single **muuri.layout()** call.
+- The triggering of the hook won't cause a rerendering.
+
+## Usage
+
+The hook can simply be called inside a child of a MuuriComponent with a list of dependencies (like `useEffect`). 
+
+```js
+import { useRefresh } from "muuri-react"
+
+// A component that represents an item
+const Item = () => {
+  const [className, setClassName] = useState("item-large")
+  
+  // Change the size of the item
+  const changeSize = () => {
+    if(className === "item-large") setClassName("item-small")
+    if(className === "item-small") setClassName("item-large")
+  }
+
+  // Equivalent of passing the muuri instance and using a ref for the item
+  // 
+  // useEffect(() => {
+  //   if(!isNotTheFirstRendering()){
+  //     muuri.refreshItems(itemRef.current)
+  //     muuri.layout() 
+  //   }
+  // }, [className])
+  useRefresh([className])
+
+  return (
+    <div className={className}>
+      <div className="item-content">
+        My item
+      </div>
+    </div>
+  )
+}
+```
+ When one of the `dependencies` change, the hook will take care of finding the MuuriComponent parent and the item rendered by the react component (without the need of passing any reference), then it will `refresh` the size of the item (**muuri.refreshItems(item)**) and `update` the muuri instance (**muuri.layout()**).
+
+### Rerendering from MuuriComponent
+
+If the useRefresh hook is triggered when the `MuuriComponent` parent is `rerendering` the **muuri.layout()** method is called just one time for optimization purpose. 
+
+```js
+import { MuuriComponent, useRefresh } from "muuri-react"
+
+const App = () => {
+  const [className, setClassName] = useState("item-large")
+  
+  // The rerendering start from the MuuriComponent 
+  // when this method is called
+  const changeSize = () => {
+    if(className === "item-large") setClassName("item-small")
+    if(className === "item-small") setClassName("item-large")
+  } 
+
+  // This usage of the hook will cause the following effect
+  // with a single .layout() call:
+  // 
+  // useEffect(() => {
+  //   muuri.refreshItems([item1, items2, item3])
+  //   muuri.layout()
+  // })
+  return (
+    <MuuriComponent>
+      {[1, 2, 3].map(id => <Item key={id} className={className} />)}
+    </MuuriComponent>
+  )
+}
+
+const Item = ({ className }) => {
+  useRefresh([className])
+
+  return (
+    <div className={className}>
+      <div className="item-content">
+        My item
+      </div>
+    </div>
+  )
+}
+```
 
 ## Limitations
 
 - The the grid element is automatically setted as the drag container to avoid bug if the component re-render while an item is dragging.
-- You shouldn't use the add/remove method or set the items in the grid options. The items setted in this way will be removed on the next render.
+- You shouldn't use the add/remove methods or set the items in the grid options. The items setted in this way will be removed on the next render.
+- Each child of the MuuriComponent must render a single item.
 - This library is made with hooks so a react version > 16.8 is needed.
 
 > ⚠️ The name of this package is **muuri-react** (react-muuri is a different package)
