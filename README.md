@@ -126,7 +126,7 @@ import { MuuriComponent } from 'muuri-react';
 
 > A zero configuration `hook` to manage the refresh of the items dimensions.
 
-**([demo](https://codesandbox.io/s/muuri-react-pqtbx) with useRefresh avaible on codesandbox)**
+**([demo](https://codesandbox.io/s/muuri-react-nmm2g) with useRefresh avaible on codesandbox)**
 
 A custom hook `useRefresh` is provided with the following features:
 
