@@ -28,6 +28,7 @@ export const MuuriComponent = forwardRef(
   ) => {
     // Grid element ref
     const gridElemRef = useRef();
+    const internalMuuriRef = useRef()
     // Store all the old data
     const manager = useMemo(
       () => ({
@@ -66,6 +67,7 @@ export const MuuriComponent = forwardRef(
       // Mounting
       if (typeof onMount === "function") onMount(manager.muuri);
       // Set the ref
+      internalMuuriRef.current = manager.muuri;
       if (muuriRef) muuriRef.current = manager.muuri;
 
       return () => {
@@ -74,13 +76,14 @@ export const MuuriComponent = forwardRef(
         // Unmounting
         if (typeof onUnmount === "function") onUnmount(manager.muuri);
         // Remove the ref
+        internalMuuriRef.current = undefined;
         if (muuriRef) muuriRef.current = undefined;
       };
     }, []); // eslint-disable-line
 
     // Refresh global hook called after muuriRef.current
     // has been setted
-    useRefreshHook(muuriRef, allChildren);
+    useRefreshHook(internalMuuriRef, allChildren);
 
     // Add the items if there are new
     useEffect(() => {
@@ -95,6 +98,7 @@ export const MuuriComponent = forwardRef(
     // Filter the item if there are new or the filter method is changed
     useEffect(() => {
       if (filter) manager.muuri.filter(filter, filterOptions);
+      else manager.muuri.filter(() => true)
     }, [filter, filterOptions, manager.addedDep]); // eslint-disable-line
 
     // Sort the item if there are new or the sort/filter method are changed
