@@ -170,12 +170,12 @@ It is important to note that the items can be generated and removed through the 
 | `ref` | *`React.Ref`* | The ref for the Muuri instance. |
 | `children` | *`React.Children`* | The components that will render the items. Each component **must** render a single item. If an array of components is passed each component **must** have a key. |
 | `options` | *`object`* | The options passed to the muuri instance, the grid element is automatically generated and used internally by the library. Note that the muuri instance is generated only when the component is mounted.  |
-| `sort` | *`array`* *`function`* *`string`* | The sort value. The `muuri.sort(value)` method will be called automatically when this prop change or when an item is added.  |
-| `filter` | *`function`* *`string`* | The filter value. The `muuri.filter(value)` method will be called automatically when this prop change or when an item is added. If no value is provided all items will be visible. |
-| `sortOptions` | *`object`* | The sort options used with the sort prop.  |
-| `filterOptions` | *`object`* | The filter options used with the filter prop. |
+| `sort` | *`array`* *`function`* *`string`* | The sort value. The `muuri.sort(value)` method will be called automatically when this prop change or when an item is added. If a function is provided it has to be memoized to avoid useless re-sorting. |
+| `filter` | *`function`* *`string`* | The filter value. The `muuri.filter(value)` method will be called automatically when this prop change or when an item is added. If no value is provided all items will be visible. If a function is provided it has to be memoized to avoid useless re-filtering. |
+| `sortOptions` | *`object`* | The sort options used with the sort prop. This object has to be memoized to avoid useless re-sorting. |
+| `filterOptions` | *`object`* | The filter options used with the filter prop. This object has to be memoized to avoid useless re-filtering.|
 | `propsAsSortData` | *`array`* | An array of strings where each value represent a prop passed to each child of the MuuriComponent. Each value will be dynamically setted as sortData. (e.g. muuri.sort('propName')) |
-| `gridProps` | *`object`* | If provided this function will be called when the component is `unmounted`, the first param passed is the muuri instance. Note that the instance is automatically destroyed after this method has been called. |
+| `gridProps` | *`object`* | The custom props of the grid element. |
 | `onMount` | *`function`* | If provided this function will be called when the component is `mounted`, the first param passed is the muuri instance. This is a good place to bind the muuri events. |
 | `onUnmount` | *`function`* | If provided this function will be called when the component is `unmounted`, the first param passed is the muuri instance. Note that the instance is automatically destroyed after this method has been called. |
 
