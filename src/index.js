@@ -1,2 +1,2 @@
-export { MuuriComponent } from './muuriComponent'
-export { useRefresh } from './refreshHook'
+export { MuuriComponent } from './components/muuriComponent'
+export { useRefresh } from './hooks/refreshHook'
