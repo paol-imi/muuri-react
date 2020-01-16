@@ -19,5 +19,5 @@ export const GridComponent = forwardRef(function GridComponent(
 });
 
 GridComponent.propTypes = {
-  gridProps: PropTypes.Object
+  gridProps: PropTypes.object
 };

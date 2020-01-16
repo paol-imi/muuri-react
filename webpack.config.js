@@ -16,6 +16,6 @@ module.exports = {
   externals: {
     react: "react",
     muuri: "muuri",
-    "prop-types": "proptypes"
+    PropTypes: "prop-types"
   }
 };
