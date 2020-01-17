@@ -1,13 +1,4 @@
 /**
- * Return if the component has the key special prop.
- * @param {React.Component} component - The component.
- * @return {boolean} - The result.
- */
-export function hasKey(component) {
-  return component.key !== undefined;
-}
-
-/**
  * @typedef {Object} UpdateData - The update data.
  * @param {number[]} indicesToRemove - the indexes of the items to remove (Indexes based on the old children array).
  * @param {number[]} indicesToAdd - the indexes of the items to add (Indexes based on the new children array).
@@ -33,8 +24,7 @@ export function getUpdates(newChildren, oldChildren = []) {
   /** @type {React.Component[]} - The removed children. */
   const removedChildren = oldChildren.filter(
     (oldChild, index) =>
-      (!hasKey(oldChild) ||
-        newChildren.every(newChild => newChild.key !== oldChild.key)) &&
+      newChildren.every(newChild => newChild.key !== oldChild.key) &&
       indicesToRemove.push(index)
   );
 
@@ -43,8 +33,7 @@ export function getUpdates(newChildren, oldChildren = []) {
   /** @type {React.Component[]} - The added children. */
   const addedChildren = newChildren.filter(
     (newChild, index) =>
-      (!hasKey(newChild) ||
-        oldChildren.every(oldChild => oldChild.key !== newChild.key)) &&
+      oldChildren.every(oldChild => oldChild.key !== newChild.key) &&
       indicesToAdd.push(index)
   );
 

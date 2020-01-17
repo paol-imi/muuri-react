@@ -45,7 +45,9 @@ export const MuuriComponent = forwardRef(function MuuriComponent(
       itemsMap: new ItemsMap(),
       // Dependecies for the useEffect triggering
       addedDep: {},
-      removedDep: {}
+      removedDep: {},
+      // props as sort data
+      propsAsSortData
     }),
     [] // eslint-disable-line
   );
@@ -75,7 +77,7 @@ export const MuuriComponent = forwardRef(function MuuriComponent(
     // sort
     options.sortData = Object.assign(
       options.sortData || {},
-      getSortData(memo.itemsMap, propsAsSortData)
+      getSortData(propsAsSortData)
     );
     // Generate the instance
     memo.muuri = new Muuri(gridElemRef.current, options);
@@ -105,11 +107,7 @@ export const MuuriComponent = forwardRef(function MuuriComponent(
   useEffect(() => {
     // Set the DOMItems
     memo.DOMItems = getDOMItems(memo.muuri.getElement());
-    memo.itemsMap.add(allChildren, memo.DOMItems);
   });
-
-  // Refresh hook
-  useGlobalRefresh(internalMuuriRef, memo.itemsMap);
 
   // Add the items if there are new
   useEffect(() => {
@@ -119,6 +117,15 @@ export const MuuriComponent = forwardRef(function MuuriComponent(
       adjustIndex(indicesToAdd, indicesToRemove)
     );
   }, [memo.addedDep]); // eslint-disable-line
+
+  // update the itemsMap
+  useEffect(() => {
+    memo.itemsMap.add(allChildren, memo.muuri.getItems(memo.DOMItems));
+    if (memo.propsAsSortData) memo.muuri.refreshSortData();
+  });
+
+  // Refresh hook
+  useGlobalRefresh(internalMuuriRef, memo.itemsMap);
 
   // Filter the item if there are new or the filter method is changed
   useEffect(() => {
@@ -149,8 +156,12 @@ MuuriComponent.propTypes = {
   gridProps: PropTypes.object,
   onMount: PropTypes.func,
   onUnmount: PropTypes.func,
-  filter: PropTypes.oneOf([PropTypes.string, PropTypes.func]),
-  sort: PropTypes.oneOf([PropTypes.string, PropTypes.func, PropTypes.array]),
+  filter: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  sort: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+    PropTypes.array
+  ]),
   filterOptions: PropTypes.object,
   sortOptions: PropTypes.object,
   propsAsSortData: PropTypes.arrayOf(PropTypes.string)

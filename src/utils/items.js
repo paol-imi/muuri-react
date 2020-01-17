@@ -96,16 +96,16 @@ export function getAddedItems(muuri, indicesToAdd) {
 
 /**
  * Get the sort data.
- * @param {ItemsMap} itemsMap - The itemsMap.
  * @param {object} props - The props.
  * @return {object} The sortData.
  */
-export function getSortData(itemsMap, props) {
+export function getSortData(props) {
   if (!Array.isArray(props) || props.length === 0) return {};
 
   return props.reduce((sortData, prop) => {
-    sortData[prop] = function(_, DOMItem) {
-      const props = itemsMap.getPropsFromDOMItem(DOMItem);
+    sortData[prop] = function(item) {
+      if (!item._component) return;
+      const props = item._component.props;
       return props ? props[prop] : undefined;
     };
 

@@ -1,26 +1,30 @@
 // class that links DOMItems and components
 export class ItemsMap {
   constructor() {
-    this.DOMItems = [];
+    this.items = [];
     this.components = [];
   }
 
-  add(components, DOMItems) {
+  add(components, items) {
     this.components = [...components];
-    this.DOMItems = [...DOMItems];
+    this.items = [...items];
+
+    this.setItemsData();
   }
 
-  getDOMItem(index) {
-    return this.DOMItems[index];
+  setItemsData() {
+    for (let i = 0; i < this.components.length; i++) {
+      const { key, props } = this.components[i] || {};
+      this.items[i]._component = { key, props };
+    }
+  }
+
+  getItem(index) {
+    return this.items[index];
   }
 
   getProps(index) {
     const component = this.components[index];
     return component && component.props;
-  }
-
-  getPropsFromDOMItem(DOMItem) {
-    const index = this.DOMItems.indexOf(DOMItem);
-    if (index > -1) return this.getProps(index);
   }
 }

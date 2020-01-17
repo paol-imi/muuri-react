@@ -35,7 +35,9 @@ export class Global {
   // Refresh all items requested
   refreshRequestedItems() {
     if (this.refreshRequests.length !== 0) {
-      this.refreshRequests.forEach(component => this.refresh(component));
+      this.muuri.refreshItems(
+        this.refreshRequests.map(index => this.itemsMap.getItem(index))
+      );
       this.refreshRequests = [];
       this.muuri.layout();
     }
@@ -43,14 +45,8 @@ export class Global {
 
   // refresh a single item
   refreshItem(index) {
-    this.refresh(index);
+    this.muuri.refreshItems([this.itemsMap.getItem(index)]);
     this.muuri.layout();
-  }
-
-  // Refresh a muuri item
-  refresh(index) {
-    const DOMItem = this.itemsMap.getDOMItem(index);
-    if (DOMItem) this.muuri.refreshItems(DOMItem);
   }
 }
 

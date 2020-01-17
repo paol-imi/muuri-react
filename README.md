@@ -51,6 +51,8 @@ The `MuuriComponent` has the following features:
 - Sorting and filtering can be managed through the `sort` and `filter` props. The grid will be automatically sorted/filtered when the corresponding prop change or an items is added.
     - If you don't provide a primitive value (e.g. array, function) you can `memoize` it to avoid useless sorting/filtering. 
 - `onMount`/`onUnmount` callbacks can be passed as props.
+- Each muuri `item` wiil be decorated with a `_component` prop.
+  - you can access the props of the component that is rendering the corresponding item using `item._component.props`.
 
 
 ## Usage
@@ -60,7 +62,7 @@ The `MuuriComponent` has the following features:
 Here is an example of a simple `muuri-react` implementation.
 
 ```jsx
-import React, { useState, useRef } from 'react'
+import React, { useState, useCallback } from 'react'
 import { MuuriComponent } from 'muuri-react';
 
 const App = () => {
@@ -76,16 +78,21 @@ const App = () => {
     { id: 3 }
   ])
 
-  // Just add and remove items in the children 
-  // without using the muuri methods muuri.add() and muuri.remove().
-  const add = (id) => setItems(items.concat({ id })) 
-  const remove = (id) => setItems(items.filter(item => item.id !== id))
-
   // Generate the items on each render.
   // The component will find out the added/removed items and will 
   // take care to add/remove them from the muuri instance.
   // (The use of the key prop is critical)
   const children = items.map(item => <Item key={item.id} id={item.id} />)
+
+  // Just add and remove items in the children 
+  // without using the muuri methods muuri.add() and muuri.remove().
+  const add = (id) => setItems(items.concat({ id })) 
+  const remove = (id) => setItems(items.filter(item => item.id !== id))
+
+  // The filter method has to be memoized.
+  // From the item you can access the props of the corresponding component.
+  // All items with id different from 2 will be hidden.
+  const filter = useCallback(item => item._component.props.id === 2, [])
 
   // Pass the filter and the sort props.
   // The component will call the muuri.filter() and muuri.sort() method
@@ -99,6 +106,8 @@ const App = () => {
       // The id prop passed to the items is dynamically setted 
       // as sortData, muuri.sort('id') will sort by id.
       propsAsSortData={['id']}
+      // The memoized filter method
+      filter={filter}
       // Options of the muuri instance.
       // The gridElem is generated internally
       options={{
@@ -143,7 +152,7 @@ const addAt = (id, index) => {
 It's possible to use the standard muuri APIs, useful if the developer already has a codebase with muuri.
 
 ```jsx
-import React, { useState, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { MuuriComponent } from 'muuri-react';
 
 const App = () => {
@@ -174,7 +183,7 @@ It is important to note that the items can be generated and removed through the 
 | `filter` | *`function`* *`string`* | The filter value. The `muuri.filter(value)` method will be called automatically when this prop change or when an item is added. If no value is provided all items will be visible. If a function is provided it has to be memoized to avoid useless re-filtering. |
 | `sortOptions` | *`object`* | The sort options used with the sort prop. This object has to be memoized to avoid useless re-sorting. |
 | `filterOptions` | *`object`* | The filter options used with the filter prop. This object has to be memoized to avoid useless re-filtering.|
-| `propsAsSortData` | *`array`* | An array of strings where each value represent a prop passed to each child of the MuuriComponent. Each value will be dynamically setted as sortData. (e.g. muuri.sort('propName')) |
+| `propsAsSortData` | *`array`* | An array of strings where each value represent a prop passed to each child of the MuuriComponent. Each value will be dynamically setted as sortData. (is possible to call `muuri.sort('propName')`) |
 | `gridProps` | *`object`* | The custom props of the grid element. |
 | `onMount` | *`function`* | If provided this function will be called when the component is `mounted`, the first param passed is the muuri instance. This is a good place to bind the muuri events. |
 | `onUnmount` | *`function`* | If provided this function will be called when the component is `unmounted`, the first param passed is the muuri instance. Note that the instance is automatically destroyed after this method has been called. |
