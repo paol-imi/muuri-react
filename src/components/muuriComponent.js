@@ -26,7 +26,9 @@ export const MuuriComponent = forwardRef(function MuuriComponent(
     sort,
     filterOptions,
     sortOptions,
-    propsAsSortData
+    propsAsSortData,
+    defaultAddOptions,
+    defaultRemoveOptions
   },
   muuriRef
 ) {
@@ -47,7 +49,9 @@ export const MuuriComponent = forwardRef(function MuuriComponent(
       addedDep: {},
       removedDep: {},
       // props as sort data
-      propsAsSortData
+      propsAsSortData,
+      defaultAddOptions,
+      defaultRemoveOptions
     }),
     [] // eslint-disable-line
   );

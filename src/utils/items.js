@@ -84,17 +84,6 @@ export function addItems(muuri, addedDOMItems, indicesToAdd) {
 }
 
 /**
- * Get the added items.
- * @param {Muuri} muuri - The muuri instance.
- * @param {number[]} indicesToAdd - The indeces to add.
- * @return {Items[]} - The added items.
- */
-export function getAddedItems(muuri, indicesToAdd) {
-  const DOMItems = getDOMItems(muuri.getElement());
-  return muuri.getItems(indicesToAdd.map(index => DOMItems[index]));
-}
-
-/**
  * Get the sort data.
  * @param {object} props - The props.
  * @return {object} The sortData.

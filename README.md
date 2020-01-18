@@ -50,9 +50,10 @@ The `MuuriComponent` has the following features:
     - When a list of components is used as children it's critical to add the [key](https://reactjs.org/docs/lists-and-keys.html) prop to each component <br> (**DON'T USE THE [INDEX AS KEY](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318)**). 
 - Sorting and filtering can be managed through the `sort` and `filter` props. The grid will be automatically sorted/filtered when the corresponding prop change or an items is added.
     - If you don't provide a primitive value (e.g. array, function) you can `memoize` it to avoid useless sorting/filtering. 
+    - Sorting/filtering options don't need to be memoized.
 - `onMount`/`onUnmount` callbacks can be passed as props.
-- Each muuri `item` wiil be decorated with a `_component` prop.
-  - you can access the props of the component that is rendering the corresponding item using `item._component.props`.
+- Each muuri `item` will be decorated with a `getProps()` method.
+  - you can access the props of the component that is rendering the corresponding item using `item.getProps()`.
 
 
 ## Usage
@@ -92,7 +93,7 @@ const App = () => {
   // The filter method has to be memoized.
   // From the item you can access the props of the corresponding component.
   // All items with id different from 2 will be hidden.
-  const filter = useCallback(item => item._component.props.id === 2, [])
+  const filter = useCallback(item => item.getProps().id === 2, [])
 
   // Pass the filter and the sort props.
   // The component will call the muuri.filter() and muuri.sort() method
@@ -101,7 +102,7 @@ const App = () => {
     <MuuriComponent
       // Muuri.sort(value, options) will be called internally.
       sort={sort.value}
-      // The options has to be memoized to avoid useless re-sorting.
+      // The sort options.
       sortOptions={sort.options}
       // The id prop passed to the items is dynamically setted 
       // as sortData, muuri.sort('id') will sort by id.
@@ -170,7 +171,7 @@ const App = () => {
 
 However, if the developer already has a codebase, it is possible to migrate gradually to a more `React friendly` approach, without changing all the code at once.
 
-It is important to note that the items can be generated and removed through the standard methods (muuri.add() and muuri.remove()) or through the children of MuuriComponent, but it is not possible to use both ways (even if it were possible it would be highly discouraged).
+It is important to note that the items can be generated and removed through the standard methods (**muuri.add()** and **muuri.remove()**) or through the children of MuuriComponent, but it is not possible to use both ways (even if it were possible it would be highly discouraged).
 
 ## Props
 
@@ -181,10 +182,13 @@ It is important to note that the items can be generated and removed through the 
 | `options` | *`object`* | The options passed to the muuri instance, the grid element is automatically generated and used internally by the library. Note that the muuri instance is generated only when the component is mounted.  |
 | `sort` | *`array`* *`function`* *`string`* | The sort value. The `muuri.sort(value)` method will be called automatically when this prop change or when an item is added. If a function is provided it has to be memoized to avoid useless re-sorting. |
 | `filter` | *`function`* *`string`* | The filter value. The `muuri.filter(value)` method will be called automatically when this prop change or when an item is added. If no value is provided all items will be visible. If a function is provided it has to be memoized to avoid useless re-filtering. |
-| `sortOptions` | *`object`* | The sort options used with the sort prop. This object has to be memoized to avoid useless re-sorting. |
-| `filterOptions` | *`object`* | The filter options used with the filter prop. This object has to be memoized to avoid useless re-filtering.|
+| `sortOptions` | *`object`* | The sort options used with the sort prop. This object does not need to be memoized. <br><br> `options.descending` - *`boolean`* - *default* `false` - If the items have to be sorted in descending order. |
+| `filterOptions` | *`object`* | The filter options used with the filter prop. This object does not need to be memoized. <br><br> `options.instant` - *`boolean`* - *default* `false` - If the items have to be filtered without any animation. |
 | `propsAsSortData` | *`array`* | An array of strings where each value represent a prop passed to each child of the MuuriComponent. Each value will be dynamically setted as sortData. (is possible to call `muuri.sort('propName')`) |
-| `gridProps` | *`object`* | The custom props of the grid element. |
+| `gridProps` | *`object`* | The custom props of the grid DOM element. |
+| `addOptions` | *`object`* | The options to use when some components has to be added. <br><br> `options.show` - *`boolean`* - *default* `true` - If the elements with **display: none** has to be shown (If filter is provided this is ineffective). |
+| `removeOptions` | *`object`* | The options to use when some components has to be removed. <br><br> `options.hide` - *`boolean`* - *default* `true` - If the *hiding* animation has to be shown.  |
+| `instantLayout` | *`boolean`* | If the items have to be positioned instantly without any possible animation. |
 | `onMount` | *`function`* | If provided this function will be called when the component is `mounted`, the first param passed is the muuri instance. This is a good place to bind the muuri events. |
 | `onUnmount` | *`function`* | If provided this function will be called when the component is `unmounted`, the first param passed is the muuri instance. Note that the instance is automatically destroyed after this method has been called. |
 
@@ -306,6 +310,7 @@ const Item = ({ className }) => {
 ## Limitations
 
 - The the grid element is automatically setted as the drag container to avoid bug if the component re-render while an item is dragging.
+- There is no *React friendly* way to manage way to manage the `drag & drop` between different grids. If you want to implement it the simplest way is to not use children as items (and manually manage them using **muuri.add()** and **muuri.remove()**).
 - This library is made with hooks so a react version > 16.8 is needed.
 
 > ⚠️ The name of this package is **muuri-react** (react-muuri is a different package)
