@@ -1,26 +1,30 @@
 import { useMemo, useEffect } from "react";
-import { buildGlobal, hasConsumer, useConsumerReference } from "./global";
+import { buildGlobal, useConsumerReference } from "./global";
 
 // Global
-export const { useGlobalHook, getGlobal, hasGlobal } = buildGlobal(
-  (muuriRef, itemsMap) => {
-    // On mount generate the global instance
-    const global = useMemo(() => new Global(itemsMap), []); // eslint-disable-line
-    // Set the muuri instance
-    useEffect(() => global.setMuuri(muuriRef.current), []); // eslint-disable-line
-    // On each render set the items and
-    // refresh all items requested
-    useEffect(() => global.refreshRequestedItems());
-    // return the global instance
-    return global;
-  }
-);
+export const {
+  useGlobalHook,
+  getGlobal,
+  hasGlobal,
+  hookThrowOnMount
+} = buildGlobal((muuriRef, itemsMap) => {
+  // On mount generate the global instance
+  const global = useMemo(() => new Global(itemsMap), []); // eslint-disable-line
+  // Set the muuri instance
+  useEffect(() => global.setMuuri(muuriRef.current), []); // eslint-disable-line
+  // On each render set the items and
+  // refresh all items requested
+  useEffect(() => global.refreshRequestedItems());
+  // return the global instance
+  return global;
+});
 
 // Global class
 export class Global {
   constructor(itemsMap) {
     this.itemsMap = itemsMap;
     this.refreshRequests = [];
+    this.layoutRequest = false;
   }
 
   setMuuri(muuri) {
@@ -39,23 +43,27 @@ export class Global {
         this.refreshRequests.map(index => this.itemsMap.getItem(index))
       );
       this.refreshRequests = [];
-      this.muuri.layout();
+      this.addLayoutRequest();
     }
   }
 
   // refresh a single item
-  refreshItem(index) {
+  refreshItem(index, instantLayout) {
     this.muuri.refreshItems([this.itemsMap.getItem(index)]);
-    this.muuri.layout();
+    this.muuri.layout(instantLayout);
   }
-}
 
-// Check that the hok is called inside a right component
-export function checkOnMounting() {
-  if (!hasGlobal() || !hasConsumer()) {
-    throw new Error(
-      "This custom hook can be called only by a Component inside a MuuriComponent."
-    );
+  addLayoutRequest() {
+    this.layoutRequest = true;
+  }
+
+  consumeLayoutRequest() {
+    if (this.layoutRequest) {
+      this.layoutRequest = false;
+      return true;
+    } else {
+      return false;
+    }
   }
 }
 
@@ -65,20 +73,20 @@ export function useRefresh(deps) {
   const memo = useConsumerReference();
   // Memoize on mounting
   const [refresh, is] = useMemo(() => {
-    checkOnMounting();
+    hookThrowOnMount();
     // We are sure that global doesn't change until unmounting
     // And ther's no need to use 'UseGlobalReference'
     const global = getGlobal();
 
     // Refresh
-    const refresh = () => {
+    const refresh = instantLayout => {
       // If the component is rendering within the MuuriComponent
       // Check this to call muuri.layout() just one time
 
       if (hasGlobal()) {
         global.addRefreshRequest(memo.consumer);
       } else {
-        global.refreshItem(memo.consumer);
+        global.refreshItem(memo.consumer, instantLayout);
       }
     };
 

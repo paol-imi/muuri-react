@@ -7,11 +7,13 @@ import {
   getUpdates,
   addItems,
   getDOMItems,
-  adjustIndex,
+  adjustIndices,
   removeItems,
   ItemsMap,
   getSortData,
-  getAddedDOMItems
+  decorateItems,
+  setItemsData,
+  useMemoizedOptions
 } from "../utils";
 
 // The component
@@ -20,18 +22,24 @@ export const MuuriComponent = forwardRef(function MuuriComponent(
     children,
     options,
     gridProps,
-    onMount,
-    onUnmount,
     filter,
     sort,
     filterOptions,
     sortOptions,
+    onMount,
+    onUnmount,
     propsAsSortData,
-    defaultAddOptions,
-    defaultRemoveOptions
+    removeOptions = { hide: true },
+    addOptions = { show: true },
+    instantLayout = false
   },
   muuriRef
 ) {
+  // Memoize options to avoid useless re-rendering.
+  // This will also remove the layout options.
+  filterOptions = useMemoizedOptions(filterOptions, { instant: false });
+  sortOptions = useMemoizedOptions(sortOptions, { descending: false });
+
   // Grid element ref
   const gridElemRef = useRef();
   const internalMuuriRef = useRef();
@@ -49,9 +57,7 @@ export const MuuriComponent = forwardRef(function MuuriComponent(
       addedDep: {},
       removedDep: {},
       // props as sort data
-      propsAsSortData,
-      defaultAddOptions,
-      defaultRemoveOptions
+      propsAsSortData
     }),
     [] // eslint-disable-line
   );
@@ -92,6 +98,7 @@ export const MuuriComponent = forwardRef(function MuuriComponent(
     };
   }, []); // eslint-disable-line
 
+  // Muuri on mount
   useEffect(() => {
     // Set the ref
     internalMuuriRef.current = memo.muuri;
@@ -108,33 +115,51 @@ export const MuuriComponent = forwardRef(function MuuriComponent(
     };
   }, []); // eslint-disable-line
 
+  // Items data
   useEffect(() => {
-    // Set the DOMItems
-    memo.DOMItems = getDOMItems(memo.muuri.getElement());
+    // Get DOMItems data
+    const { DOMItems, DOMItemsToRemove, addedDOMItems } = getDOMItems(
+      gridElemRef.current,
+      indicesToAdd,
+      indicesToRemove.length
+    );
+
+    // Set Items Data
+    memo.DOMItems = DOMItems;
+    memo.DOMItemsToRemove = DOMItemsToRemove;
+    memo.addedDOMItems = addedDOMItems;
+    memo.newItemsIndeces = adjustIndices(indicesToAdd, indicesToRemove);
   });
 
   // Add the items if there are new
   useEffect(() => {
-    addItems(
-      memo.muuri,
-      getAddedDOMItems(memo.DOMItems, indicesToAdd),
-      adjustIndex(indicesToAdd, indicesToRemove)
-    );
+    addItems(memo.muuri, memo.addedDOMItems, memo.newItemsIndeces, addOptions);
   }, [memo.addedDep]); // eslint-disable-line
+
+  // Remove old items if there are
+  useEffect(() => {
+    removeItems(memo.muuri, memo.DOMItemsToRemove, removeOptions);
+  }, [memo.removedDep]); // eslint-disable-line
 
   // update the itemsMap
   useEffect(() => {
-    memo.itemsMap.add(allChildren, memo.muuri.getItems(memo.DOMItems));
+    // The items are ordered here so in other parts of the code
+    // they can be finded using an index insted of searching in the whole list.
+    const orderedItems = memo.muuri.getItems(memo.DOMItems);
+    // Decorate the items
+    decorateItems(memo.muuri.getItems(memo.newItemsIndeces));
+    setItemsData(children, orderedItems);
+    // Link the items
+    memo.itemsMap.add(children, orderedItems);
     if (memo.propsAsSortData) memo.muuri.refreshSortData();
   });
 
   // Refresh hook
-  useGlobalRefresh(internalMuuriRef, memo.itemsMap);
+  const global = useGlobalRefresh(internalMuuriRef, memo.itemsMap);
 
   // Filter the item if there are new or the filter method is changed
   useEffect(() => {
     if (filter) memo.muuri.filter(filter, filterOptions);
-    else memo.muuri.filter(() => true);
   }, [filter, filterOptions, memo.addedDep]); // eslint-disable-line
 
   // Sort the item if there are new or the sort/filter method are changed
@@ -142,10 +167,17 @@ export const MuuriComponent = forwardRef(function MuuriComponent(
     if (sort) memo.muuri.sort(sort, sortOptions);
   }, [sort, sortOptions, memo.addedDep]); // eslint-disable-line
 
-  // Remove old items if there are
+  // Call layout a the end for performance otpimization
   useEffect(() => {
-    removeItems(memo.muuri, memo.DOMItems, indicesToRemove.length);
-  }, [memo.removedDep]); // eslint-disable-line
+    if (
+      indicesToAdd.length ||
+      indicesToRemove.length ||
+      filter ||
+      sort ||
+      global.consumeLayoutRequest()
+    )
+      memo.muuri.layout(instantLayout);
+  });
 
   // render
   return (
@@ -166,7 +198,18 @@ MuuriComponent.propTypes = {
     PropTypes.func,
     PropTypes.array
   ]),
-  filterOptions: PropTypes.object,
-  sortOptions: PropTypes.object,
-  propsAsSortData: PropTypes.arrayOf(PropTypes.string)
+  filterOptions: PropTypes.exact({
+    instant: PropTypes.bool
+  }),
+  sortOptions: PropTypes.exact({
+    descending: PropTypes.bool
+  }),
+  propsAsSortData: PropTypes.arrayOf(PropTypes.string.isRequired),
+  removeOptions: PropTypes.exact({
+    hide: PropTypes.bool
+  }),
+  addOptions: PropTypes.exact({
+    show: PropTypes.bool
+  }),
+  instantLayout: PropTypes.bool
 };

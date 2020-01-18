@@ -1,3 +1,5 @@
+import { useMemo } from "react";
+
 /**
  * @typedef {Object} UpdateData - The update data.
  * @param {number[]} indicesToRemove - the indexes of the items to remove (Indexes based on the old children array).
@@ -47,4 +49,35 @@ export function getUpdates(newChildren, oldChildren = []) {
     addedChildren,
     allChildren
   };
+}
+
+/**
+ * Parse and memoize options from default options.
+ * @param {object} options - The options.
+ * @param {object} defaultOptions - The default options.
+ * @return {object} - The memoize options.
+ */
+export function useMemoizedOptions(options = {}, defaultOptions) {
+  // Default keys and values
+  const { keys, values } = useMemo(
+    () => ({
+      keys: Object.keys(defaultOptions),
+      values: Object.values(defaultOptions)
+    }),
+    [] // eslint-disable-line
+  );
+
+  const memoizedOptions = useMemo(() => {
+    const memoizedOptions = {};
+    for (let i = 0; i < keys.length; i++) {
+      const key = keys[i];
+      // Get the value from the options
+      if (key in options) memoizedOptions[key] = options[key];
+      // Get the value from default
+      else memoizedOptions[key] = values[i];
+    }
+    return memoizedOptions;
+  }, keys.map(key => options[key])); // eslint-disable-line
+
+  return memoizedOptions;
 }

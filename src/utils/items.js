@@ -11,7 +11,7 @@
  * @param {number[]} indicesToRemove - The indexes of the items to remove.
  * @return {number[]} - The indexes adjusted.
  */
-export function adjustIndex(indicesToAdd, indicesToRemove) {
+export function adjustIndices(indicesToAdd, indicesToRemove) {
   const array = [...indicesToAdd];
   for (let i = 0; i < indicesToAdd.length; i++) {
     for (let j = 0; j < indicesToRemove.length; j++) {
@@ -20,15 +20,6 @@ export function adjustIndex(indicesToAdd, indicesToRemove) {
   }
 
   return array;
-}
-
-/**
- * Get all the DOMItems.
- * @param {Element} gridElem - The grid DOM element.
- * @return {Element[]} - The DOMItems.
- */
-export function getDOMItems(gridElem) {
-  return Array.from(gridElem.children);
 }
 
 /**
@@ -42,30 +33,24 @@ export function getDOMItems(gridElem) {
  * @param {Elements[]} DOMItems - The array.
  * @param {number} itemsToRemove - The number of items to remove.
  */
-export function removeItems(muuri, DOMItems, itemsToRemove) {
-  if (itemsToRemove === 0) return;
+export function removeItems(muuri, DOMItemsToRemove, removeOptions) {
+  if (DOMItemsToRemove.length === 0) return;
 
-  DOMItems = DOMItems.slice(-itemsToRemove);
-  muuri.hide(DOMItems, {
-    onFinish: function(items) {
-      muuri.remove(items, { layout: false });
-      // The items to remove are pushed in the bottom.
-      //
-      // The muuri.remove method remove all the style.
-      // The display prop is setted after the method is called.
-      DOMItems.forEach(item => (item.style.display = "none"));
-    }
-  });
-}
-
-/**
- * Return the added DOMItems.
- * @param {Element[]} DOMItem - The DOMItems.
- * @param {number[]} indicesToAdd - The indeces to add.
- * @return {Element[]} - The added DOMitems.
- */
-export function getAddedDOMItems(DOMItem, indicesToAdd) {
-  return indicesToAdd.map(index => DOMItem[index]);
+  if (removeOptions.hide) {
+    muuri.hide(DOMItemsToRemove, {
+      layout: false,
+      onFinish: function(items) {
+        muuri.remove(items, { layout: false });
+        // The items to remove are pushed in the bottom.
+        //
+        // The muuri.remove method remove all the style.
+        // The display prop is setted after the method is called.
+        DOMItemsToRemove.forEach(item => (item.style.display = "none"));
+      }
+    });
+  } else {
+    muuri.remove(DOMItemsToRemove, { layout: false });
+  }
 }
 
 /**
@@ -75,16 +60,21 @@ export function getAddedDOMItems(DOMItem, indicesToAdd) {
  * @param {number[]} indicesToAdd - The items indexes (Based on the new children array)
  * @param {number[]} indicesToAddAdjusted - The items indexes (Counting that the old items they have not been removed yet)
  */
-export function addItems(muuri, addedDOMItems, indicesToAdd) {
+export function addItems(muuri, addedDOMItems, indicesToAdd, addOptions) {
   if (addedDOMItems.length === 0) return;
 
   for (let i = 0; i < addedDOMItems.length; i++) {
-    muuri.add(addedDOMItems[i], { index: indicesToAdd[i] });
+    // Add the element without calling layout
+    muuri.add(addedDOMItems[i], { index: indicesToAdd[i], layout: false });
   }
+
+  // Show the added items
+  if (addOptions.show) muuri.show(indicesToAdd, { layout: false });
 }
 
 /**
  * Get the sort data.
+ * @param {ItemsMap} itemsMap - The itemsMap.
  * @param {object} props - The props.
  * @return {object} The sortData.
  */
@@ -92,12 +82,40 @@ export function getSortData(props) {
   if (!Array.isArray(props) || props.length === 0) return {};
 
   return props.reduce((sortData, prop) => {
+    // prop = 'propName'
     sortData[prop] = function(item) {
-      if (!item._component) return;
-      const props = item._component.props;
-      return props ? props[prop] : undefined;
+      if (item.getProps) return item.getProps()[prop];
     };
 
     return sortData;
   }, {});
+}
+
+/**
+ * Bind the props getter to all items.
+ * @param {Item[]} items
+ */
+export function decorateItems(items) {
+  for (let i = 0; i < items.length; i++) {
+    items[i]._component = {};
+    items[i].getProps = function() {
+      return this._component.props || {};
+    };
+    items[i].getData = function() {
+      return this._component.data;
+    };
+  }
+}
+
+/**
+ * Set items data.
+ * @param {Items[]} items
+ * @param {React.elements[]} components
+ */
+export function setItemsData(components, items) {
+  for (let i = 0; i < components.length; i++) {
+    const { key, props } = components[i];
+    items[i]._component.props = props;
+    items[i]._component.key = key;
+  }
 }

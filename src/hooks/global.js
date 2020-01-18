@@ -57,6 +57,15 @@ export function useConsumerReference() {
   return memo;
 }
 
+export function hookThrowOnMount(globalId) {
+  // Check that the hook is called inside a right component
+  if (!hasGlobal(globalId) || !hasConsumer()) {
+    throw new Error(
+      "Each 'muuri-react' custom hook can be called only by a Component inside a MuuriComponent."
+    );
+  }
+}
+
 // Build a global instance
 export function buildGlobal(useGlobalFromArgs) {
   if (typeof useGlobalFromArgs !== "function") useGlobalFromArgs = _ => _;
@@ -68,6 +77,7 @@ export function buildGlobal(useGlobalFromArgs) {
     getGlobal: getGlobal.bind(null, globalId),
     hasGlobal: hasGlobal.bind(null, globalId),
     useGlobalHook: useGlobalHook.bind(null, globalId, useGlobalFromArgs),
-    useGlobalReference: useGlobalReference.bind(null, globalId)
+    useGlobalReference: useGlobalReference.bind(null, globalId),
+    hookThrowOnMount: hookThrowOnMount.bind(null, globalId)
   };
 }
