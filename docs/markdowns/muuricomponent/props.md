@@ -59,7 +59,7 @@ The ids of the groups to which the MuuriComponent belongs. This option is used [
 
 * Accepted types: `string[]`.
 
-```javascript
+```js
 <MuuriComponent
   groupIds={["GroupA", "GroupB"]}
 />
@@ -351,7 +351,7 @@ The default options are stored in `MuuriComponent.defaultOptions` object, which 
 
 You can modify the default options easily:
 
-```javascript
+```js
 MuuriComponent.defaultOptions.showDuration = 400;
 MuuriComponent.defaultOptions.dragSortPredicate.action = 'swap';
 ```
@@ -394,7 +394,7 @@ Show animation duration in milliseconds. Set to `0` to disable show animation.
 * Default value: `300`.
 * Accepted types: number.
 
-```javascript
+```js
 <MuuriComponent
   showDuration={600}
 />
@@ -407,7 +407,7 @@ Show animation easing. Accepts any valid [Animation easing](https://developer.mo
 * Default value: `'ease'`.
 * Accepted types: string.
 
-```javascript
+```js
 <MuuriComponent
   showEasing={"cubic-bezier(0.215, 0.61, 0.355, 1)"}
 />
@@ -420,7 +420,7 @@ Hide animation duration in milliseconds. Set to `0` to disable hide animation.
 * Default value: `300`.
 * Accepted types: number.
 
-```javascript
+```js
 <MuuriComponent
   hideDuration={600}
 />
@@ -433,7 +433,7 @@ Hide animation easing. Accepts any valid [Animation easing](https://developer.mo
 * Default value: `'ease'`.
 * Accepted types: string.
 
-```javascript
+```js
 <MuuriComponent
   hideEasing={"cubic-bezier(0.215, 0.61, 0.355, 1)"}
 />
@@ -446,7 +446,7 @@ The styles that will be applied to all visible items. These styles are also used
 * Default value: `{opacity: 1, transform: 'scale(1)'}`.
 * Accepted types: object.
 
-```javascript
+```js
 <MuuriComponent
   visibleStyles={{
     opacity: 1,
@@ -466,7 +466,7 @@ The styles that will be applied to all hidden items. These styles are also used 
 * Default value: `{opacity: 0, transform: "scale(0.5)"}`.
 * Accepted types: object.
 
-```javascript
+```js
 <MuuriComponent
   visibleStyles={{
     opacity: 1,
@@ -504,7 +504,7 @@ Define how the items will be laid out. Muuri ships with a configurable layout al
   * Default value: `true`.
   * When `true` the dimensions of the items will be automatically rounded for the layout calculations using `Math.round()`. Set to `false` to use accurate dimensions. In practice you would want disable this if you are using relative dimension values for items (%, em, rem, etc.). If you have defined item dimensions with pixel values (px) it is recommended that you leave this on.
 
-```javascript
+```js
 // Customize the default layout algorithm.
 <MuuriComponent
   layout={{
@@ -544,7 +544,7 @@ The layout function should _always_ return an object with following properties:
 * **setHeight**&mdash;&nbsp; *boolean*
   * Should Muuri set the provided _height_ as the grid element's height?
 
-```javascript
+```js
 // Build your own layout algorithm.
 <MuuriComponent
   layout={function (items, gridWidth, gridHeight) {
@@ -596,21 +596,21 @@ Should Muuri automatically trigger `layout` method on window resize? Set to `fal
 * Default value: `100`.
 * Accepted types: boolean, number.
 
-```javascript
+```js
 // No layout on resize.
 <MuuriComponent
   layoutOnResize={false}
 />
 ```
 
-```javascript
+```js
 // Layout on resize (instantly).
 <MuuriComponent
   layoutOnResize={true}
 />
 ```
 
-```javascript
+```js
 // Layout on resize (with 200ms debounce).
 <MuuriComponent
   layoutOnResize={200}
@@ -624,7 +624,7 @@ Should Muuri trigger `layout` method automatically on init?
 * Default value: `true`.
 * Accepted types: boolean.
 
-```javascript
+```js
 <MuuriComponent
   layoutOnInit={false}
 />
@@ -637,7 +637,7 @@ The duration for item's layout animation in milliseconds. Set to `0` to disable.
 * Default value: `300`.
 * Accepted types: number.
 
-```javascript
+```js
 <MuuriComponent
   layoutDuration={600}
 />
@@ -650,7 +650,7 @@ The easing for item's layout animation. Accepts any valid [Animation easing](htt
 * Default value: `'ease'`.
 * Accepted types: string.
 
-```javascript
+```js
 <MuuriComponent
   layoutEasing={"cubic-bezier(0.215, 0.61, 0.355, 1)"}
 />
@@ -663,7 +663,7 @@ Should items be draggable?
 * Default value: `false`.
 * Accepted types: boolean.
 
-```javascript
+```js
 <MuuriComponent
   dragEnabled={true}
 />
@@ -676,7 +676,7 @@ The element the dragged item should be appended to for the duration of the drag.
 * Default value: `null`.
 * Accepted types: element, null.
 
-```javascript
+```js
 <MuuriComponent
   dragContainer={document.body}
 />
@@ -710,7 +710,7 @@ The predicate function receives two arguments:
 * **event**&mdash;&nbsp; *object*
   * The drag event (Muuri.Dragger event).
 
-```javascript
+```js
 // Configure the default predicate
 <MuuriComponent
   dragStartPredicate={{
@@ -721,7 +721,7 @@ The predicate function receives two arguments:
 />
 ```
 
-```javascript
+```js
 // Provide your own predicate
 <MuuriComponent
   dragStartPredicate={function (item, e) {
@@ -733,7 +733,7 @@ The predicate function receives two arguments:
 />
 ```
 
-```javascript
+```js
 // Pro tip: provide your own predicate and fall back to the default predicate.
 <MuuriComponent
   dragStartPredicate={function (item, e) {
@@ -766,14 +766,14 @@ Force items to be moved only vertically or horizontally when dragged. Set to `'x
 * Accepted types: string.
 * Allowed values: `'x'`, `'y'`.
 
-```javascript
+```js
 // Move items only horizontally when dragged.
 <MuuriComponent
   dragAxis={"x"}
 />
 ```
 
-```javascript
+```js
 // Move items only vertically when dragged.
 <MuuriComponent
   dragAxis={"y"}
@@ -789,7 +789,7 @@ Alternatively you can do some advanced stuff and control within which MuuriCompo
 * Default value: `true`.
 * Accepted types: boolean, object.
 
-```javascript
+```js
 // Disable drag sorting.
 <MuuriComponent
   dragSort={false}
@@ -798,7 +798,7 @@ Alternatively you can do some advanced stuff and control within which MuuriCompo
 
 ```js
 <MuuriComponent
-  dragSort={{ groupId: 'groupA' }}
+  dragSort={{ groupId: "groupA" }}
 />
 ```
 
@@ -821,7 +821,7 @@ You can define the following properties:
   * Default value: `1`.
   * Defines the minimum angle (in radians) of the delta vector between the last movement vector and the current movement vector that is required for the dragged item to be allowed to be sorted to it's previous index. The problem this heuristic is trying to solve is the scenario where you drag an item over a much bigger item and the bigger item moves, but it's still overlapping the dragged item after repositioning. Now when you move the dragged item again another sort is triggered and the bigger item moves back to it's previous position. This bouncing back and forth can go on for quite a while and it looks quite erratic. The fix we do here is that, by default, we disallow an item to be moved back to it's previous position, unless it's drag direction changes enough. And what is enough? That's what you can define here. Note that this option works in tandem with `minDragDistance` and needs it to be set to `3` at minimum to be enabled at all.
 
-```javascript
+```js
 <MuuriComponent
   dragEnabled={true}
   dragSortHeuristics={{
@@ -870,7 +870,7 @@ The callback should return a *falsy* value if sorting should not occur. If, howe
   * Allowed values: `'move'` or `'swap'`.
   * Optional.
 
-```javascript
+```js
 // Customize the default predicate.
 <MuuriComponent
   dragSortPredicate={{
@@ -880,7 +880,7 @@ The callback should return a *falsy* value if sorting should not occur. If, howe
 />
 ```
 
-```javascript
+```js
 // Provide your own predicate.
 <MuuriComponent
   dragSortPredicate={function (item, e) {
@@ -893,7 +893,7 @@ The callback should return a *falsy* value if sorting should not occur. If, howe
 />
 ```
 
-```javascript
+```js
 // Pro tip: use the default predicate as fallback in your custom predicate.
 <MuuriComponent
   dragSortPredicate={function (item, e) {
@@ -913,7 +913,7 @@ The duration for item's drag release animation. Set to `0` to disable.
 * Default value: `300`.
 * Accepted types: number.
 
-```javascript
+```js
 <MuuriComponent
   dragReleaseDuration={600}
 />
@@ -926,7 +926,7 @@ The easing for item's drag release animation. Accepts any valid [Animation easin
 * Default value: `'ease'`.
 * Accepted types: string.
 
-```javascript
+```js
 <MuuriComponent
   dragReleaseEasing={"ease-out"}
 />
@@ -965,7 +965,7 @@ You can define the following properties:
   * https://developer.mozilla.org/en-US/docs/Web/CSS/-ms-content-zooming
   * Optional.
 
-```javascript
+```js
 // Only set the required touch-action CSS property via the options if you for
 // example want to set the other props via CSS instead.
 <MuuriComponent
@@ -1009,29 +1009,11 @@ You can define the following properties:
   * Default value: `null`.
   * An optional callback that will be called after a placeholder is removed from the grid.
 
-```javascript
-// This example showcases how to pool placeholder elements
-// for better performance and memory efficiency.
-var phPool = [];
-var phElem = document.createElement('div');
-
+```js
 <MuuriComponent
   dragEnabled={true}
   dragPlaceholder={{
-    enabled: true,
-    duration: 400,
-    easing: 'ease-out',
-    createElement(item) {
-      return phPool.pop() || phElem.cloneNode();
-    },
-    onCreate(item, element) {
-      // If you want to do something after the
-      // placeholder is fully created, here's
-      // the place to do it.
-    },
-    onRemove (item, element) {
-      phPool.push(element);
-    }
+    enabled: true
   }}
 />
 ```
@@ -1043,7 +1025,7 @@ Container element's class name.
 * Default value: `'muuri'`.
 * Accepted types: string.
 
-```javascript
+```js
 <MuuriComponent
   containerClass={"foo"}
 />
@@ -1056,7 +1038,7 @@ Item element's class name.
 * Default value: `'muuri-item'`.
 * Accepted types: string.
 
-```javascript
+```js
 <MuuriComponent
   itemClass={"foo-item"}
 />
@@ -1069,7 +1051,7 @@ Visible item's class name.
 * Default value: `'muuri-item-shown'`.
 * Accepted types: string.
 
-```javascript
+```js
 <MuuriComponent
   itemVisibleClass={"foo-item-shown"}
 />
@@ -1082,7 +1064,7 @@ Hidden item's class name.
 * Default value: `'muuri-item-hidden'`.
 * Accepted types: string.
 
-```javascript
+```js
 <MuuriComponent
   itemHiddenClass={"foo-item-hidden"}
 />
@@ -1095,7 +1077,7 @@ This class name will be added to the item element for the duration of positionin
 * Default value: `'muuri-item-positioning'`.
 * Accepted types: string.
 
-```javascript
+```js
 <MuuriComponent
   itemPositioningClass={"foo-item-positioning"}
 />
@@ -1108,7 +1090,7 @@ This class name will be added to the item element for the duration of drag.
 * Default value: `'muuri-item-dragging'`.
 * Accepted types: string.
 
-```javascript
+```js
 <MuuriComponent
   itemDraggingClass={foo-item-dragging"}
 />
@@ -1121,7 +1103,7 @@ This class name will be added to the item element for the duration of release.
 * Default value: `'muuri-item-releasing'`.
 * Accepted types: string.
 
-```javascript
+```js
 <MuuriComponent
   itemReleasingClass={"foo-item-releasing"}
 />
@@ -1134,7 +1116,7 @@ This class name will be added to the drag placeholder element.
 * Default value: `'muuri-item-placeholder'`.
 * Accepted types: string.
 
-```javascript
+```js
 <MuuriComponent
   itemPlaceholderClass={"foo-item-placeholder"}
 />
