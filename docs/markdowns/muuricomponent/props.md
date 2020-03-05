@@ -823,7 +823,7 @@ You can define the following properties:
 
 ```javascript
 <MuuriComponent
-  dragEnabled={true},
+  dragEnabled={true}
   dragSortHeuristics={{
     sortInterval: 10,
     minDragDistance: 5,
@@ -969,7 +969,7 @@ You can define the following properties:
 // Only set the required touch-action CSS property via the options if you for
 // example want to set the other props via CSS instead.
 <MuuriComponent
-  dragEnabled={true},
+  dragEnabled={true}
   dragCssProps={{
     touchAction: 'pan-y',
     userSelect: '',
@@ -1016,7 +1016,7 @@ var phPool = [];
 var phElem = document.createElement('div');
 
 <MuuriComponent
-  dragEnabled={true},
+  dragEnabled={true}
   dragPlaceholder={{
     enabled: true,
     duration: 400,
