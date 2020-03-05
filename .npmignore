@@ -1,2 +1,8 @@
+/examples
 /src
-/webpack.config.js
+/website
+/.babelrc
+/.gitattributes
+/.gitignore
+/package-lock.json
+/webpack.config.json

@@ -1,0 +1,22 @@
+img[alt=gamepad] {
+    width: 30%;
+    margin-bottom: -6%;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #aaaaaa;
+}
+
+section.cover.show {
+    width: 100vw;
+}
