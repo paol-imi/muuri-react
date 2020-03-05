@@ -1,4 +1,4 @@
-<img width="29%"></img><a style="display: inline-block; border: 1px solid black;"><img src="website/logo/muuri.png" width="40%" ></img></a>
+<img width="29%"></img><a style="display: inline-block; border: 1px solid black;"><img src="docs/logo/muuri.png" width="40%" ></img></a>
 
 # Muuri-react
 
@@ -7,7 +7,7 @@
 
 Muuri-React is the React implementation of the amazing layout engine [Muuri](https://github.com/haltu/muuri). This library allows you to build all kinds of layouts and make them responsive, sortable, filterable, draggable and/or animated with [React](https://reactjs.org/). 
 
-<img src="website/gifs/grid.gif" width="49.7%" ><img width="1%"></img></img><img src="website/gifs/kanban.gif" width="49%" ></img>
+<img src="docs/gifs/grid.gif" width="48.4%" ><img width="1%"></img></img><img src="docs/gifs/kanban.gif" width="49.1%" ></img>
 
 ## Features 🌟
 
