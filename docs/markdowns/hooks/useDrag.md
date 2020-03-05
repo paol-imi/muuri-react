@@ -24,6 +24,8 @@ const Item = ({ text }) => {
 }
 ```
 
+!> useDrag can't be used if you are working with [reparenting](usage/reparenting), this option will be added in future updates.
+
 ## API
 
 ### useDrag( ) {docsify-ignore}
