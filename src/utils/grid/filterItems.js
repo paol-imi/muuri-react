@@ -4,10 +4,5 @@
  * @param {any} predicate
  */
 export function filterItems(muuri, predicate) {
-  muuri.filter(
-    item => {
-      return predicate(item.getData(), item);
-    },
-    { layout: false }
-  );
+  muuri.filter(item => predicate(item.getData(), item), { layout: false });
 }

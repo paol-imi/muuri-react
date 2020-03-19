@@ -3,17 +3,27 @@
  * @param {Muuri.item} item
  */
 export function decorateItem(item) {
+  /**
+    props,
+    data,
+    key,
+    fiber,
+    eventController,
+    dragWidth,
+    dragHeight,
+    draggable
+   */
   item._component = {};
-  item.getProps = function() {
+  item.getProps = function getProps() {
     return this._component.props || {};
   };
-  item.getData = function() {
+  item.getData = function getData() {
     return this._component.data || {};
   };
-  item.setData = function(data) {
+  item.setData = function setData(data) {
     item._component.data = Object.assign(this._component.data || {}, data);
   };
-  item.deleteData = function() {
+  item.deleteData = function deleteData() {
     this._component.data = {};
   };
 

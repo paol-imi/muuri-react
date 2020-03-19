@@ -1,5 +1,5 @@
 /* React */
-import React, { useMemo, useEffect } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 /* Context */
 import { ItemProvider } from "../contexts";
@@ -7,15 +7,16 @@ import { ItemProvider } from "../contexts";
 import { EventController, ItemRefController } from "../controllers";
 /* Utils */
 import { decorateItem, decorateDOMItem } from "../utils/decorators";
+import { useMemoized } from "../utils/hooks";
 
 // Item component.
-export const ItemComponent = ({
+export function ItemComponent({
   children: child,
-  itemController,
+  itemAddController,
   propsToData
-}) => {
+}) {
   // The value provided doesn't change the reference.
-  const value = useMemo(
+  const value = useMemoized(
     () => {
       // Create the controllers.
       const eventController = new EventController();
@@ -48,7 +49,7 @@ export const ItemComponent = ({
   // Called in useEffect to run it only on mount.
   useEffect(() => {
     // Set the item.
-    itemController.requestItem(item => {
+    itemAddController.requestItem(item => {
       decorateItem(item);
       decorateDOMItem(item.getElement());
       value.itemRefController.setItem(item);
@@ -63,7 +64,7 @@ export const ItemComponent = ({
 
       // Remove the item.
       if (grid) {
-        grid._component.removeController.removeItem(item);
+        grid._component.itemRemoveController.removeItem(item);
       }
 
       // Stop the event.
@@ -75,12 +76,14 @@ export const ItemComponent = ({
 
   // Render.
   return <ItemProvider value={value}>{child}</ItemProvider>;
-};
+}
 
+// PropTypes.
 ItemComponent.propTypes = {
-  itemController: PropTypes.any.isRequired,
+  itemAddController: PropTypes.object.isRequired,
   propsToData: PropTypes.func,
-  children: PropTypes.any.isRequired
+  children: PropTypes.element.isRequired
 };
 
+// Display name.
 ItemComponent.displayName = "ItemComponent";

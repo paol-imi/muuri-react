@@ -1,4 +1,5 @@
-import { useState, useCallback } from "react";
+import { useState } from "react";
+import { useFunction } from "./useFunction";
 
 /**
  * Rerender the component each time the returned
@@ -7,7 +8,7 @@ import { useState, useCallback } from "react";
  */
 export function useRerender() {
   const setState = useState()[1];
-  return useCallback(() => {
+  return useFunction(() => {
     setState(Object.create(null));
-  }, []); // eslint-disable-line
+  });
 }

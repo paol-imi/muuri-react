@@ -1,12 +1,12 @@
-import { useCallback } from "react";
 import { useItemContext } from "../contexts";
+import { useFunction } from "../utils/hooks";
 
 export function useData(initialData, options) {
   const { itemRefController } = useItemContext();
 
   // Because of memoization, The identity of the function is guaranteed
   // to be stable so it will be safe to omit them as a dependency.
-  const setData = useCallback((data, options) => {
+  const setData = useFunction((data, options) => {
     if (typeof data !== "object") {
       throw new TypeError("The data must be an object, founded: ", typeof data);
     }
@@ -21,7 +21,7 @@ export function useData(initialData, options) {
       // Set.
       itemRefController.set("data", data);
     }
-  }, []); // eslint-disable-line
+  });
 
   // Set the inital data.
   if (typeof initialData === "object") {

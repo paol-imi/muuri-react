@@ -1,4 +1,4 @@
-export class ItemController {
+export class ItemAddController {
   // Init.
   useInit() {
     this._requests = [];

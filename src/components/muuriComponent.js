@@ -1,24 +1,30 @@
 /* React */
-import React, { forwardRef, useRef, useEffect } from "react";
+import React, { forwardRef, useEffect } from "react";
 import PropTypes from "prop-types";
 /* Muuri */
 import Muuri from "muuri";
+/* Global map */
+import { globalMap } from "../globalMap";
 /* Component */
 import { GridComponent } from "./gridComponent";
 /* Utils */
-import { decorateGridElem } from "../utils/decorators";
-import { useRerender } from "../utils/hooks";
-import { getDragSort } from "../utils/muuri";
-/* Global map */
-import { globalMap } from "../globalMap";
+import { useMemoized } from "../utils/hooks";
+import {
+  setDragSort,
+  setDragStartPredicate,
+  setDragAutoScroll,
+  setDragContainer,
+  getTemporaryGrid
+} from "../utils/muuri";
 
 // Muuri component.
-export const MuuriComponent = forwardRef(function(
+export const MuuriComponent = forwardRef(function MuuriComponent(
   {
     /* MuuriComponent options */
     gridProps,
     onMount,
     onUnmount,
+    beforeMount,
     /* GridComponent options */
     children,
     id,
@@ -30,76 +36,83 @@ export const MuuriComponent = forwardRef(function(
     propsToData,
     onSend,
     forceSync,
+    dragFixed,
+    dragEnabled,
     /* Muuri options */
     ...options
   },
   muuriRef
 ) {
-  // Rerender hook.
-  const reRender = useRerender();
-
-  // Grid element ref.
-  const gridElemRef = useRef();
-
-  // Muuri instance ref.
-  const internalMuuriRef = useRef();
-
   // Generate the Muuri instance on Mount
   // and destroy it on Unmount.
-  useEffect(() => {
+  const muuri = useMemoized(() => {
     // Remove the standard option '*'.
     options.items = [];
 
-    // Set the dragSort options.
-    options.dragSort = getDragSort(options.dragSort, globalMap);
+    // If drag is not setted it is disabled,
+    // otherwise it will be managed in dragStartPredicate.
+    options.dragEnabled = dragEnabled !== null;
 
+    // Set the drag container.
+    setDragContainer(options);
+
+    // Wrap the dragSort option.
+    setDragSort(options, globalMap);
+
+    // Wrap the dragAutoScroll option.
+    setDragAutoScroll(options);
+
+    // Wrap the dragStartPredicate option.
+    setDragStartPredicate(options);
+
+    // Generate a temporary element.
+    const [grid, done] = getTemporaryGrid();
     // Generate the instance.
-    internalMuuriRef.current = new Muuri(gridElemRef.current, options);
-
-    decorateGridElem(gridElemRef.current);
+    const muuri = new Muuri(grid, options);
+    // Done.
+    done();
 
     // Set the ref.
-    if (muuriRef) muuriRef.current = internalMuuriRef.current;
-    if (onMount) onMount(internalMuuriRef.current);
+    if (muuriRef) muuriRef.current = muuri;
+    if (onMount) onMount(muuri);
 
-    // Rerender with the GridComponent.
-    reRender();
+    return muuri;
+  }); // eslint-disable-line
 
+  //
+  useEffect(() => {
     // Clean-up.
     return () => {
       // Unset the ref.
-      if (onUnmount) onUnmount(internalMuuriRef.current);
+      if (onUnmount) onUnmount(muuri);
       if (muuriRef) muuriRef.current = null;
       // Destroy the instace
-      internalMuuriRef.current.destroy();
+      muuri.destroy();
     };
   }, []); // eslint-disable-line
 
-  // In the first render the muuri instance is generated.
-  // In the next renders the GridComponent is used
-  // with the muuri instance as prop.
-  return !internalMuuriRef.current ? (
-    <div {...gridProps} ref={gridElemRef} />
-  ) : (
-    <div {...gridProps} ref={gridElemRef}>
-      <GridComponent
-        id={id}
-        groupIds={groupIds}
-        muuri={internalMuuriRef.current}
-        filter={filter}
-        sort={sort}
-        sortOptions={sortOptions}
-        addOptions={addOptions}
-        propsToData={propsToData}
-        onSend={onSend}
-        forceSync={forceSync}
-      >
-        {children}
-      </GridComponent>
-    </div>
+  // Render.
+  return (
+    <GridComponent
+      id={id}
+      groupIds={groupIds}
+      muuri={muuri}
+      filter={filter}
+      sort={sort}
+      sortOptions={sortOptions}
+      addOptions={addOptions}
+      propsToData={propsToData}
+      onSend={onSend}
+      forceSync={forceSync}
+      dragFixed={dragFixed}
+      dragEnabled={dragEnabled}
+    >
+      {children}
+    </GridComponent>
   );
 });
 
+// Proptypes.
 MuuriComponent.propTypes = {
   gridProps: PropTypes.object,
   onMount: PropTypes.func,
@@ -190,6 +203,7 @@ MuuriComponent.propTypes = {
   itemPlaceholderClass: PropTypes.string
 };
 
+// Default props.
 MuuriComponent.defaultProps = {
   gridProps: {},
 
@@ -276,4 +290,5 @@ MuuriComponent.defaultProps = {
   itemPlaceholderClass: "muuri-item-placeholder"
 };
 
+// Display name.
 MuuriComponent.displayName = "MuuriComponent";

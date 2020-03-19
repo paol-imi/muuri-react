@@ -1,17 +1,17 @@
-import { useCallback } from "react";
 import { useItemContext, useGridContext } from "../contexts";
+import { useFunction } from "../utils/hooks";
 
-export function useVisibilty() {
+export function useVisibility() {
   const { layoutController } = useGridContext();
   const { eventController, itemRefController } = useItemContext();
 
   // Set visibility.
-  const setVisibility = useCallback((visible, options) => {
+  const setVisibility = useFunction((visible, options) => {
     if (!itemRefController.hasItem()) return;
     if (!!visible === eventController.getPayload("show")) return;
 
     // Default options.
-    options = options || useVisibilty.defaultOptions;
+    options = options || useVisibility.defaultOptions;
 
     // Set the visibility.
     layoutController.setItemVisibility(
@@ -19,9 +19,9 @@ export function useVisibilty() {
       visible,
       options.instant
     );
-  }, []); // eslint-disable-line
+  });
 
   return setVisibility;
 }
 
-useVisibilty.defaultOptions = { instant: false };
+useVisibility.defaultOptions = { instant: false };

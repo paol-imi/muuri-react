@@ -5,6 +5,7 @@ import * as hooks from "../hooks";
 const hooksNames = [
   "useData",
   "useDrag",
+  "useDraggable",
   "useGrid",
   "useRefresh",
   "useShow",
@@ -15,7 +16,8 @@ const hooksNames = [
 const HooksHandlers = [
   ["useData", payload => ({ setData: payload })],
   ["useDrag", payload => ({ isDragging: payload })],
-  ["useGrid", payload => payload], // { muuri, id, groupIds }
+  ["useDraggable", payload => ({ setDraggable: payload })],
+  ["useGrid", payload => ({ grid: payload })],
   ["useRefresh", payload => ({ refresh: payload })],
   ["useShow", payload => ({ isShowing: payload })],
   ["useVisibility", payload => ({ setVisibility: payload })]
@@ -44,7 +46,7 @@ export function withHook(Component, enabledHooks) {
   // All the hooks must be valid.
   enabledHooks.forEach(hookName => {
     if (!hooksNames.includes(hookName)) {
-      throw new TypeError("Invalid hook: ", hookName);
+      throw new TypeError("Invalid item hook: ", hookName);
     }
   });
 

@@ -12,7 +12,7 @@ export class EventController {
 
   // Emit an event and set its payload.
   emitEvent(event, payload) {
-    if (this._eventsMap.has(event)) {
+    if (this.isEnabled(event)) {
       this._payloadsMap.set(event, payload);
       this._eventsMap.get(event)();
     }
@@ -24,7 +24,7 @@ export class EventController {
   }
 
   // If at least an event is enabled.
-  isEnabled() {
-    return this._eventsMap.size !== 0;
+  isEnabled(event) {
+    return this._eventsMap.has(event);
   }
 }

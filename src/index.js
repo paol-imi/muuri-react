@@ -1,3 +1,10 @@
+import Muuri from "muuri";
+
+// muuri-exports.
+export const AutoScroller = Muuri.AutoScroller;
+export const ItemDrag = Muuri.ItemDrag;
+
+// muuri-react exports.
 export * from "./components";
 export * from "./hooks";
 export * from "./contexts";

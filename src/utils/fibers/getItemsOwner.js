@@ -1,11 +1,12 @@
 /**
  * Get the fiber parent of the items given the gridComponent.
- * @param {React.Component} gridComponent
+ * @param {Element} grid
  * @return {React.Fiber}
  */
-export function getItemsOwner(gridComponent) {
-  /**
-   * MuuriComponent -> GridComponent -> GridElement
-   */
-  return gridComponent._owner.child;
+export function getItemsOwner(grid) {
+  const key = Object.keys(grid).find(key =>
+    key.startsWith("__reactInternalInstance$")
+  );
+
+  return grid[key];
 }

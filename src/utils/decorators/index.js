@@ -1,5 +1,5 @@
 export * from "./decorateDOMItem";
-export * from "./decorateGridElem";
+export * from "./decorateGrid";
 export * from "./decorateItem";
 export * from "./decorateMuuri";
 export * from "./isDecorated";

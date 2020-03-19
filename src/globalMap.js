@@ -10,7 +10,7 @@ class GlobalMap {
       this._idMap.set(id, muuri);
     }
     if (groupIds) {
-      for (let groupId of groupIds) {
+      for (const groupId of groupIds) {
         if (this._groupMap.has(groupId)) {
           this._groupMap.get(groupId).push(muuri);
         } else {

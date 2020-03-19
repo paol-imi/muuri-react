@@ -1,6 +1,6 @@
 /**
  * Add the items.
- * @param {Muuri} muuri - The muuri instance.
+ * @param {Muuri} muuri
  * @param {Element[]} addedDOMItems
  * @param {number[]} indicesToAdd
  * @param {AddOptions} addOptions

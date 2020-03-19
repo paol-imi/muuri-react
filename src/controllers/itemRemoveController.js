@@ -1,4 +1,4 @@
-export class RemoveController {
+export class ItemRemoveController {
   // Init.
   useInit() {
     this._itemsToRemove = [];

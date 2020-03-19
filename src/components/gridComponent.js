@@ -1,32 +1,28 @@
 /* React */
-import React, { Children, useMemo, useEffect } from "react";
+import React, { Children, useEffect } from "react";
 import PropTypes from "prop-types";
-/* Controllers */
-import {
-  LayoutController,
-  ItemController,
-  RemoveController
-} from "../controllers";
 /* Component */
 import { ItemComponent } from "./itemComponent";
 /* Context */
 import { GridProvider } from "../contexts";
-/* Utils */
-import { getKey, getIndicesToAdd } from "../utils/components";
-import { decorateMuuri, isDecorated } from "../utils/decorators";
-import { useDependency } from "../utils/hooks";
-import { addItems, removeItems, filterItems, sortItems } from "../utils/muuri";
-import {
-  getItemsOwner,
-  appendChild,
-  removeChild,
-  getStateNodes
-} from "../utils/fibers";
 /* Global map */
 import { globalMap } from "../globalMap";
+/* Controllers */
+import {
+  LayoutController,
+  ItemAddController,
+  ItemRemoveController,
+  SortController
+} from "../controllers";
+/* Utils */
+import { decorateMuuri, isDecorated, decorateGrid } from "../utils/decorators";
+import { addItems, removeItems, filterItems, sortItems } from "../utils/grid";
+import { getItemsOwner, appendFiber, removeFiber } from "../utils/fibers";
+import { getIndicesToAdd, getNewChildren } from "../utils/components";
+import { useDependency, useMemoized } from "../utils/hooks";
 
 // Grid component.
-export const GridComponent = function({
+export function GridComponent({
   children,
   id,
   groupIds,
@@ -37,7 +33,9 @@ export const GridComponent = function({
   addOptions,
   propsToData,
   onSend,
-  forceSync
+  forceSync,
+  dragFixed,
+  dragEnabled
 }) {
   /* ------------------ */
   /* ----- STORES ----- */
@@ -45,39 +43,46 @@ export const GridComponent = function({
 
   // Store references of objects
   // generated on the previous render.
-  const store = useMemo(
-    () => ({
-      // The Fiber owner of the items.
-      itemsOwner: null,
-      // Children of the previous rendered.
-      oldChildren: [],
-      // Controller that manages the items instancies.
-      itemController: new ItemController(),
-      // Controller that manages the items to be removed.
-      removeController: new RemoveController(),
-      // Controller that manages the items sizes.
-      layoutController: new LayoutController(muuri),
-      // Keep a reference of the onSend function.
-      onSend,
-      // Sync needs.
-      needFiltering: false,
-      needSorting: false
-    }),
-    [] // eslint-disable-line
-  );
+  const store = useMemoized(() => ({
+    // The Fiber owner of the items.
+    itemsOwner: null,
+    // Children of the previous rendered.
+    oldChildren: [],
+    // Controller that manages the items instancies.
+    itemAddController: new ItemAddController(),
+    // Controller that manages the items to be removed.
+    itemRemoveController: new ItemRemoveController(),
+    // Controller that manages the items sizes.
+    layoutController: new LayoutController(muuri),
+    // Controller that manage the sorting.
+    sortController: new SortController(muuri),
+    // Keep a reference of the onSend function.
+    onSend,
+    // Sync needs.
+    needFiltering: false,
+    needSorting: false
+  }));
 
   // Store references of objects
   // that are used inside useEffect.
   // The reference live only in the render
   // in wich it has been created.
   const vars = {
+    // The DOM element.
     grid: null,
+    // The indices of the new items.
     indicesToAdd: [],
+    // The DOM elements of the new items.
     addedDOMItems: [],
+    // The items instances to remove.
     itemsToRemove: [],
+    // If an item has been added.
     hasAdded: false,
+    // If an item has been removed.
     hasRemoved: false,
+    // If the grid has been filtered.
     hasFiltered: false,
+    // If the grid has been sorted.
     hasSorted: false
   };
 
@@ -90,89 +95,62 @@ export const GridComponent = function({
     decorateMuuri(muuri);
     muuri._component.id = id || null;
     muuri._component.groupIds = groupIds || null;
-    muuri._component.removeController = store.removeController;
+    muuri._component.dragFixed = !!dragFixed || null;
+    muuri._component.itemRemoveController = store.itemRemoveController;
+
+    // Public decoration.
+    muuri.sortController = store.sortController;
 
     // Add the instance to the global map.
     globalMap.set(muuri, id, groupIds);
   }
 
+  // Set drag enabled option.
+  muuri._component.dragEnabled = dragEnabled;
+
   // Init the controllers.
   store.layoutController.useInit();
-  store.removeController.useInit();
-  store.itemController.useInit();
+  store.itemRemoveController.useInit();
+  store.itemAddController.useInit();
 
   // Initialize the grid on mount.
   useEffect(() => {
+    muuri._element = vars.grid;
+    decorateGrid(vars.grid, muuri);
+
+    store.itemsOwner = getItemsOwner(vars.grid);
+
     // Add all the event handlers.
     muuri
       // Send event.
-      .on("beforeSend", ({ item }) => {
-        // 'onSend' will be called with the receive event.
-        if (!onSend)
-          throw new Error(
-            "An item cannot be sent to another grid if the " +
-              "'onSend' property has not been passed to the Component."
-          );
+      .on("beforeSend", ({ item, fromGrid, fromIndex }) => {
+        if (!item._component.sendPayload) {
+          item._component.hasPayload = true;
 
-        // TODO: solve this bug.
-        if (item._component.eventController.isEnabled())
-          throw new Error(
-            "An item cannot be sent to another grid if it " +
-              "is using an event hook (useDrag, useShow).\n" +
-              "This will be fixed in future updates."
-          );
-
-        // Remove the fiber of the child.
-        const fiber = removeChild(store.itemsOwner, item._component.key);
-        // Add the fiber to the item as a payload.
-        item._component.fiber = fiber;
-        // Remove the child representing the sended one.
-        store.oldChildren.splice(fiber.index, 1);
+          item._component.sendPayload = {
+            store,
+            fromGrid,
+            fromIndex
+          };
+        }
       })
-      .on("receive", ({ item, fromGrid, toGrid, fromIndex, toIndex }) => {
+      .on("receive", ({ item, toGrid, toIndex }) => {
         // 'onSend' will be called with the receive event.
-        if (!onSend)
+        if (!store.onSend)
           throw new Error(
-            "An item cannot be sent to another grid if the " +
+            "An item cannot be sent to another MuuriComponent if the " +
               "'onSend' property has not been passed to the Component."
           );
 
-        // TODO: solve this bug.
-        if (item._component.eventController.isEnabled())
-          throw new Error(
-            "An item cannot be sent to another grid if it " +
-              "is using an event hook (useDrag, useHook).\n" +
-              "This will be fixed in future updates."
-          );
-
-        // Update the needs.
-        store.needFiltering = true;
-        store.needSorting = true;
-
-        // Add the fiber of the child.
-        appendChild(store.itemsOwner, item._component.fiber);
-        // Add a fake child representing the received one.
-        store.oldChildren.push({ key: item._component.fiber.key });
-        // For Garbage collector.
-        item._component.fiber = null;
+        // store
+        item._component.receivePayload = {
+          store,
+          toGrid,
+          toIndex
+        };
 
         // Emit the event.
-        store.onSend({
-          // The key the user has set.
-          key: getKey(item._component.key),
-          // The effectivly key of the component.
-          componentKey: item._component.key,
-          // From.
-          fromGrid,
-          fromIndex,
-          fromId: fromGrid._component.id,
-          fromGroupId: fromGrid._component.groupIds,
-          // To.
-          toGrid,
-          toIndex,
-          toId: toGrid._component.id,
-          toGroupId: toGrid._component.groupIds
-        });
+        item._component.eventController.emitEvent("send", muuri);
       })
 
       // Drag event.
@@ -181,8 +159,59 @@ export const GridComponent = function({
         item._component.eventController.emitEvent("drag", true);
       })
       .on("dragEnd", item => {
-        // Emit the event.
         item._component.eventController.emitEvent("drag", false);
+
+        // Emit the event.
+        if (item._component.hasPayload) {
+          const {
+            store: fromStore,
+            fromGrid,
+            fromIndex
+          } = item._component.sendPayload;
+
+          const {
+            store: toStore,
+            toGrid,
+            toIndex
+          } = item._component.receivePayload;
+
+          item._component.hasPayload = false;
+          item._component.sendPayload = null;
+          item._component.receivePayload = null;
+
+          if (fromStore !== toStore) {
+            // Update the needs.
+            toStore.needFiltering = true;
+            toStore.needSorting = true;
+
+            const fiber = removeFiber(
+              fromStore.itemsOwner,
+              item._component.key
+            );
+            fromStore.oldChildren.splice(fiber.index, 1);
+
+            // Add the fiber of the child.
+            appendFiber(toStore.itemsOwner, fiber);
+            // Add a fake child representing the received one.
+            toStore.oldChildren.push({ key: fiber.key });
+
+            // Emit the event.
+            toStore.onSend({
+              // The key the user has set.
+              key: item._component.key,
+              // From.
+              fromGrid,
+              fromIndex,
+              fromId: fromGrid._component.id,
+              fromGroupId: fromGrid._component.groupIds,
+              // To.
+              toGrid,
+              toIndex,
+              toId: toGrid._component.id,
+              toGroupId: toGrid._component.groupIds
+            });
+          }
+        }
       })
 
       // Show event.
@@ -192,12 +221,16 @@ export const GridComponent = function({
         // Updates the needs.
         store.needFiltering = true;
         // Emit the event.
-        for (let item of items) {
+        for (const item of items) {
+          const eventController = item._component.eventController;
           // The event is triggered also for items that have not
           // changed their 'visibility' state.
           // This check is done to avoid useless re-rendering.
-          if (item._component.eventController.getPayload("show") === false) {
-            item._component.eventController.emitEvent("show", true);
+          if (
+            eventController.getPayload("show") === false ||
+            eventController.getPayload("show") === undefined
+          ) {
+            eventController.emitEvent("show", true);
           }
         }
       })
@@ -205,12 +238,16 @@ export const GridComponent = function({
         // Updates the needs.
         store.needFiltering = true;
         // Emit the event.
-        for (let item of items) {
+        for (const item of items) {
+          const eventController = item._component.eventController;
           // The event is triggered also for items that have not
           // changed their 'visibility' state.
           // This check is done to avoid useless re-rendering.
-          if (item._component.eventController.getPayload("show") === true) {
-            item._component.eventController.emitEvent("show", false);
+          if (
+            eventController.getPayload("show") === true ||
+            eventController.getPayload("show") === undefined
+          ) {
+            eventController.emitEvent("show", false);
           }
         }
       })
@@ -220,6 +257,36 @@ export const GridComponent = function({
         // Update the needs.
         store.needSorting = true;
       });
+
+    // Fix the dimensions of the items when they are dragged.
+    if (dragFixed) {
+      muuri
+        .on("dragInit", item => {
+          // Let's set fixed widht/height to the dragged item
+          // so that it does not stretch unwillingly when
+          // it's appended to the document body for the
+          // duration of the drag.
+          const element = item.getElement();
+          // Get the computed dimensions.
+          const { width, height } = getComputedStyle(element);
+          // Save the previous style in case it was setted.
+          item._component.dragWidth = element.style.width;
+          item._component.dragHeight = element.style.height;
+          // Set new style.
+          element.style.width = width;
+          element.style.height = height;
+        })
+        .on("dragReleaseEnd", item => {
+          // Let's remove the fixed width/height from the
+          // dragged item now that it is back in a grid
+          // column and can freely adjust to it's
+          // surroundings.
+          const element = item.getElement();
+          // Set the old style.
+          element.style.width = item._component.dragWidth;
+          element.style.height = item._component.dragHeight;
+        });
+    }
 
     // Delete the instance from the global map.
     return () => {
@@ -256,12 +323,13 @@ export const GridComponent = function({
 
   // Get items to add/remove.
   useEffect(() => {
-    // The Fiber owner of the items.
-    store.itemsOwner = getItemsOwner(vars.grid);
+    if (store.itemsOwner.alternate)
+      store.itemsOwner = store.itemsOwner.alternate;
 
     // Items to add/remove.
-    vars.addedDOMItems = getStateNodes(store.itemsOwner, vars.indicesToAdd);
-    vars.itemsToRemove = store.removeController.getItemsToRemove();
+    vars.addedDOMItems = getNewChildren(muuri, vars.indicesToAdd);
+
+    vars.itemsToRemove = store.itemRemoveController.getItemsToRemove();
   });
 
   // Remove the items.
@@ -275,7 +343,7 @@ export const GridComponent = function({
     // New Items.
     const addedItems = muuri.getItems(vars.indicesToAdd);
     // Emit the new items to the itemComponents.
-    store.itemController.emit(addedItems);
+    store.itemAddController.emit(addedItems);
   }, [addedDep]); // eslint-disable-line
 
   /* --------------------- */
@@ -294,6 +362,10 @@ export const GridComponent = function({
   // Sort the items if there are new or the sort method are changed.
   useEffect(() => {
     if (sort) {
+      if (store.sortController.isToken(sort)) {
+        sort = store.sortController.getKeysList(sort); // eslint-disable-line
+      }
+
       vars.hasSorted = true;
       store.needSorting = false;
       sortItems(muuri, sort, sortOptions);
@@ -332,37 +404,41 @@ export const GridComponent = function({
   /* ------------------ */
 
   // Provided value doesn't change the reference.
-  const value = useMemo(
-    () => ({ layoutController: store.layoutController, muuri }),
-    [] // eslint-disable-line
-  );
+  const value = useMemoized(() => ({
+    layoutController: store.layoutController,
+    muuri
+  }));
 
   // render.
-  return (vars.grid = (
+  return (
     <GridProvider value={value}>
-      {Children.map(children, child => (
-        <ItemComponent
-          key={child.key}
-          id={child.key}
-          propsToData={propsToData}
-          itemController={store.itemController}
-        >
-          {child}
-        </ItemComponent>
-      ))}
+      <div ref={grid => (vars.grid = grid)}>
+        {Children.map(children, child => (
+          <ItemComponent
+            key={child.key}
+            id={child.key}
+            propsToData={propsToData}
+            itemAddController={store.itemAddController}
+          >
+            {child}
+          </ItemComponent>
+        ))}
+      </div>
     </GridProvider>
-  ));
-};
+  );
+}
 
+// Proptypes.
 GridComponent.propTypes = {
-  muuri: PropTypes.any.isRequired,
+  muuri: PropTypes.object.isRequired,
   id: PropTypes.string,
   groupIds: PropTypes.arrayOf(PropTypes.string),
   filter: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   sort: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.func,
-    PropTypes.array
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.object
   ]),
   sortOptions: PropTypes.exact({
     descending: PropTypes.bool
@@ -371,13 +447,19 @@ GridComponent.propTypes = {
     show: PropTypes.bool
   }),
   onSend: PropTypes.func,
-  forceSync: PropTypes.bool
+  forceSync: PropTypes.bool,
+  dragFixed: PropTypes.bool,
+  dragEnabled: PropTypes.bool
 };
 
+// Default props.
 GridComponent.defaultProps = {
   addOptions: { show: true },
   sortOptions: { descending: false },
-  forceSync: false
+  forceSync: false,
+  dragFixed: false,
+  dragEnabled: false
 };
 
+// Display name.
 GridComponent.displayName = "GridComponent";

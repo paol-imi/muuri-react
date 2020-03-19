@@ -1,2 +1,2 @@
 export * from "./getIndicesToAdd";
-export * from "./getKey";
+export * from "./getNewChildren";
