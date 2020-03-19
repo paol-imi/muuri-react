@@ -1,2 +1,2 @@
 export * from "./getIndicesToAdd";
-export * from "./getNewChildren";
+export * from "./getStateNodes";

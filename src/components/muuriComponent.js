@@ -117,6 +117,7 @@ MuuriComponent.propTypes = {
   gridProps: PropTypes.object,
   onMount: PropTypes.func,
   onUnmount: PropTypes.func,
+  beforeMount: PropTypes.func,
   // Default show animation
   showDuration: PropTypes.number,
   showEasing: PropTypes.string,
@@ -146,14 +147,16 @@ MuuriComponent.propTypes = {
   layoutEasing: PropTypes.string,
 
   // Drag & Drop
-  dragEnabled: PropTypes.bool,
-  dragContainer: PropTypes.instanceOf(Element),
+  dragContainer: PropTypes.oneOfType([
+    PropTypes.instanceOf(Element),
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+  ]),
+  dragHandle: PropTypes.string,
   dragStartPredicate: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.exact({
       distance: PropTypes.number,
-      delay: PropTypes.number,
-      handle: PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
+      delay: PropTypes.number
     })
   ]),
   dragAxis: PropTypes.string,
@@ -171,10 +174,17 @@ MuuriComponent.propTypes = {
   }),
   dragSortPredicate: PropTypes.oneOfType([
     PropTypes.func,
-    PropTypes.exact({ action: PropTypes.string, threshold: PropTypes.number })
+    PropTypes.exact({
+      action: PropTypes.string,
+      migrateAction: PropTypes.string,
+      threshold: PropTypes.number
+    })
   ]),
-  dragReleaseDuration: PropTypes.number,
-  dragReleaseEasing: PropTypes.string,
+  dragRelease: PropTypes.exact({
+    duration: PropTypes.number,
+    easing: PropTypes.string,
+    useDragContainer: PropTypes.bool
+  }),
   dragCssProps: PropTypes.exact({
     touchAction: PropTypes.string,
     userSelect: PropTypes.string,
@@ -185,13 +195,36 @@ MuuriComponent.propTypes = {
   }),
   dragPlaceholder: PropTypes.exact({
     enabled: PropTypes.bool,
-    duration: PropTypes.number,
-    easing: PropTypes.string,
     createElement: PropTypes.func,
     onCreate: PropTypes.func,
     onRemove: PropTypes.func
   }),
-
+  dragAutoScroll: PropTypes.exact({
+    targets: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.arrayOf(
+        PropTypes.exact({
+          element: PropTypes.oneOfType([
+            PropTypes.instanceOf(window.constructor),
+            PropTypes.instanceOf(Element),
+            PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+          ]),
+          axis: PropTypes.number,
+          priority: PropTypes.number,
+          threshold: PropTypes.number
+        })
+      )
+    ]),
+    handle: PropTypes.func,
+    threshold: PropTypes.number,
+    safeZone: PropTypes.number,
+    speed: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
+    sortDuringScroll: PropTypes.bool,
+    syncAfterScroll: PropTypes.bool,
+    smoothStop: PropTypes.bool,
+    onStart: PropTypes.func,
+    onStop: PropTypes.func
+  }),
   // Classnames
   containerClass: PropTypes.string,
   itemClass: PropTypes.string,
@@ -205,89 +238,9 @@ MuuriComponent.propTypes = {
 
 // Default props.
 MuuriComponent.defaultProps = {
+  ...Muuri.defaultOptions,
   gridProps: {},
-
-  // Default show animation
-  showDuration: 300,
-  showEasing: "ease",
-
-  // Default hide animation
-  hideDuration: 300,
-  hideEasing: "ease",
-
-  // Item's visible/hidden state styles
-  visibleStyles: {
-    opacity: "1",
-    transform: "scale(1)"
-  },
-  hiddenStyles: {
-    opacity: "0",
-    transform: "scale(0.5)"
-  },
-
-  // Layout
-  layout: {
-    fillGaps: false,
-    horizontal: false,
-    alignRight: false,
-    alignBottom: false,
-    rounding: true
-  },
-  layoutOnResize: 100,
-  layoutOnInit: true,
-  layoutDuration: 300,
-  layoutEasing: "ease",
-
-  // Sorting
-  sortData: null,
-
-  // Drag & Drop
-  dragEnabled: false,
-  dragContainer: null,
-  dragStartPredicate: {
-    distance: 0,
-    delay: 0,
-    handle: false
-  },
-  dragAxis: null,
-  dragSort: true,
-  dragSortHeuristics: {
-    sortInterval: 100,
-    minDragDistance: 10,
-    minBounceBackAngle: 1
-  },
-  dragSortPredicate: {
-    threshold: 50,
-    action: "move"
-  },
-  dragReleaseDuration: 300,
-  dragReleaseEasing: "ease",
-  dragCssProps: {
-    touchAction: "none",
-    userSelect: "none",
-    userDrag: "none",
-    tapHighlightColor: "rgba(0, 0, 0, 0)",
-    touchCallout: "none",
-    contentZooming: "none"
-  },
-  dragPlaceholder: {
-    enabled: false,
-    duration: 300,
-    easing: "ease",
-    createElement: null,
-    onCreate: null,
-    onRemove: null
-  },
-
-  // Classnames
-  containerClass: "muuri",
-  itemClass: "muuri-item",
-  itemVisibleClass: "muuri-item-shown",
-  itemHiddenClass: "muuri-item-hidden",
-  itemPositioningClass: "muuri-item-positioning",
-  itemDraggingClass: "muuri-item-dragging",
-  itemReleasingClass: "muuri-item-releasing",
-  itemPlaceholderClass: "muuri-item-placeholder"
+  dragEnabled: null
 };
 
 // Display name.

@@ -18,7 +18,7 @@ import {
 import { decorateMuuri, isDecorated, decorateGrid } from "../utils/decorators";
 import { addItems, removeItems, filterItems, sortItems } from "../utils/grid";
 import { getItemsOwner, appendFiber, removeFiber } from "../utils/fibers";
-import { getIndicesToAdd, getNewChildren } from "../utils/components";
+import { getIndicesToAdd, getStateNodes } from "../utils/components";
 import { useDependency, useMemoized } from "../utils/hooks";
 
 // Grid component.
@@ -327,7 +327,7 @@ export function GridComponent({
       store.itemsOwner = store.itemsOwner.alternate;
 
     // Items to add/remove.
-    vars.addedDOMItems = getNewChildren(muuri, vars.indicesToAdd);
+    vars.addedDOMItems = getStateNodes(store.itemsOwner, vars.indicesToAdd);
 
     vars.itemsToRemove = store.itemRemoveController.getItemsToRemove();
   });
