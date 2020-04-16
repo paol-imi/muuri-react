@@ -1,9 +1,0 @@
-/examples
-/src
-/docs
-/website
-/.babelrc
-/.gitattributes
-/.gitignore
-/package-lock.json
-/webpack.config.json
