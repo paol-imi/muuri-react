@@ -3633,7 +3633,7 @@
         return this._idMap.get(id) || null;
       }
       /**
-       * Get all the grid instances  in the group of the given id.
+       * Get all the grid instances in the group of the given id.
        * The reference of the group array never changes.
        *
        * @param groupId - The group id.
@@ -3654,6 +3654,17 @@
         } else {
           return group;
         }
+      }
+      /**
+       * Get all the grid instances in the map.
+       *
+       * @returns - The grid instances.
+       */
+
+    }, {
+      key: "getAll",
+      value: function getAll() {
+        return Array.from(this._idMap.values());
       }
       /**
        * Set the grid instance with the given id.
@@ -4094,7 +4105,7 @@
       createElement: propTypes.func,
       onCreate: propTypes.func,
       onRemove: propTypes.func,
-      ease: propTypes.string,
+      easing: propTypes.string,
       duration: propTypes.number
     }),
     containerClass: propTypes.string,

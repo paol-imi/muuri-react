@@ -16,13 +16,19 @@ export declare class MuuriMap {
      */
     get(id: string): DecoratedGrid | null;
     /**
-     * Get all the grid instances  in the group of the given id.
+     * Get all the grid instances in the group of the given id.
      * The reference of the group array never changes.
      *
      * @param groupId - The group id.
      * @returns - The array of grid instances.
      */
     getGroup(groupId: string): DecoratedGrid[];
+    /**
+     * Get all the grid instances in the map.
+     *
+     * @returns - The grid instances.
+     */
+    getAll(): DecoratedGrid[];
     /**
      * Set the grid instance with the given id.
      *

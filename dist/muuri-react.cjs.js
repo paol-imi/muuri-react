@@ -2373,7 +2373,7 @@ var MuuriMap = /*#__PURE__*/function () {
       return this._idMap.get(id) || null;
     }
     /**
-     * Get all the grid instances  in the group of the given id.
+     * Get all the grid instances in the group of the given id.
      * The reference of the group array never changes.
      *
      * @param groupId - The group id.
@@ -2394,6 +2394,17 @@ var MuuriMap = /*#__PURE__*/function () {
       } else {
         return group;
       }
+    }
+    /**
+     * Get all the grid instances in the map.
+     *
+     * @returns - The grid instances.
+     */
+
+  }, {
+    key: "getAll",
+    value: function getAll() {
+      return Array.from(this._idMap.values());
     }
     /**
      * Set the grid instance with the given id.
@@ -2834,7 +2845,7 @@ MuuriComponent.propTypes = {
     createElement: PropTypes.func,
     onCreate: PropTypes.func,
     onRemove: PropTypes.func,
-    ease: PropTypes.string,
+    easing: PropTypes.string,
     duration: PropTypes.number
   }),
   containerClass: PropTypes.string,
