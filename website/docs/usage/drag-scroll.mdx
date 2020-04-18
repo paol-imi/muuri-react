@@ -1,0 +1,25 @@
+---
+title: Drag scroll 🖱️
+---
+
+If you want to trigger scrolling on any element during dragging you can enable and configure through the prop of the MuuriComponent [dragAutoScroll](../api-reference/muuricomponent#dragautoscroll). By default this feature is disabled.
+
+```jsx
+const scrollElemRef = useRef();
+
+<div style={{ "overflow-y": "scroll" }} ref={scrollElemRef}>
+  <MuuriComponent
+    dragEnabled
+    dragAutoScroll={{
+      targets: [
+        // Scroll scrollElement (can be any scrollable element) on y-axis only.
+        { element: scrollElemRef, axis: AutoScroller.AXIS_Y }
+      ]
+    }}
+  />
+</div>;
+```
+
+:::tip
+When you use this feature it is _highly_ recommended that you create a `fixed` positioned element right under `document.body` and use that as the `dragContainer` for all the dragged Items. If you don't do this and a dragged Item's parent is auto-scrolled, the dragged Item will potentially grow the scrolled element's scroll area to infinity unintentionally.
+:::

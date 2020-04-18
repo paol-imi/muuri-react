@@ -1,0 +1,29 @@
+---
+title: useShow
+---
+
+```js
+import { useShow } from "muuri-react";
+```
+
+The `useShow` hook allow you to know if the Item is showing. The Item will re-render each time its visibility change.
+
+## Usage 📖
+
+Just call it inside an Item.
+
+```jsx
+const Item = ({ text }) => {
+  const isShowing = useShow();
+
+  return (
+    <div className="item">
+      <div className="item-content" />
+    </div>
+  );
+};
+```
+
+:::note
+This hook will return `undefined` on the first render because the DOM element has not been created yet and it is not possible to determine whether it is showing or not. You should know if the Item has to be visible or hidden when you [add](../usage/items?id=visibility-👀) it.
+:::

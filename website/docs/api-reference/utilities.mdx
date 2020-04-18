@@ -1,0 +1,116 @@
+---
+title: Utilities API
+---
+
+```js
+import { <utilityName> } from "muuri-react";
+```
+
+## withHooks 📦
+
+The withHooks utility allows you to use hooks with `class` components. See more [here](../usage/hooks#withHooks)
+
+**Arguments**
+
+- **component** &nbsp;&mdash;&nbsp; _React.ReactElement_
+  - The dragged Item.
+- **enabledHooks** &nbsp;&mdash;&nbsp; _string[]_
+  - The hooks to enable.
+
+```js
+const WrappedItem = withHooks(Item, ["useDrag"]);
+```
+
+For each hook this utility generate specific `props` and pass them to the `Item`. The following are the nomenclature conventions, to see in depth the APIs of an hook you can check their documentation pages.
+
+| Hook            | Props               |
+| --------------- | ------------------- |
+| `useData`       | `{ setData }`       |
+| `useDrag`       | `{ isDragging }`    |
+| `useDraggable`  | `{ setDraggable }`  |
+| `useGrid`       | `{ gridData }`      |
+| `useRefresh`    | `{ refresh }`       |
+| `useShow`       | `{ isShowing }`     |
+| `useVisibility` | `{ setVisibility }` |
+
+## getResponsiveStyle 📦
+
+This utility allows you to generate the style of the `Item` and make it responsive. See more [here](../usage/responsive-style).
+
+**Arguments**
+
+- **options.columns** &nbsp;&mdash;&nbsp; _number_
+  - A fraction that has in the denominator the number of columns in which you want to virtually divide the MuuriComponent, and in the numerator the number of columns that the Item must occupy.
+  - Required.
+- **options.margin** &nbsp;&mdash;&nbsp; _string_ / _number_
+  - Default value: `"0px"`.
+  - The margin of the Item. It can be any valid value for the CSS margin property, expressed in `px` or `%`.
+- **options.ratio** &nbsp;&mdash;&nbsp; _number_
+  - The width / height ratio of the Item. If you need a static height use the `height` option instead.
+- **options.height** &nbsp;&mdash;&nbsp; _string_ / _number_
+  - The static height, expressed in px, of the Item. If you need a responsive height use the `ratio` option instead.
+
+```js
+// The responsive style.
+const responsiveStyle = getResponsiveStyle({
+  column: 3 / 8,
+  margin: "5% 2%",
+  ratio: 1.5
+});
+```
+
+```jsx
+// The Item component.
+const Item = () => (
+  <div style={responsiveStyle}>
+    <div className="item-content" />
+  </div>
+);
+```
+
+## getStaticStyle 📦
+
+This utility allows you to generate the style of the `Item` and make it static. See more [here](../usage/responsive-style).
+
+**Arguments**
+
+- **options.grid** &nbsp;&mdash;&nbsp; _Muuri_
+  - A fraction that has in the denominator the number of columns in which you want to virtually divide the MuuriComponent, and in the numerator the number of columns that the Item must occupy.
+  - Required.
+- **options.columns** &nbsp;&mdash;&nbsp; _number_
+  - A fraction that has in the denominator the number of columns in which you want to virtually divide the MuuriComponent, and in the numerator the number of columns that the Item must occupy.
+  - Required.
+- **options.margin** &nbsp;&mdash;&nbsp; _string_ / _number_
+  - Default value: `"0px"`.
+  - The margin of the Item. It can be any valid value for the CSS margin property, expressed in `px` or `%`.
+- **options.ratio** &nbsp;&mdash;&nbsp; _number_
+  - The width / height ratio of the Item. If you need a static height use the `height` option instead.
+- **options.height** &nbsp;&mdash;&nbsp; _string_ / _number_
+  - The static height, expressed in px, of the Item. If you need a responsive height use the `ratio` option instead.
+
+```jsx
+// The Item component.
+const Item = () => {
+  // Get the Muuri instance.
+  const { grid } = useGrid();
+  // If the item is dragging.
+  const isDragging = useDrag();
+
+  // Item dimensions.
+  const column = 3 / 8;
+  const margin = "5%";
+  const ratio = 1.5;
+
+  // If the item is dragging the style
+  // has to be static.
+  const style = !isDragging
+    ? getResponsiveStyle({ column, margin, ratio })
+    : getStaticStyle({ grid, column, margin, ratio });
+
+  return (
+    <div style={style}>
+      <div className="item-content" />
+    </div>
+  );
+};
+```

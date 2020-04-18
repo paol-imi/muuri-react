@@ -1,0 +1,66 @@
+---
+title: Items data
+---
+
+Each Item is represented by the `data` you link to it.
+The data are a simple objects, the attributes of these objects will be used for `sorting` and `filtering`. If you don't need sorting or filtering you can skip this chapter.
+
+There two ways in which the Items data can be set:
+
+- Using a **MuuriComponent** Prop.
+- Using an **Item** hook.
+
+## Prop: propsToData 📦
+
+The simplest way to generate the Items data is to use the prop of the MuuriComponent called `propsToData`. <br/>
+The function is executed for each Item in the instance. The returned object will represent the data of the Item in question. The function receives the props of the Item as it's argument.
+
+```jsx
+const App = () => {
+  // Items.
+  const [items, setItems] = useState([
+    { key: "1", text: "zl", color: "red" },
+    { key: "2", text: "zg", color: "blue" },
+    { key: "3", text: "nx", color: "blue" }
+  ]);
+
+  // Items to components.
+  const children = items.map((item) => (
+    <Item key={item.key} text={item.text} color={item.color} />
+  ));
+
+  // Render.
+  return (
+    <MuuriComponent
+      propsToData={({ text, color }) => {
+        // The first argument represent the props of an item.
+        // Generate the data from the props.
+        const data = { text, color };
+        // Return the data.
+        return data;
+      }}
+    >
+      {children}
+    </MuuriComponent>
+  );
+};
+```
+
+## Hook: useData 🔌
+
+Another way to generate the data is using the `useData` hook inside the Items. See more [here](../hooks/useData).
+
+```jsx
+import { useData } from "muuri-react";
+
+// Item component.
+const Item = ({ text }) => {
+  useData({ text });
+
+  return (
+    <div className="item">
+      <div className="item-content">{text}</div>
+    </div>
+  );
+};
+```

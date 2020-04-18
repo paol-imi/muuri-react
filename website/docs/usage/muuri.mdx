@@ -1,0 +1,69 @@
+---
+title: Muuri
+---
+
+The core of this package is based on `Muuri`. An instance of Muuri is created internally, and is used to manage all interactions with the DOM. The term `grid` will be used in this documentation to refer to that instance. <br/>
+You can interact with it using the [ref](../api-reference/muuricomponent#ref) prop. For its documentation, see its page on [Github](https://github.com/haltu/muuri).
+
+```jsx
+const App = () => {
+  const gridRef = useRef();
+
+  useEffect(() => {
+    // The instance is avaible as gridRef.current.
+  });
+
+  return <MuuriComponent ref={gridRef} />;
+};
+```
+
+If you just need to initialize some events you can use the `onMount` prop.
+
+```jsx
+<MuuriComponent
+  onMount={(grid) => {
+    // Drag release event.
+    grid.on("dragReleaseEnd", (item) => {
+      // Do something...
+    });
+  }}
+/>
+```
+
+## Items 🛠️
+
+Muuri internally manages the instances of the Items, each instance is associated with an `Item` component and contains its information (plus all the methods specified in the Muuri [documentation](https://github.com/haltu/muuri#item-methods)).
+
+```js
+// Return the key of the component
+// that represents the item in question.
+item.getKey();
+
+// Return the props of the component
+// that represents the item in question.
+item.getProps();
+
+// Return the data of the component
+// that represents the item in question.
+item.getData();
+```
+
+## Muuri map 🗺️
+
+You can use the `muuriMap` to access all the Muuri instances of the MuuriComponents via `ids` and `groupIds`.
+
+```jsx
+<MuuriComponent id={"id"} groupIds={["groupId"]} />
+```
+
+```js
+import { muuriMap } from "muuri-react";
+
+// The Muuri instance belonging to the
+// MuuriComponenent with the id: "id".
+const grid = muuriMap.get("id");
+
+// All the Muuri instances belonging to the
+// MuuriComponenents of the group: "groupId".
+const gridsArray = muuriMap.getGroup("groupId");
+```

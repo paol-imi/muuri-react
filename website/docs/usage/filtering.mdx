@@ -1,0 +1,99 @@
+---
+title: Filtering
+---
+
+import useBaseUrl from "@docusaurus/useBaseUrl";
+
+Filtering can be managed through the `filter` prop of the MuuriComponent. The filter will be updated every time that the MuuriComponent `re-rendered` with a new value in the prop or an Item is added.
+
+<img
+  src={useBaseUrl("gifs/filtering.gif")}
+  className="shadow"
+  style={{ width: "60%" }}
+/>
+
+The filter prop accept a `function`. The function is executed for every Item in the instance, if the return value is truthy the Item in question will be `shown` and otherwise `hidden`. The function receives the [data](../usage/items-data.md) of the Item as it's argument.
+
+```jsx
+<MuuriComponent filter={filterValue}>
+  <Item key="1" />
+  <Item key="2" />
+</MuuriComponent>
+```
+
+## Usage 📖
+
+In this example we have Items that are distinguished by a `text` value assigned to them. We want to take an input string and show only the Items whose text contains the given string.
+
+```jsx
+const App = () => {
+  // Text input.
+  const [input, setInput] = useState("");
+
+  // Items.
+  const [items, setItems] = useState([
+    { key: "1", text: "as" },
+    { key: "2", text: "gg" },
+    { key: "3", text: "st" }
+  ]);
+
+  // Items to components.
+  const children = items.map((item) => (
+    <Item key={item.key} text={item.text} />
+  ));
+
+  // Memoized filter method.
+  const filter = useCallback(
+    ({ text }) => {
+      // Return if the input is contained in the text data.
+      return text.indexOf(input) > -1;
+    },
+    [input]
+  );
+
+  // Render.
+  return (
+    <>
+      {/* Text input. */}
+      <input onChange={setInput} />
+      {/* MuuriComponent. */}
+      <MuuriComponent propsToData={({ text }) => ({ text })} filter={filter}>
+        {children}
+      </MuuriComponent>
+    </>
+  );
+};
+```
+
+We want the filter function to `change` every time the input changes, so that the MuuriComponent applies the filter.
+We also want the function to `not change` if the input remains the same to avoid unnecessary re-filtering (when the component re-render for other reasons).
+
+> In this example when the input changes, the component re-render _(because of **setInput**)_, the filter function is recreated _(because of **useCallback**)_ and the filter is applied correctly.
+
+## Class components 📦
+
+In function components you can rely on `useCallback` to modify the filter in a very simple way. This is not possible in class components.
+
+If you need to `change` the filter, you can easily reimplement how useCallback works in the class.
+
+```jsx
+class App extends React.Component {
+  filter(a, b) {
+    // Implement your custom filter...
+  }
+
+  updateFilterReference() {
+    this.filterReference = (a, b) => this.filter(a, b);
+  }
+
+  render() {
+    return (
+      <MuuriComponent filter={this.filterReference}>
+        {this.props.children}
+      </MuuriComponent>
+    );
+  }
+}
+```
+
+If you don't mind avoiding unnecessary re-filtering and want to reapply the filter during each re-render for simplicity, you can use an [arrow function](https://reactjs.org/docs/faq-functions.html#arrow-function-in-render) in render or the [forceSync](../api-reference/muuricomponent#forcesync) prop.

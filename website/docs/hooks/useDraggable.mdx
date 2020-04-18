@@ -1,0 +1,28 @@
+---
+title: useDraggable
+---
+
+```js
+import { useDraggable } from "muuri-react";
+```
+
+The `useDraggable` hook allow you to decide if the Item (in which the hook has been called) can be dragged or not.
+
+## Usage 📖
+
+It's possible to use the `useDraggable` method returned by the hook. It will accept as an argument a boolean that represent if the Item can be dragged or not.
+
+```jsx
+const Item = () => {
+  const setDraggable = useDraggable();
+
+  // Disable dragging for this item.
+  useDraggable(false);
+
+  return (
+    <div className="item">
+      <div className="item-content">This item can't be dragged.</div>
+    </div>
+  );
+};
+```

@@ -1,0 +1,186 @@
+---
+title: Sorting
+---
+
+import useBaseUrl from "@docusaurus/useBaseUrl";
+
+Sorting can be managed through the `sort` prop of the MuuriComponent. The sort will be updated every time that the MuuriComponent `re-rendered` with a new value in the prop or an Item is added.
+
+<img
+  src={useBaseUrl("gifs/sorting.gif")}
+  className="shadow"
+  style={{ width: "60%" }}
+/>
+
+The MuuriComponent sorts the `DOM elements` according to how it is set up, this sorting has nothing to do with the sorting of the `Item` components you use. In fact, you will never have to sort the `Item` components, they can stay (or be added) in any position.
+
+```jsx
+// Manages the sort order ↓↓↓
+<MuuriComponent sort={sortValue}>
+  {/* Items can be in any order */}
+  <Item key="1" />
+  <Item key="2" />
+</MuuriComponent>
+```
+
+## 3 ways ☘️
+
+There are two ways to sort the Items **based on their data**:
+
+- Using a `function` as the comparer, which will receive the [data](../usage/items-data) of two Items to compare as arguments. It works almost identically to native array sort, the only difference is that the sort is always stable.
+- Using the [data](../usage/items-data) key(s) as a `string` (separated by space) and the Items will be sorted based on the provided data keys.
+
+There is one other way that is **not based on data**:
+
+- Using an ordered list of Items `keys`.
+
+## Usage 📖 _(function)_
+
+In the example the Items are distinguished by an `id`, we want to sort them on that id.
+
+```jsx
+const App = () => {
+  // Items.
+  const [items, setItems] = useState([{ id: "1" }, { id: "2" }, { id: "3" }]);
+
+  // Items to components.
+  const children = items.map((item) => <Item key={item.id} id={item.id} />);
+
+  // Memoized filter method.
+  const sort = useCallback((dataItemA, dataItemB) => {
+    const idA = parseInt(dataItemA.id);
+    const idB = parseInt(dataItemB.id);
+
+    return idA - idB;
+  }, []);
+
+  // Render.
+  return (
+    <MuuriComponent propsToData={({ id }) => ({ id })} sort={sort}>
+      {children}
+    </MuuriComponent>
+  );
+};
+```
+
+## Usage 📖 _(string)_
+
+In the example the Items are distinguished by an id and a `text`, we want to sort them on that text. If 2 Items have the same text, we will sort them by their `id` (in `descending` order).
+
+```jsx
+const App = () => {
+  // Items.
+  const [items, setItems] = useState([
+    { id: "1", text: "as" },
+    { id: "2", text: "gg" },
+    { id: "3", text: "st" }
+  ]);
+
+  // Items to components.
+  const children = items.map((item) => (
+    <Item key={item.id} id={item.id} text={item.text} />
+  ));
+
+  // Render.
+  return (
+    <MuuriComponent
+      propsToData={({ id, text }) => ({ id, text })}
+      sort={"text id:desc"}
+    >
+      {children}
+    </MuuriComponent>
+  );
+};
+```
+
+## Usage 📖 _(keys)_
+
+In the example the Items will be sorted by their `keys`.
+
+```jsx
+const App = () => {
+  const [sort] = useState(["k3", "k2", "k1"]);
+
+  // Items.
+  const [items, setItems] = useState([
+    { key: "k1" },
+    { key: "k2" },
+    { key: "k3" }
+  ]);
+
+  // Items to components.
+  const children = items.map((item) => <Item key={item.key} />);
+
+  // Render.
+  return <MuuriComponent sort={sort}>{children}</MuuriComponent>;
+};
+```
+
+## Sort options ⚙️
+
+You can decide to sort in `descending` order using the [sortOptions](../api-reference/muuricomponent#sortoptions). If you want to avoid unnecessary re-sorting during a re-render, remember to memoize the options.
+
+```jsx
+  // ...
+  const [sort] = useState({
+    value: "text",
+    options: { descending: true }
+  })
+
+  <MuuriComponent
+    sort={sort.value}
+    sortOptions={sort.options}
+  >
+```
+
+## Store sort order 💾
+
+You can get the ordered array of **keys** of the `Item` components. This array can be used at any time to sort the Items.
+
+It is possible to store the keys after a **drag** event 💾.
+
+```jsx
+<MuuriComponent
+  onDragEnd={function (item) {
+    const grid = item.getGrid();
+    const items = grid.getItems();
+    const keys = items.map((item) => item.getKey());
+
+    sendKeysToMyRemoteStore(keys); // keys: ["1", "2"]
+  }}
+>
+  <Item key="1" />
+  <Item key="2" />
+</MuuriComponent>
+```
+
+It is also possible to store them after each new **sort** 💾.
+
+```jsx
+<MuuriComponent
+  onSort={function (currentOrder) {
+    const keys = currentOrder.map((item) => item.getKey());
+
+    sendKeysToMyRemoteStore(keys); // keys: ["1", "2"]
+  }}
+>
+  <Item key="1" />
+  <Item key="2" />
+</MuuriComponent>
+```
+
+And then apply the **sort** 🔄.
+
+```jsx
+<MuuriComponent
+  sort={getKeysFromMyRemoteStore()} // ["1", "2"]
+>
+```
+
+As said before you don't have to worry about the **position** of the components, they can be in any order.
+
+## How is that possible? 🤨
+
+You may have wondered how the sorting of the `Item` components **does not affect** the sorting of DOM elements. This is because the elements are positioned via CSS properties, so you **don't have to reorder** the `Item` components after the sort is applied. This allows an **extremely simple** use of the library.
+
+<img src={useBaseUrl("gifs/howisitpossible.gif")} />

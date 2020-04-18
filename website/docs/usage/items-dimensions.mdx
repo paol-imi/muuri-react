@@ -1,0 +1,45 @@
+---
+title: Items dimensions
+---
+
+import useBaseUrl from "@docusaurus/useBaseUrl";
+
+## Dimensions refresh 📐
+
+When you change the size of an Item, the MuuriComponent must be notified so that it can update the layout.
+In order to do this you need to use the `useRefresh` hook. See more [here](../hooks/useRefresh).
+
+<img
+  src={useBaseUrl("gifs/refresh.gif")}
+  className="shadow"
+  style={{ width: "60%" }}
+/>
+
+## Dimensions when dragging ✋
+
+When the Items are dragged they are inserted into the [dragContainer](../api-reference/muuricomponent#dragcontainer). If their dimensions are relative to the parent (e.g.&nbsp;`width: 70%;`) the drag event could cause some unwanted resizing of the Items. <br/>
+For these cases you can use the prop [dragFixed](../api-reference/muuricomponent#dragfixed). If used, the CSS `width`, `height` and `padding-top` properties of the element will be fixed while the Item is dragging.
+
+```jsx
+<MuuriComponent dragEnabled dragFixed />
+```
+
+### Example 📖
+
+Simple example showing the width of an Item, assuming that the MuuriComponent element width is `1000px`.
+
+```css
+.muuri-item {
+  width: 70%;
+}
+```
+
+|           | No drag | Drag start | Drag end |
+| --------- | ------- | ---------- | -------- |
+| Css width | 70%     | 700px      | 70%      |
+
+## Resize 📏
+
+Muuri-react does not provide an utility to resize the Items, but provides all the `tools` to be able to implement this feature. You can also look at the [example](https://codesandbox.io/s/muuri-react-resize-ycldc) on codesanbox.
+
+<img src={useBaseUrl("gifs/resize.gif")} style={{ width: "60%" }} />

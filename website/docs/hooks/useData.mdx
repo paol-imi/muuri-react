@@ -1,0 +1,48 @@
+---
+title: useData
+---
+
+```js
+import { useData } from "muuri-react";
+```
+
+The `useData` hook allow you to set the `data` to the Item in which the hook has been called. See more [there](../usage/items-data).
+
+## Usage 📖
+
+It's possible to directly pass the data as a `parmeter` to the hook, in this way the data will be set on each rendering.
+
+```jsx
+const Item = ({ color, text }) => {
+  // Data will have the shape: { color, text }.
+  useData({ color, text });
+
+  return (
+    <div className={`item color-${color}`}>
+      <div className="item-content">{text}</div>
+    </div>
+  );
+};
+```
+
+It'a also possible to set the data with the `setData` method returned by the hook.
+The two methods can be used together or individually.
+
+```jsx
+const Item = ({ color }) => {
+  // Data will have the shape: { color }.
+  const setData = useData({ color });
+
+  return (
+    <div className="item">
+      <div className="item-content">
+        <input
+          type="text"
+          {/* Data will have the shape: { color, text }. */}
+          onChange={text => setData({ text }, { merge: true })}
+        />
+      </div>
+    </div>
+  );
+}
+```

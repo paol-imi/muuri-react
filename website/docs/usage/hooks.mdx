@@ -1,0 +1,74 @@
+---
+title: Hooks 🔌
+---
+
+The custom hooks provided by this package are designed to be used inside the `items`.
+
+## Example 📖
+
+A simple example with the `useDrag` hook.
+
+```jsx
+const Item = ({ text }) => {
+  // The component will re-render when the item is dragged.
+  const isDragging = useDrag();
+
+  return (
+    <div className="item">
+      <div className="item-content">{isDragging ? "Release me!" : text}</div>
+    </div>
+  );
+};
+```
+
+## Class components 📦
+
+If you prefer to use class components instead of function components you can still take advantage of hooks. <br/>
+You can wrap your Item using the `withHooks` utility.
+
+Let's reproduce the previous example with a class component.
+
+```jsx
+class Item extends React.Component {
+  render() {
+    const { isDragging, text } = this.props;
+
+    return (
+      <div className="item">
+        <div className="item-content">{isDragging ? "Release me!" : text}</div>
+      </div>
+    );
+  }
+}
+```
+
+Now we can wrap the created component and use the wrapped one.
+
+```jsx
+import { MuuriComponent, withHooks } from "muuri-react";
+import { Item } from "./components";
+
+const WrappedItem = withHooks(Item, ["useDrag"]);
+
+const App = () => {
+  return (
+    <MuuriComponent>
+      <WrappedItem key="1" text="I can use hooks" />
+    </MuuriComponent>
+  );
+};
+```
+
+## withHooks props ⚙️
+
+For each hook this utility generate specific `props` and pass them to the item. The following are the nomenclature conventions, to see in depth the APIs of an hook you can check their documentation pages.
+
+| Hook            | Props               |
+| --------------- | ------------------- |
+| `useData`       | `{ setData }`       |
+| `useDrag`       | `{ isDragging }`    |
+| `useDraggable`  | `{ setDraggable }`  |
+| `useGrid`       | `{ gridData }`      |
+| `useRefresh`    | `{ refresh }`       |
+| `useShow`       | `{ isShowing }`     |
+| `useVisibility` | `{ setVisibility }` |

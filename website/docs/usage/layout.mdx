@@ -1,0 +1,76 @@
+---
+title: Layout 📐
+---
+
+Muuri-react ships with a configurable `layout` algorithm which is used by default. It's pretty flexible and suitable for most common situations (lists, grids and more). You can simply create your Items with any **size** and **margin**, and the layout will do all the work.
+
+```jsx
+// Customize the default layout algorithm.
+<MuuriComponent
+  layout={{
+    fillGaps: true,
+    horizontal: true,
+    alignRight: true,
+    alignBottom: true,
+    rounding: false
+  }}
+>
+```
+
+If that does not fit the bill you can always provide `your own layout` algorithm (it's not as scary as it sounds).
+
+Muuri-react supports calculating the layout both **synchronously** and **asynchronously**. By default (if you use the default layout algorithm) Muuri will use two shared web workers to compute the layouts asynchronously. In browsers that do not support web workers Muuri will fallback to synchronous layout calculations.
+
+## Custom layout ⚙️
+
+When you provide a **custom layout** function Muuri-react calls it whenever calculation of layout is necessary. Before calling the layout function Muuri-react always calculates the current width and height of the grid's container element and also creates an array of all the Items that are part of the layout currently. See the full APIs [here](../api-reference/muuricomponent#layout).
+
+```jsx
+// Build your own layout algorithm.
+<MuuriComponent
+  layout={function (grid, layoutId, items, width, height, callback) {
+    const layout = {
+      id: layoutId,
+      items: items,
+      slots: [],
+      styles: {}
+    };
+
+    // Calculate the slots asynchronously. Note that the timeout is here only
+    // as an example and does not help at all in the calculations. You should
+    // offload the calculations to web workers if you want real benefits.
+    // Also note that doing asynchronous layout is completely optional and you
+    // can call the callback function synchronously also.
+    const timerId = window.setTimeout(function () {
+      var item, m, x = 0, y = 0, w = 0, h = 0;
+
+      for (var i = 0; i < items.length; i++) {
+        item = items[i];
+        x += w;
+        y += h;
+        m = item.getMargin();
+        w = item.getWidth() + m.left + m.right;
+        h = item.getHeight() + m.top + m.bottom;
+        layout.slots.push(x, y);
+      }
+
+      w += x;
+      h += y;
+      // Set the CSS styles that should be applied to the grid element.
+      layout.styles.width = w + 'px';
+      layout.styles.height = h + 'px';
+
+      // When the layout is fully computed let's call the callback function and
+      // provide the layout object as it's argument.
+      callback(layout);
+    }, 200);
+
+    // If you are doing an async layout you _can_ (if you want to) return a
+    // function that cancels this specific layout calculations if it's still
+    // processing/queueing when the next layout is requested.
+    return function () {
+      window.clearTimeout(timerId);
+    };
+  }}
+>
+```

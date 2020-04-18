@@ -1,0 +1,17 @@
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+.showcaseCard {
+  height: 100%;
+  transition: 0.3s;
+  border: 1px solid #ddd;
+}
+
+.showcaseCard:hover {
+  transform: scale(1.07);
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06);
+}

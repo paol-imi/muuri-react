@@ -1,0 +1,156 @@
+---
+title: Drag and drop ✋
+---
+
+import useBaseUrl from "@docusaurus/useBaseUrl";
+
+Muuri-react stands out from many other libraries for its simplicity, drag and drop is no exception. To manage `drag‑and‑drop` you have to enable it and... that's it🤯! The Items are the components that can be `dragged`, the MuuriComponent represents the container in which the Items can be `dropped`.
+
+<img
+  src={useBaseUrl("gifs/drag.gif")}
+  className="shadow"
+  style={{ width: "60%" }}
+/>
+
+This chapter lists the possible uses and `configurations`, if you want to use drag-and-drop between different MuuriComponents see the [Reparenting](../usage/reparenting) chapter.
+
+## Enabling
+
+To enable the dragging of the Items just use the [dragEnabled](../api-reference/muuricomponent#dragenabled) prop, it can be `enabled/disabled` in any re-render.
+
+```jsx
+<MuuriComponent dragEnabled>
+  <Item key="1" />
+  <Item key="2" />
+</MuuriComponent>
+```
+
+## Hook: useDraggable 🔌
+
+If dragging is enabled it is also possible to disable it to a single Item through the [useDraggable](../hooks/useDraggable) hook.
+
+```jsx
+import { useDraggable } from "muuri-react";
+
+// Item component.
+const Item = () => {
+  const setDraggable = useDraggable();
+
+  // Disable dragging for this item.
+  setDraggable(false);
+
+  return (
+    <div className="item">
+      <div className="item-content">This item can't be dragged.</div>
+    </div>
+  );
+};
+```
+
+## Hook: useDrag 🔌
+
+The [useDrag](../useDrag) hook allow you to know if the Item is being dragged. The Item will re-render on each drag `start/end`.
+
+```jsx
+import { useDrag } from "muuri-react";
+
+// Item component.
+const Item = ({ text }) => {
+  const isDragging = useDrag();
+
+  return (
+    <div className="item">
+      <div className="item-content">{isDragging ? "Release me!" : text}</div>
+    </div>
+  );
+};
+```
+
+## Style 👗
+
+You can change the style of the dragged Item also by applying the style in the `CSS class`.
+
+```css
+.muuri-item-dragging {
+  border: 1px solid red;
+}
+```
+
+## Drag container 📦
+
+You can choose the [dragContainer](../api-reference/muuricomponent#dragcontainer) in which the dragged Item should be appended to for the duration of the drag. The default one is the MuuriComponent element.
+
+```jsx
+<MuuriComponent dragContainer={document.body} />
+```
+
+## Drag handle 📍
+
+You can choose The element within the Item element that should be used as the [dragHandle](../api-reference/muuricomponent#draghandle) by providing a CSS selector.
+
+```jsx
+<MuuriComponent dragHandle=".handle" />
+```
+
+## Drag axis 🧭
+
+You can force Items to be moved only vertically or horizontally when dragged with the [dragAxis](../api-reference/muuricomponent#dragaxis) prop.
+
+```jsx
+<MuuriComponent dragAxis="x" />
+```
+
+## Drag placeholder 👥
+
+If you want a placeholder Item to appear for the duration of an Item's drag & drop procedure (as in the gif above) you can enable and configure through the [dragPlaceholder](../api-reference/muuricomponent#dragplaceholder) prop.
+
+```jsx
+<MuuriComponent
+  dragEnabled
+  dragPlaceholder={{
+    enabled: true,
+    createElement: function (item) {
+      return item.getElement().cloneNode(true);
+    }
+  }}
+/>
+```
+
+## Drag start 🏁
+
+You can totally customize the drag start logic by providing a function to the [dragStartPredicate](../api-reference/muuricomponent#dragstartpredicate) prop. When the user starts to drag an Item this predicate function will be called. If you return `true` the Item will begin to move whenever the Item is dragged. If you return `false` the Item will not be moved at all.
+
+```jsx
+<MuuriComponent
+  dragStartPredicate={function (item, e) {
+    const key = item.getKey();
+    const data = item.getData();
+
+    // Implement your logic...
+  }}
+/>
+```
+
+## Drag fixed 📌
+
+If the items have relative dimensions that you want to fix during the drag you can use the [dragFixed](../api-reference/muuricomponent#dragfixed) prop. See more [here](../usage/items-dimensions#dimensions-when-dragging-).
+
+```jsx
+<MuuriComponent dragFixed />
+```
+
+## Customization ⚙️
+
+You can edit many other aspects of dragging through the following MuuriComponent props:
+
+- [dragSort](../api-reference/muuricomponent#dragsort)
+- [dragSortHeuristics](../api-reference/muuricomponent#dragsortheuristics)
+- [dragSortPredicate](../api-reference/muuricomponent#dragsortpredicate)
+- [dragRelease](../api-reference/muuricomponent#dragrelease)
+- [dragCssProps](../api-reference/muuricomponent#dragcssprops)
+
+## How is that possible? 🤨
+
+If you've ever used other libraries with drag-and-drop, like the fantastic [react-beatiful-dnd](https://github.com/atlassian/react-beautiful-dnd), you may have noticed that there is no requirement to `synchronize` the sorting of the components after a drag event. This is because the sorting of the components is separated from the sorting of the elements in the DOM, so you will never have to sort the `Item` components. This allows for **excellent performance** and a very **simple implementation**.
+
+<img src={useBaseUrl("gifs/howisitpossible.gif")} />

@@ -1,0 +1,127 @@
+---
+title: Hooks API
+---
+
+The custom hooks provided by this package are designed to be used inside the `items`.
+
+```js
+import { <hookName> } from "muuri-react";
+```
+
+## useData( [data], [options] ) 🔌
+
+**Parameters**
+
+- **data** &nbsp;&mdash;&nbsp; _object_
+  - The data of the Item in which the hook is called.
+  - Optional.
+- **options.merge** &nbsp;&mdash;&nbsp; _boolean_
+  - Should new data be merged with old ones or replace them?
+  - Default value: `false`.
+  - Optional.
+
+**Returns** &nbsp;&mdash;&nbsp; _setData( data, [options] )_
+
+### setData( data, [options] )
+
+Function returned by the hook. The identity of the function is guaranteed to be stable so it will be safe to omit them as a dependency (e.g. if it was used inside a useEffect hook).
+
+**Parameters**
+
+- **data** &nbsp;&mdash;&nbsp; _object_
+  - The data of the Item in which the hook is called.
+- **options.merge** &nbsp;&mdash;&nbsp; _boolean_
+  - Should new data be merged with old ones or replace them?
+  - Default value: `false`.
+  - Optional.
+
+### Default options
+
+Default options used by setData, useData.
+
+```js
+useData.defaultOptions = { merge: false };
+```
+
+## useDrag( ) 🔌
+
+The Item will re-render on each drag start/end.
+
+**Returns** &nbsp;&mdash;&nbsp; _boolean_
+
+## useDraggable( ) 🔌
+
+Return the drag enabler method.
+
+**Returns** &nbsp;&mdash;&nbsp; _setDraggable( )_
+
+### setDraggable( draggable )
+
+Function returned by the hook. The identity of the function is guaranteed to be stable so it will be safe to omit them as a dependency (e.g. if it was used inside a useEffect hook).
+
+**Parameters**
+
+- **draggable** &nbsp;&mdash;&nbsp; _boolean_
+  - A truthy value to allow the Item to be dragged, a falsy value to not allow the Item to be dragged.
+
+## useGrid( ) 🔌
+
+**Returns** &nbsp;&mdash;&nbsp; _GridData_
+
+- **GridData.id** &nbsp;&mdash;&nbsp; _string_
+  - The id of the MuuriComponent of which the Item is a child.
+- **GridData.groupIds** &nbsp;&mdash;&nbsp; _array_
+  - The group ids of the MuuriComponent of which the Item is a child.
+- **GridData.grid** &nbsp;&mdash;&nbsp; _Muuri_
+  - The Muuri instance of the MuuriComponent of which the Item is a child.
+
+## useRefresh( [deps] ) 🔌
+
+Show the targeted Items.
+
+**Parameters**
+
+- **deps** &nbsp;&mdash;&nbsp; _array_
+  - An array of dependencies, it has the same purpose as in useEffect.
+  - Default value: `[]`.
+  - Optional.
+
+**Returns** &nbsp;&mdash;&nbsp; _refresh( )_
+
+### refresh( )
+
+Function returned by the hook. The identity of the function is guaranteed to be stable so it will be safe to omit them as a dependency (e.g. if it was used inside a useEffect hook).
+
+## useShow( ) 🔌
+
+The Item will re-render each time its visibility change.
+
+**Returns** &nbsp;&mdash;&nbsp; _boolean_
+
+## useVisibility( ) 🔌
+
+Return the visibility setter method.
+
+**Returns** &nbsp;&mdash;&nbsp; _setVisibility( )_
+
+### setVisibility( visibility, [options] )
+
+Function returned by the hook. The identity of the function is guaranteed to be stable so it will be safe to omit them as a dependency (e.g. if it was used inside a useEffect hook).
+
+**Parameters**
+
+- **visibility** &nbsp;&mdash;&nbsp; _boolean_
+  - A truthy value to show the Item, a falsy value to hide the Item.
+- **options.instant** &nbsp;&mdash;&nbsp; _boolean_
+
+  - Should the animation happen instantly?
+  - Default value: `false`.
+  - Optional.
+
+### Default options
+
+Default options used by setVisibility.
+
+```js
+useData.defaultOptions = { instant: false };
+```

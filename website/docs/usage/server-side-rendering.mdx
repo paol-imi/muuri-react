@@ -1,0 +1,55 @@
+---
+title: Server side rendering 🖥
+---
+
+For now, in its version **3.X.X**, Muuri-react does **not** have an official support for the `server side rendering`.
+
+It is however possible to use **Muuri-react** in frameworks such as **Gatsby.js** or **Next.js** by moving (only) its `rendering to the client`. Below we report the links to the demos on codesandbox of the frameworks mentioned above.
+
+- [Gatsby.js](https://codesandbox.io/s/gatsbyjs-muuri-react-g60te)
+- [Next.js](https://codesandbox.io/s/nextjs-muuri-react-2-eojql)
+
+## Example 📖
+
+To use Muuri-react on frameworks that use SSR, the library must be imported only into the client. For this purpose it is possible to use the internal [API](https://reactjs.org/docs/code-splitting.html) of React.
+
+```jsx
+/* myApp.js */
+import React from "react";
+import { MuuriComponent } from "muuri-react";
+import { Item } from "./components";
+
+export default () => (
+  <MuuriComponent>
+    <Item key="1" />
+    <Item key="2" />
+    <Item key="3" />
+  </MuuriComponent>
+);
+```
+
+```jsx
+/* index.js */
+import React from "react";
+
+// Lazy load the component.
+const App = React.lazy(() => import("./myApp.js"));
+
+// Main page.
+const IndexPage = () => {
+  // Check if we are on the server.
+  const isSSR = typeof window === "undefined";
+
+  return (
+    <div>
+      {/* Render only if we are on the client. */}
+      {/* Outside I can render everything on the server. */}
+      {!isSSR && (
+        <React.Suspense fallback={<div />}>
+          <App />
+        </React.Suspense>
+      )}
+    </div>
+  );
+};
+```

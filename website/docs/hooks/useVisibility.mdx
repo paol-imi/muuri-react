@@ -1,0 +1,35 @@
+---
+title: useVisibility
+---
+
+```js
+import { useVisibility } from "muuri-react";
+```
+
+The `useVisibility` hook allow you to show/hide the Item in which the hook has been called.
+
+## Usage 📖
+
+It's possible to use the `setVisibility` method returned by the hook. It will accept as an argument a boolean representing the visibility of the Item.
+
+```jsx
+const Item = () => {
+  const setVisibility = useVisibility();
+
+  return (
+    <div className="item">
+      <div
+        className="item-content"
+        {/* Hide the item on click. */}
+        onClick={() => setVisibility(false)}
+      />
+    </div>
+  );
+};
+```
+
+The Item won't re-render after the hook took effect, use [useShow](../hooks/useShow) for this purpose.
+
+:::note
+The setVisibility method has `no effect` when the component is mounting (basically when the Item is added). You have to decide if the Item has to be visible or hidden when you [add](../usage/items#visibility-) it.
+:::
