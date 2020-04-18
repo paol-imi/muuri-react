@@ -1,0 +1,6 @@
+node_modules/
+package-lock.json
+.npmignore
+examples/**/node_modules/
+examples/**/build/
+examples/**/package-lock.json

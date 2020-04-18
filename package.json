@@ -1,0 +1,78 @@
+{
+  "name": "muuri-react",
+  "version": "3.1.0-rc.3",
+  "description": "The layout engine for React.",
+  "main": "dist/muuri-react.cjs.js",
+  "module": "dist/muuri-react.esm.js",
+  "types": "dist/types/index.d.ts",
+  "scripts": {
+    "build:types": "tsc --emitDeclarationOnly",
+    "build:js": "rollup -c",
+    "build": "npm run build:types && npm run build:js",
+    "test": "jest test",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch",
+    "eslint": "./node_modules/.bin/eslint src/**/*.{js,jsx,ts,tsx} test/**/*.{js,jsx,ts,tsx}",
+    "prettier": "./node_modules/.bin/prettier --write **/*.{js,jsx,ts,tsx,md,mdx,json}"
+  },
+  "homepage": "https://paol-imi.github.io/muuri-react/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Paol-imi/muuri-react.git"
+  },
+  "keywords": [
+    "muuri",
+    "react",
+    "grid",
+    "layout",
+    "drag-and-drop",
+    "sorting",
+    "filter"
+  ],
+  "author": "github.com/Paol-imi",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-object-rest-spread": "^7.9.0",
+    "@babel/plugin-transform-runtime": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-react": "^7.9.4",
+    "@babel/preset-typescript": "^7.9.0",
+    "@rollup/plugin-commonjs": "^11.0.2",
+    "@rollup/plugin-node-resolve": "^7.1.1",
+    "@rollup/plugin-replace": "^2.3.1",
+    "@types/react": "^16.9.31",
+    "@types/react-reconciler": "^0.18.0",
+    "@typescript-eslint/eslint-plugin": "^2.26.0",
+    "@typescript-eslint/parser": "^2.26.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jest": "^23.8.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^3.0.0",
+    "jest": "^25.2.6",
+    "muuri": "^0.8.0",
+    "prettier": "^2.0.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "rollup": "^2.3.2",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-terser": "^5.3.0",
+    "typescript": "^3.8.3"
+  },
+  "peerDependencies": {
+    "muuri": "^0.8.0",
+    "react": "^16.8.5"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.9.2",
+    "prop-types": "^15.7.2"
+  }
+}
