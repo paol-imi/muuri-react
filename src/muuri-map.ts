@@ -21,7 +21,7 @@ export class MuuriMap {
   }
 
   /**
-   * Get all the grid instances  in the group of the given id.
+   * Get all the grid instances in the group of the given id.
    * The reference of the group array never changes.
    *
    * @param groupId - The group id.
@@ -37,6 +37,15 @@ export class MuuriMap {
     } else {
       return group;
     }
+  }
+
+  /**
+   * Get all the grid instances in the map.
+   *
+   * @returns - The grid instances.
+   */
+  getAll(): DecoratedGrid[] {
+    return Array.from(this._idMap.values());
   }
 
   /**
