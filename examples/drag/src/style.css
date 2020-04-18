@@ -7,9 +7,9 @@
   user-select: none;
   display: none;
   position: absolute;
-  width: 100px;
-  height: 100px;
-  line-height: 100px;
+  width: 95px;
+  height: 95px;
+  line-height: 95px;
   margin: 10px;
   z-index: 1;
   cursor: pointer;
