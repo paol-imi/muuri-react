@@ -234,7 +234,7 @@ MuuriComponent.propTypes = {
     createElement: PropTypes.func,
     onCreate: PropTypes.func,
     onRemove: PropTypes.func,
-    ease: PropTypes.string,
+    easing: PropTypes.string,
     duration: PropTypes.number
   }),
   containerClass: PropTypes.string,
