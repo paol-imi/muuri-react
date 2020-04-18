@@ -1,0 +1,37 @@
+{
+  "name": "muuri-react-example",
+  "version": "1.0.0",
+  "description": "muuri-react-example",
+  "main": "webpack.config.js",
+  "scripts": {
+    "start": "webpack-dev-server --open --hot --mode development"
+  },
+  "homepage": "https://github.com/Paol-imi/muuri-react",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Paol-imi/muuri-react.git"
+  },
+  "author": "github.com/Paol-imi",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "prop-types": "^15.7.2",
+    "style-loader": "^1.0.0",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.0"
+  },
+  "dependencies": {
+    "muuri": "^0.9.0",
+    "muuri-react": "^3.1.0",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "react-resizable": "1.10.1",
+    "underscore": "1.9.2"
+  }
+}

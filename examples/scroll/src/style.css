@@ -1,0 +1,149 @@
+/* Grid */
+
+.muuri {
+  height: 83px;
+}
+
+.scrollElem {
+  border: 1px solid black;
+  width: 100%;
+  overflow-y: none;
+  overflow-x: hidden;
+}
+
+.item {
+  user-select: none;
+  display: none;
+  position: absolute;
+  width: 55px;
+  height: 55px;
+  line-height: 52px;
+  margin: 14px 7px;
+  z-index: 1;
+  cursor: pointer;
+}
+.item.muuri-item-positioning {
+  z-index: 2;
+}
+.item.muuri-item-dragging,
+.item.muuri-item-releasing {
+  z-index: 3;
+}
+.item.muuri-item-dragging {
+  cursor: move;
+}
+.item.muuri-item-hidden {
+  z-index: 0;
+}
+.item-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.item-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 2px solid;
+  color: #333;
+  border-radius: 100%;
+  font-size: 205%;
+}
+
+.muuri-item-dragging .item-content {
+  left: -9%;
+  top: -9%;
+  width: 122%;
+  height: 122%;
+  font-size: 247%;
+  line-height: 65px;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06);
+}
+
+/* Icons in the selector */
+/* fallback */
+@font-face {
+  font-family: "Material Icons";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/materialicons/v29/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2)
+    format("woff2");
+}
+
+/* main.css */
+/* Base */
+
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+body {
+  position: relative;
+  font-family: "Fira Sans", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  margin: 0 20px;
+  color: #6e6e6e;
+}
+
+/* Sections */
+
+section {
+  margin: 60px auto;
+  padding-top: 0;
+  max-width: 940px;
+  border-top: 2px solid #e5e5e5;
+  text-align: left;
+}
+section.demo {
+  margin-top: 30px;
+}
+section h4 {
+  margin: 30px 0 15px 0;
+  font-weight: 500;
+  font-size: 20px;
+  color: #3e3e3e;
+}
+@media (max-width: 600px) {
+  section.demo {
+    border-top: 0;
+  }
+}
+
+/* Section titles */
+
+.section-title {
+  color: #3e3e3e;
+  font-size: 26px;
+  font-weight: 700;
+  margin: 40px 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+}
+.section-title > span {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+}
+.section-title > span:after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 10px;
+  bottom: 0;
+  right: 10px;
+  height: 2px;
+  background: #3e3e3e;
+}
+
