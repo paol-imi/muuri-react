@@ -1,31 +1,23 @@
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
 import React from "react";
 import Layout from "@theme/Layout"; // eslint-disable-line
 import classnames from "classnames";
 import styles from "./styles.module.css";
 
 const TITLE = "Showcase";
-const DESCRIPTION = "See the demos built with Muuri-react";
-
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
+const DESCRIPTION = (
+  <>
+    See the official demos and check out what&nbsp;
+    <a href="https://github.com/Paol-imi/muuri-react/issues/15">others</a> are
+    creating with <strong>Muuri-react</strong>
+  </>
+);
 
 function getDescription(type) {
   switch (type) {
     case "Demo":
       return "Demo showing Muuri-react features.";
     case "Example":
-      return "Example showing how to implement a single Muuri-react functionality";
+      return "Example showing how to implement a single Muuri-react functionality.";
     case "Implementation":
       return "Implementation of a functionality with an external library.";
     default:
@@ -33,7 +25,7 @@ function getDescription(type) {
   }
 }
 
-const users = [
+const demos = [
   // Please add in alphabetical order of title.
   {
     type: "Demo",
@@ -107,39 +99,39 @@ function Showcase() {
           <p style={{ fontSize: "25px" }}>{DESCRIPTION}</p>
         </div>
         <div className="row">
-          {users.map((user) => (
-            <div key={user.title} className="col col--4 margin-bottom--lg">
+          {demos.map((demo) => (
+            <div key={demo.title} className="col col--4 margin-bottom--lg">
               <div className={classnames("card", styles.showcaseCard)}>
                 <div className="card__image">
-                  <img src={user.preview} alt={user.title} />
+                  <img src={demo.preview} alt={demo.title} />
                 </div>
                 <div className="card__body">
                   <div className="avatar">
                     <div className="avatar__intro margin-left--none">
-                      <h4 className="avatar__name">{user.title}</h4>
+                      <h4 className="avatar__name">{demo.title}</h4>
                       <small className="avatar__subtitle">
-                        {user.description}
+                        {demo.description}
                       </small>
                     </div>
                   </div>
                 </div>
-                {(user.website || user.source) && (
+                {(demo.website || demo.source) && (
                   <div className="card__footer">
                     <div className="button-group button-group--block">
-                      {user.website && (
+                      {demo.website && (
                         <a
                           className="button button--small button--secondary button--block"
-                          href={user.website}
+                          href={demo.website}
                           target="_blank"
                           rel="noreferrer noopener"
                         >
                           Website
                         </a>
                       )}
-                      {user.source && (
+                      {demo.source && (
                         <a
                           className="button button--small button--secondary button--block"
-                          href={user.source}
+                          href={demo.source}
                           target="_blank"
                           rel="noreferrer noopener"
                         >

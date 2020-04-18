@@ -1,31 +1,23 @@
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
 import React from "react";
 import Layout from "@theme/Layout"; // eslint-disable-line
 import classnames from "classnames";
 import styles from "./styles.module.css";
 
 const TITLE = "Showcase";
-const DESCRIPTION = "See the demos built with Muuri-react";
-
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
+const DESCRIPTION = (
+  <>
+    See the official demos and check out what&nbsp;
+    <a href="https://github.com/Paol-imi/muuri-react/issues/15">others</a> are
+    creating with <strong>Muuri-react</strong>
+  </>
+);
 
 function getDescription(type) {
   switch (type) {
     case "Demo":
       return "Demo showing Muuri-react features.";
     case "Example":
-      return "Example showing how to implement a single Muuri-react functionality";
+      return "Example showing how to implement a single Muuri-react functionality.";
     case "Implementation":
       return "Implementation of a functionality with an external library.";
     default:
@@ -34,7 +26,6 @@ function getDescription(type) {
 }
 
 const users = [
-  // Please add in alphabetical order of title.
   {
     type: "Demo",
     name: "Grid",

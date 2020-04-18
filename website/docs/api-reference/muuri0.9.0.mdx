@@ -268,6 +268,7 @@ You can use the muuriMap to access all the Muuri instances of the MuuriComponent
 
 - [get](#muurimapget-id-)
 - [getGroup](#muurimapgetgroup-groupid-)
+- [getAll](#muurimapgetall)
 
 ---
 
@@ -314,4 +315,22 @@ Get all the Muuri instances associated with MuuriComponents of the given group.
 // All the Muuri instances belonging to the
 // MuuriComponenents of the group: "groupId".
 const grids = muuriMap.getGroup("groupId");
+```
+
+### muuriMap.getGroup( groupId )
+
+Get all the Muuri instances associated with MuuriComponents of the given group.
+
+**Returns** &nbsp;&mdash;&nbsp; _Muuri[]_
+
+- Returns all the Muuri instances.
+
+```jsx
+<MuuriComponent />
+<MuuriComponent />
+```
+
+```js
+// All the Muuri instances.
+const grids = muuriMap.getAll();
 ```
