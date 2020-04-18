@@ -1,6 +1,6 @@
 {
   "name": "muuri-react",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "The layout engine for React.",
   "main": "dist/muuri-react.cjs.js",
   "module": "dist/muuri-react.esm.js",
