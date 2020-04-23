@@ -53,7 +53,7 @@ This utility allows you to generate the style of the `Item` and make it responsi
 ```js
 // The responsive style.
 const responsiveStyle = getResponsiveStyle({
-  column: 3 / 8,
+  columns: 3 / 8,
   margin: "5% 2%",
   ratio: 1.5
 });
@@ -97,15 +97,15 @@ const Item = () => {
   const isDragging = useDrag();
 
   // Item dimensions.
-  const column = 3 / 8;
+  const columns = 3 / 8;
   const margin = "5%";
   const ratio = 1.5;
 
   // If the item is dragging the style
   // has to be static.
   const style = !isDragging
-    ? getResponsiveStyle({ column, margin, ratio })
-    : getStaticStyle({ grid, column, margin, ratio });
+    ? getResponsiveStyle({ columns, margin, ratio })
+    : getStaticStyle({ grid, columns, margin, ratio });
 
   return (
     <div style={style}>

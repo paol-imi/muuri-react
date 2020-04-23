@@ -36,7 +36,7 @@ With this utility you can virtually divide the MuuriComponent into `columns` and
 const responsiveStyle = getResponsiveStyle({
   // The Muuri component is virtually divided into 8 columns,
   // the width of the item will be 3 columns (minus the margin).
-  column: 3 / 8,
+  columns: 3 / 8,
   // The margin of the item, it can be any CSS values
   // valid for the margin expressed in "px" or "%".
   margin: "5%",
@@ -88,15 +88,15 @@ const Item = () => {
   const isDragging = useDrag();
 
   // Item dimensions.
-  const column = 3 / 8;
+  const columns = 3 / 8;
   const margin = "5%";
   const ratio = 1.5;
 
   // If the item is dragging the style
   // has to be static.
   const style = !isDragging
-    ? getResponsiveStyle({ column, margin, ratio })
-    : getStaticStyle({ grid, column, margin, ratio });
+    ? getResponsiveStyle({ columns, margin, ratio })
+    : getStaticStyle({ grid, columns, margin, ratio });
 
   return (
     <div style={style}>
