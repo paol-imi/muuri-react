@@ -14,7 +14,7 @@ You should check out the existing [questions](https://github.com/paol-imi/muuri-
 
 ### Improvements
 
-Improvement ideas are always welcome! Please check first the existing [ideas](https://github.com/paol-imi/muuri-react/issues?utf8=%E2%9C%93&q=label%3Aidea), [features](https://github.com/paol-imi/muuri-react/issues?q=label%3Afeature) and [enhancements](https://github.com/paol-imi/muuri-react/issues?q=label%3Aenhancement) so that you won't be creating a duplicate issue.
+Improvement ideas are always welcome! Please check first the existing [ideas](https://github.com/paol-imi/muuri-react/issues?utf8=%E2%9C%93&q=label%3Aidea) and [enhancements](https://github.com/paol-imi/muuri-react/issues?q=label%3Aenhancement) so that you won't be creating a duplicate issue.
 
 ### Bugs
 
