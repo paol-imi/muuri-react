@@ -38,7 +38,7 @@
     "import/prefer-default-export": 0,
     "import/extensions": 0,
     /** Disabled. */
-    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "no-plusplus": ["error", {"allowForLoopAfterthoughts": true}],
     "no-underscore-dangle": "off",
     "no-console": "error",
     "no-param-reassign": 0,
