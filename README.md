@@ -18,7 +18,7 @@
 
 [![npm](https://img.shields.io/npm/v/muuri-react.svg?style=flat-square)](http://npm.im/muuri-react)
 [![React: Component](https://img.shields.io/badge/React-Component-26C9FF?style=flat-square&logo=react)](http://npm.im/muuri-react)
-[![Build: Trevis](https://img.shields.io/travis/paol-imi/muuri-react.svg?style=flat-square)](https://travis-ci.com/github/Paol-imi/muuri-react)
+[![Circle Ci](https://img.shields.io/circleci/build/github/Paol-imi/muuri-react?style=flat-square)](https://app.circleci.com/pipelines/github/Paol-imi/muuri-react)
 [![Code style: Prettier](https://img.shields.io/badge/Code_style-Prettier-ff69b4.svg?style=flat-square&logo=prettier)](https://prettier.io/)
 [![Typescript: Codebase](https://img.shields.io/badge/Types-Typescript-red?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 
@@ -59,7 +59,7 @@ You can find the full documentation [**here**](https://paol-imi.github.io/muuri-
 
 ## Examples 💡
 
-All [**examples**](https://paol-imi.github.io/muuri-react/#/getting-started/examples) have been created to explain one or more **features** of Muuri-react in an **easy** and direct way.
+All [**examples**](https://paol-imi.github.io/muuri-react/showcase) have been created to explain one or more **features** of Muuri-react in an **easy** and direct way.
 
 <div align="center"> 
 <a href="https://1czo5.csb.app/"><img src="https://raw.githubusercontent.com/Paol-imi/muuri-react/master/website/static/gifs/grid.gif" width="53.2%" ></img></a><img width="0.8%"></img><a href="https://zmypd.csb.app/"><img src="https://raw.githubusercontent.com/Paol-imi/muuri-react/master/website/static/gifs/kanban.gif" width="46%" ></img></a>
