@@ -1,13 +1,13 @@
 /* React */
-import React, { useState } from "react";
-import ReactDom from "react-dom";
+import React, {useState} from 'react';
+import ReactDom from 'react-dom';
 /* Muuri-react */
-import { MuuriComponent } from "muuri-react";
+import {MuuriComponent} from 'muuri-react';
 /* Utils & components */
-import { useFilter, generateItems, options } from "./utils";
-import { Select, Header, Footer, Button, Input, Demo } from "./components";
+import {useFilter, generateItems, options} from './utils';
+import {Select, Header, Footer, Button, Input, Demo} from './components';
 /* Style */
-import "./style.css";
+import './style.css';
 
 // App.
 const App = () => {
@@ -16,20 +16,20 @@ const App = () => {
 
   // Sort state.
   const [sort, setSort] = useState({
-    value: "title"
+    value: 'title',
   });
 
   // Filter state.
   const [filter, setFilter] = useState({
-    search: "",
-    value: "all"
+    search: '',
+    value: 'all',
   });
 
   // Filter method.
   const filterFunction = useFilter(filter.value, filter.search);
 
   // Children.
-  const children = items.map(({ id, color, title, width, height }) => (
+  const children = items.map(({id, color, title, width, height}) => (
     <Item
       key={id}
       color={color}
@@ -45,24 +45,23 @@ const App = () => {
       {/* Header */}
       <Header>
         <Input
-          onKeyUp={(e) => setFilter({ ...filter, search: e.target.value })}
+          onKeyUp={(e) => setFilter({...filter, search: e.target.value})}
         />
         <Select
-          values={["All", "Red", "Blue", "Green"]}
-          onChange={(e) => setFilter({ ...filter, value: e.target.value })}
+          values={['All', 'Red', 'Blue', 'Green']}
+          onChange={(e) => setFilter({...filter, value: e.target.value})}
         />
         <Select
-          values={["Title", "Color"]}
-          onChange={(e) => setSort({ ...sort, value: e.target.value })}
+          values={['Title', 'Color']}
+          onChange={(e) => setSort({...sort, value: e.target.value})}
         />
       </Header>
       {/* Content */}
       <MuuriComponent
         {...options}
-        propsToData={({ color, title }) => ({ color, title })}
+        propsToData={({color, title}) => ({color, title})}
         filter={filterFunction}
-        sort={sort.value}
-      >
+        sort={sort.value}>
         {children}
       </MuuriComponent>
       {/* Footer */}
@@ -74,7 +73,7 @@ const App = () => {
 };
 
 // Item component.
-const Item = ({ color, width, height, title, remove }) => {
+const Item = ({color, width, height, title, remove}) => {
   return (
     <div className={`item h${height} w${width} ${color}`}>
       <div className="item-content">
@@ -91,4 +90,4 @@ const Item = ({ color, width, height, title, remove }) => {
   );
 };
 
-ReactDom.render(<App />, document.getElementById("root"));
+ReactDom.render(<App />, document.getElementById('root'));

@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
 // Demo component.
-export const Demo = ({ children }) => {
+export const Demo = ({children}) => {
   return <section className="grid-demo">{children}</section>;
 };
 

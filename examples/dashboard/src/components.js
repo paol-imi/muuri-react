@@ -1,24 +1,24 @@
-import React, { forwardRef } from "react";
+import React, {forwardRef} from 'react';
 
 // Column container.
-export const Column = forwardRef(({ children }, ref) => (
+export const Column = forwardRef(({children}, ref) => (
   <div ref={ref} className="column">
     {children}
   </div>
 ));
 
 // Dashboard container.
-export const Dashboard = forwardRef(({ children }, ref) => (
+export const Dashboard = forwardRef(({children}, ref) => (
   <div ref={ref} className="dashboard">
     {children}
   </div>
 ));
 
 // Main container.
-export const Main = ({ children }) => <div className="main">{children}</div>;
+export const Main = ({children}) => <div className="main">{children}</div>;
 
 // Demo container.
-export const Demo = ({ children }) => (
+export const Demo = ({children}) => (
   <section className="grid-demo">{children}</section>
 );
 

@@ -8,15 +8,15 @@ let uuid = 3;
 export function generateItems() {
   const items = [];
   for (let i = 0; i < 10; i++) {
-    const color = oneOf(["green", "blue"]);
+    const color = oneOf(['green', 'blue']);
     const width = oneOf([2]);
     const height = oneOf([1, 2]);
 
-    const alphabet = "abcdefghijklmnopqrstuvwxyz";
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz';
     const title = oneOf(alphabet) + oneOf(alphabet);
     const id = uuid++;
 
-    items.push({ id, color, width, height, title });
+    items.push({id, color, width, height, title});
   }
 
   return items;

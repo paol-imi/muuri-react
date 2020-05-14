@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
 // Item component.
-export const Item = ({ color, width, height, title, remove }) => (
+export const Item = ({color, width, height, title, remove}) => (
   <div className={`item h${height} w${width} ${color}`}>
     <div className="item-content">
       <div className="card">
@@ -17,7 +17,7 @@ export const Item = ({ color, width, height, title, remove }) => (
 );
 
 // Select component.
-export const Select = ({ values, onChange }) => (
+export const Select = ({values, onChange}) => (
   <div className="control">
     <div className="control-icon">
       <i className="material-icons">&#xE152;</i>
@@ -28,8 +28,7 @@ export const Select = ({ values, onChange }) => (
     <select
       className="control-field filter-field form-control"
       onChange={onChange}
-      defaultValue={values[0][0]}
-    >
+      defaultValue={values[0][0]}>
       {values.map(([text, value], i) => (
         <option key={i} value={value}>
           {text}
@@ -40,7 +39,7 @@ export const Select = ({ values, onChange }) => (
 );
 
 // Button component.
-export const Button = ({ onClick }) => (
+export const Button = ({onClick}) => (
   <button className="add-more-items btn btn-primary" onClick={onClick}>
     <i className="material-icons">&#xE145;</i>
     Add more items
@@ -48,7 +47,7 @@ export const Button = ({ onClick }) => (
 );
 
 // Header component.
-export const Header = ({ children }) => (
+export const Header = ({children}) => (
   <React.Fragment>
     <h2 className="section-title">
       <span>Grid demo</span>
@@ -58,11 +57,11 @@ export const Header = ({ children }) => (
 );
 
 // Footer component.
-export const Footer = ({ children }) => (
+export const Footer = ({children}) => (
   <div className="grid-footer">{children}</div>
 );
 
 // Demo component.
-export const Demo = ({ children }) => (
+export const Demo = ({children}) => (
   <section className="grid-demo">{children}</section>
 );

@@ -1,7 +1,7 @@
-import React, { forwardRef } from "react";
+import React, {forwardRef} from 'react';
 
 // Button component.
-export const Scroll = forwardRef(({ children }, ref) => (
+export const Scroll = forwardRef(({children}, ref) => (
   <div className="scrollElem" ref={ref}>
     {children}
   </div>
@@ -15,6 +15,6 @@ export const Header = () => (
 );
 
 // Demo component.
-export const Demo = ({ children }) => (
+export const Demo = ({children}) => (
   <section className="grid-demo">{children}</section>
 );

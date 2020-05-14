@@ -1,13 +1,13 @@
 /* React */
-import React, { useState } from "react";
-import ReactDom from "react-dom";
+import React, {useState} from 'react';
+import ReactDom from 'react-dom';
 /* Muuri react */
-import { MuuriComponent, useRefresh } from "muuri-react";
+import {MuuriComponent, useRefresh} from 'muuri-react';
 /* Utils & components */
-import { add, generateItems, changeSize } from "./utils";
-import { Header, Footer, Button, Demo } from "./components";
+import {add, generateItems, changeSize} from './utils';
+import {Header, Footer, Button, Demo} from './components';
 /* Style */
-import "./style.css";
+import './style.css';
 
 // App.
 const App = () => {
@@ -28,8 +28,8 @@ const App = () => {
 };
 
 // Item component.
-const Item = ({ color, width, height, title }) => {
-  const [size, setSize] = useState({ width, height });
+const Item = ({color, width, height, title}) => {
+  const [size, setSize] = useState({width, height});
   const onMouseUp = () => setSize(changeSize);
 
   // Each time the dependency change the grid size is updated.
@@ -38,8 +38,7 @@ const Item = ({ color, width, height, title }) => {
   return (
     <div
       className={`item h${size.height} w${size.width} ${color}`}
-      onMouseUp={onMouseUp}
-    >
+      onMouseUp={onMouseUp}>
       <div className="item-content">
         <div className="card">
           <div className="card-title">{title}</div>
@@ -49,4 +48,4 @@ const Item = ({ color, width, height, title }) => {
   );
 };
 
-ReactDom.render(<App />, document.getElementById("root"));
+ReactDom.render(<App />, document.getElementById('root'));

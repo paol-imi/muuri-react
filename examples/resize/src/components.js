@@ -1,10 +1,10 @@
-import React, { useRef } from "react";
-import { useRefresh } from "muuri-react";
-import { ResizableBox } from "react-resizable";
-import { debounce } from "underscore";
+import React, {useRef} from 'react';
+import {useRefresh} from 'muuri-react';
+import {ResizableBox} from 'react-resizable';
+import {debounce} from 'underscore';
 
 // Item component.
-export const ResizableWrapper = (Component, { width, height }) => {
+export const ResizableWrapper = (Component, {width, height}) => {
   // Return the wrapped resizable component.
   return function WrappedComponent(props) {
     // Muuri-react provides all the tools to manage scaling.
@@ -22,21 +22,19 @@ export const ResizableWrapper = (Component, { width, height }) => {
       <div
         ref={ref}
         className="item"
-        style={{ width: `${width}px`, height: `${height}px` }}
-      >
+        style={{width: `${width}px`, height: `${height}px`}}>
         <div className="muuri-item">
           {/* React-resizable is used to handle the resizing. */}
           <ResizableBox
             width={width}
             height={height}
             minConstraints={[width, height]}
-            onResize={(_, { size }) => {
-              ref.current.style.width = size.width + "px";
-              ref.current.style.height = size.height + "px";
+            onResize={(_, {size}) => {
+              ref.current.style.width = size.width + 'px';
+              ref.current.style.height = size.height + 'px';
 
               refreshWithdebounce();
-            }}
-          >
+            }}>
             <Component {...props} />
           </ResizableBox>
         </div>
@@ -61,12 +59,12 @@ export const Header = () => (
 );
 
 // Demo component.
-export const Demo = ({ children }) => (
+export const Demo = ({children}) => (
   <section className="grid-demo">{children}</section>
 );
 
 // Button component.
-export const Button = ({ onClick }) => (
+export const Button = ({onClick}) => (
   <button className="add-more-items btn btn-primary" onClick={onClick}>
     <i className="material-icons">&#xE145;</i>
     Add more items
@@ -74,6 +72,6 @@ export const Button = ({ onClick }) => (
 );
 
 // Footer component.
-export const Footer = ({ children }) => (
+export const Footer = ({children}) => (
   <div className="grid-footer">{children}</div>
 );

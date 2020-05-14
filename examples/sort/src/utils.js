@@ -8,15 +8,15 @@ let uuid = 3;
 export function generateItems() {
   const items = [];
   for (let i = 0; i < 6; i++) {
-    const color = oneOf(["red", "green", "blue"]);
+    const color = oneOf(['red', 'green', 'blue']);
     const width = oneOf([1, 2]);
     const height = oneOf([1, 2]);
 
-    const alphabet = "abcdefghijklmnopqrstuvwxyz";
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz';
     const title = oneOf(alphabet) + oneOf(alphabet);
     const id = uuid++;
 
-    items.push({ id, color, width, height, title });
+    items.push({id, color, width, height, title});
   }
 
   return items;
@@ -25,7 +25,7 @@ export function generateItems() {
 // Grid static options.
 export const options = {
   dragSortHeuristics: {
-    sortInterval: 70
+    sortInterval: 70,
   },
   dragContainer: document.body,
   // The placeholder of an item that is being dragged.
@@ -34,6 +34,6 @@ export const options = {
     createElement: function (item) {
       // The element will have the Css class ".muuri-item-placeholder".
       return item.getElement().cloneNode(true);
-    }
-  }
+    },
+  },
 };

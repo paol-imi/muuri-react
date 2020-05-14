@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
 // Select component.
-export const Select = ({ values, onChange }) => {
+export const Select = ({values, onChange}) => {
   return (
     <div className="control">
       <div className="control-icon">
@@ -13,8 +13,7 @@ export const Select = ({ values, onChange }) => {
       <select
         className="control-field filter-field form-control"
         onChange={onChange}
-        defaultValue={values[0]}
-      >
+        defaultValue={values[0]}>
         {values.map((value, i) => (
           <option key={i} value={value.toLowerCase()}>
             {value}
@@ -26,22 +25,22 @@ export const Select = ({ values, onChange }) => {
 };
 
 // Input component.
-export const Input = ({ onKeyUp }) => (
+export const Input = ({onKeyUp}) => (
   <div className="control">
     <div className="control-icon">
       <i className="material-icons">&#xE8B6;</i>
     </div>
     <input
-      className={"control-field search-field form-control"}
+      className={'control-field search-field form-control'}
       onKeyUp={onKeyUp}
       type="text"
-      placeholder={"Search..."}
+      placeholder={'Search...'}
     />
   </div>
 );
 
 // Button component.
-export const Button = ({ onClick }) => (
+export const Button = ({onClick}) => (
   <button className="add-more-items btn btn-primary" onClick={onClick}>
     <i className="material-icons">&#xE145;</i>
     Add more items
@@ -49,7 +48,7 @@ export const Button = ({ onClick }) => (
 );
 
 // Header component.
-export const Header = ({ children }) => (
+export const Header = ({children}) => (
   <React.Fragment>
     <h2 className="section-title">
       <span>Grid demo</span>
@@ -59,11 +58,11 @@ export const Header = ({ children }) => (
 );
 
 // Footer component.
-export const Footer = ({ children }) => (
+export const Footer = ({children}) => (
   <div className="grid-footer">{children}</div>
 );
 
 // Demo component.
-export const Demo = ({ children }) => (
+export const Demo = ({children}) => (
   <section className="grid-demo">{children}</section>
 );

@@ -1,13 +1,13 @@
 /* React */
-import React, { useState } from "react";
-import ReactDom from "react-dom";
+import React, {useState} from 'react';
+import ReactDom from 'react-dom';
 /* Muuri react */
-import { MuuriComponent, useDrag } from "muuri-react";
+import {MuuriComponent, useDrag} from 'muuri-react';
 /* Utils & components */
-import { generateItems } from "./utils";
-import { Header, Demo } from "./components";
+import {generateItems} from './utils';
+import {Header, Demo} from './components';
 /* Style */
-import "./style.css";
+import './style.css';
 
 // App.
 const App = () => {
@@ -25,12 +25,12 @@ const App = () => {
 };
 
 // Item component.
-const Item = ({ color, width, height, title }) => {
+const Item = ({color, width, height, title}) => {
   // Add a shadow when the item is dragging.
   const isDragging = useDrag();
   // Based on isDragging.
-  const shadow = isDragging ? "shadow" : "";
-  const cardTitle = isDragging ? "Release me!" : title;
+  const shadow = isDragging ? 'shadow' : '';
+  const cardTitle = isDragging ? 'Release me!' : title;
 
   return (
     <div className={`item h${height} w${width} ${color} ${shadow}`}>
@@ -39,4 +39,4 @@ const Item = ({ color, width, height, title }) => {
   );
 };
 
-ReactDom.render(<App />, document.getElementById("root"));
+ReactDom.render(<App />, document.getElementById('root'));

@@ -1,14 +1,14 @@
 /* React */
-import React, { useState, useContext, useMemo } from "react";
-import ReactDom from "react-dom";
+import React, {useState, useContext, useMemo} from 'react';
+import ReactDom from 'react-dom';
 /* Muuri react */
-import { MuuriComponent, getResponsiveStyle } from "muuri-react";
-import { useMediaQuery } from "react-responsive";
+import {MuuriComponent, getResponsiveStyle} from 'muuri-react';
+import {useMediaQuery} from 'react-responsive';
 /* Utils & components */
-import { generateItems, ThemeContext } from "./utils";
-import { Header, Demo } from "./components";
+import {generateItems, ThemeContext} from './utils';
+import {Header, Demo} from './components';
 /* Style */
-import "./style.css";
+import './style.css';
 
 // App.
 const App = () => {
@@ -25,12 +25,11 @@ const App = () => {
           dragEnabled
           dragFixed
           dragSortPredicate={{
-            action: "swap"
+            action: 'swap',
           }}
           dragSortHeuristics={{
-            sortInterval: 0
-          }}
-        >
+            sortInterval: 0,
+          }}>
           {children}
         </MuuriComponent>
       </ThemeProvider>
@@ -39,17 +38,17 @@ const App = () => {
 };
 
 // Responsive theme provider.
-const ThemeProvider = ({ children }) => {
+const ThemeProvider = ({children}) => {
   const isBigScreen = useMediaQuery({
-    query: "(min-width: 824px)"
+    query: '(min-width: 824px)',
   });
 
   // Memoize the style.
   const style = useMemo(() => {
     return getResponsiveStyle({
       columns: isBigScreen ? 1 / 4 : 1 / 3,
-      margin: "1%",
-      ratio: 2
+      margin: '1%',
+      ratio: 2,
     });
   }, [isBigScreen]);
 
@@ -59,7 +58,7 @@ const ThemeProvider = ({ children }) => {
 };
 
 // Item component.
-const Item = ({ color, title }) => {
+const Item = ({color, title}) => {
   // The style concerns only the "dimensions" and "margins" of the items.
   const style = useContext(ThemeContext);
 
@@ -70,4 +69,4 @@ const Item = ({ color, title }) => {
   );
 };
 
-ReactDom.render(<App />, document.getElementById("root"));
+ReactDom.render(<App />, document.getElementById('root'));

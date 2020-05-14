@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react';
 
 // Column component.
-export const Column = ({ children, actionClass, title }) => (
-  <div className={"board-column " + actionClass}>
+export const Column = ({children, actionClass, title}) => (
+  <div className={'board-column ' + actionClass}>
     <div className="board-column-header">{title}</div>
     {children}
   </div>
 );
 
 // Demo component.
-export const Demo = ({ children }) => (
+export const Demo = ({children}) => (
   <section className="grid-demo">{children}</section>
 );
 

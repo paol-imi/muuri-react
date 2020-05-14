@@ -1,13 +1,13 @@
 /* React */
-import React, { useRef } from "react";
-import ReactDom from "react-dom";
+import React, {useRef} from 'react';
+import ReactDom from 'react-dom';
 /* Muuri react */
-import { MuuriComponent, AutoScroller } from "muuri-react";
+import {MuuriComponent, AutoScroller} from 'muuri-react';
 /* Utils & components */
-import { emojis } from "./utils";
-import { Header, Demo, Scroll } from "./components";
+import {emojis} from './utils';
+import {Header, Demo, Scroll} from './components';
 /* Style */
-import "./style.css";
+import './style.css';
 
 // App.
 const App = () => {
@@ -21,25 +21,24 @@ const App = () => {
       <Scroll ref={scrollElemRef}>
         <MuuriComponent
           dragEnabled
-          layout={{ horizontal: true }}
-          layoutEasing={"ease-out"}
+          layout={{horizontal: true}}
+          layoutEasing={'ease-out'}
           dragRelease={{
             duration: 140,
-            easing: "ease-out"
+            easing: 'ease-out',
           }}
           dragSortHeuristics={{
-            sortInterval: 0
+            sortInterval: 0,
           }}
           dragContainer={document.body}
           dragAutoScroll={{
             targets: [
               {
                 element: scrollElemRef,
-                axis: AutoScroller.AXIS_X
-              }
-            ]
-          }}
-        >
+                axis: AutoScroller.AXIS_X,
+              },
+            ],
+          }}>
           {children}
         </MuuriComponent>
       </Scroll>
@@ -48,10 +47,10 @@ const App = () => {
 };
 
 // Item component.
-const Item = ({ emoji }) => (
+const Item = ({emoji}) => (
   <div className="item">
     <div className="item-content">{emoji}</div>
   </div>
 );
 
-ReactDom.render(<App />, document.getElementById("root"));
+ReactDom.render(<App />, document.getElementById('root'));

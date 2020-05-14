@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import {useCallback} from 'react';
 
 // Return the filter method.
 export function useFilter(value, search) {
@@ -7,7 +7,7 @@ export function useFilter(value, search) {
       var isSearchMatch = !search
         ? true
         : data.title.toLowerCase().indexOf(search) > -1;
-      var isFilterMatch = value === "all" ? true : data.color === value;
+      var isFilterMatch = value === 'all' ? true : data.color === value;
       return isSearchMatch && isFilterMatch;
     },
     [value, search]
@@ -24,15 +24,15 @@ let uuid = 3;
 export function generateItems() {
   const items = [];
   for (let i = 0; i < 3; i++) {
-    const color = oneOf(["red", "green", "blue"]);
+    const color = oneOf(['red', 'green', 'blue']);
     const width = oneOf([1, 2]);
     const height = oneOf([1, 2]);
 
-    const alphabet = "abcdefghijklmnopqrstuvwxyz";
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz';
     const title = oneOf(alphabet) + oneOf(alphabet);
     const id = uuid++;
 
-    items.push({ id, color, width, height, title });
+    items.push({id, color, width, height, title});
   }
 
   return items;
@@ -41,12 +41,12 @@ export function generateItems() {
 // Grid static options.
 export const options = {
   dragSortHeuristics: {
-    sortInterval: 70
+    sortInterval: 70,
   },
   layoutDuration: 400,
   dragRelease: {
     duration: 400,
-    easing: "ease-out"
+    easing: 'ease-out',
   },
   dragEnabled: true,
   dragContainer: document.body,
@@ -56,6 +56,6 @@ export const options = {
     createElement: function (item) {
       // The element will have the Css class ".muuri-item-placeholder".
       return item.getElement().cloneNode(true);
-    }
-  }
+    },
+  },
 };

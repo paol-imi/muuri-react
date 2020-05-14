@@ -1,13 +1,13 @@
 /* React */
-import React, { useState, useRef } from "react";
-import ReactDom from "react-dom";
+import React, {useState, useRef} from 'react';
+import ReactDom from 'react-dom';
 /* Muuri-react */
-import { MuuriComponent, useGrid, useRefresh, useDrag } from "muuri-react";
+import {MuuriComponent, useGrid, useRefresh, useDrag} from 'muuri-react';
 /* Utils & components */
-import { generateItems, useSend, getDimensions, getOptions } from "./utils";
-import { Column, Header, Demo, Main, Dashboard } from "./components";
+import {generateItems, useSend, getDimensions, getOptions} from './utils';
+import {Column, Header, Demo, Main, Dashboard} from './components';
 /* Style */
-import "./style.css";
+import './style.css';
 
 // App.
 const App = () => {
@@ -19,13 +19,13 @@ const App = () => {
   // Items state.
   const [items, setItems] = useState({
     dashboard: generateItems(5),
-    column: generateItems(15)
+    column: generateItems(15),
   });
 
   // Items to children.
   const children = {
     dashboard: items.dashboard.map((item) => <Item {...item} />),
-    column: items.column.map((item) => <Item {...item} />)
+    column: items.column.map((item) => <Item {...item} />),
   };
 
   // onSend is used when a item changes grid
@@ -42,8 +42,7 @@ const App = () => {
           <MuuriComponent
             id="column"
             onSend={onSend}
-            {...getOptions(columnRef, dashboardRef, "move")}
-          >
+            {...getOptions(columnRef, dashboardRef, 'move')}>
             {/* Column items */}
             {children.column}
           </MuuriComponent>
@@ -53,8 +52,7 @@ const App = () => {
           <MuuriComponent
             id="dashboard"
             onSend={onSend}
-            {...getOptions(dashboardRef, columnRef, "swap")}
-          >
+            {...getOptions(dashboardRef, columnRef, 'swap')}>
             {/* Dashboard items */}
             {children.dashboard}
           </MuuriComponent>
@@ -65,9 +63,9 @@ const App = () => {
 };
 
 // Item component.
-const Item = React.memo(({ color }) => {
+const Item = React.memo(({color}) => {
   // Get the MuuriComponent parent id.
-  const { grid, id } = useGrid();
+  const {grid, id} = useGrid();
   // Is dragging.
   const isDragging = useDrag();
   // Refresh the item dimensions when the
@@ -87,4 +85,4 @@ const Item = React.memo(({ color }) => {
   );
 });
 
-ReactDom.render(<App />, document.getElementById("root"));
+ReactDom.render(<App />, document.getElementById('root'));

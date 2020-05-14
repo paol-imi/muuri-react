@@ -8,10 +8,10 @@ let uuid = 3;
 export function generateItems() {
   const items = [];
   for (let i = 0; i < 7; i++) {
-    const color = oneOf(["orange", "green", "blue"]);
+    const color = oneOf(['orange', 'green', 'blue']);
     const id = uuid++;
 
-    items.push({ id, color });
+    items.push({id, color});
   }
 
   return items;

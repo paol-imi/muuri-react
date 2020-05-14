@@ -1,26 +1,26 @@
 /* React */
-import React, { useState, useMemo, useRef } from "react";
-import ReactDom from "react-dom";
+import React, {useState, useMemo, useRef} from 'react';
+import ReactDom from 'react-dom';
 /* Muuri-react */
-import { MuuriComponent, AutoScroller, useData } from "muuri-react";
+import {MuuriComponent, AutoScroller, useData} from 'muuri-react';
 /* Utils & components */
-import { Demo, Header, Select, Input, Switch, CardContent } from "./components";
-import { Pokedex, useFilter } from "./utils";
+import {Demo, Header, Select, Input, Switch, CardContent} from './components';
+import {Pokedex, useFilter} from './utils';
 /* Style */
-import "./style.css";
+import './style.css';
 
 // App.
 const App = () => {
   // Sort state.
   const [sort, setSort] = useState({
-    value: "type",
-    options: { descending: true }
+    value: 'type',
+    options: {descending: true},
   });
 
   // Filter state.
   const [filter, setFilter] = useState({
-    name: "",
-    type: ""
+    name: '',
+    type: '',
   });
 
   // Filter method.
@@ -50,18 +50,16 @@ const App = () => {
       {/* Header */}
       <Header>
         {/* Name input */}
-        <Input
-          onKeyUp={(e) => setFilter({ ...filter, name: e.target.value })}
-        />
+        <Input onKeyUp={(e) => setFilter({...filter, name: e.target.value})} />
         {/* Fire, Water, Grass... */}
         <Select
           values={Pokedex.types}
-          onChange={(e) => setFilter({ ...filter, type: e.target.value })}
+          onChange={(e) => setFilter({...filter, type: e.target.value})}
         />
         {/* Name, Type, Number */}
         <Select
           values={Pokedex.cardInfo}
-          onChange={(e) => setSort({ ...sort, value: e.target.value })}
+          onChange={(e) => setSort({...sort, value: e.target.value})}
         />
       </Header>
       {/* Switch */}
@@ -72,17 +70,16 @@ const App = () => {
           sortOptions={sort.options}
           filter={filterFunction}
           layoutDuration={300}
-          layoutEasing={"ease-out"}
+          layoutEasing={'ease-out'}
           dragAutoScroll={{
             sortDuringScroll: false,
             targets: [
               {
                 element: scrollElemRef,
-                axis: AutoScroller.AXIS_Y
-              }
-            ]
-          }}
-        >
+                axis: AutoScroller.AXIS_Y,
+              },
+            ],
+          }}>
           {children}
         </MuuriComponent>
       </Switch>
@@ -91,13 +88,13 @@ const App = () => {
 };
 
 const PokeCard = (props) => {
-  const { types, number, name } = props;
+  const {types, number, name} = props;
   // e.g. Venosaurus -> Grass Poison.
-  const type = `${types[0]} ${types[1] || ""}`;
+  const type = `${types[0]} ${types[1] || ''}`;
   // These data will be used for sorting and filtering.
-  useData({ name, type, number });
+  useData({name, type, number});
   // Return the content.
   return <CardContent {...props} />;
 };
 
-ReactDom.render(<App />, document.getElementById("root"));
+ReactDom.render(<App />, document.getElementById('root'));

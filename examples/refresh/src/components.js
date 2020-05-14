@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
 // Button component.
-export const Button = ({ onClick }) => (
+export const Button = ({onClick}) => (
   <button className="add-more-items btn btn-primary" onClick={onClick}>
     <i className="material-icons">&#xE145;</i>
     Add more items
@@ -24,11 +24,11 @@ export const Header = () => (
 );
 
 // Footer component.
-export const Footer = ({ children }) => (
+export const Footer = ({children}) => (
   <div className="grid-footer">{children}</div>
 );
 
 // Demo component.
-export const Demo = ({ children }) => (
+export const Demo = ({children}) => (
   <section className="grid-demo">{children}</section>
 );
