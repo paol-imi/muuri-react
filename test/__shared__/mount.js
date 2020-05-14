@@ -1,5 +1,5 @@
-import React from "react";
-import { mount } from "enzyme";
+import React from 'react';
+import {mount} from 'enzyme';
 
 const wrappedMount = (element) => {
   const gridRef = React.createRef();
@@ -11,15 +11,15 @@ const wrappedMount = (element) => {
       ...element.props,
       itemsRef,
       DOMItemsRef,
-      gridRef
+      gridRef,
     })
   );
 
   const grid = gridRef.current;
   const items = itemsRef.current;
   const DOMItems = DOMItemsRef.current;
-  const muuriWrapper = wrapper.find("MuuriComponent");
-  const itemsWrapper = muuriWrapper.find("Item");
+  const muuriWrapper = wrapper.find('MuuriComponent');
+  const itemsWrapper = muuriWrapper.find('Item');
 
   return {
     wrapper,
@@ -27,8 +27,8 @@ const wrappedMount = (element) => {
     itemsWrapper,
     grid,
     items,
-    DOMItems
+    DOMItems,
   };
 };
 
-export { wrappedMount as mount };
+export {wrappedMount as mount};

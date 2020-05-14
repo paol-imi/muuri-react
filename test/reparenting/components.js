@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { MuuriComponent } from "../__shared__/muuriComponent";
-import { useGrid } from "../../src";
+import React, {useState} from 'react';
+import {MuuriComponent} from '../__shared__/muuriComponent';
+import {useGrid} from '../../src';
 
 // Item that re-render on reparenting.
-export const ReparentingResponsiveItem = React.memo(({ id, state }) => {
+export const ReparentingResponsiveItem = React.memo(({id, state}) => {
   const grid = useGrid().id;
   return (
     <div id={id} state={state} grid={grid} className="item">
@@ -13,14 +13,14 @@ export const ReparentingResponsiveItem = React.memo(({ id, state }) => {
 });
 
 // ReparentingResponsiveItem with state wrap.
-export const Item = ({ id }) => {
+export const Item = ({id}) => {
   const [state] = useState(getRandomWord());
   return <ReparentingResponsiveItem state={state} id={id} />;
 };
 
 // Component that accept a list of ids
 // And generate items with those ids.
-export const App = ({ ids, ...props }) => (
+export const App = ({ids, ...props}) => (
   <MuuriComponent {...props} dragEnabled>
     {ids.map((id) => (
       <Item key={id} id={id} />
@@ -36,6 +36,6 @@ export function oneOf(array) {
 // Return a random word.
 export function getRandomWord() {
   return (
-    oneOf("ABCDEFGHIJKLMNOPQRSTUVWXYZ") + oneOf("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+    oneOf('ABCDEFGHIJKLMNOPQRSTUVWXYZ') + oneOf('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
   );
 }

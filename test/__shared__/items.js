@@ -9,7 +9,7 @@ export class DOMItems {
 
   findById(id) {
     return Array.from(this.grid.getElement().children).find(
-      (element) => element.getAttribute("id") === id
+      (element) => element.getAttribute('id') === id
     );
   }
 
@@ -49,13 +49,13 @@ export class Item {
 
   simulateDrag() {
     this.item.isDragging = () => true;
-    this.item._drag._preStartCheck(new Event("Test event"));
+    this.item._drag._preStartCheck(new Event('Test event'));
   }
 
   simulateRelease() {
     this.item.isDragging = () => false;
-    this.item._drag._onEnd(new Event("Test event"));
-    this.grid._emit("dragReleaseEnd", this.item);
+    this.item._drag._onEnd(new Event('Test event'));
+    this.grid._emit('dragReleaseEnd', this.item);
   }
 
   isShowing() {
