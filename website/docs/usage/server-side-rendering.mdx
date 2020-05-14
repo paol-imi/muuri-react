@@ -15,9 +15,9 @@ To use Muuri-react on frameworks that use SSR, the library must be imported only
 
 ```jsx
 /* myApp.js */
-import React from "react";
-import { MuuriComponent } from "muuri-react";
-import { Item } from "./components";
+import React from 'react';
+import {MuuriComponent} from 'muuri-react';
+import {Item} from './components';
 
 export default () => (
   <MuuriComponent>
@@ -30,15 +30,15 @@ export default () => (
 
 ```jsx
 /* index.js */
-import React from "react";
+import React from 'react';
 
 // Lazy load the component.
-const App = React.lazy(() => import("./myApp.js"));
+const App = React.lazy(() => import('./myApp.js'));
 
 // Main page.
 const IndexPage = () => {
   // Check if we are on the server.
-  const isSSR = typeof window === "undefined";
+  const isSSR = typeof window === 'undefined';
 
   return (
     <div>

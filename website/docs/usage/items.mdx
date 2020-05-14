@@ -10,24 +10,17 @@ As you will see in the example below, it is good practice to store the Items dat
 ```jsx
 const App = () => {
   // Items.
-  const [items, setItems] = useState([{ id: "1" }, { id: "2" }, { id: "3" }]);
+  const [items, setItems] = useState([{id: '1'}, {id: '2'}, {id: '3'}]);
 
   // Items to components.
   const children = items.map((item) => <Item key={item.id} />);
 
   // The 'setItems' call will re-render the component with different items.
-  const add = (id) => setItems(items.concat({ id }));
+  const add = (id) => setItems(items.concat({id}));
   const remove = (id) => setItems(items.filter((item) => item.id !== id));
 
   // Render.
-  return (
-    <>
-      <button text="Add id" action={add} />
-      <button text="Remove id" action={remove} />
-
-      <MuuriComponent>{children}</MuuriComponent>
-    </>
-  );
+  return <MuuriComponent>{children}</MuuriComponent>;
 };
 ```
 
@@ -41,7 +34,7 @@ The new Items will be added in the same `position` in which they have been added
 // Will insert the new item in the
 // position represented by the index value
 const addAt = (id, index) => {
-  setItems([...items.slice(0, index), { id }, ...items.slice(index)]);
+  setItems([...items.slice(0, index), {id}, ...items.slice(index)]);
 };
 ```
 
@@ -54,7 +47,7 @@ If a [sort](../usage/sorting) is used, it will have priority over choosing the *
 An Item can be added as `visible` or `hidden` based on the CSS display property which can be block or none. By default all added Items are shown, to change this you need to edit the [addOptions](../api-reference/muuricomponent#addoptions) property.
 
 ```jsx
-<MuuriComponent addOptions={{ show: false }} />
+<MuuriComponent addOptions={{show: false}} />
 ```
 
 :::info

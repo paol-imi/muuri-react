@@ -24,7 +24,7 @@ Get the grid id.
 **Returns** &nbsp;&mdash;&nbsp; _string_
 
 ```jsx
-<MuuriComponent id={"id"} />
+<MuuriComponent id={'id'} />
 ```
 
 ```js
@@ -40,7 +40,7 @@ Get the grid group ids.
 **Returns** &nbsp;&mdash;&nbsp; _string[]_
 
 ```jsx
-<MuuriComponent groupIds={["groupA", "groupB"]} />
+<MuuriComponent groupIds={['groupA', 'groupB']} />
 ```
 
 ```js
@@ -61,7 +61,7 @@ Get a single grid item by element or by index. Target can also be a `Muuri.Item`
 
 ```jsx
 <MuuriComponent>
-  <Item key={"key"} />
+  <Item key={'key'} />
 </MuuriComponent>
 ```
 
@@ -72,7 +72,7 @@ const item = grid.getItem(0);
 
 ```js
 // Get the item instance associated with the <Item> with the given key.
-const item = grid.getItem("key");
+const item = grid.getItem('key');
 ```
 
 ### grid.getItems( [targets] )
@@ -91,8 +91,8 @@ Get all items in the grid. Optionally you can provide specific targets (indices 
 
 ```jsx
 <MuuriComponent>
-  <Item key={"key1"} />
-  <Item key={"key2"} />
+  <Item key={'key1'} />
+  <Item key={'key2'} />
 </MuuriComponent>
 ```
 
@@ -134,8 +134,8 @@ Move an item to another position in the grid.
 
 ```jsx
 <MuuriComponent>
-  <Item key={"key1"} />
-  <Item key={"key2"} />
+  <Item key={'key1'} />
+  <Item key={'key2'} />
 </MuuriComponent>
 ```
 
@@ -144,7 +144,7 @@ Move an item to another position in the grid.
 grid.move(0, -1);
 
 // Swap positions of the first and the last Item.
-grid.move(0, -1, { action: "swap" });
+grid.move(0, -1, {action: 'swap'});
 ```
 
 ### grid.send( item, grid, position, [options]&nbsp;)
@@ -275,13 +275,13 @@ Get the Muuri instance associated with the MuuriComponent with the given id.
 - Returns the Muuri instance.
 
 ```jsx
-<MuuriComponent id={"id"} />
+<MuuriComponent id={'id'} />
 ```
 
 ```js
 // The Muuri instance belonging to the
 // MuuriComponenent with the id: "id".
-const grid = muuriMap.get("id");
+const grid = muuriMap.get('id');
 ```
 
 ### muuriMap.getGroup( groupId )
@@ -304,7 +304,7 @@ Get all the Muuri instances associated with MuuriComponents of the given group.
 ```js
 // All the Muuri instances belonging to the
 // MuuriComponenents of the group: "groupId".
-const grids = muuriMap.getGroup("groupId");
+const grids = muuriMap.getGroup('groupId');
 ```
 
 ### muuriMap.getGroup( groupId )

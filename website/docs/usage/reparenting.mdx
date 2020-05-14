@@ -2,11 +2,11 @@
 title: Reparenting
 ---
 
-import useBaseUrl from "@docusaurus/useBaseUrl";
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 There are **situations** were you want to change the MuuriComponent `parent` of the dragging Item while a drag is occurring. Here's an example in the gif below.
 
-<img src={useBaseUrl("gifs/kanban.gif")} style={{ width: "60%" }} />
+<img src={useBaseUrl('gifs/kanban.gif')} style={{width: '60%'}} />
 
 The implementation of this feature in **Muuri-react** manages to have the following characteristics
 
@@ -50,14 +50,14 @@ let's try to reproduce a part of the code of the example in gif, we focus on wri
 const App = () => {
   // Items.
   const [items, setItems] = useState({
-    todo: [{ key: "1", text: "Shopping" }],
-    done: [{ key: "2", text: "Homework" }]
+    todo: [{key: '1', text: 'Shopping'}],
+    done: [{key: '2', text: 'Homework'}],
   });
 
   // Items to children.
   const children = {
     todo: items.todo.map((props) => <Item {...props} />),
-    done: items.done.map((props) => <Item {...props} />)
+    done: items.done.map((props) => <Item {...props} />),
   };
 
   return (
@@ -66,26 +66,24 @@ const App = () => {
       <MuuriComponent
         dragEnabled
         // The unique id of the MuuriComponent.
-        id={"TODO"}
+        id={'TODO'}
         // The groups of the MuuriComponent.
-        groupIds={["LIST"]}
+        groupIds={['LIST']}
         // The item can only be dragged (and sorted) into
         // MuuriComponents of the group 'LIST'.
-        dragSort={{ groupId: "LIST" }}
+        dragSort={{groupId: 'LIST'}}
         // Will be done later.
-        onSend={/* ... */}
-      >
+        onSend={/* ... */}>
         {children.todo}
       </MuuriComponent>
 
       {/* Items marked as 'done' */}
       <MuuriComponent
         dragEnabled
-        id={"DONE"}
-        groupIds={["LIST"]}
-        dragSort={{ groupId: "LIST" }}
-        onSend={/* ... */}
-      >
+        id={'DONE'}
+        groupIds={['LIST']}
+        dragSort={{groupId: 'LIST'}}
+        onSend={/* ... */}>
         {children.done}
       </MuuriComponent>
     </>
@@ -121,7 +119,7 @@ It is possible to **simply** insert the Item at the bottom as the last component
 
 ```js
 export function getOnSend(setItems) {
-  return function onSend({ key, fromId, toId }) {
+  return function onSend({key, fromId, toId}) {
     // The id of the MuuriComponent that is sending the item.
     fromId = fromId.toLowerCase();
     // The id of the MuuriComponent that is receiving the item.
@@ -130,7 +128,7 @@ export function getOnSend(setItems) {
     // Sync the state with the items.
     setItems((items) => {
       // New items object that we can modify.
-      const newItems = { ...items };
+      const newItems = {...items};
       // The transferred item.
       const transferredItem = newItems[fromId].find((item) => item.key === key);
 
@@ -166,12 +164,12 @@ import { getOnSend } from './utils';
 The `useGrid` hook allow you to know which MuuriComponent the Item is on. See more [here](../hooks/useGrid).
 
 ```jsx
-import { useGrid } from "muuri-react";
+import {useGrid} from 'muuri-react';
 
-const Item = ({ text }) => {
-  const { id } = useGrid();
+const Item = ({text}) => {
+  const {id} = useGrid();
   // Change the color based on the id.
-  const color = id === "TODO" ? "blue" : "green";
+  const color = id === 'TODO' ? 'blue' : 'green';
 
   return (
     <div className={`item color-${color}`}>
@@ -195,12 +193,12 @@ In the example below you can **send** an Item from the first MuuriComponent to t
 If you want to implement a more complex logic, different for each Item, you can provide a `function` which receives the dragged Item as its first argument and should return an array of Muuri instances. You can easily access these instances by providing ids and groupIds to the `muuriMap`.
 
 ```jsx
-import { muuriMap } from "muuri-react";
+import {muuriMap} from 'muuri-react';
 
 // Custom logic.
 <MuuriComponent
-  id={"id"}
-  groupIds={["groupId"]}
+  id={'id'}
+  groupIds={['groupId']}
   dragSort={(item) => {
     // Dragged component.
     const key = item.getKey();
@@ -209,8 +207,8 @@ import { muuriMap } from "muuri-react";
 
     // Some Muuri instances.
     const currentGrid = item.getGrid();
-    const gridsArray = muuriMap.getGroup("groupId");
-    const grid = muuriMap.get("id");
+    const gridsArray = muuriMap.getGroup('groupId');
+    const grid = muuriMap.get('id');
 
     // Implement your logic...
     // Return an array of Muuri instances into
@@ -225,31 +223,46 @@ import { muuriMap } from "muuri-react";
 Reparenting is performed following a drag and drop. However, you can run it `manually` through the Muuri instance. This way group control is not enabled and you have to call onSend manually. See more about Muuri [here](../usage/muuri).
 
 ```jsx
-// ...
-// Grids.
-const todoGrid = useRef();
-const doneGrid = useRef();
+const App = () => {
+  // Grids.
+  const todoGrid = useRef();
+  const doneGrid = useRef();
 
-// Change the parent of the first 'todo' item.
-const changeParent = () => {
-  // Move the first item of todoGrid as the last item of doneGrid.
-  todoGrid.current.send(0, doneGrid.current, -1);
-  // Sync the state.
-  onSend();
+  // Change the parent of the first 'todo' item.
+  const changeParent = () => {
+    // Move the first item of todoGrid as the last item of doneGrid.
+    todoGrid.current.send(0, doneGrid.current, -1);
+    // Sync the state.
+    onSend();
+  };
+
+  return (
+    <>
+      <button onClick={changeParent} />
+      {/* MuuriComponents */}
+      <MuuriComponent ref={todoGrid}>{children.todo}</MuuriComponent>
+      <MuuriComponent ref={doneGrid}>{children.done}</MuuriComponent>
+    </>
+  );
 };
+```
 
-return (
-  <>
-    <button onClick={changeParent} />
-    {/* MuuriComponents */}
-    <MuuriComponent ref={todoGrid}>{children.todo}</MuuriComponent>
-    <MuuriComponent ref={doneGrid}>{children.done}</MuuriComponent>
-  </>
-);
+Note that you can also access the grids with the muuriMap.
+
+```js
+import {muuriMap} from 'muuri-react';
+
+function send(fromGridId, toGridId, item, position) {
+  // Get the grids.
+  const fromGrid = muuriMap.get(fromGridId);
+  const toGrid = muuriMap.get(toGridId);
+  // Send the item.
+  fromGrid.send(item, toGrid, position);
+}
 ```
 
 ## How is that possible? 🤨
 
 You may have wondered how it is possible that, during the reparenting, the `Item` can be inserted among the children of the new MuuriComponent in **any position** (for example at the bottom), without worrying about the position in which it was dragged. This is because the order of the `Item` components is separated from the order of the elements in the DOM. This allows to have a very **simple implementation** _(In addition the Muuri-react diffing algorithm is optimized for insertions at the bottom)_.
 
-<img src={useBaseUrl("gifs/howisitpossible.gif")} />
+<img src={useBaseUrl('gifs/howisitpossible.gif')} />

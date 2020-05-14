@@ -3,7 +3,7 @@ title: useDrag
 ---
 
 ```js
-import { useDrag } from "muuri-react";
+import {useDrag} from 'muuri-react';
 ```
 
 The `useDrag` hook allow you to know if the Item is being dragged. The Item will re-render on each drag start/end.
@@ -13,12 +13,12 @@ The `useDrag` hook allow you to know if the Item is being dragged. The Item will
 Just call it inside an Item.
 
 ```jsx
-const Item = ({ text }) => {
+const Item = ({text}) => {
   const isDragging = useDrag();
 
   return (
     <div className="item">
-      <div className="item-content">{isDragging ? "Release me!" : text}</div>
+      <div className="item-content">{isDragging ? 'Release me!' : text}</div>
     </div>
   );
 };

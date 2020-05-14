@@ -2,16 +2,16 @@
 title: Responsive style 👗
 ---
 
-import useBaseUrl from "@docusaurus/useBaseUrl";
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 Thanks to the Muuri layout engine, you can create any type of `layout` and size the Items as desired simply by setting the CSS style _(width, height, margin and padding)_.
 
 <div>
-  <img src={useBaseUrl("gifs/dashboard.gif")} style={{ width: "45%" }} />
-  <img style={{ width: "4%" }} />
+  <img src={useBaseUrl('gifs/dashboard.gif')} style={{width: '45%'}} />
+  <img style={{width: '4%'}} />
   <img
-    src={useBaseUrl("gifs/mediaquery.gif")}
-    style={{ width: "44%", paddingBottom: "1%" }}
+    src={useBaseUrl('gifs/mediaquery.gif')}
+    style={{width: '44%', paddingBottom: '1%'}}
   />
 </div>
 
@@ -26,7 +26,7 @@ If you want to create more dynamic styles by managing them directly in the compo
 ## Utility: getResponsiveStyle 📦
 
 ```js
-import { getResponsiveStyle } from "muuri-react";
+import {getResponsiveStyle} from 'muuri-react';
 ```
 
 With this utility you can virtually divide the MuuriComponent into `columns` and set the Item to be as wide as `n` of these columns. In addition you can also set the **margin** _(static or dynamic)_, the **ratio** _(dynamic)_ between width and height or the **height** _(static)_.
@@ -36,13 +36,13 @@ With this utility you can virtually divide the MuuriComponent into `columns` and
 const responsiveStyle = getResponsiveStyle({
   // The Muuri component is virtually divided into 8 columns,
   // the width of the item will be 3 columns (minus the margin).
-  column: 3 / 8,
+  columns: 3 / 8,
   // The margin of the item, it can be any CSS values
   // valid for the margin expressed in "px" or "%".
-  margin: "5%",
+  margin: '5%',
   // The width/height ratio. If you want to set a static
   // height just set the "height" option in px and remove the "ratio".
-  ratio: 1.5
+  ratio: 1.5,
 });
 ```
 
@@ -50,17 +50,16 @@ So you just need to apply the style. The inner element must have `position: abso
 
 ```jsx
 // The Item component.
-const Item = ({ text }) => (
+const Item = ({text}) => (
   <div style={responsiveStyle}>
     <div
       style={{
-        position: "absolute",
+        position: 'absolute',
         left: 0,
         top: 0,
         right: 0,
-        bottom: 0
-      }}
-    >
+        bottom: 0,
+      }}>
       I'm an item.
     </div>
   </div>
@@ -72,7 +71,7 @@ The utility does not take into account the **border** for the outer element, you
 ## Utility: getStaticStyle 📦
 
 ```js
-import { getStaticStyle } from "muuri-react";
+import {getStaticStyle} from 'muuri-react';
 ```
 
 When `dragging` an Item with dimensions relative to the MuuriComponent (e.g. `width: 25%`), the `dragFixed` prop is used to fix its dimensions (see more [here](../usage/items-dimensions#dimensions-when-dragging-)).
@@ -83,20 +82,20 @@ This utility offers more `flexibility` than dragFixed and can be useful in cases
 // The Item component.
 const Item = () => {
   // Get the Muuri instance.
-  const { grid } = useGrid();
+  const {grid} = useGrid();
   // If the item is dragging.
   const isDragging = useDrag();
 
   // Item dimensions.
-  const column = 3 / 8;
-  const margin = "5%";
+  const columns = 3 / 8;
+  const margin = '5%';
   const ratio = 1.5;
 
   // If the item is dragging the style
   // has to be static.
   const style = !isDragging
-    ? getResponsiveStyle({ column, margin, ratio })
-    : getStaticStyle({ grid, column, margin, ratio });
+    ? getResponsiveStyle({columns, margin, ratio})
+    : getStaticStyle({grid, columns, margin, ratio});
 
   return (
     <div style={style}>

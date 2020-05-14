@@ -7,14 +7,14 @@ If you want to trigger scrolling on any element during dragging you can enable a
 ```jsx
 const scrollElemRef = useRef();
 
-<div style={{ "overflow-y": "scroll" }} ref={scrollElemRef}>
+<div style={{'overflow-y': 'scroll'}} ref={scrollElemRef}>
   <MuuriComponent
     dragEnabled
     dragAutoScroll={{
       targets: [
         // Scroll scrollElement (can be any scrollable element) on y-axis only.
-        { element: scrollElemRef, axis: AutoScroller.AXIS_Y }
-      ]
+        {element: scrollElemRef, axis: AutoScroller.AXIS_Y},
+      ],
     }}
   />
 </div>;

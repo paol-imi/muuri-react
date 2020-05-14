@@ -27,7 +27,7 @@ This command generates static content into the `build` directory and can be serv
 ### Deployment
 
 ```
-                                           ↓↓↓ No space ⚠️
+                                         ↓↓↓ No space ⚠️
 cmd /C "set GIT_USER=<Your GitHub username>&& npm run deploy"
 ```
 

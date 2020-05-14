@@ -19,9 +19,9 @@ The function is executed for each Item in the instance. The returned object will
 const App = () => {
   // Items.
   const [items, setItems] = useState([
-    { key: "1", text: "zl", color: "red" },
-    { key: "2", text: "zg", color: "blue" },
-    { key: "3", text: "nx", color: "blue" }
+    {key: '1', text: 'zl', color: 'red'},
+    {key: '2', text: 'zg', color: 'blue'},
+    {key: '3', text: 'nx', color: 'blue'},
   ]);
 
   // Items to components.
@@ -32,14 +32,13 @@ const App = () => {
   // Render.
   return (
     <MuuriComponent
-      propsToData={({ text, color }) => {
+      propsToData={({text, color}) => {
         // The first argument represent the props of an item.
         // Generate the data from the props.
-        const data = { text, color };
+        const data = {text, color};
         // Return the data.
         return data;
-      }}
-    >
+      }}>
       {children}
     </MuuriComponent>
   );
@@ -51,11 +50,11 @@ const App = () => {
 Another way to generate the data is using the `useData` hook inside the Items. See more [here](../hooks/useData).
 
 ```jsx
-import { useData } from "muuri-react";
+import {useData} from 'muuri-react';
 
 // Item component.
-const Item = ({ text }) => {
-  useData({ text });
+const Item = ({text}) => {
+  useData({text});
 
   return (
     <div className="item">

@@ -3,7 +3,7 @@ title: useRefresh
 ---
 
 ```js
-import { useRefresh } from "muuri-react";
+import {useRefresh} from 'muuri-react';
 ```
 
 The `useRefresh` hook allow you to notify the MuuriComponent that the Item dimensions are changed, so that it can update the layout.
@@ -32,11 +32,11 @@ The useRefresh hook is used with the size value as a `dependency`. Like useEffec
 ```jsx
 const Item = () => {
   // Size is used as initial state.
-  const [size, setSize] = useState("small");
+  const [size, setSize] = useState('small');
   // Change the size.
   const changeSize = (size) => {
-    if (size === "large") return "small";
-    if (size === "small") return "large";
+    if (size === 'large') return 'small';
+    if (size === 'small') return 'large';
   };
 
   // Each time the dependency changes the grid size is updated.

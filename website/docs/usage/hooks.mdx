@@ -9,13 +9,13 @@ The custom hooks provided by this package are designed to be used inside the `it
 A simple example with the `useDrag` hook.
 
 ```jsx
-const Item = ({ text }) => {
+const Item = ({text}) => {
   // The component will re-render when the item is dragged.
   const isDragging = useDrag();
 
   return (
     <div className="item">
-      <div className="item-content">{isDragging ? "Release me!" : text}</div>
+      <div className="item-content">{isDragging ? 'Release me!' : text}</div>
     </div>
   );
 };
@@ -31,11 +31,11 @@ Let's reproduce the previous example with a class component.
 ```jsx
 class Item extends React.Component {
   render() {
-    const { isDragging, text } = this.props;
+    const {isDragging, text} = this.props;
 
     return (
       <div className="item">
-        <div className="item-content">{isDragging ? "Release me!" : text}</div>
+        <div className="item-content">{isDragging ? 'Release me!' : text}</div>
       </div>
     );
   }
@@ -45,10 +45,10 @@ class Item extends React.Component {
 Now we can wrap the created component and use the wrapped one.
 
 ```jsx
-import { MuuriComponent, withHooks } from "muuri-react";
-import { Item } from "./components";
+import {MuuriComponent, withHooks} from 'muuri-react';
+import {Item} from './components';
 
-const WrappedItem = withHooks(Item, ["useDrag"]);
+const WrappedItem = withHooks(Item, ['useDrag']);
 
 const App = () => {
   return (

@@ -2,14 +2,14 @@
 title: Filtering
 ---
 
-import useBaseUrl from "@docusaurus/useBaseUrl";
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 Filtering can be managed through the `filter` prop of the MuuriComponent. The filter will be updated every time that the MuuriComponent `re-render` with a new value in the prop or an Item is added.
 
 <img
-  src={useBaseUrl("gifs/filtering.gif")}
+  src={useBaseUrl('gifs/filtering.gif')}
   className="shadow"
-  style={{ width: "60%" }}
+  style={{width: '60%'}}
 />
 
 The filter prop accept a `function`. The function is executed for every Item in the instance, if the return value is truthy the Item in question will be `shown` and otherwise `hidden`. The function receives the [data](../usage/items-data.md) of the Item as it's argument.
@@ -28,13 +28,13 @@ In this example we have Items that are distinguished by a `text` value assigned 
 ```jsx
 const App = () => {
   // Text input.
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState('');
 
   // Items.
   const [items, setItems] = useState([
-    { key: "1", text: "as" },
-    { key: "2", text: "gg" },
-    { key: "3", text: "st" }
+    {key: '1', text: 'as'},
+    {key: '2', text: 'gg'},
+    {key: '3', text: 'st'},
   ]);
 
   // Items to components.
@@ -44,7 +44,7 @@ const App = () => {
 
   // Memoized filter method.
   const filter = useCallback(
-    ({ text }) => {
+    ({text}) => {
       // Return if the input is contained in the text data.
       return text.indexOf(input) > -1;
     },
@@ -57,7 +57,7 @@ const App = () => {
       {/* Text input. */}
       <input onChange={setInput} />
       {/* MuuriComponent. */}
-      <MuuriComponent propsToData={({ text }) => ({ text })} filter={filter}>
+      <MuuriComponent propsToData={({text}) => ({text})} filter={filter}>
         {children}
       </MuuriComponent>
     </>

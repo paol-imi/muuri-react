@@ -23,7 +23,7 @@ If you just need to initialize some events you can use the `onMount` prop.
 <MuuriComponent
   onMount={(grid) => {
     // Drag release event.
-    grid.on("dragReleaseEnd", (item) => {
+    grid.on('dragReleaseEnd', (item) => {
       // Do something...
     });
   }}
@@ -48,22 +48,29 @@ item.getProps();
 item.getData();
 ```
 
+It is possible to access the items instances through the grid.
+
+```js
+// Get all items instances.
+grid.getItems();
+```
+
 ## Muuri map 🗺️
 
 You can use the `muuriMap` to access all the Muuri instances of the MuuriComponents via `ids` and `groupIds`.
 
 ```jsx
-<MuuriComponent id={"id"} groupIds={["groupId"]} />
+<MuuriComponent id={'id'} groupIds={['groupId']} />
 ```
 
 ```js
-import { muuriMap } from "muuri-react";
+import {muuriMap} from 'muuri-react';
 
 // The Muuri instance belonging to the
 // MuuriComponenent with the id: "id".
-const grid = muuriMap.get("id");
+const grid = muuriMap.get('id');
 
 // All the Muuri instances belonging to the
 // MuuriComponenents of the group: "groupId".
-const gridsArray = muuriMap.getGroup("groupId");
+const gridsArray = muuriMap.getGroup('groupId');
 ```

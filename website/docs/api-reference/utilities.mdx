@@ -18,7 +18,7 @@ The withHooks utility allows you to use hooks with `class` components. See more 
   - The hooks to enable.
 
 ```js
-const WrappedItem = withHooks(Item, ["useDrag"]);
+const WrappedItem = withHooks(Item, ['useDrag']);
 ```
 
 For each hook this utility generate specific `props` and pass them to the `Item`. The following are the nomenclature conventions, to see in depth the APIs of an hook you can check their documentation pages.
@@ -53,9 +53,9 @@ This utility allows you to generate the style of the `Item` and make it responsi
 ```js
 // The responsive style.
 const responsiveStyle = getResponsiveStyle({
-  column: 3 / 8,
-  margin: "5% 2%",
-  ratio: 1.5
+  columns: 3 / 8,
+  margin: '5% 2%',
+  ratio: 1.5,
 });
 ```
 
@@ -92,20 +92,20 @@ This utility allows you to generate the style of the `Item` and make it static. 
 // The Item component.
 const Item = () => {
   // Get the Muuri instance.
-  const { grid } = useGrid();
+  const {grid} = useGrid();
   // If the item is dragging.
   const isDragging = useDrag();
 
   // Item dimensions.
-  const column = 3 / 8;
-  const margin = "5%";
+  const columns = 3 / 8;
+  const margin = '5%';
   const ratio = 1.5;
 
   // If the item is dragging the style
   // has to be static.
   const style = !isDragging
-    ? getResponsiveStyle({ column, margin, ratio })
-    : getStaticStyle({ grid, column, margin, ratio });
+    ? getResponsiveStyle({columns, margin, ratio})
+    : getStaticStyle({grid, columns, margin, ratio});
 
   return (
     <div style={style}>

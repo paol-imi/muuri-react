@@ -3,7 +3,7 @@ title: useShow
 ---
 
 ```js
-import { useShow } from "muuri-react";
+import {useShow} from 'muuri-react';
 ```
 
 The `useShow` hook allow you to know if the Item is showing. The Item will re-render each time its visibility change.
@@ -13,7 +13,7 @@ The `useShow` hook allow you to know if the Item is showing. The Item will re-re
 Just call it inside an Item.
 
 ```jsx
-const Item = ({ text }) => {
+const Item = ({text}) => {
   const isShowing = useShow();
 
   return (

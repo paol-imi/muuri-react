@@ -1,9 +1,9 @@
-import React from "react";
-import Layout from "@theme/Layout"; // eslint-disable-line
-import classnames from "classnames";
-import styles from "./styles.module.css";
+import React from 'react';
+import Layout from '@theme/Layout'; // eslint-disable-line
+import classnames from 'classnames';
+import styles from './styles.module.css';
 
-const TITLE = "Showcase";
+const TITLE = 'Showcase';
 const DESCRIPTION = (
   <>
     See the official demos and check out what&nbsp;
@@ -14,69 +14,69 @@ const DESCRIPTION = (
 
 function getDescription(type) {
   switch (type) {
-    case "Demo":
-      return "Demo showing Muuri-react features.";
-    case "Example":
-      return "Example showing how to implement a single Muuri-react functionality.";
-    case "Implementation":
-      return "Implementation of a functionality with an external library.";
+    case 'Demo':
+      return 'Demo showing Muuri-react features.';
+    case 'Example':
+      return 'Example showing how to implement a single Muuri-react functionality.';
+    case 'Implementation':
+      return 'Implementation of a functionality with an external library.';
     default:
-      return "";
+      return '';
   }
 }
 
 const demos = [
   // Please add in alphabetical order of title.
   {
-    type: "Demo",
-    name: "Grid",
-    id: "1czo5"
+    type: 'Demo',
+    name: 'Grid',
+    id: '1czo5',
   },
   {
-    type: "Demo",
-    name: "Kanban",
-    id: "zmypd"
+    type: 'Demo',
+    name: 'Kanban',
+    id: 'zmypd',
   },
   {
-    type: "Demo",
-    name: "Dashboard",
-    id: "penbe"
+    type: 'Demo',
+    name: 'Dashboard',
+    id: 'penbe',
   },
   {
-    type: "Demo",
-    name: "Pokedex",
-    id: "swtf9"
+    type: 'Demo',
+    name: 'Pokedex',
+    id: 'swtf9',
   },
   {
-    type: "Example",
-    name: "Drag",
-    id: "xlix7"
+    type: 'Example',
+    name: 'Drag',
+    id: 'xlix7',
   },
   {
-    type: "Example",
-    name: "Scroll",
-    id: "91ck8"
+    type: 'Example',
+    name: 'Scroll',
+    id: '91ck8',
   },
   {
-    type: "Example",
-    name: "Sort",
-    id: "959o8"
+    type: 'Example',
+    name: 'Sort',
+    id: '959o8',
   },
   {
-    type: "Example",
-    name: "Refresh",
-    id: "mz4di"
+    type: 'Example',
+    name: 'Refresh',
+    id: 'mz4di',
   },
   {
-    type: "Implementation",
-    name: "Resize",
-    id: "ycldc"
+    type: 'Implementation',
+    name: 'Resize',
+    id: 'ycldc',
   },
   {
-    type: "Implementation",
-    name: "Media-query",
-    id: "q6sy6"
-  }
+    type: 'Implementation',
+    name: 'Media-query',
+    id: 'q6sy6',
+  },
 ].map((demo) => ({
   type: demo.type,
   title: `${demo.type} - ${demo.name}`,
@@ -87,7 +87,7 @@ const demos = [
     demo.id
   }`,
   fbOpenSource: false,
-  pinned: false
+  pinned: false,
 }));
 
 function Showcase() {
@@ -95,13 +95,13 @@ function Showcase() {
     <Layout title={TITLE} description={DESCRIPTION}>
       <div className="container margin-vert--lg">
         <div className="text--center margin-bottom--xl">
-          <h1 style={{ fontSize: "46px" }}>{TITLE}</h1>
-          <p style={{ fontSize: "25px" }}>{DESCRIPTION}</p>
+          <h1 style={{fontSize: '46px'}}>{TITLE}</h1>
+          <p style={{fontSize: '25px'}}>{DESCRIPTION}</p>
         </div>
         <div className="row">
           {demos.map((demo) => (
             <div key={demo.title} className="col col--4 margin-bottom--lg">
-              <div className={classnames("card", styles.showcaseCard)}>
+              <div className={classnames('card', styles.showcaseCard)}>
                 <div className="card__image">
                   <img src={demo.preview} alt={demo.title} />
                 </div>
@@ -123,8 +123,7 @@ function Showcase() {
                           className="button button--small button--secondary button--block"
                           href={demo.website}
                           target="_blank"
-                          rel="noreferrer noopener"
-                        >
+                          rel="noreferrer noopener">
                           Website
                         </a>
                       )}
@@ -133,8 +132,7 @@ function Showcase() {
                           className="button button--small button--secondary button--block"
                           href={demo.source}
                           target="_blank"
-                          rel="noreferrer noopener"
-                        >
+                          rel="noreferrer noopener">
                           Source
                         </a>
                       )}
