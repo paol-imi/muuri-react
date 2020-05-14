@@ -1,7 +1,6 @@
-import {useEffect} from 'react';
+import {useEffect, useCallback} from 'react';
 import {useGridContext, useItemContext} from '../contexts';
 import {invariant} from '../invariant';
-import {useFunction} from '../utils/hooks';
 
 // The method returned by the hook.
 export type RefreshMethod = () => void;
@@ -25,17 +24,17 @@ export function useRefresh(deps: any[] = []): RefreshMethod {
 
   // Because of memoization, The identity of the function is guaranteed
   // to be stable so it will be safe to omit it as a dependency.
-  const refresh = useFunction<RefreshMethod>(() => {
+  const refresh = useCallback(() => {
     if (!itemRefController.hasItem()) return;
     // Get the item.
     const item = itemRefController.getItem();
     // If the component is rendering within the MuuriComponent.
     layoutController.refreshItem(item);
-  });
+  }, [layoutController, itemRefController]);
 
   useEffect(() => {
     refresh();
-  }, deps); // eslint-disable-line
+  }, deps.concat(refresh)); // eslint-disable-line
 
   return refresh;
 }

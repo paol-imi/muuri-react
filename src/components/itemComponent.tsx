@@ -33,12 +33,13 @@ export function ItemComponent({
     itemRefController.set('key', itemKey);
     itemRefController.set('eventController', eventController);
     // Return the controllers.
-    return {eventController, itemRefController, itemRemoveController};
+    return {eventController, itemRefController, itemRemoveController, grid};
   });
 
   // Set the props.
   store.itemRefController.set('props', child.props);
   store.itemRemoveController = itemRemoveController;
+  store.grid = grid;
 
   // Set the data.
   if (propsToData) {
@@ -83,7 +84,7 @@ export function ItemComponent({
 
         // @ts-ignore
         if (item._drag) item._drag.destroy();
-        grid.getElement().appendChild(element);
+        store.grid.getElement().appendChild(element);
       }
 
       // Remove the item.

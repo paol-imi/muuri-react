@@ -1,5 +1,5 @@
 /**
-* Muuri-react v3.1.3
+* Muuri-react v3.1.5
 * https://paol-imi.github.io/muuri-react
 * Copyright (c) 2020-present, Paol-imi
 * Released under the MIT license
@@ -1519,12 +1519,14 @@ function ItemComponent(_ref) {
     return {
       eventController: eventController,
       itemRefController: itemRefController,
-      itemRemoveController: itemRemoveController
+      itemRemoveController: itemRemoveController,
+      grid: grid
     };
   }); // Set the props.
 
   store.itemRefController.set('props', child.props);
-  store.itemRemoveController = itemRemoveController; // Set the data.
+  store.itemRemoveController = itemRemoveController;
+  store.grid = grid; // Set the data.
 
   if (propsToData) {
     // Get the data.
@@ -1559,7 +1561,7 @@ function ItemComponent(_ref) {
         element.style.visibility = 'hidden'; // @ts-ignore
 
         if (item._drag) item._drag.destroy();
-        grid.getElement().appendChild(element);
+        store.grid.getElement().appendChild(element);
       } // Remove the item.
 
 
@@ -3016,16 +3018,16 @@ function useRefresh() {
   invariant(itemRefController !== undefined && layoutController !== undefined, 'The useRefresh hook can be used only inside an Item'); // Because of memoization, The identity of the function is guaranteed
   // to be stable so it will be safe to omit it as a dependency.
 
-  var refresh = useFunction(function () {
+  var refresh = React.useCallback(function () {
     if (!itemRefController.hasItem()) return; // Get the item.
 
     var item = itemRefController.getItem(); // If the component is rendering within the MuuriComponent.
 
     layoutController.refreshItem(item);
-  });
+  }, [layoutController, itemRefController]);
   React.useEffect(function () {
     refresh();
-  }, deps); // eslint-disable-line
+  }, deps.concat(refresh)); // eslint-disable-line
 
   return refresh;
 }
