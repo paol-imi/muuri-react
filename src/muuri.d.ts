@@ -1,4 +1,4 @@
-declare module "muuri";
+declare module 'muuri';
 
 interface StyleDeclaration {
   [styleProperty: string]: string;
@@ -16,7 +16,7 @@ interface DraggerCssProps {
 }
 
 interface DraggerEvent {
-  type: "start" | "move" | "end" | "cancel";
+  type: 'start' | 'move' | 'end' | 'cancel';
   srcEvent: PointerEvent | TouchEvent | MouseEvent;
   distance: number;
   deltaX: number;
@@ -24,7 +24,7 @@ interface DraggerEvent {
   deltaTime: number;
   isFirst: boolean;
   isFinal: boolean;
-  pointerType: "mouse" | "pen" | "touch";
+  pointerType: 'mouse' | 'pen' | 'touch';
   identifier: number;
   screenX: number;
   screenY: number;
@@ -36,7 +36,7 @@ interface DraggerEvent {
 }
 
 interface DraggerStartEvent extends DraggerEvent {
-  type: "start";
+  type: 'start';
   distance: 0;
   deltaX: 0;
   deltaY: 0;
@@ -46,19 +46,19 @@ interface DraggerStartEvent extends DraggerEvent {
 }
 
 interface DraggerMoveEvent extends DraggerEvent {
-  type: "move";
+  type: 'move';
   isFirst: false;
   isFinal: false;
 }
 
 interface DraggerEndEvent extends DraggerEvent {
-  type: "end";
+  type: 'end';
   isFirst: false;
   isFinal: true;
 }
 
 interface DraggerCancelEvent extends DraggerEvent {
-  type: "cancel";
+  type: 'cancel';
   isFirst: false;
   isFinal: true;
 }
@@ -71,7 +71,7 @@ interface DraggerEvents {
 }
 
 interface ScrollEvent extends Event {
-  type: "scroll";
+  type: 'scroll';
 }
 
 interface GridEvents {
@@ -91,7 +91,7 @@ interface GridEvents {
     item: Item;
     fromIndex: number;
     toIndex: number;
-    action: "move" | "swap";
+    action: 'move' | 'swap';
   }): any;
   send(data: {
     item: Item;
@@ -192,7 +192,7 @@ interface DragSortHeuristics {
 type DragSortPredicateResult = {
   grid: Grid;
   index: number;
-  action: "move" | "swap";
+  action: 'move' | 'swap';
 } | null;
 
 type DragSortPredicate = (
@@ -202,8 +202,8 @@ type DragSortPredicate = (
 
 interface DragSortPredicateOptions {
   threshold?: number;
-  action?: "move" | "swap";
-  migrateAction?: "move" | "swap";
+  action?: 'move' | 'swap';
+  migrateAction?: 'move' | 'swap';
 }
 
 interface DragReleaseOptions {
@@ -311,12 +311,12 @@ interface GridOptions {
   layoutOnInit?: boolean;
   layoutDuration?: number;
   layoutEasing?: string;
-  sortData?: { [key: string]: SortDataGetter } | null;
+  sortData?: {[key: string]: SortDataGetter} | null;
   dragEnabled?: boolean;
   dragHandle?: string | null;
   dragContainer?: HTMLElement | null;
   dragStartPredicate?: DragStartPredicateOptions | DragStartPredicate;
-  dragAxis?: "x" | "y" | "xy";
+  dragAxis?: 'x' | 'y' | 'xy';
   dragSort?: boolean | DragSortGetter;
   dragSortHeuristics?: DragSortHeuristics;
   dragSortPredicate?: DragSortPredicateOptions | DragSortPredicate;
@@ -344,8 +344,8 @@ export class Item {
   getElement(): HTMLElement | undefined;
   getWidth(): number;
   getHeight(): number;
-  getMargin(): { left: number; right: number; top: number; bottom: number };
-  getPosition(): { left: number; top: number };
+  getMargin(): {left: number; right: number; top: number; bottom: number};
+  getPosition(): {left: number; top: number};
   isActive(): boolean;
   isVisible(): boolean;
   isShowing(): boolean;
@@ -567,7 +567,7 @@ export class Grid {
     options?: {
       index?: number;
       active?: boolean;
-      layout?: boolean | "instant" | LayoutOnFinish;
+      layout?: boolean | 'instant' | LayoutOnFinish;
     }
   ): Item[];
 
@@ -575,7 +575,7 @@ export class Grid {
     items: Item[],
     options?: {
       removeElements?: boolean;
-      layout?: boolean | "instant" | LayoutOnFinish;
+      layout?: boolean | 'instant' | LayoutOnFinish;
     }
   ): Item[];
 
@@ -585,7 +585,7 @@ export class Grid {
       instant?: boolean;
       syncWithLayout?: boolean;
       onFinish?: (items: Item[]) => any;
-      layout?: boolean | "instant" | LayoutOnFinish;
+      layout?: boolean | 'instant' | LayoutOnFinish;
     }
   ): this;
 
@@ -595,7 +595,7 @@ export class Grid {
       instant?: boolean;
       syncWithLayout?: boolean;
       onFinish?: (items: Item[]) => any;
-      layout?: boolean | "instant" | LayoutOnFinish;
+      layout?: boolean | 'instant' | LayoutOnFinish;
     }
   ): this;
 
@@ -605,7 +605,7 @@ export class Grid {
       instant?: boolean;
       syncWithLayout?: boolean;
       onFinish?: (items: Item[]) => any;
-      layout?: boolean | "instant" | LayoutOnFinish;
+      layout?: boolean | 'instant' | LayoutOnFinish;
     }
   ): this;
 
@@ -613,7 +613,7 @@ export class Grid {
     comparer: ((a: Item, b: Item) => number) | string | Item[],
     options?: {
       descending?: boolean;
-      layout?: boolean | "instant" | LayoutOnFinish;
+      layout?: boolean | 'instant' | LayoutOnFinish;
     }
   ): this;
 
@@ -621,8 +621,8 @@ export class Grid {
     item: HTMLElement | number | Item,
     position: HTMLElement | number | Item,
     options?: {
-      action?: "move" | "swap";
-      layout?: boolean | "instant" | LayoutOnFinish;
+      action?: 'move' | 'swap';
+      layout?: boolean | 'instant' | LayoutOnFinish;
     }
   ): this;
 
@@ -632,8 +632,8 @@ export class Grid {
     position: HTMLElement | number | Item,
     options?: {
       appendTo?: HTMLElement;
-      layoutSender?: boolean | "instant" | LayoutOnFinish;
-      layoutReceiver?: boolean | "instant" | LayoutOnFinish;
+      layoutSender?: boolean | 'instant' | LayoutOnFinish;
+      layoutReceiver?: boolean | 'instant' | LayoutOnFinish;
     }
   ): this;
 

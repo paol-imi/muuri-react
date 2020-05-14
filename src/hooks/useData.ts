@@ -1,6 +1,6 @@
-import { useItemContext } from "../contexts";
-import { invariant } from "../invariant";
-import { useFunction } from "../utils/hooks";
+import {useItemContext} from '../contexts';
+import {invariant} from '../invariant';
+import {useFunction} from '../utils/hooks';
 
 // The method return by the hook.
 export type SetDataMethod = (data: object, options?: UseDataOptions) => void;
@@ -23,12 +23,12 @@ export function useData(
   initialData?: object,
   options?: UseDataOptions
 ): SetDataMethod {
-  const { itemRefController } = useItemContext();
+  const {itemRefController} = useItemContext();
 
   // Check if the hook is called inside an item.
   invariant(
     itemRefController !== undefined,
-    "The useData hook can be used only inside an Item"
+    'The useData hook can be used only inside an Item'
   );
 
   // Because of memoization, The identity of the function is guaranteed
@@ -36,7 +36,7 @@ export function useData(
   const setData = useFunction<SetDataMethod>((data, options) => {
     // Check if the data is an object.
     invariant(
-      typeof data === "object",
+      typeof data === 'object',
       `The data must be an object, founded: ${typeof data}`
     );
 
@@ -45,16 +45,16 @@ export function useData(
     // Set the data.
     if (options.merge) {
       // Merge.
-      const currentData = itemRefController.get("data") || {};
-      itemRefController.set("data", Object.assign(currentData, data));
+      const currentData = itemRefController.get('data') || {};
+      itemRefController.set('data', Object.assign(currentData, data));
     } else {
       // Set.
-      itemRefController.set("data", data);
+      itemRefController.set('data', data);
     }
   });
 
   // Set the inital data.
-  if (typeof initialData === "object") {
+  if (typeof initialData === 'object') {
     setData(initialData, options);
   }
 
@@ -62,4 +62,4 @@ export function useData(
 }
 
 // Default options.
-useData.defaultOptions = { merge: false };
+useData.defaultOptions = {merge: false};

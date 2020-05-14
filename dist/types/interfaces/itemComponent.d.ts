@@ -1,6 +1,6 @@
-import type { ReactElement, Key } from "react";
-import type { DecoratedGrid } from "./grid";
-import type { ItemAddController, ItemRemoveController } from "../controllers";
+import type { ReactElement, Key } from 'react';
+import type { DecoratedGrid } from './grid';
+import type { ItemAddController, ItemRemoveController } from '../controllers';
 export interface ItemComponentProps {
     /** The Item child. */
     children: ReactElement;

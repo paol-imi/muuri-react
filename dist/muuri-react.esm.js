@@ -1,3 +1,12 @@
+/**
+* Muuri-react v3.1.3
+* https://paol-imi.github.io/muuri-react
+* Copyright (c) 2020-present, Paol-imi
+* Released under the MIT license
+* https://github.com/Paol-imi/muuri-react/blob/master/LICENSE
+* @license MIT
+*/
+
 import Muuri from 'muuri';
 import _defineProperty from '@babel/runtime/helpers/esm/defineProperty';
 import _extends from '@babel/runtime/helpers/esm/extends';
@@ -10,11 +19,11 @@ import _inherits from '@babel/runtime/helpers/esm/inherits';
 import _possibleConstructorReturn from '@babel/runtime/helpers/esm/possibleConstructorReturn';
 import _getPrototypeOf from '@babel/runtime/helpers/esm/getPrototypeOf';
 import _wrapNativeSuper from '@babel/runtime/helpers/esm/wrapNativeSuper';
-import _slicedToArray from '@babel/runtime/helpers/esm/slicedToArray';
 import _objectWithoutProperties from '@babel/runtime/helpers/esm/objectWithoutProperties';
+import _slicedToArray from '@babel/runtime/helpers/esm/slicedToArray';
 import _toConsumableArray from '@babel/runtime/helpers/esm/toConsumableArray';
 
-var key = "_component";
+var key = '_component';
 
 /**
  * Return if the instance is decorated.
@@ -142,7 +151,7 @@ var useGridContext = function useGridContext() {
   return useContext(GridContext);
 }; // Grid provider display name.
 
-GridContext.displayName = "GridProvider";
+GridContext.displayName = 'GridProvider';
 
 // Item context.
 var ItemContext = createContext({}); // Item provider.
@@ -153,7 +162,7 @@ var useItemContext = function useItemContext() {
   return useContext(ItemContext);
 }; // Item provider display name.
 
-ItemContext.displayName = "ItemProvider";
+ItemContext.displayName = 'ItemProvider';
 
 /**
  * CONTROLLER: ITEM
@@ -307,8 +316,8 @@ function _createSuper(Derived) { return function () { var Super = _getPrototypeO
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
-var isProduction = process.env.NODE_ENV === "production";
-var prefix = "Invariant failed"; // Invarianto instance
+var isProduction = process.env.NODE_ENV === 'production';
+var prefix = 'Invariant failed'; // Invarianto instance
 
 var Invariant = /*#__PURE__*/function (_Error) {
   _inherits(Invariant, _Error);
@@ -321,7 +330,7 @@ var Invariant = /*#__PURE__*/function (_Error) {
     _classCallCheck(this, Invariant);
 
     _this = _super.call(this, message);
-    _this.name = "Invariant";
+    _this.name = 'Invariant';
     return _this;
   }
 
@@ -339,7 +348,7 @@ function invariant(condition, message) {
   } else {
     // When not in production we allow the message to pass through
     // *This block will be removed in production builds*
-    throw new Invariant("".concat(prefix, ": ").concat(message || ""));
+    throw new Invariant("".concat(prefix, ": ").concat(message || ''));
   }
 }
 
@@ -422,7 +431,7 @@ var ItemRefController = /*#__PURE__*/function () {
   }, {
     key: "getItem",
     value: function getItem() {
-      invariant(this._item !== null, "The item has not been setted yet");
+      invariant(this._item !== null, 'The item has not been setted yet');
       return this._item;
     }
     /**
@@ -675,7 +684,7 @@ var FiberController = /*#__PURE__*/function () {
 
     _defineProperty(this, "_fiber", void 0);
 
-    _defineProperty(this, "_flag", "0");
+    _defineProperty(this, "_flag", '0');
   }
 
   _createClass(FiberController, [{
@@ -790,7 +799,7 @@ var FiberController = /*#__PURE__*/function () {
   }, {
     key: "updateFlag",
     value: function updateFlag() {
-      if (this._flag === "0") this._flag = "1";else this._flag = "0";
+      if (this._flag === '0') this._flag = '1';else this._flag = '0';
     }
     /**
      * Destroy the instance.
@@ -810,7 +819,7 @@ var FiberController = /*#__PURE__*/function () {
  * The flag prop name.
  */
 
-var FlagProp = "muuri-react-flag";
+var FlagProp = 'muuri-react-flag';
 /**
  * Get the fiber of the given grid element.
  *
@@ -820,9 +829,9 @@ var FlagProp = "muuri-react-flag";
 
 function getFiber(grid) {
   var key = Object.keys(grid).find(function (key) {
-    return key.startsWith("__reactInternalInstance$");
+    return key.startsWith('__reactInternalInstance$');
   });
-  invariant(typeof key === "string", "Cannot find the __reactInternalInstance$"); // @ts-ignore
+  invariant(typeof key === 'string', 'Cannot find the __reactInternalInstance$'); // @ts-ignore
 
   return grid[key];
 }
@@ -885,7 +894,8 @@ function getStateNode(itemComponentFiber) {
   // ItemComponent -> ItemProvider -> Item.
   var itemFiber = itemComponentFiber.child.child; // @ts-ignore
 
-  while (!itemFiber.stateNode) {
+  while (!(itemFiber.stateNode instanceof HTMLElement)) {
+    // @ts-ignore
     itemFiber = itemFiber.child;
   }
 
@@ -1104,10 +1114,15 @@ var ChildrenController = /*#__PURE__*/function () {
         return cb(child, child.key);
       }); // Flush the children.
 
-      this.flush(); // If an item is being dragged we need to ensure
+      this.flush();
+      return children;
+      /**
+      // If an item is being dragged we need to ensure
       // that no child is inserted before it.
-
-      return this._dragCounter === 0 ? children : getChildrenInSafePositions(children, this._indicesToAdd);
+      return this._dragCounter === 0
+        ? children
+        : getChildrenInSafePositions(children, this._indicesToAdd);
+         */
     }
     /**
      * Increment the drag counter.
@@ -1218,23 +1233,25 @@ function findIndex(children, child, fromIndex) {
  * @param children - The new children to set.
  * @param indicesToAdd - The indices of the added children.
  * @returns - The children in safe postions.
- */
-
-
-function getChildrenInSafePositions(newChildren, indicesToAdd) {
+ *
+function getChildrenInSafePositions(
+  newChildren: ReactElement[],
+  indicesToAdd: number[]
+): ReactElement[] {
   // Check if there are dragged items.
   if (indicesToAdd.length === 0) return newChildren;
-  var addedChildren = []; // Set the added children.
 
-  indicesToAdd.reverse().forEach(function (index) {
-    var _newChildren$splice = newChildren.splice(index, 1),
-        _newChildren$splice2 = _slicedToArray(_newChildren$splice, 1),
-        newChild = _newChildren$splice2[0];
+  const addedChildren: ReactElement[] = [];
 
+  // Set the added children.
+  indicesToAdd.reverse().forEach((index) => {
+    const [newChild] = newChildren.splice(index, 1);
     addedChildren.push(newChild);
   });
+
   return newChildren.concat(addedChildren);
 }
+
 /**
  * Return if the components have the same key.
  *
@@ -1255,12 +1272,12 @@ function is(componentA, componentB) {
  * @param grid - The Muuri instance.
  */
 function fillGrid(grid) {
-  var sizerElement = document.createElement("div"); // Keep the element hidden.
+  var sizerElement = document.createElement('div'); // Keep the element hidden.
 
-  sizerElement.style.visibility = "hidden";
-  sizerElement.style.position = "absolute"; // Add the class.
+  sizerElement.style.visibility = 'hidden';
+  sizerElement.style.position = 'absolute'; // Add the class.
 
-  sizerElement.classList.add("grid-sizer"); // Set the element.
+  sizerElement.classList.add('grid-sizer'); // Set the element.
 
   addDecoration(grid, {
     sizerElement: sizerElement
@@ -1275,7 +1292,7 @@ function fillGrid(grid) {
 }
 
 // Allowed position values.
-var positions = ["relative", "absolute", "fixed"];
+var positions = ['relative', 'absolute', 'fixed'];
 /**
  * Fill a grid element:
  * - If it is not position the style.position is setted to "relative".
@@ -1302,8 +1319,8 @@ function fillGridElement(gridElement, gridClass) {
   var defaultSetAttribute = gridElement.setAttribute.bind(gridElement);
 
   gridElement.setAttribute = function setAttribute(attribute, value) {
-    if (attribute === "class") {
-      var classNames = (gridElement.getAttribute("class") || "").split(" "); // Add the grid class.
+    if (attribute === 'class') {
+      var classNames = (gridElement.getAttribute('class') || '').split(' '); // Add the grid class.
 
       if (!classNames.includes(gridClass)) value = "".concat(value, " ").concat(gridClass);
     }
@@ -1326,7 +1343,7 @@ function fillItem(item) {
     data: {}
   }); // Change the sort data.
 
-  Object.defineProperty(item, "_sortData", {
+  Object.defineProperty(item, '_sortData', {
     get: function get() {
       return this.getData();
     },
@@ -1347,18 +1364,18 @@ function fillItem(item) {
  * @param itemClasses - The Css classes of the items.
  */
 function fillItemElement(itemElement, itemClasses) {
-  itemElement.style.position = "absolute"; // Ensure that the Css item classes are not removed.
+  itemElement.style.position = 'absolute'; // Ensure that the Css item classes are not removed.
 
   var defaultSetAttribute = itemElement.setAttribute.bind(itemElement);
 
   itemElement.setAttribute = function setAttribute(attribute, value) {
-    if (attribute === "class") {
-      var classNames = (itemElement.getAttribute("class") || "").split(" ");
+    if (attribute === 'class') {
+      var classNames = (itemElement.getAttribute('class') || '').split(' ');
       var classNamesToAdd = classNames.filter(function (className) {
         return itemClasses.includes(className);
       }); // Add the Css items classes.
 
-      value = "".concat(value, " ").concat(classNamesToAdd.join(" "));
+      value = "".concat(value, " ").concat(classNamesToAdd.join(' '));
     }
 
     defaultSetAttribute(attribute, value);
@@ -1489,24 +1506,26 @@ function ItemComponent(_ref) {
     var eventController = new EventController();
     var itemRefController = new ItemRefController(); // Add the data that won't change.
 
-    itemRefController.set("key", itemKey);
-    itemRefController.set("eventController", eventController); // Return the controllers.
+    itemRefController.set('key', itemKey);
+    itemRefController.set('eventController', eventController); // Return the controllers.
 
     return {
       eventController: eventController,
-      itemRefController: itemRefController
+      itemRefController: itemRefController,
+      itemRemoveController: itemRemoveController
     };
   }); // Set the props.
 
-  store.itemRefController.set("props", child.props); // Set the data.
+  store.itemRefController.set('props', child.props);
+  store.itemRemoveController = itemRemoveController; // Set the data.
 
   if (propsToData) {
     // Get the data.
     var data = propsToData(child.props); // Must be an object.
 
-    invariant(_typeof(data) === "object", "The data returned by 'propsToData' must be an object, founded ".concat(_typeof(data))); // Set the data.
+    invariant(_typeof(data) === 'object', "The data returned by 'propsToData' must be an object, founded ".concat(_typeof(data))); // Set the data.
 
-    store.itemRefController.set("data", data);
+    store.itemRefController.set('data', data);
   } // On mount.
 
 
@@ -1529,8 +1548,8 @@ function ItemComponent(_ref) {
       // (Because it could be child of a different DOM element).
 
       if (item.isDragging()) {
-        element.style.display = "none";
-        element.style.visibility = "hidden"; // @ts-ignore
+        element.style.display = 'none';
+        element.style.visibility = 'hidden'; // @ts-ignore
 
         if (item._drag) item._drag.destroy();
         grid.getElement().appendChild(element);
@@ -1538,7 +1557,7 @@ function ItemComponent(_ref) {
 
 
       store.itemRefController["delete"]();
-      itemRemoveController.removeItem(item); // Destroy the controllers instances.
+      store.itemRemoveController.removeItem(item); // Destroy the controllers instances.
 
       store.itemRefController.destroy();
       store.eventController.destroy();
@@ -1559,7 +1578,7 @@ ItemComponent.propTypes = {
   grid: PropTypes.instanceOf(Muuri).isRequired
 }; // Display name.
 
-ItemComponent.displayName = "ItemComponent";
+ItemComponent.displayName = 'ItemComponent';
 
 /**
  * Add the given items in the given positions.
@@ -1603,7 +1622,7 @@ function filterItems(grid, predicate) {
 }
 
 /** Class name. */
-var gridClassName = "containerClass";
+var gridClassName = 'containerClass';
 /**
  * Returns the Css class of the grid element.
  *
@@ -1617,7 +1636,7 @@ function getGridClass(grid) {
 }
 
 /** Class names. */
-var itemClassNames = ["itemClass", "itemVisibleClass", "itemHiddenClass", "itemPositioningClass", "itemDraggingClass", "itemReleasingClass", "itemPlaceholderClass"];
+var itemClassNames = ['itemClass', 'itemVisibleClass', 'itemHiddenClass', 'itemPositioningClass', 'itemDraggingClass', 'itemReleasingClass', 'itemPlaceholderClass'];
 /**
  * Returns the items classes.
  *
@@ -1687,12 +1706,12 @@ function sortItems(grid, predicate, sortOptions) {
     layout: false
   }); // Handle a function.
 
-  if (typeof predicate === "function") {
+  if (typeof predicate === 'function') {
     handleFunction(grid, predicate, sortOptions);
   } // Handle a string.
 
 
-  if (typeof predicate === "string") {
+  if (typeof predicate === 'string') {
     handleString(grid, predicate, sortOptions);
   } // Hanndle an array of keys.
 
@@ -1891,7 +1910,7 @@ function GridComponent(_ref) {
     /* ------------------ */
     // Add all the event handlers.
     grid // "Send" and "receive" events.
-    .on("beforeSend", function (_ref2) {
+    .on('beforeSend', function (_ref2) {
       var item = _ref2.item,
           fromGrid = _ref2.fromGrid,
           fromIndex = _ref2.fromIndex;
@@ -1909,7 +1928,7 @@ function GridComponent(_ref) {
           sentPayload: sentPayload
         });
       }
-    }).on("receive", function (_ref3) {
+    }).on('receive', function (_ref3) {
       var item = _ref3.item,
           toGrid = _ref3.toGrid,
           toIndex = _ref3.toIndex;
@@ -1936,7 +1955,7 @@ function GridComponent(_ref) {
         // Payloads data.
         var sentPayload = getDecoration(item).sentPayload; // The payload must have been created in the send method.
 
-        invariant(sentPayload !== null && _typeof(sentPayload) === "object"); // Controllers.
+        invariant(sentPayload !== null && _typeof(sentPayload) === 'object'); // Controllers.
 
         var fromChildrenController = sentPayload.fromChildrenController,
             fromFiberController = sentPayload.fromFiberController; // Remove the payload.
@@ -1953,9 +1972,9 @@ function GridComponent(_ref) {
       } // Emit the "send" event.
 
 
-      getDecoration(item).eventController.emitEvent("send", grid);
+      getDecoration(item).eventController.emitEvent('send', grid);
     }) // Drag events.
-    .on("dragInit", function (item, event) {
+    .on('dragInit', function (item, event) {
       // The childrenController must change the positions of
       // the newly added components if any items are being
       // dragged to add the safely.
@@ -1965,10 +1984,10 @@ function GridComponent(_ref) {
       // the dragContainer, this makes it possible to change
       // the style of the element safely (e.g. using relative dimensions).
 
-      getDecoration(item).eventController.emitEvent("drag", true); // "onDragStart" Callback.
+      getDecoration(item).eventController.emitEvent('drag', true); // "onDragStart" Callback.
 
       if (store.onDragStart) store.onDragStart(item, event);
-    }).on("dragEnd", function (item) {
+    }).on('dragEnd', function (item) {
       // Payloads.
       var sentPayload = getDecoration(item).sentPayload;
       var receivedPayload = getDecoration(item).receivedPayload; // If an item was sent during the drag the
@@ -1993,7 +2012,7 @@ function GridComponent(_ref) {
 
         if (fromGrid !== toGrid) {
           // "onSend" will be called with the receive event.
-          invariant(typeof store.onSend === "function", "An item cannot be sent to another MuuriComponent if the " + "'onSend' property has not been passed to the MuuriComponent."); // Remove the item instances from the old GridComponent.
+          invariant(typeof store.onSend === 'function', 'An item cannot be sent to another MuuriComponent if the ' + "'onSend' property has not been passed to the MuuriComponent."); // Remove the item instances from the old GridComponent.
 
           var itemFiber = fromFiberController.remove(item.getKey());
           var itemComponent = fromChildrenController.remove(itemFiber.index); // Add the item instances to the new GridComponent.
@@ -2019,7 +2038,7 @@ function GridComponent(_ref) {
           });
         }
       }
-    }).on("dragReleaseEnd", function (item) {
+    }).on('dragReleaseEnd', function (item) {
       // The childrenController must change the positions of
       // the newly added components if any items are being
       // dragged to add the safely.
@@ -2029,11 +2048,11 @@ function GridComponent(_ref) {
       // the dragContainer, this makes it possible to change
       // the style of the element safely (e.g. using relative dimensions).
 
-      getDecoration(item).eventController.emitEvent("drag", false); // Call the event.
+      getDecoration(item).eventController.emitEvent('drag', false); // Call the event.
 
       if (store.onDragEnd) store.onDragEnd(item);
     }) // Show and hide events.
-    .on("showStart", function (items) {
+    .on('showStart', function (items) {
       // The items could be shown before they are decorated.
       if (!isDecorated(items[0])) return; // Emit the event.
 
@@ -2042,30 +2061,30 @@ function GridComponent(_ref) {
         // changed their "visibility" state.
         // This check is done to avoid useless re-rendering.
 
-        if (eventController.getPayload("show") !== true) {
-          eventController.emitEvent("show", true);
+        if (eventController.getPayload('show') !== true) {
+          eventController.emitEvent('show', true);
         }
       });
-    }).on("hideEnd", function (items) {
+    }).on('hideEnd', function (items) {
       // Emit the event.
       items.forEach(function (item) {
         var eventController = getDecoration(item).eventController; // The event is triggered also for items that have not
         // changed their "visibility" state.
         // This check is done to avoid useless re-rendering.
 
-        if (eventController.getPayload("show") !== false) {
-          eventController.emitEvent("show", false);
+        if (eventController.getPayload('show') !== false) {
+          eventController.emitEvent('show', false);
         }
       });
     }) // Filter and sort events.
-    .on("filter", function (shownItems, hiddenItems) {
+    .on('filter', function (shownItems, hiddenItems) {
       if (store.onFilter) store.onFilter(shownItems, hiddenItems);
-    }).on("sort", function (currentOrder, previousOrder) {
+    }).on('sort', function (currentOrder, previousOrder) {
       if (store.onSort) store.onSort(currentOrder, previousOrder);
     }); // Fix the dimensions of the items when they are dragged.
 
     if (dragFixed) {
-      grid.on("dragInit", function (item) {
+      grid.on('dragInit', function (item) {
         // Let's set fixed widht/height to the dragged item
         // so that it does not stretch unwillingly when
         // it's appended to the document body for the
@@ -2089,7 +2108,7 @@ function GridComponent(_ref) {
         element.style.width = width;
         element.style.height = height;
         element.style.paddingTop = paddingTop;
-      }).on("dragReleaseEnd", function (item) {
+      }).on('dragReleaseEnd', function (item) {
         // Let's remove the fixed width/height from the
         // dragged item now that it is back in a grid
         // column and can freely adjust to it's
@@ -2338,7 +2357,7 @@ GridComponent.defaultProps = {
   instantLayout: false
 }; // Display name.
 
-GridComponent.displayName = "GridComponent";
+GridComponent.displayName = 'GridComponent';
 
 /**
  * Map that links the Muuri instances to
@@ -2494,9 +2513,9 @@ var muuriMap = new MuuriMap();
  * @returns - The muuri instance.
  */
 function getInstance(options) {
-  var el = document.createElement("div"); // The element won't be visible.
+  var el = document.createElement('div'); // The element won't be visible.
 
-  el.style.display = "none"; // Muuri (0.8.0) need an element in the DOM to be instanciated.
+  el.style.display = 'none'; // Muuri (0.8.0) need an element in the DOM to be instanciated.
 
   document.body.appendChild(el); // Generate the instance.
 
@@ -2514,8 +2533,8 @@ function getInstance(options) {
  */
 function handleRef(ref, value) {
   if (!ref) return;
-  if (typeof ref === "function") ref(value); // @ts-ignore
-  else if ("current" in ref) ref.current = value;
+  if (typeof ref === 'function') ref(value); // @ts-ignore
+  else if ('current' in ref) ref.current = value;
 }
 
 /**
@@ -2531,7 +2550,7 @@ function setDragAutoScroll(options) {
   dragAutoScroll.targets.forEach(function (target) {
     // Check if it is an object to wrap.
     if (isTargetElement(target)) return;
-    invariant("element" in target, "You must provide an element in each scroll target"); // Scroll target element.
+    invariant('element' in target, 'You must provide an element in each scroll target'); // Scroll target element.
 
     var element = target.element; // The element ref.
 
@@ -2539,7 +2558,7 @@ function setDragAutoScroll(options) {
       current: null
     }; // Define the element property.
 
-    Object.defineProperty(target, "element", {
+    Object.defineProperty(target, 'element', {
       get: function get() {
         return ref.current;
       },
@@ -2582,7 +2601,7 @@ function setDragContainer(options) {
     current: null
   }; // Define the property.
 
-  Object.defineProperty(options, "dragContainer", {
+  Object.defineProperty(options, 'dragContainer', {
     get: function get() {
       return ref.current;
     },
@@ -2608,9 +2627,9 @@ function setDragContainer(options) {
 function setDragSort(options, globalMap) {
   var dragSort = options.dragSort; // Parse this options only if it is an object.
 
-  if (!dragSort || _typeof(dragSort) !== "object") return; // Check the options.
+  if (!dragSort || _typeof(dragSort) !== 'object') return; // Check the options.
 
-  invariant(typeof dragSort.groupId === "string", "You must provide a string as groupId"); // The group, its reference doesn't change.
+  invariant(typeof dragSort.groupId === 'string', 'You must provide a string as groupId'); // The group, its reference doesn't change.
 
   var group = globalMap.getGroup(dragSort.groupId); // dragSort method.
 
@@ -2646,7 +2665,7 @@ function setDragStartPredicate(options) {
  */
 
 function getDefaultStartPredicate(dragStartPredicate) {
-  return typeof dragStartPredicate === "function" ? dragStartPredicate : function (item, event) {
+  return typeof dragStartPredicate === 'function' ? dragStartPredicate : function (item, event) {
     return Muuri.ItemDrag.defaultStartPredicate(item, event, dragStartPredicate);
   };
 }
@@ -2801,7 +2820,7 @@ MuuriComponent.propTypes = {
     delay: PropTypes.number,
     handle: PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
   })]),
-  dragAxis: PropTypes.oneOf(["x", "y", "xy"]),
+  dragAxis: PropTypes.oneOf(['x', 'y', 'xy']),
   dragSort: PropTypes.oneOfType([PropTypes.bool, PropTypes.func, PropTypes.exact({
     groupId: PropTypes.string.isRequired
   })]),
@@ -2813,8 +2832,8 @@ MuuriComponent.propTypes = {
   }),
   // @ts-ignore
   dragSortPredicate: PropTypes.oneOfType([PropTypes.func, PropTypes.exact({
-    action: PropTypes.oneOf(["move", "swap"]),
-    migrateAction: PropTypes.oneOf(["move", "swap"]),
+    action: PropTypes.oneOf(['move', 'swap']),
+    migrateAction: PropTypes.oneOf(['move', 'swap']),
     threshold: PropTypes.number
   })]),
   // @ts-ignore
@@ -2855,7 +2874,7 @@ MuuriComponent.defaultProps = _objectSpread$2({}, Muuri.defaultOptions, {
   dragEnabled: null
 }); // Display name.
 
-MuuriComponent.displayName = "MuuriComponent";
+MuuriComponent.displayName = 'MuuriComponent';
 
 /**
  * The useData hook allow to set the data to the item in which the hook has been called.
@@ -2870,26 +2889,26 @@ function useData(initialData, options) {
       itemRefController = _useItemContext.itemRefController; // Check if the hook is called inside an item.
 
 
-  invariant(itemRefController !== undefined, "The useData hook can be used only inside an Item"); // Because of memoization, The identity of the function is guaranteed
+  invariant(itemRefController !== undefined, 'The useData hook can be used only inside an Item'); // Because of memoization, The identity of the function is guaranteed
   // to be stable so it will be safe to omit them as a dependency.
 
   var setData = useFunction(function (data, options) {
     // Check if the data is an object.
-    invariant(_typeof(data) === "object", "The data must be an object, founded: ".concat(_typeof(data))); // Default options.
+    invariant(_typeof(data) === 'object', "The data must be an object, founded: ".concat(_typeof(data))); // Default options.
 
     options = options || useData.defaultOptions; // Set the data.
 
     if (options.merge) {
       // Merge.
-      var currentData = itemRefController.get("data") || {};
-      itemRefController.set("data", Object.assign(currentData, data));
+      var currentData = itemRefController.get('data') || {};
+      itemRefController.set('data', Object.assign(currentData, data));
     } else {
       // Set.
-      itemRefController.set("data", data);
+      itemRefController.set('data', data);
     }
   }); // Set the inital data.
 
-  if (_typeof(initialData) === "object") {
+  if (_typeof(initialData) === 'object') {
     setData(initialData, options);
   }
 
@@ -2914,12 +2933,12 @@ function useDrag() {
 
   var reRender = useRerender(); // Check if the hook is called inside an item.
 
-  invariant(eventController !== undefined, "The useDrag hook can be used only inside an Item"); // Enable the event.
+  invariant(eventController !== undefined, 'The useDrag hook can be used only inside an Item'); // Enable the event.
 
   useEffect(function () {
-    eventController.enableEvent("drag", reRender);
+    eventController.enableEvent('drag', reRender);
   }, [eventController, reRender]);
-  return eventController.getPayload("drag") || false;
+  return eventController.getPayload('drag') || false;
 }
 
 /**
@@ -2934,10 +2953,10 @@ function useDraggable() {
       itemRefController = _useItemContext.itemRefController; // Check if the hook is called inside an item.
 
 
-  invariant(itemRefController !== undefined, "The useData hook can be used only inside an Item");
+  invariant(itemRefController !== undefined, 'The useData hook can be used only inside an Item');
   var setDraggable = useFunction(function (draggable) {
     // Set if the item can be dragged.
-    itemRefController.set("draggable", !!draggable);
+    itemRefController.set('draggable', !!draggable);
   });
   return setDraggable;
 }
@@ -2955,13 +2974,13 @@ function useGrid() {
   var gridContext = useGridContext();
   var reRender = useRerender(); // Check if the hook is called inside an item.
 
-  invariant(eventController !== undefined && gridContext.grid !== undefined, "The useData hook can be used only inside an Item"); // The context is not updated when the hook is trigger
+  invariant(eventController !== undefined && gridContext.grid !== undefined, 'The useData hook can be used only inside an Item'); // The context is not updated when the hook is trigger
   // so we need to get the updated instance from the eventController.
 
-  var grid = eventController.getPayload("send") || gridContext.grid; // Enable the event.
+  var grid = eventController.getPayload('send') || gridContext.grid; // Enable the event.
 
   useEffect(function () {
-    eventController.enableEvent("send", reRender);
+    eventController.enableEvent('send', reRender);
   }, [eventController, reRender]);
   return {
     id: grid._component.id,
@@ -2987,7 +3006,7 @@ function useRefresh() {
       itemRefController = _useItemContext.itemRefController; // Check if the hook is called inside an item.
 
 
-  invariant(itemRefController !== undefined && layoutController !== undefined, "The useRefresh hook can be used only inside an Item"); // Because of memoization, The identity of the function is guaranteed
+  invariant(itemRefController !== undefined && layoutController !== undefined, 'The useRefresh hook can be used only inside an Item'); // Because of memoization, The identity of the function is guaranteed
   // to be stable so it will be safe to omit it as a dependency.
 
   var refresh = useFunction(function () {
@@ -3017,12 +3036,12 @@ function useShow() {
 
   var reRender = useRerender(); // Check if the hook is called inside an item.
 
-  invariant(eventController !== undefined, "The useShow hook can be used only inside an Item"); // Enable the event.
+  invariant(eventController !== undefined, 'The useShow hook can be used only inside an Item'); // Enable the event.
 
   useEffect(function () {
-    eventController.enableEvent("show", reRender);
+    eventController.enableEvent('show', reRender);
   }, [eventController, reRender]);
-  return eventController.getPayload("show");
+  return eventController.getPayload('show');
 }
 
 /**
@@ -3039,11 +3058,11 @@ function useVisibility() {
       itemRefController = _useItemContext.itemRefController; // Check if the hook is called inside an item.
 
 
-  invariant(itemRefController !== undefined && layoutController !== undefined && eventController !== undefined, "The useData hook can be used only inside an Item"); // Set visibility.
+  invariant(itemRefController !== undefined && layoutController !== undefined && eventController !== undefined, 'The useData hook can be used only inside an Item'); // Set visibility.
 
   var setVisibility = useFunction(function (visible, options) {
     if (!itemRefController.hasItem()) return;
-    if (!!visible === eventController.getPayload("show")) return; // Default options.
+    if (!!visible === eventController.getPayload('show')) return; // Default options.
 
     options = options || useVisibility.defaultOptions; // Set the visibility.
 
@@ -3077,15 +3096,15 @@ var hooks = /*#__PURE__*/Object.freeze({
  */
 function getResponsiveStyle(options) {
   // Check options.
-  invariant(_typeof(options) === "object", "You must define options"); // Check columns.
+  invariant(_typeof(options) === 'object', 'You must define options'); // Check columns.
 
-  invariant(typeof options.columns === "number" && options.columns > 0 && options.columns <= 1, "options.columns must be a number between 0 (excluded) and 1 (included)"); // Check height and ratio.
+  invariant(typeof options.columns === 'number' && options.columns > 0 && options.columns <= 1, 'options.columns must be a number between 0 (excluded) and 1 (included)'); // Check height and ratio.
 
-  invariant(typeof options.ratio === "number" || typeof options.height === "number" || typeof options.height === "string", "You must provide at least one option between height and ratio"); // Check that the height and the ratio options are not setted togheter.
+  invariant(typeof options.ratio === 'number' || typeof options.height === 'number' || typeof options.height === 'string', 'You must provide at least one option between height and ratio'); // Check that the height and the ratio options are not setted togheter.
 
-  invariant(typeof options.ratio !== "number" || typeof options.height !== "number" && typeof options.height !== "string", "You cannot provide both the height and the ratio options"); // The margin values.
+  invariant(typeof options.ratio !== 'number' || typeof options.height !== 'number' && typeof options.height !== 'string', 'You cannot provide both the height and the ratio options'); // The margin values.
 
-  var _getResponsiveMargin = getResponsiveMargin(options.margin || "0px"),
+  var _getResponsiveMargin = getResponsiveMargin(options.margin || '0px'),
       margin = _getResponsiveMargin.margin,
       mStatic = _getResponsiveMargin.mStatic,
       mDynamic = _getResponsiveMargin.mDynamic; // The item width.
@@ -3102,14 +3121,14 @@ function getResponsiveStyle(options) {
     width: needCalc ? "calc(".concat(width, ")") : width,
     paddingTop: getResponsivePaddingTop(width, options.ratio, needCalc),
     height: "0px",
-    borderWidth: "0px",
+    borderWidth: '0px',
     margin: margin
   } : {
     width: needCalc ? "calc(".concat(width, ")") : width,
     paddingTop: "0px",
     // @ts-ignore
     height: getFixedHeight(options.height),
-    borderWidth: "0px",
+    borderWidth: '0px',
     margin: margin
   };
 }
@@ -3153,7 +3172,7 @@ function getResponsivePaddingTop(width, ratio, needCalc) {
 
 
 function getFixedHeight(height) {
-  return typeof height === "number" ? "".concat(height, "px") : height;
+  return typeof height === 'number' ? "".concat(height, "px") : height;
 }
 /**
  * The responsive margin.
@@ -3164,11 +3183,11 @@ function getFixedHeight(height) {
 
 
 function getResponsiveMargin(margin) {
-  if (typeof margin === "number") margin = "".concat(margin, "px");
-  var margins = margin.trim().split(" "); // Margin default values.
+  if (typeof margin === 'number') margin = "".concat(margin, "px");
+  var margins = margin.trim().split(' '); // Margin default values.
 
-  var leftMargin = "0px";
-  var rightMargin = "0px";
+  var leftMargin = '0px';
+  var rightMargin = '0px';
   var mDynamic = 0;
   var mStatic = 0; // Get the values from the input.
 
@@ -3184,8 +3203,8 @@ function getResponsiveMargin(margin) {
   } // Set dynamic/static margins.
 
 
-  if (leftMargin.indexOf("%") === -1) mStatic += parseFloat(leftMargin);else mDynamic += parseFloat(leftMargin);
-  if (rightMargin.indexOf("%") === -1) mStatic += parseFloat(rightMargin);else mDynamic += parseFloat(rightMargin);
+  if (leftMargin.indexOf('%') === -1) mStatic += parseFloat(leftMargin);else mDynamic += parseFloat(leftMargin);
+  if (rightMargin.indexOf('%') === -1) mStatic += parseFloat(rightMargin);else mDynamic += parseFloat(rightMargin);
   return {
     margin: margin,
     mStatic: mStatic,
@@ -3202,7 +3221,7 @@ function getResponsiveMargin(margin) {
 function getStaticStyle(options) {
   var style = getResponsiveStyle(options); // Check the options.
 
-  invariant("grid" in options, "You mast pass the grid instance to get the static style."); // The sizer element.
+  invariant('grid' in options, 'You mast pass the grid instance to get the static style.'); // The sizer element.
 
   var sizerElement = options.grid.getSizerElement(); // Set the style in the sizer.
 
@@ -3222,24 +3241,24 @@ function getStaticStyle(options) {
   };
 }
 
-var hooksNames = ["useData", "useDrag", "useDraggable", "useGrid", "useRefresh", "useShow", "useVisibility"]; // Handler type.
+var hooksNames = ['useData', 'useDrag', 'useDraggable', 'useGrid', 'useRefresh', 'useShow', 'useVisibility']; // Handler type.
 
 // Hook handlers.
-var HooksHandlers = [["useData",
+var HooksHandlers = [['useData',
 /*       */
-getHandler("setData")], ["useDrag",
+getHandler('setData')], ['useDrag',
 /*       */
-getHandler("isDragging")], ["useDraggable",
+getHandler('isDragging')], ['useDraggable',
 /*  */
-getHandler("setDraggable")], ["useGrid",
+getHandler('setDraggable')], ['useGrid',
 /*       */
-getHandler("gridData")], ["useRefresh",
+getHandler('gridData')], ['useRefresh',
 /*    */
-getHandler("refresh")], ["useShow",
+getHandler('refresh')], ['useShow',
 /*       */
-getHandler("isShowing")], ["useVisibility",
+getHandler('isShowing')], ['useVisibility',
 /* */
-getHandler("setVisibility")]];
+getHandler('setVisibility')]];
 /**
  * Return the handler with the given key.
  *
@@ -3280,13 +3299,13 @@ function getMerged(hooksHandlers) {
 
 function withHooks(Component, enabledHooks) {
   // There must be an array of hooks to enable.
-  invariant(Array.isArray(enabledHooks), "An array of hooks name must be provided to wrap an item."); // All the hooks must be valid.
+  invariant(Array.isArray(enabledHooks), 'An array of hooks name must be provided to wrap an item.'); // All the hooks must be valid.
 
   enabledHooks.forEach(function (hookName) {
     invariant(hooksNames.includes(hookName), "Invalid item hook: ".concat(hookName));
   }); // There must be at least one hook to enable.
 
-  invariant(enabledHooks.length !== 0, "To wrap an item at least one hook must be provided."); // Get the handlers array of the enabled hook.
+  invariant(enabledHooks.length !== 0, 'To wrap an item at least one hook must be provided.'); // Get the handlers array of the enabled hook.
 
   var hooksHandlers = HooksHandlers.filter(function (_ref4) {
     var _ref5 = _slicedToArray(_ref4, 1),

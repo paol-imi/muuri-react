@@ -1,5 +1,5 @@
-import { addDecoration } from "../decorators";
-import type { DecoratedGrid } from "../../interfaces";
+import {addDecoration} from '../decorators';
+import type {DecoratedGrid} from '../../interfaces';
 
 /**
  * Fill a grid instance:
@@ -8,16 +8,16 @@ import type { DecoratedGrid } from "../../interfaces";
  * @param grid - The Muuri instance.
  */
 export function fillGrid(grid: DecoratedGrid): void {
-  const sizerElement = document.createElement("div");
+  const sizerElement = document.createElement('div');
 
   // Keep the element hidden.
-  sizerElement.style.visibility = "hidden";
-  sizerElement.style.position = "absolute";
+  sizerElement.style.visibility = 'hidden';
+  sizerElement.style.position = 'absolute';
   // Add the class.
-  sizerElement.classList.add("grid-sizer");
+  sizerElement.classList.add('grid-sizer');
 
   // Set the element.
-  addDecoration(grid, { sizerElement });
+  addDecoration(grid, {sizerElement});
   const gridElement = grid.getElement();
 
   // Insert as first child.

@@ -1,4 +1,4 @@
-import type { DecoratedGrid, DecoratedItem } from "../../interfaces";
+import type {DecoratedGrid, DecoratedItem} from '../../interfaces';
 
 /**
  * Remove the given items.
@@ -10,5 +10,5 @@ export function removeItems(
   grid: DecoratedGrid,
   itemsToRemove: DecoratedItem[]
 ): void {
-  grid.remove(itemsToRemove, { layout: false, removeElements: false });
+  grid.remove(itemsToRemove, {layout: false, removeElements: false});
 }

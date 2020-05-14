@@ -1,5 +1,5 @@
-import { Children } from "react";
-import type { ReactElement, Key } from "react";
+import {Children} from 'react';
+import type {ReactElement, Key} from 'react';
 
 /**
  * CONTROLLER: GRID
@@ -85,11 +85,15 @@ export class ChildrenController {
     // Flush the children.
     this.flush();
 
+    return children;
+
+    /**
     // If an item is being dragged we need to ensure
     // that no child is inserted before it.
     return this._dragCounter === 0
       ? children
       : getChildrenInSafePositions(children, this._indicesToAdd);
+       */
   }
 
   /**
@@ -198,7 +202,7 @@ function findIndex(
  * @param children - The new children to set.
  * @param indicesToAdd - The indices of the added children.
  * @returns - The children in safe postions.
- */
+ *
 function getChildrenInSafePositions(
   newChildren: ReactElement[],
   indicesToAdd: number[]

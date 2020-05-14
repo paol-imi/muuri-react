@@ -1,5 +1,5 @@
-import Muuri from "muuri";
-import { getDecoration } from "./utils/decorators";
+import Muuri from 'muuri';
+import {getDecoration} from './utils/decorators';
 
 /**
  * Muuri id getter.
@@ -66,7 +66,7 @@ Muuri.Item.prototype.setData = function setData(data: object) {
  */
 const _getItem = Muuri.prototype.getItem;
 Muuri.prototype.getItem = function getItem(target: any) {
-  return typeof target === "string"
+  return typeof target === 'string'
     ? this._items.find((item: any) => getDecoration(item).key === target)
     : _getItem.apply(this, target);
 };

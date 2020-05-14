@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useFunction } from "./useFunction";
+import {useState} from 'react';
+import {useFunction} from './useFunction';
 
 /**
  * Returns a (memoized) function to re-render

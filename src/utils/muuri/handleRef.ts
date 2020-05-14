@@ -7,7 +7,7 @@
 export function handleRef<T>(ref: React.Ref<T>, value: T | null): void {
   if (!ref) return;
 
-  if (typeof ref === "function") ref(value);
+  if (typeof ref === 'function') ref(value);
   // @ts-ignore
-  else if ("current" in ref) ref.current = value;
+  else if ('current' in ref) ref.current = value;
 }

@@ -1,6 +1,6 @@
-import key from "./decorationKey";
-import { isDecorated } from "./isDecorated";
-import type { MaybeDecorated } from "../../interfaces";
+import key from './decorationKey';
+import {isDecorated} from './isDecorated';
+import type {MaybeDecorated} from '../../interfaces';
 
 /**
  * Add a decoration to the instance.
@@ -15,6 +15,6 @@ export function addDecoration<T extends MaybeDecorated>(
   if (isDecorated(instance)) {
     Object.assign(instance[key], decoration);
   } else {
-    instance[key] = { ...decoration };
+    instance[key] = {...decoration};
   }
 }

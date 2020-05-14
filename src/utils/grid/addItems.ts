@@ -1,4 +1,4 @@
-import type { DecoratedGrid, ReactGridProps } from "../../interfaces";
+import type {DecoratedGrid, ReactGridProps} from '../../interfaces';
 
 /**
  * Add the given items in the given positions.
@@ -13,17 +13,17 @@ export function addItems(
   grid: DecoratedGrid,
   addedDOMItems: HTMLElement[],
   indicesToAdd: number[],
-  addOptions: ReactGridProps["addOptions"],
-  filter: ReactGridProps["filter"]
+  addOptions: ReactGridProps['addOptions'],
+  filter: ReactGridProps['filter']
 ): void {
   for (let i = 0; i < addedDOMItems.length; i++) {
     // Add the items.
-    grid.add(addedDOMItems[i], { index: indicesToAdd[i], layout: false });
+    grid.add(addedDOMItems[i], {index: indicesToAdd[i], layout: false});
   }
 
   // Show the added items (usefull just if the items are
   // hidden by default and the filter is not setted).
   if (!filter && addOptions?.show) {
-    grid.show(grid.getItems(indicesToAdd), { layout: false });
+    grid.show(grid.getItems(indicesToAdd), {layout: false});
   }
 }

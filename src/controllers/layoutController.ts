@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import type { DecoratedItem } from "../interfaces";
+import {useEffect} from 'react';
+import type {DecoratedItem} from '../interfaces';
 
 /**
  * CONTROLLER: GRID -> ITEMCONTEXT
@@ -88,8 +88,8 @@ export class LayoutController {
       // will get the right parent.
       const grid = item.getGrid();
       // The layout is managed here.
-      if (visible) grid.show([item], { instant });
-      else grid.hide([item], { instant });
+      if (visible) grid.show([item], {instant});
+      else grid.hide([item], {instant});
     }
   }
 

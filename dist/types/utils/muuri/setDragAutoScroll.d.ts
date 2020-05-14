@@ -1,4 +1,4 @@
-import type { GridProps, DragAutoScrollTarget } from "../../interfaces";
+import type { GridProps, DragAutoScrollTarget } from '../../interfaces';
 /**
  * Wrap the 'dragAutoScroll' option.
  * Allow the target element to be a ref.

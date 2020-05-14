@@ -1,4 +1,4 @@
-import type { DecoratedItem, ItemDecoration } from "../interfaces";
+import type { DecoratedItem, ItemDecoration } from '../interfaces';
 export declare class ItemRefController {
     /** The item. */
     _item: DecoratedItem | null;

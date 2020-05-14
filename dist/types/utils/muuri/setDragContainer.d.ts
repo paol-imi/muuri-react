@@ -1,4 +1,4 @@
-import type { GridProps } from "../../interfaces";
+import type { GridProps } from '../../interfaces';
 /**
  * Wrap the 'dragContainer' option.
  * Allow it to be a ref.

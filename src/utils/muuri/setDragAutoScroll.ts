@@ -1,9 +1,9 @@
-import { invariant } from "../../invariant";
+import {invariant} from '../../invariant';
 import type {
   GridProps,
   DragAutoScrollTarget,
-  DragAutoScrollTargetElement
-} from "../../interfaces";
+  DragAutoScrollTargetElement,
+} from '../../interfaces';
 
 /**
  * Wrap the 'dragAutoScroll' option.
@@ -12,7 +12,7 @@ import type {
  * @param options - The grid options.
  */
 export function setDragAutoScroll(options: GridProps): void {
-  const { dragAutoScroll } = options;
+  const {dragAutoScroll} = options;
 
   // Wrap the options only if it is setted.
   if (!dragAutoScroll || !Array.isArray(dragAutoScroll.targets)) return;
@@ -22,19 +22,19 @@ export function setDragAutoScroll(options: GridProps): void {
     if (isTargetElement(target)) return;
 
     invariant(
-      "element" in target,
-      "You must provide an element in each scroll target"
+      'element' in target,
+      'You must provide an element in each scroll target'
     );
 
     // Scroll target element.
     const element = target.element;
     // The element ref.
-    let ref: { current: DragAutoScrollTargetElement | null } = {
-      current: null
+    let ref: {current: DragAutoScrollTargetElement | null} = {
+      current: null,
     };
 
     // Define the element property.
-    Object.defineProperty(target, "element", {
+    Object.defineProperty(target, 'element', {
       get() {
         return ref.current;
       },
@@ -44,7 +44,7 @@ export function setDragAutoScroll(options: GridProps): void {
         } else {
           ref = element;
         }
-      }
+      },
     });
 
     // Set the element.

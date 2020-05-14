@@ -1,4 +1,4 @@
-import type { DecoratedGrid } from "../interfaces";
+import type { DecoratedGrid } from '../interfaces';
 export declare type GridData = {
     id?: string;
     groupIds?: string[];

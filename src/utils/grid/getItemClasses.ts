@@ -1,14 +1,14 @@
-import type { DecoratedGrid } from "../../interfaces";
+import type {DecoratedGrid} from '../../interfaces';
 
 /** Class names. */
 const itemClassNames = [
-  "itemClass",
-  "itemVisibleClass",
-  "itemHiddenClass",
-  "itemPositioningClass",
-  "itemDraggingClass",
-  "itemReleasingClass",
-  "itemPlaceholderClass"
+  'itemClass',
+  'itemVisibleClass',
+  'itemHiddenClass',
+  'itemPositioningClass',
+  'itemDraggingClass',
+  'itemReleasingClass',
+  'itemPlaceholderClass',
 ] as const;
 
 /**

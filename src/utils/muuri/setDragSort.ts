@@ -1,6 +1,6 @@
-import { invariant } from "../../invariant";
-import type { GridProps } from "../../interfaces";
-import type { MuuriMap } from "../../muuri-map";
+import {invariant} from '../../invariant';
+import type {GridProps} from '../../interfaces';
+import type {MuuriMap} from '../../muuri-map';
 
 /**
  * Wrap the 'dragSort' option.
@@ -10,13 +10,13 @@ import type { MuuriMap } from "../../muuri-map";
  * @param globalMap - The globalMap.
  */
 export function setDragSort(options: GridProps, globalMap: MuuriMap): void {
-  const { dragSort } = options;
+  const {dragSort} = options;
   // Parse this options only if it is an object.
-  if (!dragSort || typeof dragSort !== "object") return;
+  if (!dragSort || typeof dragSort !== 'object') return;
   // Check the options.
   invariant(
-    typeof dragSort.groupId === "string",
-    "You must provide a string as groupId"
+    typeof dragSort.groupId === 'string',
+    'You must provide a string as groupId'
   );
 
   // The group, its reference doesn't change.

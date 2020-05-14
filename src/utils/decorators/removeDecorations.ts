@@ -1,4 +1,4 @@
-import type { MaybeDecorated } from "../../interfaces";
+import type {MaybeDecorated} from '../../interfaces';
 
 /**
  * Remove the decoration from the instance.

@@ -1,4 +1,4 @@
-import type key from "../utils/decorators/decorationKey";
+import type key from '../utils/decorators/decorationKey';
 
 /** Maybe decorated interface. */
 export interface MaybeDecorated {

@@ -1,7 +1,7 @@
-import type { DecoratedGrid } from "../../interfaces";
+import type {DecoratedGrid} from '../../interfaces';
 
 /** Class name. */
-const gridClassName = "containerClass";
+const gridClassName = 'containerClass';
 
 /**
  * Returns the Css class of the grid element.

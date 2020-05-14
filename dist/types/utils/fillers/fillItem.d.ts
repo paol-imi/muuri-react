@@ -1,4 +1,4 @@
-import type { DecoratedItem } from "../../interfaces";
+import type { DecoratedItem } from '../../interfaces';
 /**
  * Fill an item:
  * - Add the _component decoration.

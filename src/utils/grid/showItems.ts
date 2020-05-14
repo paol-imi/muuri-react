@@ -1,4 +1,4 @@
-import type { DecoratedGrid, DecoratedItem } from "../../interfaces";
+import type {DecoratedGrid, DecoratedItem} from '../../interfaces';
 
 /**
  * Show the given items.
@@ -7,5 +7,5 @@ import type { DecoratedGrid, DecoratedItem } from "../../interfaces";
  * @param items - The items to show.
  */
 export function showItems(grid: DecoratedGrid, items: DecoratedItem[]): void {
-  grid.show(items, { layout: false });
+  grid.show(items, {layout: false});
 }

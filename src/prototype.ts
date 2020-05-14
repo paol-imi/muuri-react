@@ -1,5 +1,5 @@
-import Muuri from "muuri";
-import { getDecoration } from "./utils/decorators";
+import Muuri from 'muuri';
+import {getDecoration} from './utils/decorators';
 
 /**
  * Muuri id getter.

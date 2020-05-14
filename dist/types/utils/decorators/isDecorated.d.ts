@@ -1,4 +1,4 @@
-import type { MaybeDecorated } from "../../interfaces";
+import type { MaybeDecorated } from '../../interfaces';
 /**
  * Return if the instance is decorated.
  *

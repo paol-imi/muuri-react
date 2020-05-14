@@ -1,23 +1,23 @@
 /* React */
-import React, { createRef, RefObject, useEffect } from "react";
-import PropTypes from "prop-types";
+import React, {createRef, RefObject, useEffect} from 'react';
+import PropTypes from 'prop-types';
 /* Components */
-import { ItemComponent } from "./itemComponent";
+import {ItemComponent} from './itemComponent';
 /* Context */
-import { GridProvider } from "../contexts";
+import {GridProvider} from '../contexts';
 /* Controllers */
 import {
   ChildrenController,
   FiberController,
   ItemAddController,
   ItemRemoveController,
-  LayoutController
-} from "../controllers";
+  LayoutController,
+} from '../controllers';
 /* Utils */
-import { invariant } from "../invariant";
-import { fillGridElement, fillGrid } from "../utils/fillers";
-import { useReference, useMemoized } from "../utils/hooks";
-import { addDecoration, getDecoration, isDecorated } from "../utils/decorators";
+import {invariant} from '../invariant';
+import {fillGridElement, fillGrid} from '../utils/fillers';
+import {useReference, useMemoized} from '../utils/hooks';
+import {addDecoration, getDecoration, isDecorated} from '../utils/decorators';
 import {
   addItems,
   filterItems,
@@ -26,10 +26,10 @@ import {
   hideItems,
   removeItems,
   showItems,
-  sortItems
-} from "../utils/grid";
+  sortItems,
+} from '../utils/grid';
 /* Interfaces */
-import type { GridComponentProps, DecoratedItem } from "../interfaces";
+import type {GridComponentProps, DecoratedItem} from '../interfaces';
 
 // Grid component.
 export function GridComponent({
@@ -51,7 +51,7 @@ export function GridComponent({
   forceSync,
   dragFixed,
   dragEnabled,
-  instantLayout
+  instantLayout,
 }: GridComponentProps) {
   /* ------------------ */
   /* ----- STORES ----- */
@@ -77,17 +77,17 @@ export function GridComponent({
     // Controller that manages the items layout.
     layoutController: LayoutController;
     // Keep a reference of the onUnmount function.
-    onUnmount?: GridComponentProps["onUnmount"];
+    onUnmount?: GridComponentProps['onUnmount'];
     // Keep a reference of the onDragStart function.
-    onDragStart?: GridComponentProps["onDragStart"];
+    onDragStart?: GridComponentProps['onDragStart'];
     // Keep a reference of the onDragEnd function.
-    onDragEnd?: GridComponentProps["onDragEnd"];
+    onDragEnd?: GridComponentProps['onDragEnd'];
     // Keep a reference of the onFilter function.
-    onFilter?: GridComponentProps["onFilter"];
+    onFilter?: GridComponentProps['onFilter'];
     // Keep a reference of the onSort function.
-    onSort?: GridComponentProps["onSort"];
+    onSort?: GridComponentProps['onSort'];
     // Keep a reference of the onSend function.
-    onSend?: GridComponentProps["onSend"];
+    onSend?: GridComponentProps['onSend'];
   }>(() => ({
     // Grid and items data.
     gridRef: /*      */ createRef(),
@@ -105,7 +105,7 @@ export function GridComponent({
     onDragEnd,
     onFilter,
     onSort,
-    onSend
+    onSend,
   }));
 
   // Store references of objects
@@ -153,7 +153,7 @@ export function GridComponent({
     hasSorted: /*     */ false,
     hasRefreshed: /*  */ false,
     hasShown: /*      */ false,
-    hasHidden: /*     */ false
+    hasHidden: /*     */ false,
   };
 
   /* ----------------- */
@@ -169,21 +169,21 @@ export function GridComponent({
     // Add all the event handlers.
     grid
       // "Send" and "receive" events.
-      .on("beforeSend", ({ item, fromGrid, fromIndex }) => {
+      .on('beforeSend', ({item, fromGrid, fromIndex}) => {
         if (!getDecoration(item).sentPayload) {
           // Generate the sentPayload.
           const sentPayload = {
             fromChildrenController: store.childrenController,
             fromFiberController: store.fiberController,
             fromGrid,
-            fromIndex
+            fromIndex,
           };
 
           // Add the decoration.
-          addDecoration(item, { sentPayload });
+          addDecoration(item, {sentPayload});
         }
       })
-      .on("receive", ({ item, toGrid, toIndex }) => {
+      .on('receive', ({item, toGrid, toIndex}) => {
         // Controllers.
         const toChildrenController = store.childrenController;
         const toFiberController = store.fiberController;
@@ -198,21 +198,21 @@ export function GridComponent({
             toChildrenController,
             toFiberController,
             toGrid,
-            toIndex
+            toIndex,
           };
 
           // Add the decoration.
-          addDecoration(item, { receivedPayload });
+          addDecoration(item, {receivedPayload});
         } else {
           // Payloads data.
           const sentPayload = getDecoration(item).sentPayload;
           // The payload must have been created in the send method.
-          invariant(sentPayload !== null && typeof sentPayload === "object");
+          invariant(sentPayload !== null && typeof sentPayload === 'object');
           // Controllers.
-          const { fromChildrenController, fromFiberController } = sentPayload;
+          const {fromChildrenController, fromFiberController} = sentPayload;
 
           // Remove the payload.
-          addDecoration(item, { sentPayload: null });
+          addDecoration(item, {sentPayload: null});
 
           // Remove the item instances from the old GridComponent.
           const itemFiber = fromFiberController.remove(item.getKey());
@@ -224,11 +224,11 @@ export function GridComponent({
         }
 
         // Emit the "send" event.
-        getDecoration(item).eventController.emitEvent("send", grid);
+        getDecoration(item).eventController.emitEvent('send', grid);
       })
 
       // Drag events.
-      .on("dragInit", (item, event) => {
+      .on('dragInit', (item, event) => {
         // The childrenController must change the positions of
         // the newly added components if any items are being
         // dragged to add the safely.
@@ -238,11 +238,11 @@ export function GridComponent({
         // reRender of the component when the item is not inside
         // the dragContainer, this makes it possible to change
         // the style of the element safely (e.g. using relative dimensions).
-        getDecoration(item).eventController.emitEvent("drag", true);
+        getDecoration(item).eventController.emitEvent('drag', true);
         // "onDragStart" Callback.
         if (store.onDragStart) store.onDragStart(item, event);
       })
-      .on("dragEnd", (item) => {
+      .on('dragEnd', (item) => {
         // Payloads.
         const sentPayload = getDecoration(item).sentPayload;
         const receivedPayload = getDecoration(item).receivedPayload;
@@ -255,7 +255,7 @@ export function GridComponent({
             fromChildrenController,
             fromFiberController,
             fromGrid,
-            fromIndex
+            fromIndex,
           } = sentPayload;
 
           // ReceivedPayload data.
@@ -263,18 +263,18 @@ export function GridComponent({
             toChildrenController,
             toFiberController,
             toGrid,
-            toIndex
+            toIndex,
           } = receivedPayload;
 
           // Reset the payloads.
-          addDecoration(item, { sentPayload: null, receivedPayload: null });
+          addDecoration(item, {sentPayload: null, receivedPayload: null});
 
           // Check if the item has been sended.
           if (fromGrid !== toGrid) {
             // "onSend" will be called with the receive event.
             invariant(
-              typeof store.onSend === "function",
-              "An item cannot be sent to another MuuriComponent if the " +
+              typeof store.onSend === 'function',
+              'An item cannot be sent to another MuuriComponent if the ' +
                 "'onSend' property has not been passed to the MuuriComponent."
             );
 
@@ -303,12 +303,12 @@ export function GridComponent({
               toGrid,
               toIndex,
               toId: getDecoration(toGrid).id,
-              toGroupIds: getDecoration(toGrid).groupIds
+              toGroupIds: getDecoration(toGrid).groupIds,
             });
           }
         }
       })
-      .on("dragReleaseEnd", (item) => {
+      .on('dragReleaseEnd', (item) => {
         // The childrenController must change the positions of
         // the newly added components if any items are being
         // dragged to add the safely.
@@ -318,13 +318,13 @@ export function GridComponent({
         // reRender of the component when the item is not inside
         // the dragContainer, this makes it possible to change
         // the style of the element safely (e.g. using relative dimensions).
-        getDecoration(item).eventController.emitEvent("drag", false);
+        getDecoration(item).eventController.emitEvent('drag', false);
         // Call the event.
         if (store.onDragEnd) store.onDragEnd(item);
       })
 
       // Show and hide events.
-      .on("showStart", (items) => {
+      .on('showStart', (items) => {
         // The items could be shown before they are decorated.
         if (!isDecorated(items[0])) return;
         // Emit the event.
@@ -333,36 +333,36 @@ export function GridComponent({
           // The event is triggered also for items that have not
           // changed their "visibility" state.
           // This check is done to avoid useless re-rendering.
-          if (eventController.getPayload("show") !== true) {
-            eventController.emitEvent("show", true);
+          if (eventController.getPayload('show') !== true) {
+            eventController.emitEvent('show', true);
           }
         });
       })
-      .on("hideEnd", (items) => {
+      .on('hideEnd', (items) => {
         // Emit the event.
         items.forEach((item) => {
           const eventController = getDecoration(item).eventController;
           // The event is triggered also for items that have not
           // changed their "visibility" state.
           // This check is done to avoid useless re-rendering.
-          if (eventController.getPayload("show") !== false) {
-            eventController.emitEvent("show", false);
+          if (eventController.getPayload('show') !== false) {
+            eventController.emitEvent('show', false);
           }
         });
       })
 
       // Filter and sort events.
-      .on("filter", (shownItems, hiddenItems) => {
+      .on('filter', (shownItems, hiddenItems) => {
         if (store.onFilter) store.onFilter(shownItems, hiddenItems);
       })
-      .on("sort", (currentOrder, previousOrder) => {
+      .on('sort', (currentOrder, previousOrder) => {
         if (store.onSort) store.onSort(currentOrder, previousOrder);
       });
 
     // Fix the dimensions of the items when they are dragged.
     if (dragFixed) {
       grid
-        .on("dragInit", (item) => {
+        .on('dragInit', (item) => {
           // Let's set fixed widht/height to the dragged item
           // so that it does not stretch unwillingly when
           // it's appended to the document body for the
@@ -371,19 +371,19 @@ export function GridComponent({
           // The element must exist.
           invariant(element !== undefined);
           // Get the computed dimensions.
-          const { width, height, paddingTop } = getComputedStyle(element);
+          const {width, height, paddingTop} = getComputedStyle(element);
           // Save the previous style in case it was setted.
           addDecoration(item, {
             dragWidth: element.style.width,
             dragHeight: element.style.height,
-            dragPaddingTop: element.style.paddingTop
+            dragPaddingTop: element.style.paddingTop,
           });
           // Set the new style.
           element.style.width = width;
           element.style.height = height;
           element.style.paddingTop = paddingTop;
         })
-        .on("dragReleaseEnd", (item) => {
+        .on('dragReleaseEnd', (item) => {
           // Let's remove the fixed width/height from the
           // dragged item now that it is back in a grid
           // column and can freely adjust to it's
@@ -392,7 +392,7 @@ export function GridComponent({
           // The element must exist.
           invariant(element !== undefined);
           // Get the old style.
-          const { dragWidth, dragHeight, dragPaddingTop } = getDecoration(item);
+          const {dragWidth, dragHeight, dragPaddingTop} = getDecoration(item);
           // Restore the previous style in case it was setted.
           element.style.width = dragWidth;
           element.style.height = dragHeight;
@@ -445,7 +445,7 @@ export function GridComponent({
   // Get items to add/remove.
   useEffect(() => {
     // Set drag enabled option.
-    addDecoration(grid, { dragEnabled });
+    addDecoration(grid, {dragEnabled});
 
     // Set the items data.
     vars.indicesToAdd = store.childrenController.getIndicesToAdd();
@@ -566,7 +566,7 @@ export function GridComponent({
   // Provided value doesn't change the reference.
   const value = useMemoized(() => ({
     layoutController: store.layoutController,
-    grid
+    grid,
   }));
 
   // render.
@@ -575,8 +575,7 @@ export function GridComponent({
       <div
         {...gridProps}
         ref={store.gridRef}
-        {...store.fiberController.getFlagProp()}
-      >
+        {...store.fiberController.getFlagProp()}>
         {/** The children controller handle some memoization */}
         {store.childrenController.render((child, key) => (
           <ItemComponent
@@ -586,8 +585,7 @@ export function GridComponent({
             propsToData={propsToData}
             itemClasses={store.itemClasses}
             itemAddController={store.itemAddController}
-            itemRemoveController={store.itemRemoveController}
-          >
+            itemRemoveController={store.itemRemoveController}>
             {child}
           </ItemComponent>
         ))}
@@ -604,13 +602,13 @@ GridComponent.propTypes = {
   sort: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.func,
-    PropTypes.arrayOf(PropTypes.string)
+    PropTypes.arrayOf(PropTypes.string),
   ]),
   sortOptions: PropTypes.exact({
-    descending: PropTypes.bool
+    descending: PropTypes.bool,
   }),
   addOptions: PropTypes.exact({
-    show: PropTypes.bool
+    show: PropTypes.bool,
   }),
   onSend: PropTypes.func,
   onDragStart: PropTypes.func,
@@ -622,19 +620,19 @@ GridComponent.propTypes = {
   forceSync: PropTypes.bool,
   dragFixed: PropTypes.bool,
   dragEnabled: PropTypes.bool,
-  instantLayout: PropTypes.bool
+  instantLayout: PropTypes.bool,
 };
 
 // Default props.
 GridComponent.defaultProps = {
   gridProps: {},
-  addOptions: { show: true },
-  sortOptions: { descending: false },
+  addOptions: {show: true},
+  sortOptions: {descending: false},
   forceSync: false,
   dragFixed: false,
   dragEnabled: false,
-  instantLayout: false
+  instantLayout: false,
 };
 
 // Display name.
-GridComponent.displayName = "GridComponent";
+GridComponent.displayName = 'GridComponent';

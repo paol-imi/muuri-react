@@ -1,4 +1,4 @@
-import type { DecoratedGrid, DecoratedItem } from "../../interfaces";
+import type {DecoratedGrid, DecoratedItem} from '../../interfaces';
 
 /**
  * Hide the given items.
@@ -7,5 +7,5 @@ import type { DecoratedGrid, DecoratedItem } from "../../interfaces";
  * @param items - The items to hide.
  */
 export function hideItems(grid: DecoratedGrid, items: DecoratedItem[]): void {
-  grid.hide(items, { layout: false });
+  grid.hide(items, {layout: false});
 }

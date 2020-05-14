@@ -1,12 +1,12 @@
-import { useEffect } from "react";
-import type { RefObject, Key } from "react";
-import { invariant } from "../invariant";
+import {useEffect} from 'react';
+import type {RefObject, Key} from 'react';
+import {invariant} from '../invariant';
 import type {
   Fiber,
   Flag,
   GridElementFiber,
-  ItemComponentFiber
-} from "../interfaces";
+  ItemComponentFiber,
+} from '../interfaces';
 
 /**
  * CONTROLLER: GRID
@@ -19,7 +19,7 @@ export class FiberController {
   // @ts-ignore
   _fiber: GridElementFiber;
   /** The current flag value. */
-  _flag: Flag = "0";
+  _flag: Flag = '0';
 
   /**
    * Init the controller given the grid Element ref.
@@ -113,16 +113,16 @@ export class FiberController {
    *
    * @returns - The props.
    */
-  getFlagProp(): { [FlagProp]: Flag } {
-    return { [FlagProp]: this._flag };
+  getFlagProp(): {[FlagProp]: Flag} {
+    return {[FlagProp]: this._flag};
   }
 
   /**
    * Update the flag value.
    */
   updateFlag(): void {
-    if (this._flag === "0") this._flag = "1";
-    else this._flag = "0";
+    if (this._flag === '0') this._flag = '1';
+    else this._flag = '0';
   }
 
   /**
@@ -137,7 +137,7 @@ export class FiberController {
 /**
  * The flag prop name.
  */
-export const FlagProp = "muuri-react-flag";
+export const FlagProp = 'muuri-react-flag';
 
 /**
  * Get the fiber of the given grid element.
@@ -147,12 +147,12 @@ export const FlagProp = "muuri-react-flag";
  */
 function getFiber(grid: HTMLElement): GridElementFiber {
   const key = Object.keys(grid).find((key) =>
-    key.startsWith("__reactInternalInstance$")
+    key.startsWith('__reactInternalInstance$')
   );
 
   invariant(
-    typeof key === "string",
-    "Cannot find the __reactInternalInstance$"
+    typeof key === 'string',
+    'Cannot find the __reactInternalInstance$'
   );
 
   // @ts-ignore
@@ -222,7 +222,10 @@ function getStateNode(itemComponentFiber: ItemComponentFiber): HTMLElement {
   // ItemComponent -> ItemProvider -> Item.
   let itemFiber = itemComponentFiber.child.child;
   // @ts-ignore
-  while (!itemFiber.stateNode) itemFiber = itemFiber.child;
+  while (!(itemFiber.stateNode instanceof HTMLElement))
+    // @ts-ignore
+    itemFiber = itemFiber.child;
+
   return itemFiber.stateNode;
 }
 

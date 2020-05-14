@@ -1,25 +1,25 @@
 /* React */
-import React, { forwardRef, useEffect } from "react";
-import PropTypes from "prop-types";
+import React, {forwardRef, useEffect} from 'react';
+import PropTypes from 'prop-types';
 /* Muuri */
-import Muuri from "muuri";
+import Muuri from 'muuri';
 /* Global map */
-import { muuriMap } from "../muuri-map";
+import {muuriMap} from '../muuri-map';
 /* Component */
-import { GridComponent } from "./gridComponent";
+import {GridComponent} from './gridComponent';
 /* Interfaces */
-import type { DecoratedGrid, MuuriComponentProps } from "../interfaces";
+import type {DecoratedGrid, MuuriComponentProps} from '../interfaces';
 /* Utils */
-import { useInstantEffect, useMemoized } from "../utils/hooks";
-import { addDecoration, removeDecorations } from "../utils/decorators";
+import {useInstantEffect, useMemoized} from '../utils/hooks';
+import {addDecoration, removeDecorations} from '../utils/decorators';
 import {
   getInstance,
   handleRef,
   setDragAutoScroll,
   setDragContainer,
   setDragSort,
-  setDragStartPredicate
-} from "../utils/muuri";
+  setDragStartPredicate,
+} from '../utils/muuri';
 
 // Muuri component.
 export const MuuriComponent = forwardRef<DecoratedGrid, MuuriComponentProps>(
@@ -79,7 +79,7 @@ export const MuuriComponent = forwardRef<DecoratedGrid, MuuriComponentProps>(
       // Add the instance to the map.
       if (id) muuriMap.set(grid, id);
       // Add the decoration.
-      addDecoration(grid, { id });
+      addDecoration(grid, {id});
       // Set the ref.
       handleRef(muuriRef, grid);
 
@@ -104,7 +104,7 @@ export const MuuriComponent = forwardRef<DecoratedGrid, MuuriComponentProps>(
     // Allow the groupIds to be changed.
     useInstantEffect(() => {
       // decorate the instance
-      addDecoration(grid, { groupIds });
+      addDecoration(grid, {groupIds});
       // Add the instance to the groups.
       if (groupIds) {
         groupIds.forEach((groupId) => {
@@ -143,8 +143,7 @@ export const MuuriComponent = forwardRef<DecoratedGrid, MuuriComponentProps>(
         forceSync={forceSync}
         dragFixed={dragFixed}
         dragEnabled={dragEnabled}
-        instantLayout={instantLayout}
-      >
+        instantLayout={instantLayout}>
         {children}
       </GridComponent>
     );
@@ -169,8 +168,8 @@ MuuriComponent.propTypes = {
       horizontal: PropTypes.bool,
       alignRight: PropTypes.bool,
       alignBottom: PropTypes.bool,
-      rounding: PropTypes.bool
-    })
+      rounding: PropTypes.bool,
+    }),
   ]),
   layoutOnResize: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
   layoutDuration: PropTypes.number,
@@ -178,8 +177,8 @@ MuuriComponent.propTypes = {
   dragContainer: PropTypes.oneOfType([
     PropTypes.instanceOf(HTMLElement),
     PropTypes.shape({
-      current: PropTypes.instanceOf(HTMLElement).isRequired
-    })
+      current: PropTypes.instanceOf(HTMLElement).isRequired,
+    }),
   ]),
   dragHandle: PropTypes.string,
   // @ts-ignore
@@ -187,37 +186,37 @@ MuuriComponent.propTypes = {
     PropTypes.func,
     PropTypes.exact({
       distance: PropTypes.number,
-      delay: PropTypes.number
-    })
+      delay: PropTypes.number,
+    }),
   ]),
-  dragAxis: PropTypes.oneOf(["x", "y", "xy"] as const),
+  dragAxis: PropTypes.oneOf(['x', 'y', 'xy'] as const),
   dragSort: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.func,
     PropTypes.exact({
-      groupId: PropTypes.string.isRequired
-    })
+      groupId: PropTypes.string.isRequired,
+    }),
   ]),
   // @ts-ignore
   dragSortHeuristics: PropTypes.exact({
     sortInterval: PropTypes.number,
     minDragDistance: PropTypes.number,
-    minBounceBackAngle: PropTypes.number
+    minBounceBackAngle: PropTypes.number,
   }),
   // @ts-ignore
   dragSortPredicate: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.exact({
-      action: PropTypes.oneOf(["move", "swap"] as const),
-      migrateAction: PropTypes.oneOf(["move", "swap"] as const),
-      threshold: PropTypes.number
-    })
+      action: PropTypes.oneOf(['move', 'swap'] as const),
+      migrateAction: PropTypes.oneOf(['move', 'swap'] as const),
+      threshold: PropTypes.number,
+    }),
   ]),
   // @ts-ignore
   dragRelease: PropTypes.exact({
     duration: PropTypes.number,
     easing: PropTypes.string,
-    useDragContainer: PropTypes.bool
+    useDragContainer: PropTypes.bool,
   }),
   // @ts-ignore
   dragCssProps: PropTypes.exact({
@@ -226,14 +225,14 @@ MuuriComponent.propTypes = {
     userDrag: PropTypes.string,
     tapHighlightColor: PropTypes.string,
     touchCallout: PropTypes.string,
-    contentZooming: PropTypes.string
+    contentZooming: PropTypes.string,
   }),
   // @ts-ignore
   dragPlaceholder: PropTypes.exact({
     enabled: PropTypes.bool,
     createElement: PropTypes.func,
     onCreate: PropTypes.func,
-    onRemove: PropTypes.func
+    onRemove: PropTypes.func,
   }),
   // @ts-ignore
   dragAutoScroll: PropTypes.exact({
@@ -245,8 +244,8 @@ MuuriComponent.propTypes = {
         current: PropTypes.oneOfType([
           // @ts-ignore
           PropTypes.instanceOf(window.constructor),
-          PropTypes.instanceOf(HTMLElement)
-        ])
+          PropTypes.instanceOf(HTMLElement),
+        ]),
       }),
       PropTypes.func,
       PropTypes.arrayOf(
@@ -259,15 +258,15 @@ MuuriComponent.propTypes = {
               current: PropTypes.oneOfType([
                 // @ts-ignore
                 PropTypes.instanceOf(window.constructor),
-                PropTypes.instanceOf(HTMLElement)
-              ])
-            })
+                PropTypes.instanceOf(HTMLElement),
+              ]),
+            }),
           ]).isRequired,
           axis: PropTypes.number,
           priority: PropTypes.number,
-          threshold: PropTypes.number
+          threshold: PropTypes.number,
         }).isRequired
-      )
+      ),
     ]).isRequired,
     handle: PropTypes.func,
     threshold: PropTypes.number,
@@ -277,7 +276,7 @@ MuuriComponent.propTypes = {
     syncAfterScroll: PropTypes.bool,
     smoothStop: PropTypes.bool,
     onStart: PropTypes.func,
-    onStop: PropTypes.func
+    onStop: PropTypes.func,
   }),
   containerClass: PropTypes.string,
   itemClass: PropTypes.string,
@@ -286,14 +285,14 @@ MuuriComponent.propTypes = {
   itemPositioningClass: PropTypes.string,
   itemDraggingClass: PropTypes.string,
   itemReleasingClass: PropTypes.string,
-  itemPlaceholderClass: PropTypes.string
+  itemPlaceholderClass: PropTypes.string,
 };
 
 // Default props.
 MuuriComponent.defaultProps = {
   ...Muuri.defaultOptions,
-  dragEnabled: null
+  dragEnabled: null,
 };
 
 // Display name.
-MuuriComponent.displayName = "MuuriComponent";
+MuuriComponent.displayName = 'MuuriComponent';

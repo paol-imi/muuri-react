@@ -1,8 +1,8 @@
-import type { ReactElement, Key } from "react";
-import type { DraggerEvent } from "../muuri"; // eslint-disable-line
-import type { DecoratedGrid } from "./grid";
-import type { DecoratedItem } from "./item";
-import type { GridProps } from "./muuriComponent";
+import type {ReactElement, Key} from 'react';
+import type {DraggerEvent} from '../muuri'; // eslint-disable-line
+import type {DecoratedGrid} from './grid';
+import type {DecoratedItem} from './item';
+import type {GridProps} from './muuriComponent';
 
 // Grid props.
 export interface ReactGridProps {
@@ -23,21 +23,21 @@ export interface ReactGridProps {
       ) => number)
     | Key[];
   /** The sort options. */
-  sortOptions?: { descending?: boolean };
+  sortOptions?: {descending?: boolean};
   /** Add options. */
-  addOptions?: { show?: boolean };
+  addOptions?: {show?: boolean};
   /** Function that generate the items data. */
   propsToData?: (props: object) => object;
   /** Method used within Reparenting. */
   onSend?: (payload: {
     key: Key;
     fromGrid: DecoratedGrid;
-    fromId: GridProps["id"];
-    fromGroupIds: GridProps["groupIds"];
+    fromId: GridProps['id'];
+    fromGroupIds: GridProps['groupIds'];
     fromIndex: number;
     toGrid: DecoratedGrid;
-    toId: GridProps["id"];
-    toGroupIds: GridProps["groupIds"];
+    toId: GridProps['id'];
+    toGroupIds: GridProps['groupIds'];
     toIndex: number;
   }) => void;
   /** Called when the drag of an item starts. */

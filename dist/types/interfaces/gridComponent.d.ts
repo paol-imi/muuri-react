@@ -1,8 +1,8 @@
-import type { ReactElement, Key } from "react";
-import type { DraggerEvent } from "../muuri";
-import type { DecoratedGrid } from "./grid";
-import type { DecoratedItem } from "./item";
-import type { GridProps } from "./muuriComponent";
+import type { ReactElement, Key } from 'react';
+import type { DraggerEvent } from '../muuri';
+import type { DecoratedGrid } from './grid';
+import type { DecoratedItem } from './item';
+import type { GridProps } from './muuriComponent';
 export interface ReactGridProps {
     /** The items to render. */
     children?: ReactElement[];
@@ -26,12 +26,12 @@ export interface ReactGridProps {
     onSend?: (payload: {
         key: Key;
         fromGrid: DecoratedGrid;
-        fromId: GridProps["id"];
-        fromGroupIds: GridProps["groupIds"];
+        fromId: GridProps['id'];
+        fromGroupIds: GridProps['groupIds'];
         fromIndex: number;
         toGrid: DecoratedGrid;
-        toId: GridProps["id"];
-        toGroupIds: GridProps["groupIds"];
+        toId: GridProps['id'];
+        toGroupIds: GridProps['groupIds'];
         toIndex: number;
     }) => void;
     /** Called when the drag of an item starts. */

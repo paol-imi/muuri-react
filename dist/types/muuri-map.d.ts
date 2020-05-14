@@ -1,4 +1,4 @@
-import type { DecoratedGrid } from "./interfaces";
+import type { DecoratedGrid } from './interfaces';
 /**
  * Map that links the Muuri instances to
  * their id and group ids.

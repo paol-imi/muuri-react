@@ -1,5 +1,5 @@
-import key from "./decorationKey";
-import type { Decorated } from "../../interfaces";
+import key from './decorationKey';
+import type {Decorated} from '../../interfaces';
 
 /**
  * Add a decoration to the instance.

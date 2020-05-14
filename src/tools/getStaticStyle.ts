@@ -1,7 +1,7 @@
-import { invariant } from "../invariant";
-import { getResponsiveStyle } from "./getResponsiveStyle";
-import type { DecoratedGrid } from "../interfaces";
-import type { ResponsiveStyleOptions } from "./getResponsiveStyle";
+import {invariant} from '../invariant';
+import {getResponsiveStyle} from './getResponsiveStyle';
+import type {DecoratedGrid} from '../interfaces';
+import type {ResponsiveStyleOptions} from './getResponsiveStyle';
 
 /** Static style options. */
 export interface StaticStyleOptions extends ResponsiveStyleOptions {
@@ -20,8 +20,8 @@ export function getStaticStyle(options: StaticStyleOptions) {
 
   // Check the options.
   invariant(
-    "grid" in options,
-    "You mast pass the grid instance to get the static style."
+    'grid' in options,
+    'You mast pass the grid instance to get the static style.'
   );
 
   // The sizer element.
@@ -31,9 +31,9 @@ export function getStaticStyle(options: StaticStyleOptions) {
   Object.assign(sizerElement.style, style);
 
   // Get the style from the sizer.
-  const { width, height, paddingTop, margin } = window.getComputedStyle(
+  const {width, height, paddingTop, margin} = window.getComputedStyle(
     sizerElement
   );
 
-  return { width, height, paddingTop, margin };
+  return {width, height, paddingTop, margin};
 }

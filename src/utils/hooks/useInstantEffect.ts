@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
-import { useReference } from "./useReference";
+import {useEffect, useRef} from 'react';
+import {useReference} from './useReference';
 
 /**
  * Like useEffect but run instantly.

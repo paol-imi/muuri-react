@@ -1,5 +1,5 @@
-import { createContext, useContext } from "react";
-import type { ItemRefController, EventController } from "../controllers";
+import {createContext, useContext} from 'react';
+import type {ItemRefController, EventController} from '../controllers';
 
 // Context value shape.
 export type ItemContextValue = {
@@ -14,4 +14,4 @@ export const ItemProvider = ItemContext.Provider;
 // Item context hook.
 export const useItemContext = () => useContext(ItemContext);
 // Item provider display name.
-ItemContext.displayName = "ItemProvider";
+ItemContext.displayName = 'ItemProvider';

@@ -1,5 +1,5 @@
-import Muuri from "muuri";
-import type { DecoratedGrid } from "../../interfaces";
+import Muuri from 'muuri';
+import type {DecoratedGrid} from '../../interfaces';
 
 /**
  * Generate and returns a muuri instance with the given options.
@@ -8,9 +8,9 @@ import type { DecoratedGrid } from "../../interfaces";
  * @returns - The muuri instance.
  */
 export function getInstance(options: object): DecoratedGrid {
-  const el = document.createElement("div");
+  const el = document.createElement('div');
   // The element won't be visible.
-  el.style.display = "none";
+  el.style.display = 'none';
   // Muuri (0.8.0) need an element in the DOM to be instanciated.
   document.body.appendChild(el);
 

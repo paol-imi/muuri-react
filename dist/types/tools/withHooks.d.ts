@@ -1,4 +1,4 @@
-import type { ComponentType } from "react";
+import type { ComponentType } from 'react';
 declare const hooksNames: readonly ["useData", "useDrag", "useDraggable", "useGrid", "useRefresh", "useShow", "useVisibility"];
 /**
  * Return the handler with the given key.

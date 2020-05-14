@@ -1,34 +1,34 @@
-import React from "react";
-import type { ComponentType } from "react";
-import * as hooks from "../hooks";
-import { invariant } from "../invariant";
+import React from 'react';
+import type {ComponentType} from 'react';
+import * as hooks from '../hooks';
+import {invariant} from '../invariant';
 
 // Hook names.
 const hooksNames = [
-  "useData",
-  "useDrag",
-  "useDraggable",
-  "useGrid",
-  "useRefresh",
-  "useShow",
-  "useVisibility"
+  'useData',
+  'useDrag',
+  'useDraggable',
+  'useGrid',
+  'useRefresh',
+  'useShow',
+  'useVisibility',
 ] as const;
 
 // Handler type.
 type HookHandlerType = [
   typeof hooksNames[number],
-  <T>(t: T) => { [x: string]: T }
+  <T>(t: T) => {[x: string]: T}
 ];
 
 // Hook handlers.
 const HooksHandlers: HookHandlerType[] = [
-  ["useData", /*       */ getHandler("setData")],
-  ["useDrag", /*       */ getHandler("isDragging")],
-  ["useDraggable", /*  */ getHandler("setDraggable")],
-  ["useGrid", /*       */ getHandler("gridData")],
-  ["useRefresh", /*    */ getHandler("refresh")],
-  ["useShow", /*       */ getHandler("isShowing")],
-  ["useVisibility", /* */ getHandler("setVisibility")]
+  ['useData', /*       */ getHandler('setData')],
+  ['useDrag', /*       */ getHandler('isDragging')],
+  ['useDraggable', /*  */ getHandler('setDraggable')],
+  ['useGrid', /*       */ getHandler('gridData')],
+  ['useRefresh', /*    */ getHandler('refresh')],
+  ['useShow', /*       */ getHandler('isShowing')],
+  ['useVisibility', /* */ getHandler('setVisibility')],
 ];
 
 /**
@@ -37,9 +37,9 @@ const HooksHandlers: HookHandlerType[] = [
  * @param key - The key.
  * @returns - The method.
  */
-export function getHandler(key: string): <T>(t: T) => { [x: string]: T } {
+export function getHandler(key: string): <T>(t: T) => {[x: string]: T} {
   return function handler<T>(payload: T) {
-    return { [key]: payload };
+    return {[key]: payload};
   };
 }
 
@@ -73,7 +73,7 @@ export function withHooks<T extends object>(
   // There must be an array of hooks to enable.
   invariant(
     Array.isArray(enabledHooks),
-    "An array of hooks name must be provided to wrap an item."
+    'An array of hooks name must be provided to wrap an item.'
   );
 
   // All the hooks must be valid.
@@ -84,7 +84,7 @@ export function withHooks<T extends object>(
   // There must be at least one hook to enable.
   invariant(
     enabledHooks.length !== 0,
-    "To wrap an item at least one hook must be provided."
+    'To wrap an item at least one hook must be provided.'
   );
 
   // Get the handlers array of the enabled hook.

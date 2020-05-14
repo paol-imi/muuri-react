@@ -1,4 +1,4 @@
-import type { DecoratedGrid } from "../../interfaces";
+import type { DecoratedGrid } from '../../interfaces';
 /**
  * Fill a grid instance:
  *  - Add the sizer element.

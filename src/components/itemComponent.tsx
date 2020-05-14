@@ -1,18 +1,18 @@
 /* React */
-import React, { useEffect } from "react";
-import PropTypes from "prop-types";
+import React, {useEffect} from 'react';
+import PropTypes from 'prop-types';
 /** Muuri */
-import Muuri from "muuri";
+import Muuri from 'muuri';
 /* Context */
-import { ItemProvider } from "../contexts";
+import {ItemProvider} from '../contexts';
 /* Controllers */
-import { EventController, ItemRefController } from "../controllers";
+import {EventController, ItemRefController} from '../controllers';
 /* Utils */
-import { fillItem, fillItemElement } from "../utils/fillers";
-import { useMemoized } from "../utils/hooks";
-import { invariant } from "../invariant";
+import {fillItem, fillItemElement} from '../utils/fillers';
+import {useMemoized} from '../utils/hooks';
+import {invariant} from '../invariant';
 /** Interfaces */
-import type { ItemComponentProps } from "../interfaces";
+import type {ItemComponentProps} from '../interfaces';
 
 // Item component.
 export function ItemComponent({
@@ -22,7 +22,7 @@ export function ItemComponent({
   itemRemoveController,
   propsToData,
   itemKey,
-  grid
+  grid,
 }: ItemComponentProps) {
   // The store provided doesn't change the reference.
   const store = useMemoized(() => {
@@ -30,14 +30,15 @@ export function ItemComponent({
     const eventController = new EventController();
     const itemRefController = new ItemRefController();
     // Add the data that won't change.
-    itemRefController.set("key", itemKey);
-    itemRefController.set("eventController", eventController);
+    itemRefController.set('key', itemKey);
+    itemRefController.set('eventController', eventController);
     // Return the controllers.
-    return { eventController, itemRefController };
+    return {eventController, itemRefController, itemRemoveController};
   });
 
   // Set the props.
-  store.itemRefController.set("props", child.props);
+  store.itemRefController.set('props', child.props);
+  store.itemRemoveController = itemRemoveController;
 
   // Set the data.
   if (propsToData) {
@@ -46,12 +47,12 @@ export function ItemComponent({
 
     // Must be an object.
     invariant(
-      typeof data === "object",
+      typeof data === 'object',
       `The data returned by 'propsToData' must be an object, founded ${typeof data}`
     );
 
     // Set the data.
-    store.itemRefController.set("data", data);
+    store.itemRefController.set('data', data);
   }
 
   // On mount.
@@ -77,8 +78,8 @@ export function ItemComponent({
       // and it is being dragged it have to end the event
       // (Because it could be child of a different DOM element).
       if (item.isDragging()) {
-        element.style.display = "none";
-        element.style.visibility = "hidden";
+        element.style.display = 'none';
+        element.style.visibility = 'hidden';
 
         // @ts-ignore
         if (item._drag) item._drag.destroy();
@@ -87,7 +88,7 @@ export function ItemComponent({
 
       // Remove the item.
       store.itemRefController.delete();
-      itemRemoveController.removeItem(item);
+      store.itemRemoveController.removeItem(item);
 
       // Destroy the controllers instances.
       store.itemRefController.destroy();
@@ -105,8 +106,8 @@ ItemComponent.propTypes = {
   itemClasses: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   propsToData: PropTypes.func,
   children: PropTypes.element.isRequired,
-  grid: PropTypes.instanceOf(Muuri).isRequired
+  grid: PropTypes.instanceOf(Muuri).isRequired,
 };
 
 // Display name.
-ItemComponent.displayName = "ItemComponent";
+ItemComponent.displayName = 'ItemComponent';

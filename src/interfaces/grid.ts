@@ -1,4 +1,4 @@
-import type { DecoratedItem } from "./item";
+import type {DecoratedItem} from './item';
 import type {
   Grid,
   GridEvents,
@@ -8,21 +8,21 @@ import type {
   ScrollEvent,
   DraggerEndEvent,
   DraggerCancelEvent,
-  Item
-} from "../muuri"; // eslint-disable-line
-import type { GridProps } from "./muuriComponent";
-import type { ReactGridProps } from "./gridComponent";
-import type { ItemRemoveController } from "../controllers";
-import type key from "../utils/decorators/decorationKey";
+  Item,
+} from '../muuri'; // eslint-disable-line
+import type {GridProps} from './muuriComponent';
+import type {ReactGridProps} from './gridComponent';
+import type {ItemRemoveController} from '../controllers';
+import type key from '../utils/decorators/decorationKey';
 
 /** Grid decoration interface. */
 export interface GridDecoration {
   /** The id of the MuuriComponent related to the instance. */
-  id?: GridProps["id"];
+  id?: GridProps['id'];
   /** The groupIds of the MuuriComponent related to the instance. */
-  groupIds?: GridProps["groupIds"];
+  groupIds?: GridProps['groupIds'];
   /** If the items can be dragged. */
-  dragEnabled?: ReactGridProps["dragEnabled"];
+  dragEnabled?: ReactGridProps['dragEnabled'];
   /** The item remove controller. */
   itemRemoveController: ItemRemoveController;
   /** The sizer element. */
@@ -34,9 +34,9 @@ export interface DecoratedGrid extends Grid {
   /** The decoration. */
   [key]: GridDecoration;
   /** Component id getter. */
-  getId(): GridProps["id"];
+  getId(): GridProps['id'];
   /** Component groupIds getter. */
-  getGroupIds(): GridProps["groupIds"];
+  getGroupIds(): GridProps['groupIds'];
   /** Get the sizer element. */
   getSizerElement(): HTMLElement;
   /** Wrapped method to allow decorated instances. */
@@ -69,7 +69,7 @@ export interface DecoratedGrid extends Grid {
     options?: {
       index?: number;
       active?: boolean;
-      layout?: boolean | "instant" | LayoutOnFinish;
+      layout?: boolean | 'instant' | LayoutOnFinish;
     }
   ): DecoratedItem[];
   /** Wrapped method to allow decorated instances. */
@@ -77,7 +77,7 @@ export interface DecoratedGrid extends Grid {
     items: DecoratedItem[],
     options?: {
       removeElements?: boolean;
-      layout?: boolean | "instant" | LayoutOnFinish;
+      layout?: boolean | 'instant' | LayoutOnFinish;
     }
   ): DecoratedItem[];
   /** Wrapped method to allow decorated instances. */
@@ -87,7 +87,7 @@ export interface DecoratedGrid extends Grid {
       instant?: boolean;
       syncWithLayout?: boolean;
       onFinish?: (items: DecoratedItem[]) => void;
-      layout?: boolean | "instant" | LayoutOnFinish;
+      layout?: boolean | 'instant' | LayoutOnFinish;
     }
   ): this;
   /** Wrapped method to allow decorated instances. */
@@ -97,7 +97,7 @@ export interface DecoratedGrid extends Grid {
       instant?: boolean;
       syncWithLayout?: boolean;
       onFinish?: (items: DecoratedItem[]) => any;
-      layout?: boolean | "instant" | LayoutOnFinish;
+      layout?: boolean | 'instant' | LayoutOnFinish;
     }
   ): this;
   /** Wrapped method to allow decorated instances. */
@@ -107,7 +107,7 @@ export interface DecoratedGrid extends Grid {
       instant?: boolean;
       syncWithLayout?: boolean;
       onFinish?: (items: DecoratedItem[]) => any;
-      layout?: boolean | "instant" | LayoutOnFinish;
+      layout?: boolean | 'instant' | LayoutOnFinish;
     }
   ): this;
   /** Wrapped method to allow decorated instances. */
@@ -118,7 +118,7 @@ export interface DecoratedGrid extends Grid {
       | Item[],
     options?: {
       descending?: boolean;
-      layout?: boolean | "instant" | LayoutOnFinish;
+      layout?: boolean | 'instant' | LayoutOnFinish;
     }
   ): this;
   /** Wrapped method to allow decorated instances. */
@@ -126,8 +126,8 @@ export interface DecoratedGrid extends Grid {
     item: HTMLElement | number | DecoratedItem,
     position: HTMLElement | number | DecoratedItem,
     options?: {
-      action?: "move" | "swap";
-      layout?: boolean | "instant" | LayoutOnFinish;
+      action?: 'move' | 'swap';
+      layout?: boolean | 'instant' | LayoutOnFinish;
     }
   ): this;
   /** Wrapped method to allow decorated instances. */
@@ -135,8 +135,8 @@ export interface DecoratedGrid extends Grid {
     item: HTMLElement | number | DecoratedItem | string,
     position: HTMLElement | number | DecoratedItem | string,
     options?: {
-      action?: "move" | "swap";
-      layout?: boolean | "instant" | LayoutOnFinish;
+      action?: 'move' | 'swap';
+      layout?: boolean | 'instant' | LayoutOnFinish;
     }
   ): this;
   /** Wrapped method to allow decorated instances. */
@@ -146,8 +146,8 @@ export interface DecoratedGrid extends Grid {
     position: HTMLElement | number | DecoratedItem,
     options?: {
       appendTo?: HTMLElement;
-      layoutSender?: boolean | "instant" | LayoutOnFinish;
-      layoutReceiver?: boolean | "instant" | LayoutOnFinish;
+      layoutSender?: boolean | 'instant' | LayoutOnFinish;
+      layoutReceiver?: boolean | 'instant' | LayoutOnFinish;
     }
   ): this;
   /** Wrapped method to allow decorated instances. */
@@ -157,8 +157,8 @@ export interface DecoratedGrid extends Grid {
     position: HTMLElement | number | DecoratedItem | string,
     options?: {
       appendTo?: HTMLElement;
-      layoutSender?: boolean | "instant" | LayoutOnFinish;
-      layoutReceiver?: boolean | "instant" | LayoutOnFinish;
+      layoutSender?: boolean | 'instant' | LayoutOnFinish;
+      layoutReceiver?: boolean | 'instant' | LayoutOnFinish;
     }
   ): this;
 }
@@ -192,7 +192,7 @@ export interface DecoratedGridEvents extends GridEvents {
     item: DecoratedItem;
     fromIndex: number;
     toIndex: number;
-    action: "move" | "swap";
+    action: 'move' | 'swap';
   }): void;
   /** Send event. */
   send(data: {

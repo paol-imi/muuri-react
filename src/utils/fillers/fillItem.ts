@@ -1,5 +1,5 @@
-import type { DecoratedItem } from "../../interfaces";
-import { addDecoration } from "../decorators";
+import type {DecoratedItem} from '../../interfaces';
+import {addDecoration} from '../decorators';
 
 /**
  * Fill an item:
@@ -9,14 +9,14 @@ import { addDecoration } from "../decorators";
  * @param item - The item to fill.
  */
 export function fillItem(item: DecoratedItem): void {
-  addDecoration(item, { props: {}, data: {} });
+  addDecoration(item, {props: {}, data: {}});
   // Change the sort data.
-  Object.defineProperty(item, "_sortData", {
+  Object.defineProperty(item, '_sortData', {
     get() {
       return this.getData();
     },
     set() {
       // nothing to do here.
-    }
+    },
   });
 }

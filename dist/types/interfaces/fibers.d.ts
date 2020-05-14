@@ -1,6 +1,6 @@
-import type ReactReconciler from "react-reconciler";
+import type ReactReconciler from 'react-reconciler';
 /** Flag type. */
-export declare type Flag = "0" | "1";
+export declare type Flag = '0' | '1';
 /** Use this file as the only source for fibers. */
 export declare type Fiber = ReactReconciler.Fiber;
 /** The fiber of the item element. */

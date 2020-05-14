@@ -1,4 +1,4 @@
-import type { DecoratedItem } from "../interfaces";
+import type {DecoratedItem} from '../interfaces';
 
 /**
  * CONTROLLER: GRID -> ITEM

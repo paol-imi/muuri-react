@@ -1,4 +1,4 @@
-import { invariant } from "../invariant";
+import {invariant} from '../invariant';
 
 /** Responsive style options. */
 export interface ResponsiveStyleOptions {
@@ -20,38 +20,38 @@ export interface ResponsiveStyleOptions {
  */
 export function getResponsiveStyle(options: ResponsiveStyleOptions) {
   // Check options.
-  invariant(typeof options === "object", "You must define options");
+  invariant(typeof options === 'object', 'You must define options');
 
   // Check columns.
   invariant(
-    typeof options.columns === "number" &&
+    typeof options.columns === 'number' &&
       options.columns > 0 &&
       options.columns <= 1,
-    "options.columns must be a number between 0 (excluded) and 1 (included)"
+    'options.columns must be a number between 0 (excluded) and 1 (included)'
   );
 
   // Check height and ratio.
   invariant(
-    typeof options.ratio === "number" ||
-      typeof options.height === "number" ||
-      typeof options.height === "string",
-    "You must provide at least one option between height and ratio"
+    typeof options.ratio === 'number' ||
+      typeof options.height === 'number' ||
+      typeof options.height === 'string',
+    'You must provide at least one option between height and ratio'
   );
 
   // Check that the height and the ratio options are not setted togheter.
   invariant(
-    typeof options.ratio !== "number" ||
-      (typeof options.height !== "number" &&
-        typeof options.height !== "string"),
-    "You cannot provide both the height and the ratio options"
+    typeof options.ratio !== 'number' ||
+      (typeof options.height !== 'number' &&
+        typeof options.height !== 'string'),
+    'You cannot provide both the height and the ratio options'
   );
 
   // The margin values.
-  const { margin, mStatic, mDynamic } = getResponsiveMargin(
-    options.margin || "0px"
+  const {margin, mStatic, mDynamic} = getResponsiveMargin(
+    options.margin || '0px'
   );
   // The item width.
-  const { needCalc, width } = getResponsiveWidth(
+  const {needCalc, width} = getResponsiveWidth(
     options.columns,
     mStatic,
     mDynamic
@@ -65,16 +65,16 @@ export function getResponsiveStyle(options: ResponsiveStyleOptions) {
         width: needCalc ? `calc(${width})` : width,
         paddingTop: getResponsivePaddingTop(width, options.ratio, needCalc),
         height: `0px`,
-        borderWidth: "0px",
-        margin
+        borderWidth: '0px',
+        margin,
       }
     : {
         width: needCalc ? `calc(${width})` : width,
         paddingTop: `0px`,
         // @ts-ignore
         height: getFixedHeight(options.height),
-        borderWidth: "0px",
-        margin
+        borderWidth: '0px',
+        margin,
       };
 }
 
@@ -95,7 +95,7 @@ function getResponsiveWidth(
   const rawWidth = columns * 100 - mDynamic;
   const width = needCalc ? `${rawWidth}% - ${mStatic}px` : `${rawWidth}%`;
 
-  return { needCalc, width };
+  return {needCalc, width};
 }
 
 /**
@@ -123,7 +123,7 @@ function getResponsivePaddingTop(
  * @returns - The height string.
  */
 function getFixedHeight(height: string | number): string {
-  return typeof height === "number" ? `${height}px` : height;
+  return typeof height === 'number' ? `${height}px` : height;
 }
 
 /**
@@ -133,12 +133,12 @@ function getFixedHeight(height: string | number): string {
  * @returns - The responsive margin.
  */
 function getResponsiveMargin(margin: string | number) {
-  if (typeof margin === "number") margin = `${margin}px`;
-  const margins = margin.trim().split(" ");
+  if (typeof margin === 'number') margin = `${margin}px`;
+  const margins = margin.trim().split(' ');
 
   // Margin default values.
-  let leftMargin = "0px";
-  let rightMargin = "0px";
+  let leftMargin = '0px';
+  let rightMargin = '0px';
   let mDynamic = 0;
   let mStatic = 0;
 
@@ -155,14 +155,14 @@ function getResponsiveMargin(margin: string | number) {
   }
 
   // Set dynamic/static margins.
-  if (leftMargin.indexOf("%") === -1) mStatic += parseFloat(leftMargin);
+  if (leftMargin.indexOf('%') === -1) mStatic += parseFloat(leftMargin);
   else mDynamic += parseFloat(leftMargin);
-  if (rightMargin.indexOf("%") === -1) mStatic += parseFloat(rightMargin);
+  if (rightMargin.indexOf('%') === -1) mStatic += parseFloat(rightMargin);
   else mDynamic += parseFloat(rightMargin);
 
   return {
     margin,
     mStatic,
-    mDynamic
+    mDynamic,
   };
 }

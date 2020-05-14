@@ -1,4 +1,4 @@
-import type { DecoratedGrid, DecoratedItem } from "../../interfaces";
+import type { DecoratedGrid, DecoratedItem } from '../../interfaces';
 /**
  * Remove the given items.
  *

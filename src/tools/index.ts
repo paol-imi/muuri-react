@@ -1,3 +1,3 @@
-export * from "./getResponsiveStyle";
-export * from "./getStaticStyle";
-export * from "./withHooks";
+export * from './getResponsiveStyle';
+export * from './getStaticStyle';
+export * from './withHooks';

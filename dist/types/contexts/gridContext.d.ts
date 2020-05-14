@@ -1,6 +1,6 @@
 /// <reference types="react" />
-import type { DecoratedGrid } from "../interfaces";
-import type { LayoutController } from "../controllers";
+import type { DecoratedGrid } from '../interfaces';
+import type { LayoutController } from '../controllers';
 export declare type GridContextValue = {
     grid: DecoratedGrid;
     layoutController: LayoutController;

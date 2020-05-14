@@ -1,8 +1,8 @@
 // eslint-disable-next-line
-import type ReactReconciler from "react-reconciler";
+import type ReactReconciler from 'react-reconciler';
 
 /** Flag type. */
-export type Flag = "0" | "1";
+export type Flag = '0' | '1';
 
 /** Use this file as the only source for fibers. */
 export type Fiber = ReactReconciler.Fiber;

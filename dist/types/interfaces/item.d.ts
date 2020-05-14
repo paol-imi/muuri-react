@@ -1,9 +1,9 @@
-import type { Key } from "react";
-import type { Item } from "../muuri";
-import type { Decorated } from "./decorators";
-import type { DecoratedGrid } from "./grid";
-import type { ChildrenController, EventController, FiberController } from "../controllers";
-import type key from "../utils/decorators/decorationKey";
+import type { Key } from 'react';
+import type { Item } from '../muuri';
+import type { Decorated } from './decorators';
+import type { DecoratedGrid } from './grid';
+import type { ChildrenController, EventController, FiberController } from '../controllers';
+import type key from '../utils/decorators/decorationKey';
 export interface ItemDecoration {
     /** The props of the component that represent the item. */
     props: object;

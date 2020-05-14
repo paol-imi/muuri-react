@@ -1,6 +1,6 @@
-import { useItemContext } from "../contexts";
-import { invariant } from "../invariant";
-import { useFunction } from "../utils/hooks";
+import {useItemContext} from '../contexts';
+import {invariant} from '../invariant';
+import {useFunction} from '../utils/hooks';
 
 // The method returned by the hook.
 export type SetDraggableMethod = (draggable: boolean) => void;
@@ -13,17 +13,17 @@ export type SetDraggableMethod = (draggable: boolean) => void;
  * @returns - The setter method.
  */
 export function useDraggable(): SetDraggableMethod {
-  const { itemRefController } = useItemContext();
+  const {itemRefController} = useItemContext();
 
   // Check if the hook is called inside an item.
   invariant(
     itemRefController !== undefined,
-    "The useData hook can be used only inside an Item"
+    'The useData hook can be used only inside an Item'
   );
 
   const setDraggable = useFunction<SetDraggableMethod>((draggable) => {
     // Set if the item can be dragged.
-    itemRefController.set("draggable", !!draggable);
+    itemRefController.set('draggable', !!draggable);
   });
 
   return setDraggable;

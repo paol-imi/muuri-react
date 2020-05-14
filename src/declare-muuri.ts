@@ -1,1 +1,1 @@
-declare module "muuri";
+declare module 'muuri';

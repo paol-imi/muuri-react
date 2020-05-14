@@ -1,4 +1,4 @@
-import type { DecoratedGrid } from "../../interfaces";
+import type { DecoratedGrid } from '../../interfaces';
 /**
  * Generate and returns a muuri instance with the given options.
  *

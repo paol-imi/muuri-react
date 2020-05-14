@@ -1,13 +1,13 @@
-import type { Key } from "react";
-import type { Item } from "../muuri"; // eslint-disable-line
-import type { Decorated } from "./decorators";
-import type { DecoratedGrid } from "./grid";
+import type {Key} from 'react';
+import type {Item} from '../muuri'; // eslint-disable-line
+import type {Decorated} from './decorators';
+import type {DecoratedGrid} from './grid';
 import type {
   ChildrenController,
   EventController,
-  FiberController
-} from "../controllers";
-import type key from "../utils/decorators/decorationKey";
+  FiberController,
+} from '../controllers';
+import type key from '../utils/decorators/decorationKey';
 
 // Item decoration.
 export interface ItemDecoration {

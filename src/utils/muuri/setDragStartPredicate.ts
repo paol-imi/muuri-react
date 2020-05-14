@@ -1,6 +1,6 @@
-import Muuri from "muuri";
-import { getDecoration, isDecorated } from "../decorators";
-import type { GridProps, DecoratedDragStartPredicate } from "../../interfaces";
+import Muuri from 'muuri';
+import {getDecoration, isDecorated} from '../decorators';
+import type {GridProps, DecoratedDragStartPredicate} from '../../interfaces';
 
 /**
  * Wrap the 'dragStartPredicate' option.
@@ -11,7 +11,7 @@ import type { GridProps, DecoratedDragStartPredicate } from "../../interfaces";
  * @param options - The grid options.
  */
 export function setDragStartPredicate(options: GridProps): void {
-  const { dragStartPredicate } = options;
+  const {dragStartPredicate} = options;
 
   // Default predicate.
   const defaultStartPredicate = getDefaultStartPredicate(dragStartPredicate);
@@ -33,9 +33,9 @@ export function setDragStartPredicate(options: GridProps): void {
  * @returns - The defaultStartPredicate method.
  */
 function getDefaultStartPredicate(
-  dragStartPredicate: GridProps["dragStartPredicate"]
+  dragStartPredicate: GridProps['dragStartPredicate']
 ): DecoratedDragStartPredicate {
-  return typeof dragStartPredicate === "function"
+  return typeof dragStartPredicate === 'function'
     ? dragStartPredicate
     : (item, event) => {
         return Muuri.ItemDrag.defaultStartPredicate(

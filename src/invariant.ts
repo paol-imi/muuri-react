@@ -1,12 +1,12 @@
-const isProduction = process.env.NODE_ENV === "production";
-const prefix = "Invariant failed";
+const isProduction = process.env.NODE_ENV === 'production';
+const prefix = 'Invariant failed';
 
 // Invarianto instance
 export class Invariant extends Error {
   constructor(message: string) {
     super(message);
 
-    this.name = "Invariant";
+    this.name = 'Invariant';
   }
 }
 
@@ -25,6 +25,6 @@ export function invariant(
   } else {
     // When not in production we allow the message to pass through
     // *This block will be removed in production builds*
-    throw new Invariant(`${prefix}: ${message || ""}`);
+    throw new Invariant(`${prefix}: ${message || ''}`);
   }
 }

@@ -1,8 +1,8 @@
 /// <reference types="react" />
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 /** Interfaces */
-import type { ItemComponentProps } from "../interfaces";
-export declare function ItemComponent({ children: child, itemClasses, itemAddController, itemRemoveController, propsToData, itemKey, grid }: ItemComponentProps): JSX.Element;
+import type { ItemComponentProps } from '../interfaces';
+export declare function ItemComponent({ children: child, itemClasses, itemAddController, itemRemoveController, propsToData, itemKey, grid, }: ItemComponentProps): JSX.Element;
 export declare namespace ItemComponent {
     var propTypes: {
         itemAddController: PropTypes.Validator<object>;

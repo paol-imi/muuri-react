@@ -1,4 +1,4 @@
-import type { DecoratedGrid, ReactGridProps } from "../../interfaces";
+import type { DecoratedGrid, ReactGridProps } from '../../interfaces';
 /**
  * Sort the items.
  *
@@ -6,4 +6,4 @@ import type { DecoratedGrid, ReactGridProps } from "../../interfaces";
  * @param predicate - The sort predicate.
  * @param sortOptions - The sort options.
  */
-export declare function sortItems(grid: DecoratedGrid, predicate: Exclude<ReactGridProps["sort"], undefined>, sortOptions: ReactGridProps["sortOptions"]): void;
+export declare function sortItems(grid: DecoratedGrid, predicate: Exclude<ReactGridProps['sort'], undefined>, sortOptions: ReactGridProps['sortOptions']): void;

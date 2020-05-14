@@ -1,5 +1,5 @@
 // Allowed position values.
-const positions = ["relative", "absolute", "fixed"];
+const positions = ['relative', 'absolute', 'fixed'];
 
 /**
  * Fill a grid element:
@@ -30,8 +30,8 @@ export function fillGridElement(
   // Ensure that the grid class can't be removed.
   const defaultSetAttribute = gridElement.setAttribute.bind(gridElement);
   gridElement.setAttribute = function setAttribute(attribute, value) {
-    if (attribute === "class") {
-      const classNames = (gridElement.getAttribute("class") || "").split(" ");
+    if (attribute === 'class') {
+      const classNames = (gridElement.getAttribute('class') || '').split(' ');
       // Add the grid class.
       if (!classNames.includes(gridClass)) value = `${value} ${gridClass}`;
     }

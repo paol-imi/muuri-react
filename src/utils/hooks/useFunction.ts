@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import {useRef} from 'react';
 
 /**
  * Replacement for useCallback use case with empty array,

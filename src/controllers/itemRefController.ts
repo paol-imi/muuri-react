@@ -1,10 +1,10 @@
-import { invariant } from "../invariant";
+import {invariant} from '../invariant';
 import {
   addDecoration,
   getDecoration,
-  removeDecorations
-} from "../utils/decorators";
-import type { DecoratedItem, ItemDecoration } from "../interfaces";
+  removeDecorations,
+} from '../utils/decorators';
+import type {DecoratedItem, ItemDecoration} from '../interfaces';
 
 /*
  * CONTROLLER: ITEM
@@ -27,7 +27,7 @@ export class ItemRefController {
    */
   set<T extends keyof ItemDecoration>(key: T, value: ItemDecoration[T]): void {
     if (this._item) {
-      addDecoration(this._item, { [key]: value });
+      addDecoration(this._item, {[key]: value});
     } else {
       this._instance[key] = value;
     }
@@ -71,7 +71,7 @@ export class ItemRefController {
    * @returns - The item.
    */
   getItem(): DecoratedItem {
-    invariant(this._item !== null, "The item has not been setted yet");
+    invariant(this._item !== null, 'The item has not been setted yet');
     return this._item;
   }
 

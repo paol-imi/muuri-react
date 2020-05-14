@@ -1,8 +1,8 @@
 import type {
   DecoratedGrid,
   DecoratedItem,
-  ReactGridProps
-} from "../../interfaces";
+  ReactGridProps,
+} from '../../interfaces';
 
 /**
  * Sort the items.
@@ -13,20 +13,20 @@ import type {
  */
 export function sortItems(
   grid: DecoratedGrid,
-  predicate: Exclude<ReactGridProps["sort"], undefined>,
-  sortOptions: ReactGridProps["sortOptions"]
+  predicate: Exclude<ReactGridProps['sort'], undefined>,
+  sortOptions: ReactGridProps['sortOptions']
 ): void {
   // Disable the layout.
   // @ts-ignore
-  sortOptions = { ...(sortOptions || {}), layout: false };
+  sortOptions = {...(sortOptions || {}), layout: false};
 
   // Handle a function.
-  if (typeof predicate === "function") {
+  if (typeof predicate === 'function') {
     handleFunction(grid, predicate, sortOptions);
   }
 
   // Handle a string.
-  if (typeof predicate === "string") {
+  if (typeof predicate === 'string') {
     handleString(grid, predicate, sortOptions);
   }
 
@@ -45,8 +45,8 @@ export function sortItems(
  */
 function handleFunction(
   grid: DecoratedGrid,
-  predicate: Extract<ReactGridProps["sort"], Function>,
-  sortOptions: ReactGridProps["sortOptions"]
+  predicate: Extract<ReactGridProps['sort'], Function>,
+  sortOptions: ReactGridProps['sortOptions']
 ): void {
   grid.sort(
     (itemA, itemB) => predicate(itemA.getData(), itemB.getData(), itemA, itemB),
@@ -63,8 +63,8 @@ function handleFunction(
  */
 function handleString(
   grid: DecoratedGrid,
-  predicate: Extract<ReactGridProps["sort"], string>,
-  sortOptions: ReactGridProps["sortOptions"]
+  predicate: Extract<ReactGridProps['sort'], string>,
+  sortOptions: ReactGridProps['sortOptions']
 ): void {
   grid.sort(predicate, sortOptions);
 }
@@ -79,8 +79,8 @@ function handleString(
  */
 function handleArray(
   grid: DecoratedGrid,
-  predicate: Extract<ReactGridProps["sort"], Array<any>>,
-  sortOptions: ReactGridProps["sortOptions"]
+  predicate: Extract<ReactGridProps['sort'], Array<any>>,
+  sortOptions: ReactGridProps['sortOptions']
 ): void {
   const items: DecoratedItem[] = grid.getItems();
   // Items that can be sorted.

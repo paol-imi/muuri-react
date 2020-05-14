@@ -1,4 +1,4 @@
-import type { DecoratedGrid, ReactGridProps } from "../../interfaces";
+import type { DecoratedGrid, ReactGridProps } from '../../interfaces';
 /**
  * Add the given items in the given positions.
  *
@@ -8,4 +8,4 @@ import type { DecoratedGrid, ReactGridProps } from "../../interfaces";
  * @param addOptions - The add options.
  * @param filter - The filter.
  */
-export declare function addItems(grid: DecoratedGrid, addedDOMItems: HTMLElement[], indicesToAdd: number[], addOptions: ReactGridProps["addOptions"], filter: ReactGridProps["filter"]): void;
+export declare function addItems(grid: DecoratedGrid, addedDOMItems: HTMLElement[], indicesToAdd: number[], addOptions: ReactGridProps['addOptions'], filter: ReactGridProps['filter']): void;

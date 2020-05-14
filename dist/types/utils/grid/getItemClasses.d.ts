@@ -1,4 +1,4 @@
-import type { DecoratedGrid } from "../../interfaces";
+import type { DecoratedGrid } from '../../interfaces';
 /**
  * Returns the items classes.
  *

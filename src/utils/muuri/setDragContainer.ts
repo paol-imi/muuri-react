@@ -1,4 +1,4 @@
-import type { GridProps } from "../../interfaces";
+import type {GridProps} from '../../interfaces';
 
 /**
  * Wrap the 'dragContainer' option.
@@ -7,12 +7,12 @@ import type { GridProps } from "../../interfaces";
  * @param options - The grid options.
  */
 export function setDragContainer(options: GridProps): void {
-  const { dragContainer } = options;
+  const {dragContainer} = options;
   // The drag container ref.
-  let ref = { current: null };
+  let ref = {current: null};
 
   // Define the property.
-  Object.defineProperty(options, "dragContainer", {
+  Object.defineProperty(options, 'dragContainer', {
     get() {
       return ref.current;
     },
@@ -22,7 +22,7 @@ export function setDragContainer(options: GridProps): void {
       } else {
         ref = value;
       }
-    }
+    },
   });
 
   // Set the drag container.

@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import {useRef} from 'react';
 
 /**
  * Accept a dependencyList and return if it has changed from

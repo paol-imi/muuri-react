@@ -1,6 +1,6 @@
-import { useItemContext, useGridContext } from "../contexts";
-import { invariant } from "../invariant";
-import { useFunction } from "../utils/hooks";
+import {useItemContext, useGridContext} from '../contexts';
+import {invariant} from '../invariant';
+import {useFunction} from '../utils/hooks';
 
 // The method returned by the hook.
 export type SetVisibilityMethod = (
@@ -20,21 +20,21 @@ export type UseVisibilityOptions = {
  * @returns - The setter method.
  */
 export function useVisibility(): SetVisibilityMethod {
-  const { layoutController } = useGridContext();
-  const { eventController, itemRefController } = useItemContext();
+  const {layoutController} = useGridContext();
+  const {eventController, itemRefController} = useItemContext();
 
   // Check if the hook is called inside an item.
   invariant(
     itemRefController !== undefined &&
       layoutController !== undefined &&
       eventController !== undefined,
-    "The useData hook can be used only inside an Item"
+    'The useData hook can be used only inside an Item'
   );
 
   // Set visibility.
   const setVisibility = useFunction<SetVisibilityMethod>((visible, options) => {
     if (!itemRefController.hasItem()) return;
-    if (!!visible === eventController.getPayload("show")) return;
+    if (!!visible === eventController.getPayload('show')) return;
 
     // Default options.
     options = options || useVisibility.defaultOptions;
@@ -51,4 +51,4 @@ export function useVisibility(): SetVisibilityMethod {
 }
 
 // Default options.
-useVisibility.defaultOptions = { instant: false };
+useVisibility.defaultOptions = {instant: false};

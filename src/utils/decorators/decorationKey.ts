@@ -1,1 +1,1 @@
-export default "_component" as const;
+export default '_component' as const;
