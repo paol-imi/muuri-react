@@ -25,7 +25,7 @@ export function useGrid(): GridData {
   // Check if the hook is called inside an item.
   invariant(
     eventController !== undefined && gridContext.grid !== undefined,
-    'The useData hook can be used only inside an Item'
+    'The useGrid hook can be used only inside an Item'
   );
 
   // The context is not updated when the hook is trigger
