@@ -1,5 +1,6 @@
 import babel from 'rollup-plugin-babel';
 import {terser} from 'rollup-plugin-terser';
+import copy from 'rollup-plugin-copy';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import replace from '@rollup/plugin-replace';
@@ -45,6 +46,9 @@ export default [
         include: 'node_modules/**',
       }),
       replace({'process.env.NODE_ENV': JSON.stringify('development')}),
+      copy({
+        targets: [{src: 'src/muuri.d.ts', dest: 'dist/types'}],
+      }),
     ],
   },
 
