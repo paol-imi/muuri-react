@@ -1085,7 +1085,7 @@ Triggered when the `filter` is applied.
 
 ```jsx
 <MuuriComponent
-  onDragEnd={function (shownItems, hiddenItems) {
+  onFilter={function (shownItems, hiddenItems) {
     console.log(shownItems);
     console.log(hiddenItems);
   }}
@@ -1107,7 +1107,7 @@ Triggered when the `sort` is applied.
 
 ```jsx
 <MuuriComponent
-  onDragEnd={function (currentOrder, previousOrder) {
+  onSort={function (currentOrder, previousOrder) {
     console.log(currentOrder);
     console.log(previousOrder);
   }}
