@@ -1,5 +1,5 @@
 /**
-* Muuri-react v3.1.5
+* Muuri-react v3.1.6
 * https://paol-imi.github.io/muuri-react
 * Copyright (c) 2020-present, Paol-imi
 * Released under the MIT license
@@ -10,11 +10,13 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('muuri'), require('react')) :
   typeof define === 'function' && define.amd ? define(['exports', 'muuri', 'react'], factory) :
-  (global = global || self, factory(global.MuuriReact = {}, global.Muuri, global.React));
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.MuuriReact = {}, global.Muuri, global.React));
 }(this, (function (exports, Muuri, React) { 'use strict';
 
-  Muuri = Muuri && Object.prototype.hasOwnProperty.call(Muuri, 'default') ? Muuri['default'] : Muuri;
-  var React__default = 'default' in React ? React['default'] : React;
+  function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+  var Muuri__default = /*#__PURE__*/_interopDefaultLegacy(Muuri);
+  var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
 
   function _defineProperty(obj, key, value) {
     if (key in obj) {
@@ -43,9 +45,9 @@
     return !!instance[key];
   }
 
-  function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+  function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
-  function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+  function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$2(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$2(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
   /**
    * Add a decoration to the instance.
@@ -57,7 +59,7 @@
     if (isDecorated(instance)) {
       Object.assign(instance[key], decoration);
     } else {
-      instance[key] = _objectSpread({}, decoration);
+      instance[key] = _objectSpread$2({}, decoration);
     }
   }
 
@@ -86,7 +88,7 @@
    * @returns - The id of the instance.
    */
 
-  Muuri.prototype.getId = function getId() {
+  Muuri__default['default'].prototype.getId = function getId() {
     return getDecoration(this).id;
   };
   /**
@@ -96,7 +98,7 @@
    */
 
 
-  Muuri.prototype.getGroupIds = function getGroupIds() {
+  Muuri__default['default'].prototype.getGroupIds = function getGroupIds() {
     return getDecoration(this).groupIds;
   };
   /**
@@ -106,7 +108,7 @@
    */
 
 
-  Muuri.prototype.getSizerElement = function getSizerElement() {
+  Muuri__default['default'].prototype.getSizerElement = function getSizerElement() {
     return getDecoration(this).sizerElement;
   };
   /**
@@ -116,7 +118,7 @@
    */
 
 
-  Muuri.Item.prototype.getKey = function getKey() {
+  Muuri__default['default'].Item.prototype.getKey = function getKey() {
     return getDecoration(this).key;
   };
   /**
@@ -126,7 +128,7 @@
    */
 
 
-  Muuri.Item.prototype.getProps = function getProps() {
+  Muuri__default['default'].Item.prototype.getProps = function getProps() {
     return getDecoration(this).props;
   };
   /**
@@ -136,7 +138,7 @@
    */
 
 
-  Muuri.Item.prototype.getData = function getData() {
+  Muuri__default['default'].Item.prototype.getData = function getData() {
     return getDecoration(this).data;
   };
   /**
@@ -146,7 +148,7 @@
    */
 
 
-  Muuri.Item.prototype.setData = function setData(data) {
+  Muuri__default['default'].Item.prototype.setData = function setData(data) {
     getDecoration(this).data = data;
   };
 
@@ -168,20 +170,24 @@
     return _extends.apply(this, arguments);
   }
 
-  function _typeof(obj) {
+  function _typeof$1(obj) {
     "@babel/helpers - typeof";
 
     if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-      _typeof = function _typeof(obj) {
+      _typeof$1 = function _typeof(obj) {
         return typeof obj;
       };
     } else {
-      _typeof = function _typeof(obj) {
+      _typeof$1 = function _typeof(obj) {
         return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
       };
     }
 
-    return _typeof(obj);
+    return _typeof$1(obj);
+  }
+
+  function unwrapExports (x) {
+  	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
   }
 
   function createCommonjsModule(fn, module) {
@@ -360,34 +366,34 @@
     })();
   }
   });
-  var reactIs_development_1 = reactIs_development.AsyncMode;
-  var reactIs_development_2 = reactIs_development.ConcurrentMode;
-  var reactIs_development_3 = reactIs_development.ContextConsumer;
-  var reactIs_development_4 = reactIs_development.ContextProvider;
-  var reactIs_development_5 = reactIs_development.Element;
-  var reactIs_development_6 = reactIs_development.ForwardRef;
-  var reactIs_development_7 = reactIs_development.Fragment;
-  var reactIs_development_8 = reactIs_development.Lazy;
-  var reactIs_development_9 = reactIs_development.Memo;
-  var reactIs_development_10 = reactIs_development.Portal;
-  var reactIs_development_11 = reactIs_development.Profiler;
-  var reactIs_development_12 = reactIs_development.StrictMode;
-  var reactIs_development_13 = reactIs_development.Suspense;
-  var reactIs_development_14 = reactIs_development.isAsyncMode;
-  var reactIs_development_15 = reactIs_development.isConcurrentMode;
-  var reactIs_development_16 = reactIs_development.isContextConsumer;
-  var reactIs_development_17 = reactIs_development.isContextProvider;
-  var reactIs_development_18 = reactIs_development.isElement;
-  var reactIs_development_19 = reactIs_development.isForwardRef;
-  var reactIs_development_20 = reactIs_development.isFragment;
-  var reactIs_development_21 = reactIs_development.isLazy;
-  var reactIs_development_22 = reactIs_development.isMemo;
-  var reactIs_development_23 = reactIs_development.isPortal;
-  var reactIs_development_24 = reactIs_development.isProfiler;
-  var reactIs_development_25 = reactIs_development.isStrictMode;
-  var reactIs_development_26 = reactIs_development.isSuspense;
-  var reactIs_development_27 = reactIs_development.isValidElementType;
-  var reactIs_development_28 = reactIs_development.typeOf;
+  reactIs_development.AsyncMode;
+  reactIs_development.ConcurrentMode;
+  reactIs_development.ContextConsumer;
+  reactIs_development.ContextProvider;
+  reactIs_development.Element;
+  reactIs_development.ForwardRef;
+  reactIs_development.Fragment;
+  reactIs_development.Lazy;
+  reactIs_development.Memo;
+  reactIs_development.Portal;
+  reactIs_development.Profiler;
+  reactIs_development.StrictMode;
+  reactIs_development.Suspense;
+  reactIs_development.isAsyncMode;
+  reactIs_development.isConcurrentMode;
+  reactIs_development.isContextConsumer;
+  reactIs_development.isContextProvider;
+  reactIs_development.isElement;
+  reactIs_development.isForwardRef;
+  reactIs_development.isFragment;
+  reactIs_development.isLazy;
+  reactIs_development.isMemo;
+  reactIs_development.isPortal;
+  reactIs_development.isProfiler;
+  reactIs_development.isStrictMode;
+  reactIs_development.isSuspense;
+  reactIs_development.isValidElementType;
+  reactIs_development.typeOf;
 
   var reactIs = createCommonjsModule(function (module) {
 
@@ -492,18 +498,18 @@
    * LICENSE file in the root directory of this source tree.
    */
 
-  var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
+  var ReactPropTypesSecret$1 = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 
-  var ReactPropTypesSecret_1 = ReactPropTypesSecret;
+  var ReactPropTypesSecret_1 = ReactPropTypesSecret$1;
 
-  var printWarning = function() {};
+  var printWarning$1 = function() {};
 
   {
-    var ReactPropTypesSecret$1 = ReactPropTypesSecret_1;
+    var ReactPropTypesSecret = ReactPropTypesSecret_1;
     var loggedTypeFailures = {};
-    var has = Function.call.bind(Object.prototype.hasOwnProperty);
+    var has$1 = Function.call.bind(Object.prototype.hasOwnProperty);
 
-    printWarning = function(text) {
+    printWarning$1 = function(text) {
       var message = 'Warning: ' + text;
       if (typeof console !== 'undefined') {
         console.error(message);
@@ -531,7 +537,7 @@
   function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
     {
       for (var typeSpecName in typeSpecs) {
-        if (has(typeSpecs, typeSpecName)) {
+        if (has$1(typeSpecs, typeSpecName)) {
           var error;
           // Prop type validation may throw. In case they do, we don't want to
           // fail the render phase where it didn't fail before. So we log it.
@@ -547,12 +553,12 @@
               err.name = 'Invariant Violation';
               throw err;
             }
-            error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret$1);
+            error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret);
           } catch (ex) {
             error = ex;
           }
           if (error && !(error instanceof Error)) {
-            printWarning(
+            printWarning$1(
               (componentName || 'React class') + ': type specification of ' +
               location + ' `' + typeSpecName + '` is invalid; the type checker ' +
               'function must return `null` or an `Error` but returned a ' + typeof error + '. ' +
@@ -568,7 +574,7 @@
 
             var stack = getStack ? getStack() : '';
 
-            printWarning(
+            printWarning$1(
               'Failed ' + location + ' type: ' + error.message + (stack != null ? stack : '')
             );
           }
@@ -590,11 +596,11 @@
 
   var checkPropTypes_1 = checkPropTypes;
 
-  var has$1 = Function.call.bind(Object.prototype.hasOwnProperty);
-  var printWarning$1 = function() {};
+  var has = Function.call.bind(Object.prototype.hasOwnProperty);
+  var printWarning = function() {};
 
   {
-    printWarning$1 = function(text) {
+    printWarning = function(text) {
       var message = 'Warning: ' + text;
       if (typeof console !== 'undefined') {
         console.error(message);
@@ -762,7 +768,7 @@
             );
             err.name = 'Invariant Violation';
             throw err;
-          } else if ( typeof console !== 'undefined') {
+          } else if (typeof console !== 'undefined') {
             // Old behavior for people using React.PropTypes
             var cacheKey = componentName + ':' + propName;
             if (
@@ -770,7 +776,7 @@
               // Avoid spamming the console because they are often not actionable except for lib authors
               manualPropTypeWarningCount < 3
             ) {
-              printWarning$1(
+              printWarning(
                 'You are manually calling a React.PropTypes validation ' +
                 'function for the `' + propFullName + '` prop on `' + componentName  + '`. This is deprecated ' +
                 'and will throw in the standalone `prop-types` package. ' +
@@ -883,12 +889,12 @@
       if (!Array.isArray(expectedValues)) {
         {
           if (arguments.length > 1) {
-            printWarning$1(
+            printWarning(
               'Invalid arguments supplied to oneOf, expected an array, got ' + arguments.length + ' arguments. ' +
               'A common mistake is to write oneOf(x, y, z) instead of oneOf([x, y, z]).'
             );
           } else {
-            printWarning$1('Invalid argument supplied to oneOf, expected an array.');
+            printWarning('Invalid argument supplied to oneOf, expected an array.');
           }
         }
         return emptyFunctionThatReturnsNull;
@@ -925,7 +931,7 @@
           return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an object.'));
         }
         for (var key in propValue) {
-          if (has$1(propValue, key)) {
+          if (has(propValue, key)) {
             var error = typeChecker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1);
             if (error instanceof Error) {
               return error;
@@ -939,14 +945,14 @@
 
     function createUnionTypeChecker(arrayOfTypeCheckers) {
       if (!Array.isArray(arrayOfTypeCheckers)) {
-         printWarning$1('Invalid argument supplied to oneOfType, expected an instance of array.') ;
+        printWarning('Invalid argument supplied to oneOfType, expected an instance of array.') ;
         return emptyFunctionThatReturnsNull;
       }
 
       for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
         var checker = arrayOfTypeCheckers[i];
         if (typeof checker !== 'function') {
-          printWarning$1(
+          printWarning(
             'Invalid argument supplied to oneOfType. Expected an array of check functions, but ' +
             'received ' + getPostfixForTypeWarning(checker) + ' at index ' + i + '.'
           );
@@ -1186,7 +1192,7 @@
   });
 
   // Grid context.
-  var GridContext = React.createContext({}); // Grid provider.
+  var GridContext = /*#__PURE__*/React.createContext({}); // Grid provider.
 
   var GridProvider = GridContext.Provider; // Grid context hook.
 
@@ -1197,7 +1203,7 @@
   GridContext.displayName = 'GridProvider';
 
   // Item context.
-  var ItemContext = React.createContext({}); // Item provider.
+  var ItemContext = /*#__PURE__*/React.createContext({}); // Item provider.
 
   var ItemProvider = ItemContext.Provider; // Item context hook.
 
@@ -1247,14 +1253,14 @@
 
     _createClass(EventController, [{
       key: "enableEvent",
-
+      value:
       /**
        * Enable an event, it can be emitted.
        *
        * @param event - The event name.
        * @param emitter - The callback.
        */
-      value: function enableEvent(event, emitter) {
+      function enableEvent(event, emitter) {
         this._eventsMap.set(event, emitter);
       }
       /**
@@ -1331,11 +1337,11 @@
 
     _createClass(ItemAddController, [{
       key: "useInit",
-
+      value:
       /**
        * Clear the requests.
        */
-      value: function useInit() {
+      function useInit() {
         this._requests = [];
       }
       /**
@@ -1401,6 +1407,33 @@
     if (superClass) _setPrototypeOf(subClass, superClass);
   }
 
+  var _typeof_1 = createCommonjsModule(function (module) {
+  function _typeof(obj) {
+    "@babel/helpers - typeof";
+
+    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+      module.exports = _typeof = function _typeof(obj) {
+        return typeof obj;
+      };
+
+      module.exports["default"] = module.exports, module.exports.__esModule = true;
+    } else {
+      module.exports = _typeof = function _typeof(obj) {
+        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+      };
+
+      module.exports["default"] = module.exports, module.exports.__esModule = true;
+    }
+
+    return _typeof(obj);
+  }
+
+  module.exports = _typeof;
+  module.exports["default"] = module.exports, module.exports.__esModule = true;
+  });
+
+  var _typeof = unwrapExports(_typeof_1);
+
   function _assertThisInitialized(self) {
     if (self === void 0) {
       throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
@@ -1412,6 +1445,8 @@
   function _possibleConstructorReturn(self, call) {
     if (call && (_typeof(call) === "object" || typeof call === "function")) {
       return call;
+    } else if (call !== void 0) {
+      throw new TypeError("Derived constructors may only return object or undefined");
     }
 
     return _assertThisInitialized(self);
@@ -1428,13 +1463,13 @@
     return Function.toString.call(fn).indexOf("[native code]") !== -1;
   }
 
-  function _isNativeReflectConstruct() {
+  function _isNativeReflectConstruct$1() {
     if (typeof Reflect === "undefined" || !Reflect.construct) return false;
     if (Reflect.construct.sham) return false;
     if (typeof Proxy === "function") return true;
 
     try {
-      Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
+      Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
       return true;
     } catch (e) {
       return false;
@@ -1442,7 +1477,7 @@
   }
 
   function _construct(Parent, args, Class) {
-    if (_isNativeReflectConstruct()) {
+    if (_isNativeReflectConstruct$1()) {
       _construct = Reflect.construct;
     } else {
       _construct = function _construct(Parent, args, Class) {
@@ -1492,9 +1527,9 @@
     return _wrapNativeSuper(Class);
   }
 
-  function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct$1()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+  function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
-  function _isNativeReflectConstruct$1() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+  function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
   var prefix = 'Invariant failed'; // Invarianto instance
 
   var Invariant = /*#__PURE__*/function (_Error) {
@@ -1545,14 +1580,14 @@
 
     _createClass(ItemRefController, [{
       key: "set",
-
+      value:
       /**
        * Set a decoration in the item.
        *
        * @param key - The decoration key.
        * @param value - The decoration.
        */
-      value: function set(key, value) {
+      function set(key, value) {
         if (this._item) {
           addDecoration(this._item, _defineProperty({}, key, value));
         } else {
@@ -1650,11 +1685,11 @@
 
     _createClass(ItemRemoveController, [{
       key: "useInit",
-
+      value:
       /**
        * Initialize.
        */
-      value: function useInit() {
+      function useInit() {
         this._itemsToRemove = [];
       }
       /**
@@ -1864,13 +1899,13 @@
 
     _createClass(FiberController, [{
       key: "useInit",
-
+      value:
       /**
        * Init the controller given the grid Element ref.
        *
        * @param gridElementRef - the ref of the grid element.
        */
-      value: function useInit(gridElementRef) {
+      function useInit(gridElementRef) {
         var _this = this;
 
         this.updateFlag(); // eslint-disable-next-line
@@ -2004,7 +2039,7 @@
 
   function getFiber(grid) {
     var key = Object.keys(grid).find(function (key) {
-      return key.startsWith('__reactInternalInstance$');
+      return key.startsWith('__reactInternalInstance$') || key.startsWith('__reactFiber$');
     });
     invariant(typeof key === 'string', 'Cannot find the __reactInternalInstance$'); // @ts-ignore
 
@@ -2221,13 +2256,13 @@
 
     _createClass(ChildrenController, [{
       key: "useInit",
-
+      value:
       /**
        * Init all the settings given the new children.
        *
        * @param newChildren - the new children.
        */
-      value: function useInit(newChildren) {
+      function useInit(newChildren) {
         // @ts-ignore
         // We need to ensure that the children are in an array.
         var newChildrenArray = React.Children.toArray(newChildren); // The indices to add.
@@ -2700,7 +2735,7 @@
       // Get the data.
       var data = propsToData(child.props); // Must be an object.
 
-      invariant(_typeof(data) === 'object', "The data returned by 'propsToData' must be an object, founded ".concat(_typeof(data))); // Set the data.
+      invariant(_typeof$1(data) === 'object', "The data returned by 'propsToData' must be an object, founded ".concat(_typeof$1(data))); // Set the data.
 
       store.itemRefController.set('data', data);
     } // On mount.
@@ -2742,7 +2777,7 @@
     }, []); // eslint-disable-line
     // Render.
 
-    return /*#__PURE__*/React__default.createElement(ItemProvider, {
+    return /*#__PURE__*/React__default['default'].createElement(ItemProvider, {
       value: store
     }, child);
   } // PropTypes.
@@ -2752,7 +2787,7 @@
     itemClasses: propTypes.arrayOf(propTypes.string.isRequired).isRequired,
     propsToData: propTypes.func,
     children: propTypes.element.isRequired,
-    grid: propTypes.instanceOf(Muuri).isRequired
+    grid: propTypes.instanceOf(Muuri__default['default']).isRequired
   }; // Display name.
 
   ItemComponent.displayName = 'ItemComponent';
@@ -2777,7 +2812,7 @@
     // hidden by default and the filter is not setted).
 
 
-    if (!filter && (addOptions === null || addOptions === void 0 ? void 0 : addOptions.show)) {
+    if (!filter && addOptions !== null && addOptions !== void 0 && addOptions.show) {
       grid.show(grid.getItems(indicesToAdd), {
         layout: false
       });
@@ -2865,7 +2900,7 @@
     });
   }
 
-  function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+  function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
   function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$1(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$1(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
@@ -2879,7 +2914,7 @@
   function sortItems(grid, predicate, sortOptions) {
     // Disable the layout.
     // @ts-ignore
-    sortOptions = _objectSpread$1({}, sortOptions || {}, {
+    sortOptions = _objectSpread$1(_objectSpread$1({}, sortOptions || {}), {}, {
       layout: false
     }); // Handle a function.
 
@@ -2993,6 +3028,8 @@
       return {
         // Grid and items data.
         gridRef:
+        /*#__PURE__*/
+
         /*      */
         React.createRef(),
         gridClass:
@@ -3132,7 +3169,7 @@
           // Payloads data.
           var sentPayload = getDecoration(item).sentPayload; // The payload must have been created in the send method.
 
-          invariant(sentPayload !== null && _typeof(sentPayload) === 'object'); // Controllers.
+          invariant(sentPayload !== null && _typeof$1(sentPayload) === 'object'); // Controllers.
 
           var fromChildrenController = sentPayload.fromChildrenController,
               fromFiberController = sentPayload.fromFiberController; // Remove the payload.
@@ -3479,12 +3516,12 @@
       };
     }); // render.
 
-    return /*#__PURE__*/React__default.createElement(GridProvider, {
+    return /*#__PURE__*/React__default['default'].createElement(GridProvider, {
       value: value
-    }, /*#__PURE__*/React__default.createElement("div", _extends({}, gridProps, {
+    }, /*#__PURE__*/React__default['default'].createElement("div", _extends({}, gridProps, {
       ref: store.gridRef
     }, store.fiberController.getFlagProp()), store.childrenController.render(function (child, key) {
-      return /*#__PURE__*/React__default.createElement(ItemComponent, {
+      return /*#__PURE__*/React__default['default'].createElement(ItemComponent, {
         key: key,
         itemKey: key,
         grid: grid,
@@ -3585,14 +3622,14 @@
 
     _createClass(MuuriMap, [{
       key: "get",
-
+      value:
       /**
        * Get the grid instance with the chosen id.
        *
        * @param id - The id.
        * @returns - The grid instance.
        */
-      value: function get(id) {
+      function get(id) {
         return this._idMap.get(id) || null;
       }
       /**
@@ -3730,7 +3767,7 @@
 
     document.body.appendChild(el); // Generate the instance.
 
-    var grid = new Muuri(el, options); // Remove the element.
+    var grid = new Muuri__default['default'](el, options); // Remove the element.
 
     document.body.removeChild(el);
     return grid;
@@ -3838,7 +3875,7 @@
   function setDragSort(options, globalMap) {
     var dragSort = options.dragSort; // Parse this options only if it is an object.
 
-    if (!dragSort || _typeof(dragSort) !== 'object') return; // Check the options.
+    if (!dragSort || _typeof$1(dragSort) !== 'object') return; // Check the options.
 
     invariant(typeof dragSort.groupId === 'string', 'You must provide a string as groupId'); // The group, its reference doesn't change.
 
@@ -3877,15 +3914,17 @@
 
   function getDefaultStartPredicate(dragStartPredicate) {
     return typeof dragStartPredicate === 'function' ? dragStartPredicate : function (item, event) {
-      return Muuri.ItemDrag.defaultStartPredicate(item, event, dragStartPredicate);
+      return Muuri__default['default'].ItemDrag.defaultStartPredicate(item, event, dragStartPredicate);
     };
   }
 
-  function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+  var _excluded = ["children", "id", "groupIds", "gridProps", "filter", "sort", "sortOptions", "addOptions", "propsToData", "onSend", "onDragStart", "onDragEnd", "onFilter", "onSort", "onMount", "onUnmount", "forceSync", "dragFixed", "dragEnabled", "instantLayout"];
 
-  function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$2(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$2(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+  function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
-  var MuuriComponent = React.forwardRef(function MuuriComponent(_ref, muuriRef) {
+  function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+  var MuuriComponent = /*#__PURE__*/React.forwardRef(function MuuriComponent(_ref, muuriRef) {
     var children = _ref.children,
         id = _ref.id,
         groupIds = _ref.groupIds,
@@ -3906,7 +3945,7 @@
         dragFixed = _ref.dragFixed,
         dragEnabled = _ref.dragEnabled,
         instantLayout = _ref.instantLayout,
-        options = _objectWithoutProperties(_ref, ["children", "id", "groupIds", "gridProps", "filter", "sort", "sortOptions", "addOptions", "propsToData", "onSend", "onDragStart", "onDragEnd", "onFilter", "onSort", "onMount", "onUnmount", "forceSync", "dragFixed", "dragEnabled", "instantLayout"]);
+        options = _objectWithoutProperties(_ref, _excluded);
 
     // Generate the Muuri instance.
     var grid = useMemoized(function () {
@@ -3980,7 +4019,7 @@
       };
     }, groupIds || []); // Render.
 
-    return /*#__PURE__*/React__default.createElement(GridComponent, {
+    return /*#__PURE__*/React__default['default'].createElement(GridComponent, {
       grid: grid,
       gridProps: gridProps,
       filter: filter,
@@ -4081,7 +4120,7 @@
     itemPlaceholderClass: propTypes.string
   }; // Default props.
 
-  MuuriComponent.defaultProps = _objectSpread$2({}, Muuri.defaultOptions, {
+  MuuriComponent.defaultProps = _objectSpread(_objectSpread({}, Muuri__default['default'].defaultOptions), {}, {
     dragEnabled: null
   }); // Display name.
 
@@ -4105,7 +4144,7 @@
 
     var setData = useFunction(function (data, options) {
       // Check if the data is an object.
-      invariant(_typeof(data) === 'object', "The data must be an object, founded: ".concat(_typeof(data))); // Default options.
+      invariant(_typeof$1(data) === 'object', "The data must be an object, founded: ".concat(_typeof$1(data))); // Default options.
 
       options = options || useData.defaultOptions; // Set the data.
 
@@ -4119,7 +4158,7 @@
       }
     }); // Set the inital data.
 
-    if (_typeof(initialData) === 'object') {
+    if (_typeof$1(initialData) === 'object') {
       setData(initialData, options);
     }
 
@@ -4307,7 +4346,7 @@
    */
   function getResponsiveStyle(options) {
     // Check options.
-    invariant(_typeof(options) === 'object', 'You must define options'); // Check columns.
+    invariant(_typeof$1(options) === 'object', 'You must define options'); // Check columns.
 
     invariant(typeof options.columns === 'number' && options.columns > 0 && options.columns <= 1, 'options.columns must be a number between 0 (excluded) and 1 (included)'); // Check height and ratio.
 
@@ -4457,14 +4496,17 @@
   }
 
   function _iterableToArrayLimit(arr, i) {
-    if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
+    var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
+
+    if (_i == null) return;
     var _arr = [];
     var _n = true;
     var _d = false;
-    var _e = undefined;
+
+    var _s, _e;
 
     try {
-      for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) {
         _arr.push(_s.value);
 
         if (i && _arr.length === i) break;
@@ -4498,7 +4540,7 @@
     if (typeof o === "string") return _arrayLikeToArray(o, minLen);
     var n = Object.prototype.toString.call(o).slice(8, -1);
     if (n === "Object" && o.constructor) n = o.constructor.name;
-    if (n === "Map" || n === "Set") return Array.from(n);
+    if (n === "Map" || n === "Set") return Array.from(o);
     if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
   }
 
@@ -4515,7 +4557,7 @@
   }
 
   function _iterableToArray(iter) {
-    if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
+    if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
   }
 
   function _nonIterableSpread() {
@@ -4601,12 +4643,12 @@
 
     return function WrappedItem(props) {
       // The hooks will run in the 'getMerged' method.
-      return /*#__PURE__*/React__default.createElement(Component, _extends({}, props, getMerged(hooksHandlers)));
+      return /*#__PURE__*/React__default['default'].createElement(Component, _extends({}, props, getMerged(hooksHandlers)));
     };
   }
 
-  var AutoScroller = Muuri.AutoScroller;
-  var ItemDrag = Muuri.ItemDrag; // Muuri-react exports.
+  var AutoScroller = Muuri__default['default'].AutoScroller;
+  var ItemDrag = Muuri__default['default'].ItemDrag; // Muuri-react exports.
 
   exports.AutoScroller = AutoScroller;
   exports.ChildrenController = ChildrenController;

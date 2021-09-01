@@ -18,7 +18,7 @@ export interface ResponsiveStyleOptions {
 export declare function getResponsiveStyle(options: ResponsiveStyleOptions): {
     width: string;
     paddingTop: string;
-    height: any;
+    height: string;
     borderWidth: string;
     margin: string;
 };
