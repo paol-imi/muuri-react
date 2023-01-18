@@ -1,5 +1,5 @@
 /**
-* Muuri-react v3.1.5
+* Muuri-react v3.1.6
 * https://paol-imi.github.io/muuri-react
 * Copyright (c) 2020-present, Paol-imi
 * Released under the MIT license
@@ -35,9 +35,9 @@ function isDecorated(instance) {
   return !!instance[key];
 }
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$2(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$2(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 /**
  * Add a decoration to the instance.
@@ -49,7 +49,7 @@ function addDecoration(instance, decoration) {
   if (isDecorated(instance)) {
     Object.assign(instance[key], decoration);
   } else {
-    instance[key] = _objectSpread({}, decoration);
+    instance[key] = _objectSpread$2({}, decoration);
   }
 }
 
@@ -143,7 +143,7 @@ Muuri.Item.prototype.setData = function setData(data) {
 };
 
 // Grid context.
-var GridContext = createContext({}); // Grid provider.
+var GridContext = /*#__PURE__*/createContext({}); // Grid provider.
 
 var GridProvider = GridContext.Provider; // Grid context hook.
 
@@ -154,7 +154,7 @@ var useGridContext = function useGridContext() {
 GridContext.displayName = 'GridProvider';
 
 // Item context.
-var ItemContext = createContext({}); // Item provider.
+var ItemContext = /*#__PURE__*/createContext({}); // Item provider.
 
 var ItemProvider = ItemContext.Provider; // Item context hook.
 
@@ -182,14 +182,14 @@ var EventController = /*#__PURE__*/function () {
 
   _createClass(EventController, [{
     key: "enableEvent",
-
+    value:
     /**
      * Enable an event, it can be emitted.
      *
      * @param event - The event name.
      * @param emitter - The callback.
      */
-    value: function enableEvent(event, emitter) {
+    function enableEvent(event, emitter) {
       this._eventsMap.set(event, emitter);
     }
     /**
@@ -266,11 +266,11 @@ var ItemAddController = /*#__PURE__*/function () {
 
   _createClass(ItemAddController, [{
     key: "useInit",
-
+    value:
     /**
      * Clear the requests.
      */
-    value: function useInit() {
+    function useInit() {
       this._requests = [];
     }
     /**
@@ -312,9 +312,9 @@ var ItemAddController = /*#__PURE__*/function () {
   return ItemAddController;
 }();
 
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 var isProduction = process.env.NODE_ENV === 'production';
 var prefix = 'Invariant failed'; // Invarianto instance
@@ -370,14 +370,14 @@ var ItemRefController = /*#__PURE__*/function () {
 
   _createClass(ItemRefController, [{
     key: "set",
-
+    value:
     /**
      * Set a decoration in the item.
      *
      * @param key - The decoration key.
      * @param value - The decoration.
      */
-    value: function set(key, value) {
+    function set(key, value) {
       if (this._item) {
         addDecoration(this._item, _defineProperty({}, key, value));
       } else {
@@ -475,11 +475,11 @@ var ItemRemoveController = /*#__PURE__*/function () {
 
   _createClass(ItemRemoveController, [{
     key: "useInit",
-
+    value:
     /**
      * Initialize.
      */
-    value: function useInit() {
+    function useInit() {
       this._itemsToRemove = [];
     }
     /**
@@ -689,13 +689,13 @@ var FiberController = /*#__PURE__*/function () {
 
   _createClass(FiberController, [{
     key: "useInit",
-
+    value:
     /**
      * Init the controller given the grid Element ref.
      *
      * @param gridElementRef - the ref of the grid element.
      */
-    value: function useInit(gridElementRef) {
+    function useInit(gridElementRef) {
       var _this = this;
 
       this.updateFlag(); // eslint-disable-next-line
@@ -829,7 +829,7 @@ var FlagProp = 'muuri-react-flag';
 
 function getFiber(grid) {
   var key = Object.keys(grid).find(function (key) {
-    return key.startsWith('__reactInternalInstance$');
+    return key.startsWith('__reactInternalInstance$') || key.startsWith('__reactFiber$');
   });
   invariant(typeof key === 'string', 'Cannot find the __reactInternalInstance$'); // @ts-ignore
 
@@ -1046,13 +1046,13 @@ var ChildrenController = /*#__PURE__*/function () {
 
   _createClass(ChildrenController, [{
     key: "useInit",
-
+    value:
     /**
      * Init all the settings given the new children.
      *
      * @param newChildren - the new children.
      */
-    value: function useInit(newChildren) {
+    function useInit(newChildren) {
       // @ts-ignore
       // We need to ensure that the children are in an array.
       var newChildrenArray = Children.toArray(newChildren); // The indices to add.
@@ -1602,7 +1602,7 @@ function addItems(grid, addedDOMItems, indicesToAdd, addOptions, filter) {
   // hidden by default and the filter is not setted).
 
 
-  if (!filter && (addOptions === null || addOptions === void 0 ? void 0 : addOptions.show)) {
+  if (!filter && addOptions !== null && addOptions !== void 0 && addOptions.show) {
     grid.show(grid.getItems(indicesToAdd), {
       layout: false
     });
@@ -1690,7 +1690,7 @@ function showItems(grid, items) {
   });
 }
 
-function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$1(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$1(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
@@ -1704,7 +1704,7 @@ function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { 
 function sortItems(grid, predicate, sortOptions) {
   // Disable the layout.
   // @ts-ignore
-  sortOptions = _objectSpread$1({}, sortOptions || {}, {
+  sortOptions = _objectSpread$1(_objectSpread$1({}, sortOptions || {}), {}, {
     layout: false
   }); // Handle a function.
 
@@ -1818,6 +1818,8 @@ function GridComponent(_ref) {
     return {
       // Grid and items data.
       gridRef:
+      /*#__PURE__*/
+
       /*      */
       createRef(),
       gridClass:
@@ -2376,14 +2378,14 @@ var MuuriMap = /*#__PURE__*/function () {
 
   _createClass(MuuriMap, [{
     key: "get",
-
+    value:
     /**
      * Get the grid instance with the chosen id.
      *
      * @param id - The id.
      * @returns - The grid instance.
      */
-    value: function get(id) {
+    function get(id) {
       return this._idMap.get(id) || null;
     }
     /**
@@ -2672,11 +2674,13 @@ function getDefaultStartPredicate(dragStartPredicate) {
   };
 }
 
-function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+var _excluded = ["children", "id", "groupIds", "gridProps", "filter", "sort", "sortOptions", "addOptions", "propsToData", "onSend", "onDragStart", "onDragEnd", "onFilter", "onSort", "onMount", "onUnmount", "forceSync", "dragFixed", "dragEnabled", "instantLayout"];
 
-function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$2(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$2(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
-var MuuriComponent = forwardRef(function MuuriComponent(_ref, muuriRef) {
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+var MuuriComponent = /*#__PURE__*/forwardRef(function MuuriComponent(_ref, muuriRef) {
   var children = _ref.children,
       id = _ref.id,
       groupIds = _ref.groupIds,
@@ -2697,7 +2701,7 @@ var MuuriComponent = forwardRef(function MuuriComponent(_ref, muuriRef) {
       dragFixed = _ref.dragFixed,
       dragEnabled = _ref.dragEnabled,
       instantLayout = _ref.instantLayout,
-      options = _objectWithoutProperties(_ref, ["children", "id", "groupIds", "gridProps", "filter", "sort", "sortOptions", "addOptions", "propsToData", "onSend", "onDragStart", "onDragEnd", "onFilter", "onSort", "onMount", "onUnmount", "forceSync", "dragFixed", "dragEnabled", "instantLayout"]);
+      options = _objectWithoutProperties(_ref, _excluded);
 
   // Generate the Muuri instance.
   var grid = useMemoized(function () {
@@ -2872,7 +2876,7 @@ MuuriComponent.propTypes = {
   itemPlaceholderClass: PropTypes.string
 }; // Default props.
 
-MuuriComponent.defaultProps = _objectSpread$2({}, Muuri.defaultOptions, {
+MuuriComponent.defaultProps = _objectSpread(_objectSpread({}, Muuri.defaultOptions), {}, {
   dragEnabled: null
 }); // Display name.
 

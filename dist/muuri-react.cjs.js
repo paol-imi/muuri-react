@@ -1,5 +1,5 @@
 /**
-* Muuri-react v3.1.5
+* Muuri-react v3.1.6
 * https://paol-imi.github.io/muuri-react
 * Copyright (c) 2020-present, Paol-imi
 * Released under the MIT license
@@ -11,24 +11,39 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var Muuri = _interopDefault(require('muuri'));
-var _defineProperty = _interopDefault(require('@babel/runtime/helpers/defineProperty'));
-var _extends = _interopDefault(require('@babel/runtime/helpers/extends'));
-var _typeof = _interopDefault(require('@babel/runtime/helpers/typeof'));
+var Muuri = require('muuri');
+var _defineProperty = require('@babel/runtime/helpers/defineProperty');
+var _extends = require('@babel/runtime/helpers/extends');
+var _typeof = require('@babel/runtime/helpers/typeof');
 var React = require('react');
-var React__default = _interopDefault(React);
-var PropTypes = _interopDefault(require('prop-types'));
-var _classCallCheck = _interopDefault(require('@babel/runtime/helpers/classCallCheck'));
-var _createClass = _interopDefault(require('@babel/runtime/helpers/createClass'));
-var _inherits = _interopDefault(require('@babel/runtime/helpers/inherits'));
-var _possibleConstructorReturn = _interopDefault(require('@babel/runtime/helpers/possibleConstructorReturn'));
-var _getPrototypeOf = _interopDefault(require('@babel/runtime/helpers/getPrototypeOf'));
-var _wrapNativeSuper = _interopDefault(require('@babel/runtime/helpers/wrapNativeSuper'));
-var _objectWithoutProperties = _interopDefault(require('@babel/runtime/helpers/objectWithoutProperties'));
-var _slicedToArray = _interopDefault(require('@babel/runtime/helpers/slicedToArray'));
-var _toConsumableArray = _interopDefault(require('@babel/runtime/helpers/toConsumableArray'));
+var PropTypes = require('prop-types');
+var _classCallCheck = require('@babel/runtime/helpers/classCallCheck');
+var _createClass = require('@babel/runtime/helpers/createClass');
+var _inherits = require('@babel/runtime/helpers/inherits');
+var _possibleConstructorReturn = require('@babel/runtime/helpers/possibleConstructorReturn');
+var _getPrototypeOf = require('@babel/runtime/helpers/getPrototypeOf');
+var _wrapNativeSuper = require('@babel/runtime/helpers/wrapNativeSuper');
+var _objectWithoutProperties = require('@babel/runtime/helpers/objectWithoutProperties');
+var _slicedToArray = require('@babel/runtime/helpers/slicedToArray');
+var _toConsumableArray = require('@babel/runtime/helpers/toConsumableArray');
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var Muuri__default = /*#__PURE__*/_interopDefaultLegacy(Muuri);
+var _defineProperty__default = /*#__PURE__*/_interopDefaultLegacy(_defineProperty);
+var _extends__default = /*#__PURE__*/_interopDefaultLegacy(_extends);
+var _typeof__default = /*#__PURE__*/_interopDefaultLegacy(_typeof);
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
+var PropTypes__default = /*#__PURE__*/_interopDefaultLegacy(PropTypes);
+var _classCallCheck__default = /*#__PURE__*/_interopDefaultLegacy(_classCallCheck);
+var _createClass__default = /*#__PURE__*/_interopDefaultLegacy(_createClass);
+var _inherits__default = /*#__PURE__*/_interopDefaultLegacy(_inherits);
+var _possibleConstructorReturn__default = /*#__PURE__*/_interopDefaultLegacy(_possibleConstructorReturn);
+var _getPrototypeOf__default = /*#__PURE__*/_interopDefaultLegacy(_getPrototypeOf);
+var _wrapNativeSuper__default = /*#__PURE__*/_interopDefaultLegacy(_wrapNativeSuper);
+var _objectWithoutProperties__default = /*#__PURE__*/_interopDefaultLegacy(_objectWithoutProperties);
+var _slicedToArray__default = /*#__PURE__*/_interopDefaultLegacy(_slicedToArray);
+var _toConsumableArray__default = /*#__PURE__*/_interopDefaultLegacy(_toConsumableArray);
 
 var key = '_component';
 
@@ -42,9 +57,9 @@ function isDecorated(instance) {
   return !!instance[key];
 }
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$2(Object(source), true).forEach(function (key) { _defineProperty__default['default'](target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$2(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 /**
  * Add a decoration to the instance.
@@ -56,7 +71,7 @@ function addDecoration(instance, decoration) {
   if (isDecorated(instance)) {
     Object.assign(instance[key], decoration);
   } else {
-    instance[key] = _objectSpread({}, decoration);
+    instance[key] = _objectSpread$2({}, decoration);
   }
 }
 
@@ -85,7 +100,7 @@ function removeDecorations(decorated) {
  * @returns - The id of the instance.
  */
 
-Muuri.prototype.getId = function getId() {
+Muuri__default['default'].prototype.getId = function getId() {
   return getDecoration(this).id;
 };
 /**
@@ -95,7 +110,7 @@ Muuri.prototype.getId = function getId() {
  */
 
 
-Muuri.prototype.getGroupIds = function getGroupIds() {
+Muuri__default['default'].prototype.getGroupIds = function getGroupIds() {
   return getDecoration(this).groupIds;
 };
 /**
@@ -105,7 +120,7 @@ Muuri.prototype.getGroupIds = function getGroupIds() {
  */
 
 
-Muuri.prototype.getSizerElement = function getSizerElement() {
+Muuri__default['default'].prototype.getSizerElement = function getSizerElement() {
   return getDecoration(this).sizerElement;
 };
 /**
@@ -115,7 +130,7 @@ Muuri.prototype.getSizerElement = function getSizerElement() {
  */
 
 
-Muuri.Item.prototype.getKey = function getKey() {
+Muuri__default['default'].Item.prototype.getKey = function getKey() {
   return getDecoration(this).key;
 };
 /**
@@ -125,7 +140,7 @@ Muuri.Item.prototype.getKey = function getKey() {
  */
 
 
-Muuri.Item.prototype.getProps = function getProps() {
+Muuri__default['default'].Item.prototype.getProps = function getProps() {
   return getDecoration(this).props;
 };
 /**
@@ -135,7 +150,7 @@ Muuri.Item.prototype.getProps = function getProps() {
  */
 
 
-Muuri.Item.prototype.getData = function getData() {
+Muuri__default['default'].Item.prototype.getData = function getData() {
   return getDecoration(this).data;
 };
 /**
@@ -145,12 +160,12 @@ Muuri.Item.prototype.getData = function getData() {
  */
 
 
-Muuri.Item.prototype.setData = function setData(data) {
+Muuri__default['default'].Item.prototype.setData = function setData(data) {
   getDecoration(this).data = data;
 };
 
 // Grid context.
-var GridContext = React.createContext({}); // Grid provider.
+var GridContext = /*#__PURE__*/React.createContext({}); // Grid provider.
 
 var GridProvider = GridContext.Provider; // Grid context hook.
 
@@ -161,7 +176,7 @@ var useGridContext = function useGridContext() {
 GridContext.displayName = 'GridProvider';
 
 // Item context.
-var ItemContext = React.createContext({}); // Item provider.
+var ItemContext = /*#__PURE__*/React.createContext({}); // Item provider.
 
 var ItemProvider = ItemContext.Provider; // Item context hook.
 
@@ -180,23 +195,23 @@ ItemContext.displayName = 'ItemProvider';
  */
 var EventController = /*#__PURE__*/function () {
   function EventController() {
-    _classCallCheck(this, EventController);
+    _classCallCheck__default['default'](this, EventController);
 
-    _defineProperty(this, "_eventsMap", new Map());
+    _defineProperty__default['default'](this, "_eventsMap", new Map());
 
-    _defineProperty(this, "_payloadsMap", new Map());
+    _defineProperty__default['default'](this, "_payloadsMap", new Map());
   }
 
-  _createClass(EventController, [{
+  _createClass__default['default'](EventController, [{
     key: "enableEvent",
-
+    value:
     /**
      * Enable an event, it can be emitted.
      *
      * @param event - The event name.
      * @param emitter - The callback.
      */
-    value: function enableEvent(event, emitter) {
+    function enableEvent(event, emitter) {
       this._eventsMap.set(event, emitter);
     }
     /**
@@ -266,18 +281,18 @@ var EventController = /*#__PURE__*/function () {
  */
 var ItemAddController = /*#__PURE__*/function () {
   function ItemAddController() {
-    _classCallCheck(this, ItemAddController);
+    _classCallCheck__default['default'](this, ItemAddController);
 
-    _defineProperty(this, "_requests", []);
+    _defineProperty__default['default'](this, "_requests", []);
   }
 
-  _createClass(ItemAddController, [{
+  _createClass__default['default'](ItemAddController, [{
     key: "useInit",
-
+    value:
     /**
      * Clear the requests.
      */
-    value: function useInit() {
+    function useInit() {
       this._requests = [];
     }
     /**
@@ -319,22 +334,22 @@ var ItemAddController = /*#__PURE__*/function () {
   return ItemAddController;
 }();
 
-function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf__default['default'](Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf__default['default'](this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn__default['default'](this, result); }; }
 
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 var isProduction = process.env.NODE_ENV === 'production';
 var prefix = 'Invariant failed'; // Invarianto instance
 
 var Invariant = /*#__PURE__*/function (_Error) {
-  _inherits(Invariant, _Error);
+  _inherits__default['default'](Invariant, _Error);
 
   var _super = _createSuper(Invariant);
 
   function Invariant(message) {
     var _this;
 
-    _classCallCheck(this, Invariant);
+    _classCallCheck__default['default'](this, Invariant);
 
     _this = _super.call(this, message);
     _this.name = 'Invariant';
@@ -342,7 +357,7 @@ var Invariant = /*#__PURE__*/function (_Error) {
   }
 
   return Invariant;
-}( /*#__PURE__*/_wrapNativeSuper(Error)); // Throw an error if the condition fails
+}( /*#__PURE__*/_wrapNativeSuper__default['default'](Error)); // Throw an error if the condition fails
 
 function invariant(condition, message) {
   if (condition) {
@@ -368,25 +383,25 @@ function invariant(condition, message) {
  */
 var ItemRefController = /*#__PURE__*/function () {
   function ItemRefController() {
-    _classCallCheck(this, ItemRefController);
+    _classCallCheck__default['default'](this, ItemRefController);
 
-    _defineProperty(this, "_item", null);
+    _defineProperty__default['default'](this, "_item", null);
 
-    _defineProperty(this, "_instance", {});
+    _defineProperty__default['default'](this, "_instance", {});
   }
 
-  _createClass(ItemRefController, [{
+  _createClass__default['default'](ItemRefController, [{
     key: "set",
-
+    value:
     /**
      * Set a decoration in the item.
      *
      * @param key - The decoration key.
      * @param value - The decoration.
      */
-    value: function set(key, value) {
+    function set(key, value) {
       if (this._item) {
-        addDecoration(this._item, _defineProperty({}, key, value));
+        addDecoration(this._item, _defineProperty__default['default']({}, key, value));
       } else {
         this._instance[key] = value;
       }
@@ -475,18 +490,18 @@ var ItemRefController = /*#__PURE__*/function () {
  */
 var ItemRemoveController = /*#__PURE__*/function () {
   function ItemRemoveController() {
-    _classCallCheck(this, ItemRemoveController);
+    _classCallCheck__default['default'](this, ItemRemoveController);
 
-    _defineProperty(this, "_itemsToRemove", []);
+    _defineProperty__default['default'](this, "_itemsToRemove", []);
   }
 
-  _createClass(ItemRemoveController, [{
+  _createClass__default['default'](ItemRemoveController, [{
     key: "useInit",
-
+    value:
     /**
      * Initialize.
      */
-    value: function useInit() {
+    function useInit() {
       this._itemsToRemove = [];
     }
     /**
@@ -542,15 +557,15 @@ var LayoutController = /*#__PURE__*/function () {
 
   /** Constructor. */
   function LayoutController() {
-    _classCallCheck(this, LayoutController);
+    _classCallCheck__default['default'](this, LayoutController);
 
-    _defineProperty(this, "_itemsToRefresh", void 0);
+    _defineProperty__default['default'](this, "_itemsToRefresh", void 0);
 
-    _defineProperty(this, "_itemsToShow", void 0);
+    _defineProperty__default['default'](this, "_itemsToShow", void 0);
 
-    _defineProperty(this, "_itemsToHide", void 0);
+    _defineProperty__default['default'](this, "_itemsToHide", void 0);
 
-    _defineProperty(this, "_isRendering", void 0);
+    _defineProperty__default['default'](this, "_isRendering", void 0);
 
     this._itemsToRefresh = [];
     this._itemsToShow = [];
@@ -562,7 +577,7 @@ var LayoutController = /*#__PURE__*/function () {
    */
 
 
-  _createClass(LayoutController, [{
+  _createClass__default['default'](LayoutController, [{
     key: "useInit",
     value: function useInit() {
       var _this = this;
@@ -687,22 +702,22 @@ var LayoutController = /*#__PURE__*/function () {
  */
 var FiberController = /*#__PURE__*/function () {
   function FiberController() {
-    _classCallCheck(this, FiberController);
+    _classCallCheck__default['default'](this, FiberController);
 
-    _defineProperty(this, "_fiber", void 0);
+    _defineProperty__default['default'](this, "_fiber", void 0);
 
-    _defineProperty(this, "_flag", '0');
+    _defineProperty__default['default'](this, "_flag", '0');
   }
 
-  _createClass(FiberController, [{
+  _createClass__default['default'](FiberController, [{
     key: "useInit",
-
+    value:
     /**
      * Init the controller given the grid Element ref.
      *
      * @param gridElementRef - the ref of the grid element.
      */
-    value: function useInit(gridElementRef) {
+    function useInit(gridElementRef) {
       var _this = this;
 
       this.updateFlag(); // eslint-disable-next-line
@@ -797,7 +812,7 @@ var FiberController = /*#__PURE__*/function () {
   }, {
     key: "getFlagProp",
     value: function getFlagProp() {
-      return _defineProperty({}, FlagProp, this._flag);
+      return _defineProperty__default['default']({}, FlagProp, this._flag);
     }
     /**
      * Update the flag value.
@@ -836,7 +851,7 @@ var FlagProp = 'muuri-react-flag';
 
 function getFiber(grid) {
   var key = Object.keys(grid).find(function (key) {
-    return key.startsWith('__reactInternalInstance$');
+    return key.startsWith('__reactInternalInstance$') || key.startsWith('__reactFiber$');
   });
   invariant(typeof key === 'string', 'Cannot find the __reactInternalInstance$'); // @ts-ignore
 
@@ -1040,26 +1055,26 @@ function hasNot(itemComponentFiber, key) {
  */
 var ChildrenController = /*#__PURE__*/function () {
   function ChildrenController() {
-    _classCallCheck(this, ChildrenController);
+    _classCallCheck__default['default'](this, ChildrenController);
 
-    _defineProperty(this, "_oldChildrenArray", []);
+    _defineProperty__default['default'](this, "_oldChildrenArray", []);
 
-    _defineProperty(this, "_children", []);
+    _defineProperty__default['default'](this, "_children", []);
 
-    _defineProperty(this, "_indicesToAdd", []);
+    _defineProperty__default['default'](this, "_indicesToAdd", []);
 
-    _defineProperty(this, "_dragCounter", 0);
+    _defineProperty__default['default'](this, "_dragCounter", 0);
   }
 
-  _createClass(ChildrenController, [{
+  _createClass__default['default'](ChildrenController, [{
     key: "useInit",
-
+    value:
     /**
      * Init all the settings given the new children.
      *
      * @param newChildren - the new children.
      */
-    value: function useInit(newChildren) {
+    function useInit(newChildren) {
       // @ts-ignore
       // We need to ensure that the children are in an array.
       var newChildrenArray = React.Children.toArray(newChildren); // The indices to add.
@@ -1532,7 +1547,7 @@ function ItemComponent(_ref) {
     // Get the data.
     var data = propsToData(child.props); // Must be an object.
 
-    invariant(_typeof(data) === 'object', "The data returned by 'propsToData' must be an object, founded ".concat(_typeof(data))); // Set the data.
+    invariant(_typeof__default['default'](data) === 'object', "The data returned by 'propsToData' must be an object, founded ".concat(_typeof__default['default'](data))); // Set the data.
 
     store.itemRefController.set('data', data);
   } // On mount.
@@ -1574,17 +1589,17 @@ function ItemComponent(_ref) {
   }, []); // eslint-disable-line
   // Render.
 
-  return /*#__PURE__*/React__default.createElement(ItemProvider, {
+  return /*#__PURE__*/React__default['default'].createElement(ItemProvider, {
     value: store
   }, child);
 } // PropTypes.
 
 ItemComponent.propTypes = {
-  itemAddController: PropTypes.object.isRequired,
-  itemClasses: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  propsToData: PropTypes.func,
-  children: PropTypes.element.isRequired,
-  grid: PropTypes.instanceOf(Muuri).isRequired
+  itemAddController: PropTypes__default['default'].object.isRequired,
+  itemClasses: PropTypes__default['default'].arrayOf(PropTypes__default['default'].string.isRequired).isRequired,
+  propsToData: PropTypes__default['default'].func,
+  children: PropTypes__default['default'].element.isRequired,
+  grid: PropTypes__default['default'].instanceOf(Muuri__default['default']).isRequired
 }; // Display name.
 
 ItemComponent.displayName = 'ItemComponent';
@@ -1609,7 +1624,7 @@ function addItems(grid, addedDOMItems, indicesToAdd, addOptions, filter) {
   // hidden by default and the filter is not setted).
 
 
-  if (!filter && (addOptions === null || addOptions === void 0 ? void 0 : addOptions.show)) {
+  if (!filter && addOptions !== null && addOptions !== void 0 && addOptions.show) {
     grid.show(grid.getItems(indicesToAdd), {
       layout: false
     });
@@ -1697,9 +1712,9 @@ function showItems(grid, items) {
   });
 }
 
-function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$1(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$1(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$1(Object(source), true).forEach(function (key) { _defineProperty__default['default'](target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$1(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 /**
  * Sort the items.
@@ -1711,7 +1726,7 @@ function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { 
 function sortItems(grid, predicate, sortOptions) {
   // Disable the layout.
   // @ts-ignore
-  sortOptions = _objectSpread$1({}, sortOptions || {}, {
+  sortOptions = _objectSpread$1(_objectSpread$1({}, sortOptions || {}), {}, {
     layout: false
   }); // Handle a function.
 
@@ -1825,6 +1840,8 @@ function GridComponent(_ref) {
     return {
       // Grid and items data.
       gridRef:
+      /*#__PURE__*/
+
       /*      */
       React.createRef(),
       gridClass:
@@ -1964,7 +1981,7 @@ function GridComponent(_ref) {
         // Payloads data.
         var sentPayload = getDecoration(item).sentPayload; // The payload must have been created in the send method.
 
-        invariant(sentPayload !== null && _typeof(sentPayload) === 'object'); // Controllers.
+        invariant(sentPayload !== null && _typeof__default['default'](sentPayload) === 'object'); // Controllers.
 
         var fromChildrenController = sentPayload.fromChildrenController,
             fromFiberController = sentPayload.fromFiberController; // Remove the payload.
@@ -2311,12 +2328,12 @@ function GridComponent(_ref) {
     };
   }); // render.
 
-  return /*#__PURE__*/React__default.createElement(GridProvider, {
+  return /*#__PURE__*/React__default['default'].createElement(GridProvider, {
     value: value
-  }, /*#__PURE__*/React__default.createElement("div", _extends({}, gridProps, {
+  }, /*#__PURE__*/React__default['default'].createElement("div", _extends__default['default']({}, gridProps, {
     ref: store.gridRef
   }, store.fiberController.getFlagProp()), store.childrenController.render(function (child, key) {
-    return /*#__PURE__*/React__default.createElement(ItemComponent, {
+    return /*#__PURE__*/React__default['default'].createElement(ItemComponent, {
       key: key,
       itemKey: key,
       grid: grid,
@@ -2329,27 +2346,27 @@ function GridComponent(_ref) {
 } // Proptypes.
 
 GridComponent.propTypes = {
-  grid: PropTypes.object.isRequired,
-  gridProps: PropTypes.object,
-  filter: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-  sort: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.arrayOf(PropTypes.string)]),
-  sortOptions: PropTypes.exact({
-    descending: PropTypes.bool
+  grid: PropTypes__default['default'].object.isRequired,
+  gridProps: PropTypes__default['default'].object,
+  filter: PropTypes__default['default'].oneOfType([PropTypes__default['default'].string, PropTypes__default['default'].func]),
+  sort: PropTypes__default['default'].oneOfType([PropTypes__default['default'].string, PropTypes__default['default'].func, PropTypes__default['default'].arrayOf(PropTypes__default['default'].string)]),
+  sortOptions: PropTypes__default['default'].exact({
+    descending: PropTypes__default['default'].bool
   }),
-  addOptions: PropTypes.exact({
-    show: PropTypes.bool
+  addOptions: PropTypes__default['default'].exact({
+    show: PropTypes__default['default'].bool
   }),
-  onSend: PropTypes.func,
-  onDragStart: PropTypes.func,
-  onDragEnd: PropTypes.func,
-  onFilter: PropTypes.func,
-  onSort: PropTypes.func,
-  onMount: PropTypes.func,
-  onUnmount: PropTypes.func,
-  forceSync: PropTypes.bool,
-  dragFixed: PropTypes.bool,
-  dragEnabled: PropTypes.bool,
-  instantLayout: PropTypes.bool
+  onSend: PropTypes__default['default'].func,
+  onDragStart: PropTypes__default['default'].func,
+  onDragEnd: PropTypes__default['default'].func,
+  onFilter: PropTypes__default['default'].func,
+  onSort: PropTypes__default['default'].func,
+  onMount: PropTypes__default['default'].func,
+  onUnmount: PropTypes__default['default'].func,
+  forceSync: PropTypes__default['default'].bool,
+  dragFixed: PropTypes__default['default'].bool,
+  dragEnabled: PropTypes__default['default'].bool,
+  instantLayout: PropTypes__default['default'].bool
 }; // Default props.
 
 GridComponent.defaultProps = {
@@ -2374,23 +2391,23 @@ GridComponent.displayName = 'GridComponent';
  */
 var MuuriMap = /*#__PURE__*/function () {
   function MuuriMap() {
-    _classCallCheck(this, MuuriMap);
+    _classCallCheck__default['default'](this, MuuriMap);
 
-    _defineProperty(this, "_idMap", new Map());
+    _defineProperty__default['default'](this, "_idMap", new Map());
 
-    _defineProperty(this, "_groupMap", new Map());
+    _defineProperty__default['default'](this, "_groupMap", new Map());
   }
 
-  _createClass(MuuriMap, [{
+  _createClass__default['default'](MuuriMap, [{
     key: "get",
-
+    value:
     /**
      * Get the grid instance with the chosen id.
      *
      * @param id - The id.
      * @returns - The grid instance.
      */
-    value: function get(id) {
+    function get(id) {
       return this._idMap.get(id) || null;
     }
     /**
@@ -2528,7 +2545,7 @@ function getInstance(options) {
 
   document.body.appendChild(el); // Generate the instance.
 
-  var grid = new Muuri(el, options); // Remove the element.
+  var grid = new Muuri__default['default'](el, options); // Remove the element.
 
   document.body.removeChild(el);
   return grid;
@@ -2636,7 +2653,7 @@ function setDragContainer(options) {
 function setDragSort(options, globalMap) {
   var dragSort = options.dragSort; // Parse this options only if it is an object.
 
-  if (!dragSort || _typeof(dragSort) !== 'object') return; // Check the options.
+  if (!dragSort || _typeof__default['default'](dragSort) !== 'object') return; // Check the options.
 
   invariant(typeof dragSort.groupId === 'string', 'You must provide a string as groupId'); // The group, its reference doesn't change.
 
@@ -2675,15 +2692,17 @@ function setDragStartPredicate(options) {
 
 function getDefaultStartPredicate(dragStartPredicate) {
   return typeof dragStartPredicate === 'function' ? dragStartPredicate : function (item, event) {
-    return Muuri.ItemDrag.defaultStartPredicate(item, event, dragStartPredicate);
+    return Muuri__default['default'].ItemDrag.defaultStartPredicate(item, event, dragStartPredicate);
   };
 }
 
-function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+var _excluded = ["children", "id", "groupIds", "gridProps", "filter", "sort", "sortOptions", "addOptions", "propsToData", "onSend", "onDragStart", "onDragEnd", "onFilter", "onSort", "onMount", "onUnmount", "forceSync", "dragFixed", "dragEnabled", "instantLayout"];
 
-function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$2(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$2(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
-var MuuriComponent = React.forwardRef(function MuuriComponent(_ref, muuriRef) {
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty__default['default'](target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+var MuuriComponent = /*#__PURE__*/React.forwardRef(function MuuriComponent(_ref, muuriRef) {
   var children = _ref.children,
       id = _ref.id,
       groupIds = _ref.groupIds,
@@ -2704,7 +2723,7 @@ var MuuriComponent = React.forwardRef(function MuuriComponent(_ref, muuriRef) {
       dragFixed = _ref.dragFixed,
       dragEnabled = _ref.dragEnabled,
       instantLayout = _ref.instantLayout,
-      options = _objectWithoutProperties(_ref, ["children", "id", "groupIds", "gridProps", "filter", "sort", "sortOptions", "addOptions", "propsToData", "onSend", "onDragStart", "onDragEnd", "onFilter", "onSort", "onMount", "onUnmount", "forceSync", "dragFixed", "dragEnabled", "instantLayout"]);
+      options = _objectWithoutProperties__default['default'](_ref, _excluded);
 
   // Generate the Muuri instance.
   var grid = useMemoized(function () {
@@ -2778,7 +2797,7 @@ var MuuriComponent = React.forwardRef(function MuuriComponent(_ref, muuriRef) {
     };
   }, groupIds || []); // Render.
 
-  return /*#__PURE__*/React__default.createElement(GridComponent, {
+  return /*#__PURE__*/React__default['default'].createElement(GridComponent, {
     grid: grid,
     gridProps: gridProps,
     filter: filter,
@@ -2801,85 +2820,85 @@ var MuuriComponent = React.forwardRef(function MuuriComponent(_ref, muuriRef) {
 }); // Proptypes.
 
 MuuriComponent.propTypes = {
-  id: PropTypes.string,
-  groupIds: PropTypes.arrayOf(PropTypes.string.isRequired),
-  showDuration: PropTypes.number,
-  showEasing: PropTypes.string,
-  hideDuration: PropTypes.number,
-  hideEasing: PropTypes.string,
-  visibleStyles: PropTypes.shape({}),
-  hiddenStyles: PropTypes.shape({}),
+  id: PropTypes__default['default'].string,
+  groupIds: PropTypes__default['default'].arrayOf(PropTypes__default['default'].string.isRequired),
+  showDuration: PropTypes__default['default'].number,
+  showEasing: PropTypes__default['default'].string,
+  hideDuration: PropTypes__default['default'].number,
+  hideEasing: PropTypes__default['default'].string,
+  visibleStyles: PropTypes__default['default'].shape({}),
+  hiddenStyles: PropTypes__default['default'].shape({}),
   // @ts-ignore
-  layout: PropTypes.oneOfType([PropTypes.func, PropTypes.exact({
-    fillGaps: PropTypes.bool,
-    horizontal: PropTypes.bool,
-    alignRight: PropTypes.bool,
-    alignBottom: PropTypes.bool,
-    rounding: PropTypes.bool
+  layout: PropTypes__default['default'].oneOfType([PropTypes__default['default'].func, PropTypes__default['default'].exact({
+    fillGaps: PropTypes__default['default'].bool,
+    horizontal: PropTypes__default['default'].bool,
+    alignRight: PropTypes__default['default'].bool,
+    alignBottom: PropTypes__default['default'].bool,
+    rounding: PropTypes__default['default'].bool
   })]),
-  layoutOnResize: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
-  layoutDuration: PropTypes.number,
-  layoutEasing: PropTypes.string,
-  dragContainer: PropTypes.oneOfType([PropTypes.instanceOf(HTMLElement), PropTypes.shape({
-    current: PropTypes.instanceOf(HTMLElement).isRequired
-  })]),
-  // @ts-ignore
-  dragStartPredicate: PropTypes.oneOfType([PropTypes.func, PropTypes.exact({
-    distance: PropTypes.number,
-    delay: PropTypes.number,
-    handle: PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
-  })]),
-  dragAxis: PropTypes.oneOf(['x', 'y', 'xy']),
-  dragSort: PropTypes.oneOfType([PropTypes.bool, PropTypes.func, PropTypes.exact({
-    groupId: PropTypes.string.isRequired
+  layoutOnResize: PropTypes__default['default'].oneOfType([PropTypes__default['default'].bool, PropTypes__default['default'].number]),
+  layoutDuration: PropTypes__default['default'].number,
+  layoutEasing: PropTypes__default['default'].string,
+  dragContainer: PropTypes__default['default'].oneOfType([PropTypes__default['default'].instanceOf(HTMLElement), PropTypes__default['default'].shape({
+    current: PropTypes__default['default'].instanceOf(HTMLElement).isRequired
   })]),
   // @ts-ignore
-  dragSortHeuristics: PropTypes.exact({
-    sortInterval: PropTypes.number,
-    minDragDistance: PropTypes.number,
-    minBounceBackAngle: PropTypes.number
+  dragStartPredicate: PropTypes__default['default'].oneOfType([PropTypes__default['default'].func, PropTypes__default['default'].exact({
+    distance: PropTypes__default['default'].number,
+    delay: PropTypes__default['default'].number,
+    handle: PropTypes__default['default'].oneOfType([PropTypes__default['default'].string, PropTypes__default['default'].bool])
+  })]),
+  dragAxis: PropTypes__default['default'].oneOf(['x', 'y', 'xy']),
+  dragSort: PropTypes__default['default'].oneOfType([PropTypes__default['default'].bool, PropTypes__default['default'].func, PropTypes__default['default'].exact({
+    groupId: PropTypes__default['default'].string.isRequired
+  })]),
+  // @ts-ignore
+  dragSortHeuristics: PropTypes__default['default'].exact({
+    sortInterval: PropTypes__default['default'].number,
+    minDragDistance: PropTypes__default['default'].number,
+    minBounceBackAngle: PropTypes__default['default'].number
   }),
   // @ts-ignore
-  dragSortPredicate: PropTypes.oneOfType([PropTypes.func, PropTypes.exact({
-    action: PropTypes.oneOf(['move', 'swap']),
-    migrateAction: PropTypes.oneOf(['move', 'swap']),
-    threshold: PropTypes.number
+  dragSortPredicate: PropTypes__default['default'].oneOfType([PropTypes__default['default'].func, PropTypes__default['default'].exact({
+    action: PropTypes__default['default'].oneOf(['move', 'swap']),
+    migrateAction: PropTypes__default['default'].oneOf(['move', 'swap']),
+    threshold: PropTypes__default['default'].number
   })]),
   // @ts-ignore
-  dragRelease: PropTypes.exact({
-    duration: PropTypes.number,
-    easing: PropTypes.string,
-    useDragContainer: PropTypes.bool
+  dragRelease: PropTypes__default['default'].exact({
+    duration: PropTypes__default['default'].number,
+    easing: PropTypes__default['default'].string,
+    useDragContainer: PropTypes__default['default'].bool
   }),
   // @ts-ignore
-  dragCssProps: PropTypes.exact({
-    touchAction: PropTypes.string,
-    userSelect: PropTypes.string,
-    userDrag: PropTypes.string,
-    tapHighlightColor: PropTypes.string,
-    touchCallout: PropTypes.string,
-    contentZooming: PropTypes.string
+  dragCssProps: PropTypes__default['default'].exact({
+    touchAction: PropTypes__default['default'].string,
+    userSelect: PropTypes__default['default'].string,
+    userDrag: PropTypes__default['default'].string,
+    tapHighlightColor: PropTypes__default['default'].string,
+    touchCallout: PropTypes__default['default'].string,
+    contentZooming: PropTypes__default['default'].string
   }),
   // @ts-ignore
-  dragPlaceholder: PropTypes.exact({
-    enabled: PropTypes.bool,
-    createElement: PropTypes.func,
-    onCreate: PropTypes.func,
-    onRemove: PropTypes.func,
-    easing: PropTypes.string,
-    duration: PropTypes.number
+  dragPlaceholder: PropTypes__default['default'].exact({
+    enabled: PropTypes__default['default'].bool,
+    createElement: PropTypes__default['default'].func,
+    onCreate: PropTypes__default['default'].func,
+    onRemove: PropTypes__default['default'].func,
+    easing: PropTypes__default['default'].string,
+    duration: PropTypes__default['default'].number
   }),
-  containerClass: PropTypes.string,
-  itemClass: PropTypes.string,
-  itemVisibleClass: PropTypes.string,
-  itemHiddenClass: PropTypes.string,
-  itemPositioningClass: PropTypes.string,
-  itemDraggingClass: PropTypes.string,
-  itemReleasingClass: PropTypes.string,
-  itemPlaceholderClass: PropTypes.string
+  containerClass: PropTypes__default['default'].string,
+  itemClass: PropTypes__default['default'].string,
+  itemVisibleClass: PropTypes__default['default'].string,
+  itemHiddenClass: PropTypes__default['default'].string,
+  itemPositioningClass: PropTypes__default['default'].string,
+  itemDraggingClass: PropTypes__default['default'].string,
+  itemReleasingClass: PropTypes__default['default'].string,
+  itemPlaceholderClass: PropTypes__default['default'].string
 }; // Default props.
 
-MuuriComponent.defaultProps = _objectSpread$2({}, Muuri.defaultOptions, {
+MuuriComponent.defaultProps = _objectSpread(_objectSpread({}, Muuri__default['default'].defaultOptions), {}, {
   dragEnabled: null
 }); // Display name.
 
@@ -2903,7 +2922,7 @@ function useData(initialData, options) {
 
   var setData = useFunction(function (data, options) {
     // Check if the data is an object.
-    invariant(_typeof(data) === 'object', "The data must be an object, founded: ".concat(_typeof(data))); // Default options.
+    invariant(_typeof__default['default'](data) === 'object', "The data must be an object, founded: ".concat(_typeof__default['default'](data))); // Default options.
 
     options = options || useData.defaultOptions; // Set the data.
 
@@ -2917,7 +2936,7 @@ function useData(initialData, options) {
     }
   }); // Set the inital data.
 
-  if (_typeof(initialData) === 'object') {
+  if (_typeof__default['default'](initialData) === 'object') {
     setData(initialData, options);
   }
 
@@ -3105,7 +3124,7 @@ var hooks = /*#__PURE__*/Object.freeze({
  */
 function getResponsiveStyle(options) {
   // Check options.
-  invariant(_typeof(options) === 'object', 'You must define options'); // Check columns.
+  invariant(_typeof__default['default'](options) === 'object', 'You must define options'); // Check columns.
 
   invariant(typeof options.columns === 'number' && options.columns > 0 && options.columns <= 1, 'options.columns must be a number between 0 (excluded) and 1 (included)'); // Check height and ratio.
 
@@ -3277,7 +3296,7 @@ getHandler('setVisibility')]];
 
 function getHandler(key) {
   return function handler(payload) {
-    return _defineProperty({}, key, payload);
+    return _defineProperty__default['default']({}, key, payload);
   };
 }
 /**
@@ -3288,8 +3307,8 @@ function getHandler(key) {
  */
 
 function getMerged(hooksHandlers) {
-  return Object.assign.apply(Object, [{}].concat(_toConsumableArray(hooksHandlers.map(function (_ref2) {
-    var _ref3 = _slicedToArray(_ref2, 2),
+  return Object.assign.apply(Object, [{}].concat(_toConsumableArray__default['default'](hooksHandlers.map(function (_ref2) {
+    var _ref3 = _slicedToArray__default['default'](_ref2, 2),
         hookName = _ref3[0],
         handler = _ref3[1];
 
@@ -3317,7 +3336,7 @@ function withHooks(Component, enabledHooks) {
   invariant(enabledHooks.length !== 0, 'To wrap an item at least one hook must be provided.'); // Get the handlers array of the enabled hook.
 
   var hooksHandlers = HooksHandlers.filter(function (_ref4) {
-    var _ref5 = _slicedToArray(_ref4, 1),
+    var _ref5 = _slicedToArray__default['default'](_ref4, 1),
         hookName = _ref5[0];
 
     return enabledHooks.includes(hookName);
@@ -3325,12 +3344,12 @@ function withHooks(Component, enabledHooks) {
 
   return function WrappedItem(props) {
     // The hooks will run in the 'getMerged' method.
-    return /*#__PURE__*/React__default.createElement(Component, _extends({}, props, getMerged(hooksHandlers)));
+    return /*#__PURE__*/React__default['default'].createElement(Component, _extends__default['default']({}, props, getMerged(hooksHandlers)));
   };
 }
 
-var AutoScroller = Muuri.AutoScroller;
-var ItemDrag = Muuri.ItemDrag; // Muuri-react exports.
+var AutoScroller = Muuri__default['default'].AutoScroller;
+var ItemDrag = Muuri__default['default'].ItemDrag; // Muuri-react exports.
 
 exports.AutoScroller = AutoScroller;
 exports.ChildrenController = ChildrenController;
