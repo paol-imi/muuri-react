@@ -1,5 +1,5 @@
-export declare type SetDataMethod = (data: object, options?: UseDataOptions) => void;
-export declare type UseDataOptions = {
+export type SetDataMethod = (data: object, options?: UseDataOptions) => void;
+export type UseDataOptions = {
     /** If the data have to be merged with the old one. */
     merge?: boolean;
 };

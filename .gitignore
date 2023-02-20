@@ -3,3 +3,4 @@ package-lock.json
 examples/**/node_modules/
 examples/**/build/
 examples/**/package-lock.json
+.idea/

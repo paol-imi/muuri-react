@@ -13,6 +13,7 @@ export function addDecoration<T extends MaybeDecorated>(
   decoration: Partial<T[typeof key]>
 ): void {
   if (isDecorated(instance)) {
+    // @ts-ignore
     Object.assign(instance[key], decoration);
   } else {
     instance[key] = {...decoration};

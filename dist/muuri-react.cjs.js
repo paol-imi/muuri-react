@@ -57,10 +57,8 @@ function isDecorated(instance) {
   return !!instance[key];
 }
 
-function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$2(Object(source), true).forEach(function (key) { _defineProperty__default['default'](target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$2(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
+function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys$2(Object(source), !0).forEach(function (key) { _defineProperty__default["default"](target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys$2(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 /**
  * Add a decoration to the instance.
  *
@@ -69,6 +67,7 @@ function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { 
  */
 function addDecoration(instance, decoration) {
   if (isDecorated(instance)) {
+    // @ts-ignore
     Object.assign(instance[key], decoration);
   } else {
     instance[key] = _objectSpread$2({}, decoration);
@@ -99,8 +98,7 @@ function removeDecorations(decorated) {
  *
  * @returns - The id of the instance.
  */
-
-Muuri__default['default'].prototype.getId = function getId() {
+Muuri__default["default"].prototype.getId = function getId() {
   return getDecoration(this).id;
 };
 /**
@@ -108,9 +106,7 @@ Muuri__default['default'].prototype.getId = function getId() {
  *
  * @returns - The group ids of the instance.
  */
-
-
-Muuri__default['default'].prototype.getGroupIds = function getGroupIds() {
+Muuri__default["default"].prototype.getGroupIds = function getGroupIds() {
   return getDecoration(this).groupIds;
 };
 /**
@@ -118,19 +114,16 @@ Muuri__default['default'].prototype.getGroupIds = function getGroupIds() {
  *
  * @returns - The group ids of the instance.
  */
-
-
-Muuri__default['default'].prototype.getSizerElement = function getSizerElement() {
+Muuri__default["default"].prototype.getSizerElement = function getSizerElement() {
   return getDecoration(this).sizerElement;
 };
+
 /**
  * Item key getter.
  *
  * @returns - The item component key.
  */
-
-
-Muuri__default['default'].Item.prototype.getKey = function getKey() {
+Muuri__default["default"].Item.prototype.getKey = function getKey() {
   return getDecoration(this).key;
 };
 /**
@@ -138,9 +131,7 @@ Muuri__default['default'].Item.prototype.getKey = function getKey() {
  *
  * @returns - The item component props.
  */
-
-
-Muuri__default['default'].Item.prototype.getProps = function getProps() {
+Muuri__default["default"].Item.prototype.getProps = function getProps() {
   return getDecoration(this).props;
 };
 /**
@@ -148,9 +139,7 @@ Muuri__default['default'].Item.prototype.getProps = function getProps() {
  *
  * @returns - The item component data.
  */
-
-
-Muuri__default['default'].Item.prototype.getData = function getData() {
+Muuri__default["default"].Item.prototype.getData = function getData() {
   return getDecoration(this).data;
 };
 /**
@@ -158,32 +147,30 @@ Muuri__default['default'].Item.prototype.getData = function getData() {
  *
  * @param data - The data.
  */
-
-
-Muuri__default['default'].Item.prototype.setData = function setData(data) {
+Muuri__default["default"].Item.prototype.setData = function setData(data) {
   getDecoration(this).data = data;
 };
 
 // Grid context.
-var GridContext = /*#__PURE__*/React.createContext({}); // Grid provider.
-
-var GridProvider = GridContext.Provider; // Grid context hook.
-
+var GridContext = /*#__PURE__*/React.createContext({});
+// Grid provider.
+var GridProvider = GridContext.Provider;
+// Grid context hook.
 var useGridContext = function useGridContext() {
   return React.useContext(GridContext);
-}; // Grid provider display name.
-
+};
+// Grid provider display name.
 GridContext.displayName = 'GridProvider';
 
 // Item context.
-var ItemContext = /*#__PURE__*/React.createContext({}); // Item provider.
-
-var ItemProvider = ItemContext.Provider; // Item context hook.
-
+var ItemContext = /*#__PURE__*/React.createContext({});
+// Item provider.
+var ItemProvider = ItemContext.Provider;
+// Item context hook.
 var useItemContext = function useItemContext() {
   return React.useContext(ItemContext);
-}; // Item provider display name.
-
+};
+// Item provider display name.
 ItemContext.displayName = 'ItemProvider';
 
 /**
@@ -195,14 +182,11 @@ ItemContext.displayName = 'ItemProvider';
  */
 var EventController = /*#__PURE__*/function () {
   function EventController() {
-    _classCallCheck__default['default'](this, EventController);
-
-    _defineProperty__default['default'](this, "_eventsMap", new Map());
-
-    _defineProperty__default['default'](this, "_payloadsMap", new Map());
+    _classCallCheck__default["default"](this, EventController);
+    _defineProperty__default["default"](this, "_eventsMap", new Map());
+    _defineProperty__default["default"](this, "_payloadsMap", new Map());
   }
-
-  _createClass__default['default'](EventController, [{
+  _createClass__default["default"](EventController, [{
     key: "enableEvent",
     value:
     /**
@@ -214,60 +198,57 @@ var EventController = /*#__PURE__*/function () {
     function enableEvent(event, emitter) {
       this._eventsMap.set(event, emitter);
     }
+
     /**
      * Set an event payload and emit it the event.
      *
      * @param event - The event name.
      * @param payload - The payload.
      */
-
   }, {
     key: "emitEvent",
     value: function emitEvent(event, payload) {
       if (this.isEnabled(event)) {
-        this._payloadsMap.set(event, payload); // @ts-ignore
-
-
+        this._payloadsMap.set(event, payload);
+        // @ts-ignore
         this._eventsMap.get(event)();
       }
     }
+
     /**
      * Get the payload of the event.
      *
      * @param event - The event.
      * @returns - The payload.
      */
-
   }, {
     key: "getPayload",
     value: function getPayload(event) {
       return this._payloadsMap.get(event);
     }
+
     /**
      * Returns if at least an event is enabled.
      *
      * @param event - The event.
      * @returns - If at least an event is enabled.
      */
-
   }, {
     key: "isEnabled",
     value: function isEnabled(event) {
       return this._eventsMap.has(event);
     }
+
     /**
      * Destroy the instance.
      */
-
   }, {
     key: "destroy",
     value: function destroy() {
       this._eventsMap.clear();
-
       this._payloadsMap.clear();
     }
   }]);
-
   return EventController;
 }();
 
@@ -281,12 +262,10 @@ var EventController = /*#__PURE__*/function () {
  */
 var ItemAddController = /*#__PURE__*/function () {
   function ItemAddController() {
-    _classCallCheck__default['default'](this, ItemAddController);
-
-    _defineProperty__default['default'](this, "_requests", []);
+    _classCallCheck__default["default"](this, ItemAddController);
+    _defineProperty__default["default"](this, "_requests", []);
   }
-
-  _createClass__default['default'](ItemAddController, [{
+  _createClass__default["default"](ItemAddController, [{
     key: "useInit",
     value:
     /**
@@ -295,13 +274,13 @@ var ItemAddController = /*#__PURE__*/function () {
     function useInit() {
       this._requests = [];
     }
+
     /**
      * Emit the new items to the
      * components that made a request.
      *
      * @param items - The items.
      */
-
   }, {
     key: "emit",
     value: function emit(items) {
@@ -309,61 +288,54 @@ var ItemAddController = /*#__PURE__*/function () {
         this._requests[i](items[i]);
       }
     }
+
     /**
      * Request an item.
      *
      * @param cb - The callback.
      */
-
   }, {
     key: "requestItem",
     value: function requestItem(cb) {
       this._requests.push(cb);
     }
+
     /**
      * Destroy the instance.
      */
-
   }, {
     key: "destroy",
     value: function destroy() {
       this._requests = [];
     }
   }]);
-
   return ItemAddController;
 }();
 
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf__default['default'](Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf__default['default'](this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn__default['default'](this, result); }; }
-
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf__default["default"](Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf__default["default"](this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn__default["default"](this, result); }; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
 var isProduction = process.env.NODE_ENV === 'production';
-var prefix = 'Invariant failed'; // Invarianto instance
+var prefix = 'Invariant failed';
 
+// Invarianto instance
 var Invariant = /*#__PURE__*/function (_Error) {
-  _inherits__default['default'](Invariant, _Error);
-
+  _inherits__default["default"](Invariant, _Error);
   var _super = _createSuper(Invariant);
-
   function Invariant(message) {
     var _this;
-
-    _classCallCheck__default['default'](this, Invariant);
-
+    _classCallCheck__default["default"](this, Invariant);
     _this = _super.call(this, message);
     _this.name = 'Invariant';
     return _this;
   }
+  return _createClass__default["default"](Invariant);
+}( /*#__PURE__*/_wrapNativeSuper__default["default"](Error));
 
-  return Invariant;
-}( /*#__PURE__*/_wrapNativeSuper__default['default'](Error)); // Throw an error if the condition fails
-
+// Throw an error if the condition fails
 function invariant(condition, message) {
   if (condition) {
     return;
   }
-
   if (isProduction) {
     // In production we strip the message but still throw
     throw new Invariant(prefix);
@@ -383,14 +355,11 @@ function invariant(condition, message) {
  */
 var ItemRefController = /*#__PURE__*/function () {
   function ItemRefController() {
-    _classCallCheck__default['default'](this, ItemRefController);
-
-    _defineProperty__default['default'](this, "_item", null);
-
-    _defineProperty__default['default'](this, "_instance", {});
+    _classCallCheck__default["default"](this, ItemRefController);
+    _defineProperty__default["default"](this, "_item", null);
+    _defineProperty__default["default"](this, "_instance", {});
   }
-
-  _createClass__default['default'](ItemRefController, [{
+  _createClass__default["default"](ItemRefController, [{
     key: "set",
     value:
     /**
@@ -401,18 +370,18 @@ var ItemRefController = /*#__PURE__*/function () {
      */
     function set(key, value) {
       if (this._item) {
-        addDecoration(this._item, _defineProperty__default['default']({}, key, value));
+        addDecoration(this._item, _defineProperty__default["default"]({}, key, value));
       } else {
         this._instance[key] = value;
       }
     }
+
     /**
      * Get a decoration value from the item.
      *
      * @param key - The decoration key.
      * @returns - The decoration value.
      */
-
   }, {
     key: "get",
     value: function get(key) {
@@ -422,21 +391,21 @@ var ItemRefController = /*#__PURE__*/function () {
         return this._instance[key];
       }
     }
+
     /**
      * Remove all the decorations from the item.
      */
-
   }, {
     key: "delete",
     value: function _delete() {
       if (this._item) removeDecorations(this._item);
     }
+
     /**
      * Set the item in the controller.
      *
      * @param item - The item.
      */
-
   }, {
     key: "setItem",
     value: function setItem(item) {
@@ -444,33 +413,33 @@ var ItemRefController = /*#__PURE__*/function () {
       addDecoration(this._item, this._instance);
       this._instance = {};
     }
+
     /**
      * Item getter.
      *
      * @returns - The item.
      */
-
   }, {
     key: "getItem",
     value: function getItem() {
       invariant(this._item !== null, 'The item has not been setted yet');
       return this._item;
     }
+
     /**
      * Returns if the item has been setted.
      *
      * @returns - If the item has been setted.
      */
-
   }, {
     key: "hasItem",
     value: function hasItem() {
       return this._item !== null;
     }
+
     /**
      * Destroy the instance.
      */
-
   }, {
     key: "destroy",
     value: function destroy() {
@@ -478,7 +447,6 @@ var ItemRefController = /*#__PURE__*/function () {
       this._instance = {};
     }
   }]);
-
   return ItemRefController;
 }();
 
@@ -490,12 +458,10 @@ var ItemRefController = /*#__PURE__*/function () {
  */
 var ItemRemoveController = /*#__PURE__*/function () {
   function ItemRemoveController() {
-    _classCallCheck__default['default'](this, ItemRemoveController);
-
-    _defineProperty__default['default'](this, "_itemsToRemove", []);
+    _classCallCheck__default["default"](this, ItemRemoveController);
+    _defineProperty__default["default"](this, "_itemsToRemove", []);
   }
-
-  _createClass__default['default'](ItemRemoveController, [{
+  _createClass__default["default"](ItemRemoveController, [{
     key: "useInit",
     value:
     /**
@@ -504,37 +470,36 @@ var ItemRemoveController = /*#__PURE__*/function () {
     function useInit() {
       this._itemsToRemove = [];
     }
+
     /**
      * Request an item to be removed.
      *
      * @param item - The item to be removed.
      */
-
   }, {
     key: "removeItem",
     value: function removeItem(item) {
       this._itemsToRemove.push(item);
     }
+
     /**
      * Return all the items to remove.
      */
-
   }, {
     key: "getItemsToRemove",
     value: function getItemsToRemove() {
       return this._itemsToRemove;
     }
+
     /**
      * Destroy the instance.
      */
-
   }, {
     key: "destroy",
     value: function destroy() {
       this._itemsToRemove = [];
     }
   }]);
-
   return ItemRemoveController;
 }();
 
@@ -557,49 +522,42 @@ var LayoutController = /*#__PURE__*/function () {
 
   /** Constructor. */
   function LayoutController() {
-    _classCallCheck__default['default'](this, LayoutController);
-
-    _defineProperty__default['default'](this, "_itemsToRefresh", void 0);
-
-    _defineProperty__default['default'](this, "_itemsToShow", void 0);
-
-    _defineProperty__default['default'](this, "_itemsToHide", void 0);
-
-    _defineProperty__default['default'](this, "_isRendering", void 0);
-
+    _classCallCheck__default["default"](this, LayoutController);
+    _defineProperty__default["default"](this, "_itemsToRefresh", void 0);
+    _defineProperty__default["default"](this, "_itemsToShow", void 0);
+    _defineProperty__default["default"](this, "_itemsToHide", void 0);
+    _defineProperty__default["default"](this, "_isRendering", void 0);
     this._itemsToRefresh = [];
     this._itemsToShow = [];
     this._itemsToHide = [];
     this._isRendering = false;
   }
+
   /**
    * Init.
    */
-
-
-  _createClass__default['default'](LayoutController, [{
+  _createClass__default["default"](LayoutController, [{
     key: "useInit",
     value: function useInit() {
       var _this = this;
-
       // Items.
       this._itemsToRefresh = [];
       this._itemsToShow = [];
-      this._itemsToHide = []; // State.
-
-      this._isRendering = true; // Change state.
+      this._itemsToHide = [];
+      // State.
+      this._isRendering = true;
+      // Change state.
       // eslint-disable-next-line
-
       React.useEffect(function () {
         _this._isRendering = false;
       });
     }
+
     /**
      * Refresh an item.
      *
      * @param item - The item to refresh.
      */
-
   }, {
     key: "refreshItem",
     value: function refreshItem(item) {
@@ -611,12 +569,13 @@ var LayoutController = /*#__PURE__*/function () {
       } else {
         // If the item is changing parent this
         // will get the right parent.
-        var grid = item.getGrid(); // The layout is managed here.
-
+        var grid = item.getGrid();
+        // The layout is managed here.
         grid.refreshItems([item]);
         grid.layout();
       }
     }
+
     /**
      * Set an item visibility.
      *
@@ -624,7 +583,6 @@ var LayoutController = /*#__PURE__*/function () {
      * @param visible - The visibility.
      * @param instant - If the visibility change should happen without animations.
      */
-
   }, {
     key: "setItemVisibility",
     value: function setItemVisibility(item, visible, instant) {
@@ -636,8 +594,8 @@ var LayoutController = /*#__PURE__*/function () {
       } else {
         // If the item is changing parent this
         // will get the right parent.
-        var grid = item.getGrid(); // The layout is managed here.
-
+        var grid = item.getGrid();
+        // The layout is managed here.
         if (visible) grid.show([item], {
           instant: instant
         });else grid.hide([item], {
@@ -645,43 +603,43 @@ var LayoutController = /*#__PURE__*/function () {
         });
       }
     }
+
     /**
      * Get the items that have to be refreshed.
      *
      * @returns - The items.
      */
-
   }, {
     key: "getItemsToRefresh",
     value: function getItemsToRefresh() {
       return this._itemsToRefresh;
     }
+
     /**
      * Get the items that have to be shown.
      *
      * @returns - The items.
      */
-
   }, {
     key: "getItemsToShow",
     value: function getItemsToShow() {
       return this._itemsToShow;
     }
+
     /**
      * Get the items that have to be hidden.
      *
      * @returns - The items.
      */
-
   }, {
     key: "getItemsToHide",
     value: function getItemsToHide() {
       return this._itemsToHide;
     }
+
     /**
      * Destroy the instance.
      */
-
   }, {
     key: "destroy",
     value: function destroy() {
@@ -690,7 +648,6 @@ var LayoutController = /*#__PURE__*/function () {
       this._itemsToHide = [];
     }
   }]);
-
   return LayoutController;
 }();
 
@@ -702,14 +659,11 @@ var LayoutController = /*#__PURE__*/function () {
  */
 var FiberController = /*#__PURE__*/function () {
   function FiberController() {
-    _classCallCheck__default['default'](this, FiberController);
-
-    _defineProperty__default['default'](this, "_fiber", void 0);
-
-    _defineProperty__default['default'](this, "_flag", '0');
+    _classCallCheck__default["default"](this, FiberController);
+    _defineProperty__default["default"](this, "_fiber", void 0);
+    _defineProperty__default["default"](this, "_flag", '0');
   }
-
-  _createClass__default['default'](FiberController, [{
+  _createClass__default["default"](FiberController, [{
     key: "useInit",
     value:
     /**
@@ -719,58 +673,58 @@ var FiberController = /*#__PURE__*/function () {
      */
     function useInit(gridElementRef) {
       var _this = this;
-
-      this.updateFlag(); // eslint-disable-next-line
-
+      this.updateFlag();
+      // eslint-disable-next-line
       React.useEffect(function () {
         invariant(gridElementRef.current !== null);
         _this._fiber = getFiber(gridElementRef.current);
       }, []); // eslint-disable-line
     }
+
     /**
      * Return the DOM elements in the chosen positions.
      *
      * @param orderedIndices - The positions.
      * @returns - The elements.
      */
-
   }, {
     key: "getStateNodes",
     value: function getStateNodes(orderedIndices) {
-      var stateNodes = []; // If there aren't indices retun an empty array.
+      var stateNodes = [];
+      // If there aren't indices retun an empty array.
+      if (orderedIndices.length === 0) return stateNodes;
 
-      if (orderedIndices.length === 0) return stateNodes; // The first child.
+      // The first child.
+      var child = getCurrentFiber(this._fiber, this._flag).child;
 
-      var child = getCurrentFiber(this._fiber, this._flag).child; // Fill the state nodes array.
+      // Fill the state nodes array.
       // We trust that the user input.
-
       orderedIndices.forEach(function (index) {
         // @ts-ignore
         while (child.index !== index) {
           // @ts-ignore
           child = child.sibling;
-        } // @ts-ignore
+        }
 
-
+        // @ts-ignore
         stateNodes.push(getStateNode(child));
       });
       return stateNodes;
     }
+
     /**
      * Append an itemComponent fiber
      * (the same is done for the alternate if exists).
      *
      * @param child - The item.
      */
-
   }, {
     key: "append",
     value: function append(itemComponentFiber) {
       // Get the current fiber.
-      var fiber = getCurrentFiber(this._fiber, this._flag); // Append the fiber.
-
+      var fiber = getCurrentFiber(this._fiber, this._flag);
+      // Append the fiber.
       appendFiber(fiber, itemComponentFiber);
-
       if (fiber.alternate) {
         if (itemComponentFiber.alternate) {
           // Append the alternate.
@@ -778,6 +732,7 @@ var FiberController = /*#__PURE__*/function () {
         }
       }
     }
+
     /**
      * Remove an itemComponent fiber given the key of its Item
      * (The same is done for the alternate if exists).
@@ -785,48 +740,45 @@ var FiberController = /*#__PURE__*/function () {
      * @param key - The key of the item.
      * @returns - The removed item.
      */
-
   }, {
     key: "remove",
     value: function remove(key) {
       // Get the current fiber.
-      var fiber = getCurrentFiber(this._fiber, this._flag); // Remove the fiber.
-
+      var fiber = getCurrentFiber(this._fiber, this._flag);
+      // Remove the fiber.
       var removedChild = removeChild(fiber, key);
-
       if (fiber.alternate) {
         if (removedChild.alternate) {
           // Remove the alternate.
           removeChild(fiber.alternate, key);
         }
       }
-
       return removedChild;
     }
+
     /**
      * Return the props containing the flag value to add in the grid element.
      *
      * @returns - The props.
      */
-
   }, {
     key: "getFlagProp",
     value: function getFlagProp() {
-      return _defineProperty__default['default']({}, FlagProp, this._flag);
+      return _defineProperty__default["default"]({}, FlagProp, this._flag);
     }
+
     /**
      * Update the flag value.
      */
-
   }, {
     key: "updateFlag",
     value: function updateFlag() {
       if (this._flag === '0') this._flag = '1';else this._flag = '0';
     }
+
     /**
      * Destroy the instance.
      */
-
   }, {
     key: "destroy",
     value: function destroy() {
@@ -834,29 +786,30 @@ var FiberController = /*#__PURE__*/function () {
       this._fiber = null;
     }
   }]);
-
   return FiberController;
 }();
+
 /**
  * The flag prop name.
  */
-
 var FlagProp = 'muuri-react-flag';
+
 /**
  * Get the fiber of the given grid element.
  *
  * @param grid - The element.
  * @return - The fiber node.
  */
-
 function getFiber(grid) {
   var key = Object.keys(grid).find(function (key) {
     return key.startsWith('__reactInternalInstance$') || key.startsWith('__reactFiber$');
   });
-  invariant(typeof key === 'string', 'Cannot find the __reactInternalInstance$'); // @ts-ignore
+  invariant(typeof key === 'string', 'Cannot find the __reactInternalInstance$');
 
+  // @ts-ignore
   return grid[key];
 }
+
 /**
  * Return the current fiber.
  * Try to use the prop flag for the search first,
@@ -872,37 +825,40 @@ function getFiber(grid) {
  * @param flag - the flag.
  * @returns - The current fiber.
  */
-
-
 function getCurrentFiber(fiber, currentFlag) {
-  if (!fiber.alternate) return fiber; // Flags.
+  if (!fiber.alternate) return fiber;
 
+  // Flags.
   var fiberFlag = fiber.memoizedProps[FlagProp];
-  var alternateFlag = fiber.alternate.memoizedProps[FlagProp]; // If the two flags are the same it should mean that
+  var alternateFlag = fiber.alternate.memoizedProps[FlagProp];
+
+  // If the two flags are the same it should mean that
   // in at least one of the items there has been a re-render
   // from the last render of the GridComponent.
   // We can no longer trust the flag prop and we have
   // to look for the RootFiber and check which
   // fiber is in the current tree.
-
   if (fiberFlag === alternateFlag) {
-    var topFiber = fiber; // Get the top fiber
-    // (Not the RootFiber).
+    var topFiber = fiber;
 
+    // Get the top fiber
+    // (Not the RootFiber).
     while (topFiber["return"]) {
       topFiber = topFiber["return"];
-    } // Fibers.
+    }
 
-
+    // Fibers.
     var rootFiber = topFiber.stateNode;
-    var topCurrentFiber = rootFiber.current; // The current fiber.
+    var topCurrentFiber = rootFiber.current;
 
+    // The current fiber.
     return topCurrentFiber === topFiber ? fiber : fiber.alternate;
-  } // If we got here we can trust the flag prop to find the current Fiber.
+  }
 
-
+  // If we got here we can trust the flag prop to find the current Fiber.
   return fiberFlag === currentFlag ? fiber : fiber.alternate;
 }
+
 /**
  * Returns the first stateNode among the descendants
  * of the given itemComponent Fiber.
@@ -910,51 +866,44 @@ function getCurrentFiber(fiber, currentFlag) {
  * @param itemComponentFiber - The fiber.
  * @returns - The element.
  */
-
-
 function getStateNode(itemComponentFiber) {
   // ItemComponent -> ItemProvider -> Item.
-  var itemFiber = itemComponentFiber.child.child; // @ts-ignore
-
-  while (!(itemFiber.stateNode instanceof HTMLElement)) {
-    // @ts-ignore
-    itemFiber = itemFiber.child;
-  }
-
+  var itemFiber = itemComponentFiber.child.child;
+  // @ts-ignore
+  while (!(itemFiber.stateNode instanceof HTMLElement))
+  // @ts-ignore
+  itemFiber = itemFiber.child;
   return itemFiber.stateNode;
 }
+
 /**
  * Append the child fiber in the last position among the children of the parent fiber.
  *
  * @param parent - The parent fiber.
  * @param child - The child fiber.
  */
-
-
 function appendFiber(parent, child) {
   var _parent$return;
-
   if (!parent.child) {
     // If it has no child.
     parent.child = child;
     child.index = 0;
   } else {
     var c = parent.child;
-
     while (c.sibling) {
       c = c.sibling;
     }
-
-    child.index = c.index + 1; // Inserted as last child.
-
+    child.index = c.index + 1;
+    // Inserted as last child.
     c.sibling = child;
-  } // Update the references.
+  }
 
-
-  child["return"] = parent; // If we are in development.
-
+  // Update the references.
+  child["return"] = parent;
+  // If we are in development.
   if (child._debugOwner) child._debugOwner = (_parent$return = parent["return"]) === null || _parent$return === void 0 ? void 0 : _parent$return["return"];
 }
+
 /**
  * Remove a child with the given key from the fiber.
  *
@@ -962,76 +911,71 @@ function appendFiber(parent, child) {
  * @param key - The key of the item.
  * @return - The removed fiber.
  */
-
-
 function removeChild(parent, key) {
   var child = parent.child;
-  var removedChild; // @ts-ignore
+  var removedChild;
 
+  // @ts-ignore
   if (hasNot(child, key)) {
     // @ts-ignore
     while (hasNot(child.sibling, key)) {
       // @ts-ignore
       child = child.sibling;
-    } // @ts-ignore
-
-
-    removedChild = removeSibling(child); // @ts-ignore
-
+    }
+    // @ts-ignore
+    removedChild = removeSibling(child);
+    // @ts-ignore
     adjustIndices(child);
   } else {
-    removedChild = removeFirstChild(parent); // @ts-ignore
-
+    removedChild = removeFirstChild(parent);
+    // @ts-ignore
     child = child.sibling;
     if (child) adjustIndices(child);
   }
-
   removedChild.sibling = null;
   return removedChild;
 }
+
 /**
  * Remove the first itemComponent fiber of a gridELement fiber and return it.
  *
  * @param GridElementFiber - The gridELement fiber.
  * @return - The removed itemComponent fiber.
  */
-
-
 function removeFirstChild(gridElementFiber) {
-  var removed = gridElementFiber.child; // @ts-ignore
-
-  gridElementFiber.child = gridElementFiber.child.sibling; // @ts-ignore
-
+  var removed = gridElementFiber.child;
+  // @ts-ignore
+  gridElementFiber.child = gridElementFiber.child.sibling;
+  // @ts-ignore
   return removed;
 }
+
 /**
  * Remove the first sibling from a itemComponent fiber and return it.
  *
  * @param fiber - The fiber.
  * @return - The removed sibling.
  */
-
-
 function removeSibling(fiber) {
-  var removed = fiber.sibling; // @ts-ignore
-
-  fiber.sibling = fiber.sibling.sibling; // @ts-ignore
-
+  var removed = fiber.sibling;
+  // @ts-ignore
+  fiber.sibling = fiber.sibling.sibling;
+  // @ts-ignore
   return removed;
 }
+
 /**
  * Adjust the indices of the siblings of an itemComponent fiber.
  *
  * @param itemComponentFiber - The itemComponent fiber.
  */
-
-
 function adjustIndices(itemComponentFiber) {
   while (itemComponentFiber.sibling) {
     itemComponentFiber.sibling.index = itemComponentFiber.index + 1;
     itemComponentFiber = itemComponentFiber.sibling;
   }
 }
+
 /**
  * Returns if the itemComponent fiber is not the parent of the item with the given key.
  *
@@ -1039,8 +983,6 @@ function adjustIndices(itemComponentFiber) {
  * @param key - The key of the item.
  * @return - If the itemComponent fiber is not the parent of the item with the given key.
  */
-
-
 function hasNot(itemComponentFiber, key) {
   // ItemComponent -> ItemProvider -> Item.
   return itemComponentFiber.child.child.key !== key;
@@ -1055,18 +997,13 @@ function hasNot(itemComponentFiber, key) {
  */
 var ChildrenController = /*#__PURE__*/function () {
   function ChildrenController() {
-    _classCallCheck__default['default'](this, ChildrenController);
-
-    _defineProperty__default['default'](this, "_oldChildrenArray", []);
-
-    _defineProperty__default['default'](this, "_children", []);
-
-    _defineProperty__default['default'](this, "_indicesToAdd", []);
-
-    _defineProperty__default['default'](this, "_dragCounter", 0);
+    _classCallCheck__default["default"](this, ChildrenController);
+    _defineProperty__default["default"](this, "_oldChildrenArray", []);
+    _defineProperty__default["default"](this, "_children", []);
+    _defineProperty__default["default"](this, "_indicesToAdd", []);
+    _defineProperty__default["default"](this, "_dragCounter", 0);
   }
-
-  _createClass__default['default'](ChildrenController, [{
+  _createClass__default["default"](ChildrenController, [{
     key: "useInit",
     value:
     /**
@@ -1077,55 +1014,57 @@ var ChildrenController = /*#__PURE__*/function () {
     function useInit(newChildren) {
       // @ts-ignore
       // We need to ensure that the children are in an array.
-      var newChildrenArray = React.Children.toArray(newChildren); // The indices to add.
+      var newChildrenArray = React.Children.toArray(newChildren);
 
-      this._indicesToAdd = getIndicesToAdd(newChildrenArray, this._oldChildrenArray); // The _children will be used to map all
+      // The indices to add.
+      this._indicesToAdd = getIndicesToAdd(newChildrenArray, this._oldChildrenArray);
+
+      // The _children will be used to map all
       // the child in the render method.
       // We can't use the ChildrenArray because we need the users
       // key provided in the components and not the escaped one (e.g. .$1).
-
       this._children = newChildren || [];
       this._oldChildrenArray = newChildrenArray;
     }
+
     /**
      * Remove a child in the given position and return it.
      *
      * @param index - The index of the child to remove.
      * @returns - The removed child.
      */
-
   }, {
     key: "remove",
     value: function remove(index) {
       return this._oldChildrenArray.splice(index, 1)[0];
     }
+
     /**
      * Append a child in the children array.
      *
      * @param child - The child to append.
      */
-
   }, {
     key: "append",
     value: function append(child) {
       this._oldChildrenArray.push(child);
     }
+
     /**
      * Returns the ordered array of indices of the added children.
      */
-
   }, {
     key: "getIndicesToAdd",
     value: function getIndicesToAdd() {
       return this._indicesToAdd;
     }
+
     /**
      * Map all the children.
      *
      * @param cb - The callback.
      * @returns - The mapped children.
      */
-
   }, {
     key: "render",
     value: function render(cb) {
@@ -1134,10 +1073,12 @@ var ChildrenController = /*#__PURE__*/function () {
         // there are rare cases where the keys are not indispensable,
         // the user may not choose to use at his own risk.
         return cb(child, child.key);
-      }); // Flush the children.
+      });
 
+      // Flush the children.
       this.flush();
       return children;
+
       /**
       // If an item is being dragged we need to ensure
       // that no child is inserted before it.
@@ -1146,46 +1087,46 @@ var ChildrenController = /*#__PURE__*/function () {
         : getChildrenInSafePositions(children, this._indicesToAdd);
          */
     }
+
     /**
      * Increment the drag counter.
      */
-
   }, {
     key: "incrementDragCounter",
     value: function incrementDragCounter() {
       this._dragCounter += 1;
     }
+
     /**
      * Decrement the drag counter.
      */
-
   }, {
     key: "decrementDragCounter",
     value: function decrementDragCounter() {
       this._dragCounter -= 1;
     }
+
     /**
      * Remove the current children so they can be garbage collected.
      */
-
   }, {
     key: "flush",
     value: function flush() {
       this._children = [];
     }
+
     /**
      * Destroy the instance.
      */
-
   }, {
     key: "destroy",
     value: function destroy() {
       this.flush();
     }
   }]);
-
   return ChildrenController;
 }();
+
 /**
  * Return an array of positions of the added children.
  * The algorithm is optimized for cases where the order of
@@ -1196,15 +1137,12 @@ var ChildrenController = /*#__PURE__*/function () {
  * @param oldChildren - The old children.
  * @return - The indices.
  */
-
 function getIndicesToAdd(newChildren, oldChildren) {
   var indicesToAdd = [];
   var oIndex = 0;
-
   for (var nIndex = 0; nIndex < newChildren.length; nIndex++) {
     // Finde the index.
     var index = findIndex(oldChildren, newChildren[nIndex], oIndex);
-
     if (index === -1) {
       // If it is not present is a new Child.
       indicesToAdd.push(nIndex);
@@ -1214,9 +1152,9 @@ function getIndicesToAdd(newChildren, oldChildren) {
       oIndex = index;
     }
   }
-
   return indicesToAdd;
 }
+
 /**
  * Returns the index of the child in the children array,
  * if it is not present returns -1.
@@ -1227,22 +1165,23 @@ function getIndicesToAdd(newChildren, oldChildren) {
  * @param fromIndex - The initial index.
  * @returns - The index of the child.
  */
-
 function findIndex(children, child, fromIndex) {
-  fromIndex = fromIndex > children.length ? children.length : fromIndex; // If the heuristics are respected the child will be here.
+  fromIndex = fromIndex > children.length ? children.length : fromIndex;
 
+  // If the heuristics are respected the child will be here.
   for (var index = fromIndex; index < children.length; index++) {
     if (is(child, children[index])) return index;
-  } // If the child is here the heuristics are not respected.
+  }
 
-
+  // If the child is here the heuristics are not respected.
   for (var _index = 0; _index < fromIndex; _index++) {
     if (is(child, children[_index])) return _index;
-  } // The child is not present.
+  }
 
-
+  // The child is not present.
   return -1;
 }
+
 /**
  * There would be the risk that a component will be inserted before
  * an item that is being dragged (and that is placed in a drag
@@ -1281,8 +1220,6 @@ function getChildrenInSafePositions(
  * @param componentB - The second component.
  * @returns - If they have the same key.
  */
-
-
 function is(componentA, componentB) {
   return componentA.key === componentB.key;
 }
@@ -1294,18 +1231,21 @@ function is(componentA, componentB) {
  * @param grid - The Muuri instance.
  */
 function fillGrid(grid) {
-  var sizerElement = document.createElement('div'); // Keep the element hidden.
+  var sizerElement = document.createElement('div');
 
+  // Keep the element hidden.
   sizerElement.style.visibility = 'hidden';
-  sizerElement.style.position = 'absolute'; // Add the class.
+  sizerElement.style.position = 'absolute';
+  // Add the class.
+  sizerElement.classList.add('grid-sizer');
 
-  sizerElement.classList.add('grid-sizer'); // Set the element.
-
+  // Set the element.
   addDecoration(grid, {
     sizerElement: sizerElement
   });
-  var gridElement = grid.getElement(); // Insert as first child.
+  var gridElement = grid.getElement();
 
+  // Insert as first child.
   if (gridElement.children.length === 0) {
     gridElement.appendChild(sizerElement);
   } else {
@@ -1315,6 +1255,7 @@ function fillGrid(grid) {
 
 // Allowed position values.
 var positions = ['relative', 'absolute', 'fixed'];
+
 /**
  * Fill a grid element:
  * - If it is not position the style.position is setted to "relative".
@@ -1327,26 +1268,25 @@ var positions = ['relative', 'absolute', 'fixed'];
  * @param gridElement - The element to fill.
  * @param gridClass - The Css class of the grid element.
  */
-
 function fillGridElement(gridElement, gridClass) {
-  var position = getComputedStyle(gridElement).position; // Set the default position.
+  var position = getComputedStyle(gridElement).position;
 
+  // Set the default position.
   if (!positions.includes(position)) {
     gridElement.style.position = positions[0];
-  } // Set the grid class.
+  }
 
+  // Set the grid class.
+  gridElement.classList.add(gridClass);
 
-  gridElement.classList.add(gridClass); // Ensure that the grid class can't be removed.
-
+  // Ensure that the grid class can't be removed.
   var defaultSetAttribute = gridElement.setAttribute.bind(gridElement);
-
   gridElement.setAttribute = function setAttribute(attribute, value) {
     if (attribute === 'class') {
-      var classNames = (gridElement.getAttribute('class') || '').split(' '); // Add the grid class.
-
+      var classNames = (gridElement.getAttribute('class') || '').split(' ');
+      // Add the grid class.
       if (!classNames.includes(gridClass)) value = "".concat(value, " ").concat(gridClass);
     }
-
     defaultSetAttribute(attribute, value);
   };
 }
@@ -1358,18 +1298,18 @@ function fillGridElement(gridElement, gridClass) {
  *
  * @param item - The item to fill.
  */
-
 function fillItem(item) {
   addDecoration(item, {
     props: {},
     data: {}
-  }); // Change the sort data.
-
+  });
+  // Change the sort data.
   Object.defineProperty(item, '_sortData', {
     get: function get() {
       return this.getData();
     },
-    set: function set() {// nothing to do here.
+    set: function set() {
+      // nothing to do here.
     }
   });
 }
@@ -1386,20 +1326,20 @@ function fillItem(item) {
  * @param itemClasses - The Css classes of the items.
  */
 function fillItemElement(itemElement, itemClasses) {
-  itemElement.style.position = 'absolute'; // Ensure that the Css item classes are not removed.
+  itemElement.style.position = 'absolute';
 
+  // Ensure that the Css item classes are not removed.
   var defaultSetAttribute = itemElement.setAttribute.bind(itemElement);
-
   itemElement.setAttribute = function setAttribute(attribute, value) {
     if (attribute === 'class') {
       var classNames = (itemElement.getAttribute('class') || '').split(' ');
       var classNamesToAdd = classNames.filter(function (className) {
         return itemClasses.includes(className);
-      }); // Add the Css items classes.
+      });
 
+      // Add the Css items classes.
       value = "".concat(value, " ").concat(classNamesToAdd.join(' '));
     }
-
     defaultSetAttribute(attribute, value);
   };
 }
@@ -1412,7 +1352,6 @@ function fillItemElement(itemElement, itemClasses) {
  * @param callback - The function to memoize.
  * @returns - The memoized function.
  */
-
 function useFunction(callback) {
   return React.useRef(callback).current;
 }
@@ -1424,17 +1363,19 @@ function useFunction(callback) {
  * @param dependencyList - The dependencyList.
  * @returns - If the dependencyList is changed from the previous render.
  */
-
 function useReference(dependencyList) {
-  var ref = React.useRef(dependencyList); // If it is the first call return true.
+  var ref = React.useRef(dependencyList);
 
-  if (ref.current === dependencyList) return true; // Compare the dependencyLists.
+  // If it is the first call return true.
+  if (ref.current === dependencyList) return true;
 
-  var didUpdate = compare(ref.current, dependencyList); // Keep the reference of the new one.
-
+  // Compare the dependencyLists.
+  var didUpdate = compare(ref.current, dependencyList);
+  // Keep the reference of the new one.
   ref.current = dependencyList;
   return didUpdate;
 }
+
 /**
  * Compare two dependencyLists and return if they are different.
  *
@@ -1442,14 +1383,11 @@ function useReference(dependencyList) {
  * @param b - The second dependencyList to compare.
  * @returns - If the 2 dependencyLists are different.
  */
-
 function compare(a, b) {
   if (a.length !== b.length) return true;
-
   for (var i = 0; i < a.length; i++) {
     if (a[i] !== b[i]) return true;
   }
-
   return false;
 }
 
@@ -1459,18 +1397,18 @@ function compare(a, b) {
  * @param didUpdate - The method to run.
  * @param deps - The dependecies.
  */
-
 function useInstantEffect(didUpdate, deps) {
   // Deps check.
   var needUpdate = useReference(deps);
-  var cleanUpRef = React.useRef(); // Run.
+  var cleanUpRef = React.useRef();
 
+  // Run.
   if (needUpdate) {
     if (cleanUpRef.current) cleanUpRef.current();
     cleanUpRef.current = didUpdate();
-  } // Catch unmount.
+  }
 
-
+  // Catch unmount.
   React.useEffect(function () {
     return function () {
       if (cleanUpRef.current) cleanUpRef.current();
@@ -1486,14 +1424,11 @@ function useInstantEffect(didUpdate, deps) {
  * @param factory - The factory method.
  * @returns - The memoized value.
  */
-
 function useMemoized(factory) {
   var valueRef = React.useRef();
-
   if (!valueRef.current) {
     valueRef.current = factory();
   }
-
   return valueRef.current;
 }
 
@@ -1503,7 +1438,6 @@ function useMemoized(factory) {
  *
  * @returns - The re-render method.
  */
-
 function useRerender() {
   var setState = React.useState()[1];
   return useFunction(function () {
@@ -1516,92 +1450,102 @@ function useRerender() {
 // Item component.
 function ItemComponent(_ref) {
   var child = _ref.children,
-      itemClasses = _ref.itemClasses,
-      itemAddController = _ref.itemAddController,
-      itemRemoveController = _ref.itemRemoveController,
-      propsToData = _ref.propsToData,
-      itemKey = _ref.itemKey,
-      grid = _ref.grid;
+    itemClasses = _ref.itemClasses,
+    itemAddController = _ref.itemAddController,
+    itemRemoveController = _ref.itemRemoveController,
+    propsToData = _ref.propsToData,
+    itemKey = _ref.itemKey,
+    grid = _ref.grid;
   // The store provided doesn't change the reference.
   var store = useMemoized(function () {
     // Create the controllers.
     var eventController = new EventController();
-    var itemRefController = new ItemRefController(); // Add the data that won't change.
-
+    var itemRefController = new ItemRefController();
+    // Add the data that won't change.
     itemRefController.set('key', itemKey);
-    itemRefController.set('eventController', eventController); // Return the controllers.
-
+    itemRefController.set('eventController', eventController);
+    // Return the controllers.
     return {
       eventController: eventController,
       itemRefController: itemRefController,
       itemRemoveController: itemRemoveController,
       grid: grid
     };
-  }); // Set the props.
+  });
 
+  // Set the props.
   store.itemRefController.set('props', child.props);
   store.itemRemoveController = itemRemoveController;
-  store.grid = grid; // Set the data.
+  store.grid = grid;
 
+  // Set the data.
   if (propsToData) {
     // Get the data.
-    var data = propsToData(child.props); // Must be an object.
+    var data = propsToData(child.props);
 
-    invariant(_typeof__default['default'](data) === 'object', "The data returned by 'propsToData' must be an object, founded ".concat(_typeof__default['default'](data))); // Set the data.
+    // Must be an object.
+    invariant(_typeof__default["default"](data) === 'object', "The data returned by 'propsToData' must be an object, founded ".concat(_typeof__default["default"](data)));
 
+    // Set the data.
     store.itemRefController.set('data', data);
-  } // On mount.
+  }
 
-
+  // On mount.
   React.useEffect(function () {
     // Request the item.
     itemAddController.requestItem(function (item) {
-      fillItem(item); // @ts-ignore
-
+      fillItem(item);
+      // @ts-ignore
       fillItemElement(item.getElement(), itemClasses);
       store.itemRefController.setItem(item);
     });
     return function () {
       // The item.
       var item = store.itemRefController.getItem();
-      invariant(item !== null); // The element.
+      invariant(item !== null);
 
+      // The element.
       var element = item.getElement();
-      invariant(element !== undefined); // If the item is going to be unmounted
+      invariant(element !== undefined);
+
+      // If the item is going to be unmounted
       // and it is being dragged it have to end the event
       // (Because it could be child of a different DOM element).
-
       if (item.isDragging()) {
         element.style.display = 'none';
-        element.style.visibility = 'hidden'; // @ts-ignore
+        element.style.visibility = 'hidden';
 
+        // @ts-ignore
         if (item._drag) item._drag.destroy();
         store.grid.getElement().appendChild(element);
-      } // Remove the item.
+      }
 
-
+      // Remove the item.
       store.itemRefController["delete"]();
-      store.itemRemoveController.removeItem(item); // Destroy the controllers instances.
+      store.itemRemoveController.removeItem(item);
 
+      // Destroy the controllers instances.
       store.itemRefController.destroy();
       store.eventController.destroy();
     };
   }, []); // eslint-disable-line
-  // Render.
 
-  return /*#__PURE__*/React__default['default'].createElement(ItemProvider, {
+  // Render.
+  return /*#__PURE__*/React__default["default"].createElement(ItemProvider, {
     value: store
   }, child);
-} // PropTypes.
+}
 
+// PropTypes.
 ItemComponent.propTypes = {
-  itemAddController: PropTypes__default['default'].object.isRequired,
-  itemClasses: PropTypes__default['default'].arrayOf(PropTypes__default['default'].string.isRequired).isRequired,
-  propsToData: PropTypes__default['default'].func,
-  children: PropTypes__default['default'].element.isRequired,
-  grid: PropTypes__default['default'].instanceOf(Muuri__default['default']).isRequired
-}; // Display name.
+  itemAddController: PropTypes__default["default"].object.isRequired,
+  itemClasses: PropTypes__default["default"].arrayOf(PropTypes__default["default"].string.isRequired).isRequired,
+  propsToData: PropTypes__default["default"].func,
+  children: PropTypes__default["default"].element.isRequired,
+  grid: PropTypes__default["default"].instanceOf(Muuri__default["default"]).isRequired
+};
 
+// Display name.
 ItemComponent.displayName = 'ItemComponent';
 
 /**
@@ -1620,10 +1564,10 @@ function addItems(grid, addedDOMItems, indicesToAdd, addOptions, filter) {
       index: indicesToAdd[i],
       layout: false
     });
-  } // Show the added items (usefull just if the items are
+  }
+
+  // Show the added items (usefull just if the items are
   // hidden by default and the filter is not setted).
-
-
   if (!filter && addOptions !== null && addOptions !== void 0 && addOptions.show) {
     grid.show(grid.getItems(indicesToAdd), {
       layout: false
@@ -1647,13 +1591,13 @@ function filterItems(grid, predicate) {
 
 /** Class name. */
 var gridClassName = 'containerClass';
+
 /**
  * Returns the Css class of the grid element.
  *
  * @param grid - The Muuri instance.
  * @returns - The class.
  */
-
 function getGridClass(grid) {
   // @ts-ignore
   return grid._settings[gridClassName];
@@ -1661,13 +1605,13 @@ function getGridClass(grid) {
 
 /** Class names. */
 var itemClassNames = ['itemClass', 'itemVisibleClass', 'itemHiddenClass', 'itemPositioningClass', 'itemDraggingClass', 'itemReleasingClass', 'itemPlaceholderClass'];
+
 /**
  * Returns the items classes.
  *
  * @param grid - The Muuri instance.
  * @returns - The classes.
  */
-
 function getItemClasses(grid) {
   // @ts-ignore
   return itemClassNames.map(function (className) {
@@ -1712,10 +1656,8 @@ function showItems(grid, items) {
   });
 }
 
-function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$1(Object(source), true).forEach(function (key) { _defineProperty__default['default'](target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$1(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
+function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys$1(Object(source), !0).forEach(function (key) { _defineProperty__default["default"](target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys$1(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 /**
  * Sort the items.
  *
@@ -1728,22 +1670,24 @@ function sortItems(grid, predicate, sortOptions) {
   // @ts-ignore
   sortOptions = _objectSpread$1(_objectSpread$1({}, sortOptions || {}), {}, {
     layout: false
-  }); // Handle a function.
+  });
 
+  // Handle a function.
   if (typeof predicate === 'function') {
     handleFunction(grid, predicate, sortOptions);
-  } // Handle a string.
+  }
 
-
+  // Handle a string.
   if (typeof predicate === 'string') {
     handleString(grid, predicate, sortOptions);
-  } // Hanndle an array of keys.
+  }
 
-
+  // Hanndle an array of keys.
   if (Array.isArray(predicate)) {
     handleArray(grid, predicate, sortOptions);
   }
 }
+
 /**
  * Sort the items given a predicate function.
  *
@@ -1751,12 +1695,12 @@ function sortItems(grid, predicate, sortOptions) {
  * @param predicate - The predicate function.
  * @param sortOptions - The sort options.
  */
-
 function handleFunction(grid, predicate, sortOptions) {
   grid.sort(function (itemA, itemB) {
     return predicate(itemA.getData(), itemB.getData(), itemA, itemB);
   }, sortOptions);
 }
+
 /**
  * Sort the items given a predicate string.
  *
@@ -1764,11 +1708,10 @@ function handleFunction(grid, predicate, sortOptions) {
  * @param predicate - The predicate string.
  * @param sortOptions - The sort options.
  */
-
-
 function handleString(grid, predicate, sortOptions) {
   grid.sort(predicate, sortOptions);
 }
+
 /**
  * Sort the items given an array of keys.
  * If the key has a match, the item is inserted in that position, otherwise at the bottom.
@@ -1777,29 +1720,29 @@ function handleString(grid, predicate, sortOptions) {
  * @param predicate - The array of keys.
  * @param sortOptions - The sort options.
  */
-
-
 function handleArray(grid, predicate, sortOptions) {
-  var items = grid.getItems(); // Items that can be sorted.
+  var items = grid.getItems();
+  // Items that can be sorted.
+  var sortedItems = [];
+  // Items that can't be sorted.
+  var otherItems = [];
 
-  var sortedItems = []; // Items that can't be sorted.
-
-  var otherItems = []; // Fills the arrays.
-
+  // Fills the arrays.
   items.forEach(function (item) {
     var itemKey = item._component.key;
     var index = predicate.findIndex(function (key) {
       return key === itemKey;
     });
-
     if (index > -1) {
       sortedItems[index] = item;
     } else {
       otherItems.push(item);
     }
-  }); // Sort.
+  });
 
-  grid.sort(Array.prototype.concat( // Some position can be empty.
+  // Sort.
+  grid.sort(Array.prototype.concat(
+  // Some position can be empty.
   sortedItems.filter(function (item) {
     return !!item;
   }), otherItems), sortOptions);
@@ -1810,30 +1753,28 @@ function handleArray(grid, predicate, sortOptions) {
 // Grid component.
 function GridComponent(_ref) {
   var children = _ref.children,
-      gridProps = _ref.gridProps,
-      grid = _ref.grid,
-      filter = _ref.filter,
-      sort = _ref.sort,
-      sortOptions = _ref.sortOptions,
-      addOptions = _ref.addOptions,
-      propsToData = _ref.propsToData,
-      onSend = _ref.onSend,
-      onDragStart = _ref.onDragStart,
-      onDragEnd = _ref.onDragEnd,
-      onFilter = _ref.onFilter,
-      onSort = _ref.onSort,
-      onMount = _ref.onMount,
-      onUnmount = _ref.onUnmount,
-      forceSync = _ref.forceSync,
-      dragFixed = _ref.dragFixed,
-      dragEnabled = _ref.dragEnabled,
-      instantLayout = _ref.instantLayout;
-
+    gridProps = _ref.gridProps,
+    grid = _ref.grid,
+    filter = _ref.filter,
+    sort = _ref.sort,
+    sortOptions = _ref.sortOptions,
+    addOptions = _ref.addOptions,
+    propsToData = _ref.propsToData,
+    onSend = _ref.onSend,
+    onDragStart = _ref.onDragStart,
+    onDragEnd = _ref.onDragEnd,
+    onFilter = _ref.onFilter,
+    onSort = _ref.onSort,
+    onMount = _ref.onMount,
+    onUnmount = _ref.onUnmount,
+    forceSync = _ref.forceSync,
+    dragFixed = _ref.dragFixed,
+    dragEnabled = _ref.dragEnabled,
+    instantLayout = _ref.instantLayout;
   /* ------------------ */
-
   /* ----- STORES ----- */
-
   /* ------------------ */
+
   // Store references of objects
   // generated in previous renders.
   var store = useMemoized(function () {
@@ -1841,31 +1782,16 @@ function GridComponent(_ref) {
       // Grid and items data.
       gridRef:
       /*#__PURE__*/
-
       /*      */
       React.createRef(),
-      gridClass:
-      /*    */
-      getGridClass(grid),
-      itemClasses:
-      /*  */
-      getItemClasses(grid),
+      gridClass: /*    */getGridClass(grid),
+      itemClasses: /*  */getItemClasses(grid),
       // Controllers.
-      childrenController:
-      /*    */
-      new ChildrenController(),
-      fiberController:
-      /*       */
-      new FiberController(),
-      itemAddController:
-      /*     */
-      new ItemAddController(),
-      itemRemoveController:
-      /*  */
-      new ItemRemoveController(),
-      layoutController:
-      /*      */
-      new LayoutController(),
+      childrenController: /*    */new ChildrenController(),
+      fiberController: /*       */new FiberController(),
+      itemAddController: /*     */new ItemAddController(),
+      itemRemoveController: /*  */new ItemRemoveController(),
+      layoutController: /*      */new LayoutController(),
       // Events.
       onUnmount: onUnmount,
       onDragStart: onDragStart,
@@ -1874,73 +1800,46 @@ function GridComponent(_ref) {
       onSort: onSort,
       onSend: onSend
     };
-  }); // Store references of objects
+  });
+
+  // Store references of objects
   // that are used inside useEffect.
   // The references are flushed on each new render.
-
   var vars = {
     // Items data.
-    indicesToAdd:
-    /*   */
-    [],
-    addedDOMItems:
-    /*  */
-    [],
-    itemsToRemove:
-    /*  */
-    [],
-    itemsToRefresh:
-    /* */
-    [],
-    itemsToShow:
-    /*    */
-    [],
-    itemsToHide:
-    /*    */
-    [],
+    indicesToAdd: /*   */[],
+    addedDOMItems: /*  */[],
+    itemsToRemove: /*  */[],
+    itemsToRefresh: /* */[],
+    itemsToShow: /*    */[],
+    itemsToHide: /*    */[],
     // Items flags.
-    hasAdded:
-    /*      */
-    false,
-    hasRemoved:
-    /*    */
-    false,
-    hasFiltered:
-    /*   */
-    false,
-    hasSorted:
-    /*     */
-    false,
-    hasRefreshed:
-    /*  */
-    false,
-    hasShown:
-    /*      */
-    false,
-    hasHidden:
-    /*     */
-    false
+    hasAdded: /*      */false,
+    hasRemoved: /*    */false,
+    hasFiltered: /*   */false,
+    hasSorted: /*     */false,
+    hasRefreshed: /*  */false,
+    hasShown: /*      */false,
+    hasHidden: /*     */false
   };
-  /* ----------------- */
 
+  /* ----------------- */
   /* ----- MOUNT ----- */
-
   /* ----------------- */
-  // Initialize the grid on mount.
 
+  // Initialize the grid on mount.
   React.useEffect(function () {
     /* ------------------ */
-
     /* ----- EVENTS ----- */
-
     /* ------------------ */
+
     // Add all the event handlers.
-    grid // "Send" and "receive" events.
+    grid
+    // "Send" and "receive" events.
     .on('beforeSend', function (_ref2) {
       var item = _ref2.item,
-          fromGrid = _ref2.fromGrid,
-          fromIndex = _ref2.fromIndex;
-
+        fromGrid = _ref2.fromGrid,
+        fromIndex = _ref2.fromIndex;
       if (!getDecoration(item).sentPayload) {
         // Generate the sentPayload.
         var sentPayload = {
@@ -1948,23 +1847,25 @@ function GridComponent(_ref) {
           fromFiberController: store.fiberController,
           fromGrid: fromGrid,
           fromIndex: fromIndex
-        }; // Add the decoration.
+        };
 
+        // Add the decoration.
         addDecoration(item, {
           sentPayload: sentPayload
         });
       }
     }).on('receive', function (_ref3) {
       var item = _ref3.item,
-          toGrid = _ref3.toGrid,
-          toIndex = _ref3.toIndex;
+        toGrid = _ref3.toGrid,
+        toIndex = _ref3.toIndex;
       // Controllers.
       var toChildrenController = store.childrenController;
-      var toFiberController = store.fiberController; // If the method is activated by user interaction (the item is being dragged)
+      var toFiberController = store.fiberController;
+
+      // If the method is activated by user interaction (the item is being dragged)
       // the synchronization will be performed during the "dragEnd" event.
       // If the method is called via Muuri's instance (the item is not being dragged)
       // the synchronization takes place here, but the onSend callback is not fired.
-
       if (item.isDragging()) {
         // Generate the receivedPayload.
         var receivedPayload = {
@@ -1972,82 +1873,95 @@ function GridComponent(_ref) {
           toFiberController: toFiberController,
           toGrid: toGrid,
           toIndex: toIndex
-        }; // Add the decoration.
+        };
 
+        // Add the decoration.
         addDecoration(item, {
           receivedPayload: receivedPayload
         });
       } else {
         // Payloads data.
-        var sentPayload = getDecoration(item).sentPayload; // The payload must have been created in the send method.
-
-        invariant(sentPayload !== null && _typeof__default['default'](sentPayload) === 'object'); // Controllers.
-
+        var sentPayload = getDecoration(item).sentPayload;
+        // The payload must have been created in the send method.
+        invariant(sentPayload !== null && _typeof__default["default"](sentPayload) === 'object');
+        // Controllers.
         var fromChildrenController = sentPayload.fromChildrenController,
-            fromFiberController = sentPayload.fromFiberController; // Remove the payload.
+          fromFiberController = sentPayload.fromFiberController;
 
+        // Remove the payload.
         addDecoration(item, {
           sentPayload: null
-        }); // Remove the item instances from the old GridComponent.
+        });
 
+        // Remove the item instances from the old GridComponent.
         var itemFiber = fromFiberController.remove(item.getKey());
-        var itemComponent = fromChildrenController.remove(itemFiber.index); // Add the item instances to the new GridComponent.
+        var itemComponent = fromChildrenController.remove(itemFiber.index);
 
+        // Add the item instances to the new GridComponent.
         toFiberController.append(itemFiber);
         toChildrenController.append(itemComponent);
-      } // Emit the "send" event.
+      }
 
-
+      // Emit the "send" event.
       getDecoration(item).eventController.emitEvent('send', grid);
-    }) // Drag events.
+    })
+
+    // Drag events.
     .on('dragInit', function (item, event) {
       // The childrenController must change the positions of
       // the newly added components if any items are being
       // dragged to add the safely.
-      store.childrenController.incrementDragCounter(); // Emit the "drag" event.
+      store.childrenController.incrementDragCounter();
+      // Emit the "drag" event.
       // This event is used instead of "dragStart" to allow the
       // reRender of the component when the item is not inside
       // the dragContainer, this makes it possible to change
       // the style of the element safely (e.g. using relative dimensions).
-
-      getDecoration(item).eventController.emitEvent('drag', true); // "onDragStart" Callback.
-
+      getDecoration(item).eventController.emitEvent('drag', true);
+      // "onDragStart" Callback.
       if (store.onDragStart) store.onDragStart(item, event);
     }).on('dragEnd', function (item) {
       // Payloads.
       var sentPayload = getDecoration(item).sentPayload;
-      var receivedPayload = getDecoration(item).receivedPayload; // If an item was sent during the drag the
-      // GridComponents are synchronized.
+      var receivedPayload = getDecoration(item).receivedPayload;
 
+      // If an item was sent during the drag the
+      // GridComponents are synchronized.
       if (sentPayload && receivedPayload) {
         // SentPayload data.
         var fromChildrenController = sentPayload.fromChildrenController,
-            fromFiberController = sentPayload.fromFiberController,
-            fromGrid = sentPayload.fromGrid,
-            fromIndex = sentPayload.fromIndex; // ReceivedPayload data.
+          fromFiberController = sentPayload.fromFiberController,
+          fromGrid = sentPayload.fromGrid,
+          fromIndex = sentPayload.fromIndex;
 
+        // ReceivedPayload data.
         var toChildrenController = receivedPayload.toChildrenController,
-            toFiberController = receivedPayload.toFiberController,
-            toGrid = receivedPayload.toGrid,
-            toIndex = receivedPayload.toIndex; // Reset the payloads.
+          toFiberController = receivedPayload.toFiberController,
+          toGrid = receivedPayload.toGrid,
+          toIndex = receivedPayload.toIndex;
 
+        // Reset the payloads.
         addDecoration(item, {
           sentPayload: null,
           receivedPayload: null
-        }); // Check if the item has been sended.
+        });
 
+        // Check if the item has been sended.
         if (fromGrid !== toGrid) {
           // "onSend" will be called with the receive event.
-          invariant(typeof store.onSend === 'function', 'An item cannot be sent to another MuuriComponent if the ' + "'onSend' property has not been passed to the MuuriComponent."); // Remove the item instances from the old GridComponent.
+          invariant(typeof store.onSend === 'function', 'An item cannot be sent to another MuuriComponent if the ' + "'onSend' property has not been passed to the MuuriComponent.");
 
+          // Remove the item instances from the old GridComponent.
           var itemFiber = fromFiberController.remove(item.getKey());
-          var itemComponent = fromChildrenController.remove(itemFiber.index); // Add the item instances to the new GridComponent.
+          var itemComponent = fromChildrenController.remove(itemFiber.index);
 
+          // Add the item instances to the new GridComponent.
           toFiberController.append(itemFiber);
-          toChildrenController.append(itemComponent); // "onSend" callback.
+          toChildrenController.append(itemComponent);
+
+          // "onSend" callback.
           // DragEnd is called in the grid where
           // the drag start, so onSend.
-
           store.onSend({
             // The key the user has set.
             key: getDecoration(item).key,
@@ -2068,25 +1982,27 @@ function GridComponent(_ref) {
       // The childrenController must change the positions of
       // the newly added components if any items are being
       // dragged to add the safely.
-      store.childrenController.decrementDragCounter(); // Emit the event.
+      store.childrenController.decrementDragCounter();
+      // Emit the event.
       // This event is used instead of "dragEnd" to allow the
       // reRender of the component when the item is not inside
       // the dragContainer, this makes it possible to change
       // the style of the element safely (e.g. using relative dimensions).
-
-      getDecoration(item).eventController.emitEvent('drag', false); // Call the event.
-
+      getDecoration(item).eventController.emitEvent('drag', false);
+      // Call the event.
       if (store.onDragEnd) store.onDragEnd(item);
-    }) // Show and hide events.
+    })
+
+    // Show and hide events.
     .on('showStart', function (items) {
       // The items could be shown before they are decorated.
-      if (!isDecorated(items[0])) return; // Emit the event.
-
+      if (!isDecorated(items[0])) return;
+      // Emit the event.
       items.forEach(function (item) {
-        var eventController = getDecoration(item).eventController; // The event is triggered also for items that have not
+        var eventController = getDecoration(item).eventController;
+        // The event is triggered also for items that have not
         // changed their "visibility" state.
         // This check is done to avoid useless re-rendering.
-
         if (eventController.getPayload('show') !== true) {
           eventController.emitEvent('show', true);
         }
@@ -2094,43 +2010,45 @@ function GridComponent(_ref) {
     }).on('hideEnd', function (items) {
       // Emit the event.
       items.forEach(function (item) {
-        var eventController = getDecoration(item).eventController; // The event is triggered also for items that have not
+        var eventController = getDecoration(item).eventController;
+        // The event is triggered also for items that have not
         // changed their "visibility" state.
         // This check is done to avoid useless re-rendering.
-
         if (eventController.getPayload('show') !== false) {
           eventController.emitEvent('show', false);
         }
       });
-    }) // Filter and sort events.
+    })
+
+    // Filter and sort events.
     .on('filter', function (shownItems, hiddenItems) {
       if (store.onFilter) store.onFilter(shownItems, hiddenItems);
     }).on('sort', function (currentOrder, previousOrder) {
       if (store.onSort) store.onSort(currentOrder, previousOrder);
-    }); // Fix the dimensions of the items when they are dragged.
+    });
 
+    // Fix the dimensions of the items when they are dragged.
     if (dragFixed) {
       grid.on('dragInit', function (item) {
         // Let's set fixed widht/height to the dragged item
         // so that it does not stretch unwillingly when
         // it's appended to the document body for the
         // duration of the drag.
-        var element = item.getElement(); // The element must exist.
-
-        invariant(element !== undefined); // Get the computed dimensions.
-
+        var element = item.getElement();
+        // The element must exist.
+        invariant(element !== undefined);
+        // Get the computed dimensions.
         var _getComputedStyle = getComputedStyle(element),
-            width = _getComputedStyle.width,
-            height = _getComputedStyle.height,
-            paddingTop = _getComputedStyle.paddingTop; // Save the previous style in case it was setted.
-
-
+          width = _getComputedStyle.width,
+          height = _getComputedStyle.height,
+          paddingTop = _getComputedStyle.paddingTop;
+        // Save the previous style in case it was setted.
         addDecoration(item, {
           dragWidth: element.style.width,
           dragHeight: element.style.height,
           dragPaddingTop: element.style.paddingTop
-        }); // Set the new style.
-
+        });
+        // Set the new style.
         element.style.width = width;
         element.style.height = height;
         element.style.paddingTop = paddingTop;
@@ -2139,38 +2057,38 @@ function GridComponent(_ref) {
         // dragged item now that it is back in a grid
         // column and can freely adjust to it's
         // surroundings.
-        var element = item.getElement(); // The element must exist.
-
-        invariant(element !== undefined); // Get the old style.
-
+        var element = item.getElement();
+        // The element must exist.
+        invariant(element !== undefined);
+        // Get the old style.
         var _getDecoration = getDecoration(item),
-            dragWidth = _getDecoration.dragWidth,
-            dragHeight = _getDecoration.dragHeight,
-            dragPaddingTop = _getDecoration.dragPaddingTop; // Restore the previous style in case it was setted.
-
-
+          dragWidth = _getDecoration.dragWidth,
+          dragHeight = _getDecoration.dragHeight,
+          dragPaddingTop = _getDecoration.dragPaddingTop;
+        // Restore the previous style in case it was setted.
         element.style.width = dragWidth;
         element.style.height = dragHeight;
         element.style.paddingTop = dragPaddingTop;
       });
     }
+
     /* ---------------- */
-
     /* ----- GRID ----- */
-
     /* -----------------*/
+
     // Check .
+    invariant(store.gridRef.current !== null);
 
-
-    invariant(store.gridRef.current !== null); // Work with the grid.
+    // Work with the grid.
     // @ts-ignore
-
     grid._element = store.gridRef.current;
     fillGridElement(store.gridRef.current, store.gridClass);
-    fillGrid(grid); // "onMount" Callback.
+    fillGrid(grid);
 
-    if (onMount) onMount(grid); // Delete the instance from the global map.
+    // "onMount" Callback.
+    if (onMount) onMount(grid);
 
+    // Delete the instance from the global map.
     return function () {
       // Destroy the controllers.
       store.childrenController.destroy();
@@ -2182,35 +2100,37 @@ function GridComponent(_ref) {
   }, []); // eslint-disable-line
 
   /* ---------------- */
-
   /* ----- INIT ----- */
-
   /* -----------------*/
-  // Init the controllers.
 
+  // Init the controllers.
   store.childrenController.useInit(children);
   store.fiberController.useInit(store.gridRef);
   store.itemRemoveController.useInit();
   store.itemAddController.useInit();
-  store.layoutController.useInit(); // IsChanged flags.
+  store.layoutController.useInit();
 
+  // IsChanged flags.
   var isFilterChanged = useReference([filter]);
-  var isSortChanged = useReference([sort, sortOptions]); // Get items to add/remove.
+  var isSortChanged = useReference([sort, sortOptions]);
 
+  // Get items to add/remove.
   React.useEffect(function () {
     // Set drag enabled option.
     addDecoration(grid, {
       dragEnabled: dragEnabled
-    }); // Set the items data.
+    });
 
+    // Set the items data.
     vars.indicesToAdd = store.childrenController.getIndicesToAdd();
     vars.addedDOMItems = store.fiberController.getStateNodes(vars.indicesToAdd);
     vars.itemsToRemove = store.itemRemoveController.getItemsToRemove();
     vars.itemsToRefresh = store.layoutController.getItemsToRefresh();
     vars.itemsToShow = store.layoutController.getItemsToShow();
-    vars.itemsToHide = store.layoutController.getItemsToHide(); // This will remove lot of the implementation
-    // problems for the user.
+    vars.itemsToHide = store.layoutController.getItemsToHide();
 
+    // This will remove lot of the implementation
+    // problems for the user.
     store.onUnmount = onUnmount;
     store.onDragStart = onDragStart;
     store.onDragEnd = onDragEnd;
@@ -2218,122 +2138,112 @@ function GridComponent(_ref) {
     store.onSort = onSort;
     store.onSend = onSend;
   });
+
   /* ------------------- */
-
   /* ----- ACTIONS ----- */
-
   /* ------------------- */
 
   React.useEffect(function () {
     /* ---------------------- */
-
     /* ---- ADD & REMOVE ---- */
-
     /* ---------------------- */
+
     // Remove items.
     if (vars.itemsToRemove.length) {
-      removeItems(grid, vars.itemsToRemove); // Set the flag.
-
+      removeItems(grid, vars.itemsToRemove);
+      // Set the flag.
       vars.hasRemoved = true;
-    } // Add items after the old ones are removed
+    }
+
+    // Add items after the old ones are removed
     // to add them in the right positions.
-
-
     if (vars.indicesToAdd.length) {
-      addItems(grid, vars.addedDOMItems, vars.indicesToAdd, addOptions, filter); // New Items.
-
-      var addedItems = grid.getItems(vars.indicesToAdd); // Emit the new items to the itemComponents.
-
-      store.itemAddController.emit(addedItems); // Set the flag.
-
+      addItems(grid, vars.addedDOMItems, vars.indicesToAdd, addOptions, filter);
+      // New Items.
+      var addedItems = grid.getItems(vars.indicesToAdd);
+      // Emit the new items to the itemComponents.
+      store.itemAddController.emit(addedItems);
+      // Set the flag.
       vars.hasAdded = true;
     }
-    /* ------------------------- */
 
+    /* ------------------------- */
     /* ----- SORT & FILTER ----- */
-
     /* ------------------------- */
+
     // Filter items.
-
-
     if (filter && (isFilterChanged || vars.hasAdded || forceSync)) {
-      filterItems(grid, filter); // Set the flag.
-
+      filterItems(grid, filter);
+      // Set the flag.
       vars.hasFiltered = true;
-    } // Sort items.
+    }
 
-
+    // Sort items.
     if (sort && (isSortChanged || vars.hasAdded || forceSync)) {
-      sortItems(grid, sort, sortOptions); // Set the flag.
-
+      sortItems(grid, sort, sortOptions);
+      // Set the flag.
       vars.hasSorted = true;
     }
-    /* ----------------------- */
 
+    /* ----------------------- */
     /* ----- SHOW & HIDE ----- */
-
     /* ----------------------- */
+
     // Filter has priority on the items visibility.
-
-
     if (!filter && vars.itemsToShow.length) {
-      showItems(grid, vars.itemsToShow); // Set the flag.
-
+      showItems(grid, vars.itemsToShow);
+      // Set the flag.
       vars.hasShown = true;
-    } // Filter has priority on the items visibility.
+    }
 
-
+    // Filter has priority on the items visibility.
     if (!filter && vars.itemsToHide.length) {
-      hideItems(grid, vars.itemsToHide); // Set the flag.
-
+      hideItems(grid, vars.itemsToHide);
+      // Set the flag.
       vars.hasHidden = true;
     }
-    /* ------------------- */
 
+    /* ------------------- */
     /* ----- REFRESH ----- */
-
     /* ------------------- */
+
     // Items with dimensions to refresh.
-
-
     if (vars.itemsToRefresh.length) {
-      grid.refreshItems(vars.itemsToRefresh); // Set the flag.
-
+      grid.refreshItems(vars.itemsToRefresh);
+      // Set the flag.
       vars.hasRefreshed = true;
     }
-    /* ------------------ */
 
+    /* ------------------ */
     /* ----- LAYOUT ----- */
-
     /* ------------------ */
+
     // Layout is calculated only in the end.
     // Check the previous flags.
-
-
     if (vars.hasAdded || vars.hasRemoved || vars.hasSorted || vars.hasFiltered || vars.hasRefreshed || vars.hasShown || vars.hasHidden) {
       grid.layout(instantLayout);
     }
   });
-  /* ------------------ */
 
+  /* ------------------ */
   /* ----- RENDER ----- */
-
   /* ------------------ */
-  // Provided value doesn't change the reference.
 
+  // Provided value doesn't change the reference.
   var value = useMemoized(function () {
     return {
       layoutController: store.layoutController,
       grid: grid
     };
-  }); // render.
+  });
 
-  return /*#__PURE__*/React__default['default'].createElement(GridProvider, {
+  // render.
+  return /*#__PURE__*/React__default["default"].createElement(GridProvider, {
     value: value
-  }, /*#__PURE__*/React__default['default'].createElement("div", _extends__default['default']({}, gridProps, {
+  }, /*#__PURE__*/React__default["default"].createElement("div", _extends__default["default"]({}, gridProps, {
     ref: store.gridRef
   }, store.fiberController.getFlagProp()), store.childrenController.render(function (child, key) {
-    return /*#__PURE__*/React__default['default'].createElement(ItemComponent, {
+    return /*#__PURE__*/React__default["default"].createElement(ItemComponent, {
       key: key,
       itemKey: key,
       grid: grid,
@@ -2343,32 +2253,34 @@ function GridComponent(_ref) {
       itemRemoveController: store.itemRemoveController
     }, child);
   })));
-} // Proptypes.
+}
 
+// Proptypes.
 GridComponent.propTypes = {
-  grid: PropTypes__default['default'].object.isRequired,
-  gridProps: PropTypes__default['default'].object,
-  filter: PropTypes__default['default'].oneOfType([PropTypes__default['default'].string, PropTypes__default['default'].func]),
-  sort: PropTypes__default['default'].oneOfType([PropTypes__default['default'].string, PropTypes__default['default'].func, PropTypes__default['default'].arrayOf(PropTypes__default['default'].string)]),
-  sortOptions: PropTypes__default['default'].exact({
-    descending: PropTypes__default['default'].bool
+  grid: PropTypes__default["default"].object.isRequired,
+  gridProps: PropTypes__default["default"].object,
+  filter: PropTypes__default["default"].oneOfType([PropTypes__default["default"].string, PropTypes__default["default"].func]),
+  sort: PropTypes__default["default"].oneOfType([PropTypes__default["default"].string, PropTypes__default["default"].func, PropTypes__default["default"].arrayOf(PropTypes__default["default"].string)]),
+  sortOptions: PropTypes__default["default"].exact({
+    descending: PropTypes__default["default"].bool
   }),
-  addOptions: PropTypes__default['default'].exact({
-    show: PropTypes__default['default'].bool
+  addOptions: PropTypes__default["default"].exact({
+    show: PropTypes__default["default"].bool
   }),
-  onSend: PropTypes__default['default'].func,
-  onDragStart: PropTypes__default['default'].func,
-  onDragEnd: PropTypes__default['default'].func,
-  onFilter: PropTypes__default['default'].func,
-  onSort: PropTypes__default['default'].func,
-  onMount: PropTypes__default['default'].func,
-  onUnmount: PropTypes__default['default'].func,
-  forceSync: PropTypes__default['default'].bool,
-  dragFixed: PropTypes__default['default'].bool,
-  dragEnabled: PropTypes__default['default'].bool,
-  instantLayout: PropTypes__default['default'].bool
-}; // Default props.
+  onSend: PropTypes__default["default"].func,
+  onDragStart: PropTypes__default["default"].func,
+  onDragEnd: PropTypes__default["default"].func,
+  onFilter: PropTypes__default["default"].func,
+  onSort: PropTypes__default["default"].func,
+  onMount: PropTypes__default["default"].func,
+  onUnmount: PropTypes__default["default"].func,
+  forceSync: PropTypes__default["default"].bool,
+  dragFixed: PropTypes__default["default"].bool,
+  dragEnabled: PropTypes__default["default"].bool,
+  instantLayout: PropTypes__default["default"].bool
+};
 
+// Default props.
 GridComponent.defaultProps = {
   gridProps: {},
   addOptions: {
@@ -2381,8 +2293,9 @@ GridComponent.defaultProps = {
   dragFixed: false,
   dragEnabled: false,
   instantLayout: false
-}; // Display name.
+};
 
+// Display name.
 GridComponent.displayName = 'GridComponent';
 
 /**
@@ -2391,14 +2304,11 @@ GridComponent.displayName = 'GridComponent';
  */
 var MuuriMap = /*#__PURE__*/function () {
   function MuuriMap() {
-    _classCallCheck__default['default'](this, MuuriMap);
-
-    _defineProperty__default['default'](this, "_idMap", new Map());
-
-    _defineProperty__default['default'](this, "_groupMap", new Map());
+    _classCallCheck__default["default"](this, MuuriMap);
+    _defineProperty__default["default"](this, "_idMap", new Map());
+    _defineProperty__default["default"](this, "_groupMap", new Map());
   }
-
-  _createClass__default['default'](MuuriMap, [{
+  _createClass__default["default"](MuuriMap, [{
     key: "get",
     value:
     /**
@@ -2410,6 +2320,7 @@ var MuuriMap = /*#__PURE__*/function () {
     function get(id) {
       return this._idMap.get(id) || null;
     }
+
     /**
      * Get all the grid instances in the group of the given id.
      * The reference of the group array never changes.
@@ -2417,33 +2328,30 @@ var MuuriMap = /*#__PURE__*/function () {
      * @param groupId - The group id.
      * @returns - The array of grid instances.
      */
-
   }, {
     key: "getGroup",
     value: function getGroup(groupId) {
       var group = this._groupMap.get(groupId);
-
       if (!group) {
         var newGroup = [];
-
         this._groupMap.set(groupId, newGroup);
-
         return newGroup;
       } else {
         return group;
       }
     }
+
     /**
      * Get all the grid instances in the map.
      *
      * @returns - The grid instances.
      */
-
   }, {
     key: "getAll",
     value: function getAll() {
       return Array.from(this._idMap.values());
     }
+
     /**
      * Set the grid instance with the given id.
      *
@@ -2451,14 +2359,13 @@ var MuuriMap = /*#__PURE__*/function () {
      * @param id - The id of the instance.
      * @returns - The muuriMap.
      */
-
   }, {
     key: "set",
     value: function set(grid, id) {
       this._idMap.set(id, grid);
-
       return this;
     }
+
     /**
      * Set the grid instance in the group of the given id.
      *
@@ -2466,68 +2373,59 @@ var MuuriMap = /*#__PURE__*/function () {
      * @param groupId - The id of the group.
      * @returns - The muuriMap.
      */
-
   }, {
     key: "setGroup",
     value: function setGroup(grid, groupId) {
       var group = this._groupMap.get(groupId);
-
       if (group) {
         group.push(grid);
       } else {
         this._groupMap.set(groupId, [grid]);
       }
-
       return this;
     }
+
     /**
      * Delete the grid instance with the given id.
      *
      * @param id - The id of the instance.
      * @returns - The muuriMap.
      */
-
   }, {
     key: "delete",
     value: function _delete(id) {
       this._idMap["delete"](id);
-
       return this;
     }
+
     /**
      * Delete the instance from the group with the given id.
      *
      * @param grid - The grid instance.
      * @param groupIds - The group ids of the instance.
      */
-
   }, {
     key: "deleteGroup",
     value: function deleteGroup(grid, groupId) {
       var group = this._groupMap.get(groupId);
-
       if (group) {
         var index = group.indexOf(grid);
         if (index > -1) group.splice(index, 1);
       }
-
       return this;
     }
+
     /**
      * Clear the maps.
      */
-
   }, {
     key: "clear",
     value: function clear() {
       this._idMap.clear();
-
       this._groupMap.clear();
-
       return this;
     }
   }]);
-
   return MuuriMap;
 }();
 var muuriMap = new MuuriMap();
@@ -2539,14 +2437,16 @@ var muuriMap = new MuuriMap();
  * @returns - The muuri instance.
  */
 function getInstance(options) {
-  var el = document.createElement('div'); // The element won't be visible.
+  var el = document.createElement('div');
+  // The element won't be visible.
+  el.style.display = 'none';
+  // Muuri (0.8.0) need an element in the DOM to be instanciated.
+  document.body.appendChild(el);
 
-  el.style.display = 'none'; // Muuri (0.8.0) need an element in the DOM to be instanciated.
+  // Generate the instance.
+  var grid = new Muuri__default["default"](el, options);
 
-  document.body.appendChild(el); // Generate the instance.
-
-  var grid = new Muuri__default['default'](el, options); // Remove the element.
-
+  // Remove the element.
   document.body.removeChild(el);
   return grid;
 }
@@ -2559,7 +2459,8 @@ function getInstance(options) {
  */
 function handleRef(ref, value) {
   if (!ref) return;
-  if (typeof ref === 'function') ref(value); // @ts-ignore
+  if (typeof ref === 'function') ref(value);
+  // @ts-ignore
   else if ('current' in ref) ref.current = value;
 }
 
@@ -2570,20 +2471,23 @@ function handleRef(ref, value) {
  * @param options - The grid options.
  */
 function setDragAutoScroll(options) {
-  var dragAutoScroll = options.dragAutoScroll; // Wrap the options only if it is setted.
+  var dragAutoScroll = options.dragAutoScroll;
 
+  // Wrap the options only if it is setted.
   if (!dragAutoScroll || !Array.isArray(dragAutoScroll.targets)) return;
   dragAutoScroll.targets.forEach(function (target) {
     // Check if it is an object to wrap.
     if (isTargetElement(target)) return;
-    invariant('element' in target, 'You must provide an element in each scroll target'); // Scroll target element.
+    invariant('element' in target, 'You must provide an element in each scroll target');
 
-    var element = target.element; // The element ref.
-
+    // Scroll target element.
+    var element = target.element;
+    // The element ref.
     var ref = {
       current: null
-    }; // Define the element property.
+    };
 
+    // Define the element property.
     Object.defineProperty(target, 'element', {
       get: function get() {
         return ref.current;
@@ -2595,21 +2499,24 @@ function setDragAutoScroll(options) {
           ref = element;
         }
       }
-    }); // Set the element.
+    });
 
+    // Set the element.
     target.element = element;
   });
 }
+
 /**
  * Returns if the target is a valid element.
  *
  * @param element - The target.
  * @returns - If the target is a valid element.
  */
-
 function isTargetElement(target) {
-  return (// A DOM element.
-    target instanceof HTMLElement || // The window.
+  return (
+    // A DOM element.
+    target instanceof HTMLElement ||
+    // The window.
     target instanceof window.constructor
   );
 }
@@ -2621,12 +2528,13 @@ function isTargetElement(target) {
  * @param options - The grid options.
  */
 function setDragContainer(options) {
-  var dragContainer = options.dragContainer; // The drag container ref.
-
+  var dragContainer = options.dragContainer;
+  // The drag container ref.
   var ref = {
     current: null
-  }; // Define the property.
+  };
 
+  // Define the property.
   Object.defineProperty(options, 'dragContainer', {
     get: function get() {
       return ref.current;
@@ -2638,8 +2546,9 @@ function setDragContainer(options) {
         ref = value;
       }
     }
-  }); // Set the drag container.
+  });
 
+  // Set the drag container.
   options.dragContainer = dragContainer;
 }
 
@@ -2651,14 +2560,16 @@ function setDragContainer(options) {
  * @param globalMap - The globalMap.
  */
 function setDragSort(options, globalMap) {
-  var dragSort = options.dragSort; // Parse this options only if it is an object.
+  var dragSort = options.dragSort;
+  // Parse this options only if it is an object.
+  if (!dragSort || _typeof__default["default"](dragSort) !== 'object') return;
+  // Check the options.
+  invariant(typeof dragSort.groupId === 'string', 'You must provide a string as groupId');
 
-  if (!dragSort || _typeof__default['default'](dragSort) !== 'object') return; // Check the options.
+  // The group, its reference doesn't change.
+  var group = globalMap.getGroup(dragSort.groupId);
 
-  invariant(typeof dragSort.groupId === 'string', 'You must provide a string as groupId'); // The group, its reference doesn't change.
-
-  var group = globalMap.getGroup(dragSort.groupId); // dragSort method.
-
+  // dragSort method.
   options.dragSort = function () {
     return group;
   };
@@ -2673,120 +2584,123 @@ function setDragSort(options, globalMap) {
  * @param options - The grid options.
  */
 function setDragStartPredicate(options) {
-  var dragStartPredicate = options.dragStartPredicate; // Default predicate.
+  var dragStartPredicate = options.dragStartPredicate;
 
-  var defaultStartPredicate = getDefaultStartPredicate(dragStartPredicate); // Wrap the method.
+  // Default predicate.
+  var defaultStartPredicate = getDefaultStartPredicate(dragStartPredicate);
 
+  // Wrap the method.
   options.dragStartPredicate = function (item, event) {
     if (!getDecoration(item.getGrid()).dragEnabled) return false;
     if (isDecorated(item) && getDecoration(item).draggable === false) return false;
     return defaultStartPredicate(item, event);
   };
 }
+
 /**
  * Given the dragStartPredicate option return the default method.
  *
  * @param dragStartPredicate - The dragStartPredicate option.
  * @returns - The defaultStartPredicate method.
  */
-
 function getDefaultStartPredicate(dragStartPredicate) {
   return typeof dragStartPredicate === 'function' ? dragStartPredicate : function (item, event) {
-    return Muuri__default['default'].ItemDrag.defaultStartPredicate(item, event, dragStartPredicate);
+    return Muuri__default["default"].ItemDrag.defaultStartPredicate(item, event, dragStartPredicate);
   };
 }
 
 var _excluded = ["children", "id", "groupIds", "gridProps", "filter", "sort", "sortOptions", "addOptions", "propsToData", "onSend", "onDragStart", "onDragEnd", "onFilter", "onSort", "onMount", "onUnmount", "forceSync", "dragFixed", "dragEnabled", "instantLayout"];
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty__default["default"](target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty__default['default'](target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
+// Muuri component.
 var MuuriComponent = /*#__PURE__*/React.forwardRef(function MuuriComponent(_ref, muuriRef) {
   var children = _ref.children,
-      id = _ref.id,
-      groupIds = _ref.groupIds,
-      gridProps = _ref.gridProps,
-      filter = _ref.filter,
-      sort = _ref.sort,
-      sortOptions = _ref.sortOptions,
-      addOptions = _ref.addOptions,
-      propsToData = _ref.propsToData,
-      onSend = _ref.onSend,
-      onDragStart = _ref.onDragStart,
-      onDragEnd = _ref.onDragEnd,
-      onFilter = _ref.onFilter,
-      onSort = _ref.onSort,
-      onMount = _ref.onMount,
-      onUnmount = _ref.onUnmount,
-      forceSync = _ref.forceSync,
-      dragFixed = _ref.dragFixed,
-      dragEnabled = _ref.dragEnabled,
-      instantLayout = _ref.instantLayout,
-      options = _objectWithoutProperties__default['default'](_ref, _excluded);
-
+    id = _ref.id,
+    groupIds = _ref.groupIds,
+    gridProps = _ref.gridProps,
+    filter = _ref.filter,
+    sort = _ref.sort,
+    sortOptions = _ref.sortOptions,
+    addOptions = _ref.addOptions,
+    propsToData = _ref.propsToData,
+    onSend = _ref.onSend,
+    onDragStart = _ref.onDragStart,
+    onDragEnd = _ref.onDragEnd,
+    onFilter = _ref.onFilter,
+    onSort = _ref.onSort,
+    onMount = _ref.onMount,
+    onUnmount = _ref.onUnmount,
+    forceSync = _ref.forceSync,
+    dragFixed = _ref.dragFixed,
+    dragEnabled = _ref.dragEnabled,
+    instantLayout = _ref.instantLayout,
+    options = _objectWithoutProperties__default["default"](_ref, _excluded);
   // Generate the Muuri instance.
   var grid = useMemoized(function () {
     // Remove the standard option '*'.
     // @ts-ignore
-    options.items = []; // Muuri (0.9.0) generate the "ItemDrag" instances only if
+    options.items = [];
+    // Muuri (0.9.0) generate the "ItemDrag" instances only if
     // drag is enabled. These instances do not handle scrolling well on touch devices,
     // so we only create these instances if drag-and-drop have to be used
     // (assuming that a boolean is passed to the prop instead of the default value "null").
     // The enabling / disabling of the drag is managed in dragStartPredicate.
     // @ts-ignore
+    options.dragEnabled = dragEnabled !== null;
 
-    options.dragEnabled = dragEnabled !== null; // Allow the drag container to be a React.Ref<HTMLElement>.
+    // Allow the drag container to be a React.Ref<HTMLElement>.
+    setDragContainer(options);
+    // Allow the option to be an object ({ groupId }).
+    setDragSort(options, muuriMap);
+    // Allow the target elements to be React.Ref<HTMLElement>.
+    setDragAutoScroll(options);
+    // Allow enabling / disabling the drag-and-drop.
+    setDragStartPredicate(options);
 
-    setDragContainer(options); // Allow the option to be an object ({ groupId }).
+    // Generate the instance.
+    var grid = getInstance(options);
 
-    setDragSort(options, muuriMap); // Allow the target elements to be React.Ref<HTMLElement>.
-
-    setDragAutoScroll(options); // Allow enabling / disabling the drag-and-drop.
-
-    setDragStartPredicate(options); // Generate the instance.
-
-    var grid = getInstance(options); // Add the instance to the map.
-
-    if (id) muuriMap.set(grid, id); // Add the decoration.
-
+    // Add the instance to the map.
+    if (id) muuriMap.set(grid, id);
+    // Add the decoration.
     addDecoration(grid, {
       id: id
-    }); // Set the ref.
-
+    });
+    // Set the ref.
     handleRef(muuriRef, grid);
     return grid;
   }); // eslint-disable-line
-  // On unmount effect.
 
+  // On unmount effect.
   React.useEffect(function () {
     // Clean-up.
     return function () {
       // Unset the ref.
-      handleRef(muuriRef, null); // Remove the decorations.
-
-      removeDecorations(grid); // Remove the instance from the map.
-
-      if (id) muuriMap["delete"](id); // Destroy the instace
-
+      handleRef(muuriRef, null);
+      // Remove the decorations.
+      removeDecorations(grid);
+      // Remove the instance from the map.
+      if (id) muuriMap["delete"](id);
+      // Destroy the instace
       grid.destroy();
     };
   }, []); // eslint-disable-line
-  // Allow the groupIds to be changed.
 
+  // Allow the groupIds to be changed.
   useInstantEffect(function () {
     // decorate the instance
     addDecoration(grid, {
       groupIds: groupIds
-    }); // Add the instance to the groups.
-
+    });
+    // Add the instance to the groups.
     if (groupIds) {
       groupIds.forEach(function (groupId) {
         muuriMap.setGroup(grid, groupId);
       });
-    } // Clean-up.
+    }
 
-
+    // Clean-up.
     return function () {
       // Remove the instance from the groups.
       if (groupIds) {
@@ -2795,9 +2709,10 @@ var MuuriComponent = /*#__PURE__*/React.forwardRef(function MuuriComponent(_ref,
         });
       }
     };
-  }, groupIds || []); // Render.
+  }, groupIds || []);
 
-  return /*#__PURE__*/React__default['default'].createElement(GridComponent, {
+  // Render.
+  return /*#__PURE__*/React__default["default"].createElement(GridComponent, {
     grid: grid,
     gridProps: gridProps,
     filter: filter,
@@ -2817,92 +2732,97 @@ var MuuriComponent = /*#__PURE__*/React.forwardRef(function MuuriComponent(_ref,
     dragEnabled: dragEnabled,
     instantLayout: instantLayout
   }, children);
-}); // Proptypes.
+});
 
+// Proptypes.
 MuuriComponent.propTypes = {
-  id: PropTypes__default['default'].string,
-  groupIds: PropTypes__default['default'].arrayOf(PropTypes__default['default'].string.isRequired),
-  showDuration: PropTypes__default['default'].number,
-  showEasing: PropTypes__default['default'].string,
-  hideDuration: PropTypes__default['default'].number,
-  hideEasing: PropTypes__default['default'].string,
-  visibleStyles: PropTypes__default['default'].shape({}),
-  hiddenStyles: PropTypes__default['default'].shape({}),
+  id: PropTypes__default["default"].string,
+  groupIds: PropTypes__default["default"].arrayOf(PropTypes__default["default"].string.isRequired),
+  showDuration: PropTypes__default["default"].number,
+  showEasing: PropTypes__default["default"].string,
+  hideDuration: PropTypes__default["default"].number,
+  hideEasing: PropTypes__default["default"].string,
+  visibleStyles: PropTypes__default["default"].shape({}),
+  hiddenStyles: PropTypes__default["default"].shape({}),
   // @ts-ignore
-  layout: PropTypes__default['default'].oneOfType([PropTypes__default['default'].func, PropTypes__default['default'].exact({
-    fillGaps: PropTypes__default['default'].bool,
-    horizontal: PropTypes__default['default'].bool,
-    alignRight: PropTypes__default['default'].bool,
-    alignBottom: PropTypes__default['default'].bool,
-    rounding: PropTypes__default['default'].bool
+  layout: PropTypes__default["default"].oneOfType([PropTypes__default["default"].func, PropTypes__default["default"].exact({
+    fillGaps: PropTypes__default["default"].bool,
+    horizontal: PropTypes__default["default"].bool,
+    alignRight: PropTypes__default["default"].bool,
+    alignBottom: PropTypes__default["default"].bool,
+    rounding: PropTypes__default["default"].bool
   })]),
-  layoutOnResize: PropTypes__default['default'].oneOfType([PropTypes__default['default'].bool, PropTypes__default['default'].number]),
-  layoutDuration: PropTypes__default['default'].number,
-  layoutEasing: PropTypes__default['default'].string,
-  dragContainer: PropTypes__default['default'].oneOfType([PropTypes__default['default'].instanceOf(HTMLElement), PropTypes__default['default'].shape({
-    current: PropTypes__default['default'].instanceOf(HTMLElement).isRequired
-  })]),
-  // @ts-ignore
-  dragStartPredicate: PropTypes__default['default'].oneOfType([PropTypes__default['default'].func, PropTypes__default['default'].exact({
-    distance: PropTypes__default['default'].number,
-    delay: PropTypes__default['default'].number,
-    handle: PropTypes__default['default'].oneOfType([PropTypes__default['default'].string, PropTypes__default['default'].bool])
-  })]),
-  dragAxis: PropTypes__default['default'].oneOf(['x', 'y', 'xy']),
-  dragSort: PropTypes__default['default'].oneOfType([PropTypes__default['default'].bool, PropTypes__default['default'].func, PropTypes__default['default'].exact({
-    groupId: PropTypes__default['default'].string.isRequired
+  layoutOnResize: PropTypes__default["default"].oneOfType([PropTypes__default["default"].bool, PropTypes__default["default"].number]),
+  layoutDuration: PropTypes__default["default"].number,
+  layoutEasing: PropTypes__default["default"].string,
+  dragContainer: PropTypes__default["default"].oneOfType([PropTypes__default["default"].instanceOf(HTMLElement), PropTypes__default["default"].shape({
+    current: PropTypes__default["default"].instanceOf(HTMLElement).isRequired
   })]),
   // @ts-ignore
-  dragSortHeuristics: PropTypes__default['default'].exact({
-    sortInterval: PropTypes__default['default'].number,
-    minDragDistance: PropTypes__default['default'].number,
-    minBounceBackAngle: PropTypes__default['default'].number
+  dragStartPredicate: PropTypes__default["default"].oneOfType([PropTypes__default["default"].func, PropTypes__default["default"].exact({
+    distance: PropTypes__default["default"].number,
+    delay: PropTypes__default["default"].number,
+    handle: PropTypes__default["default"].oneOfType([PropTypes__default["default"].string, PropTypes__default["default"].bool])
+  })]),
+  dragAxis: PropTypes__default["default"].oneOf(['x', 'y', 'xy']),
+  dragSort: PropTypes__default["default"].oneOfType([PropTypes__default["default"].bool, PropTypes__default["default"].func, PropTypes__default["default"].exact({
+    groupId: PropTypes__default["default"].string.isRequired
+  })]),
+  // @ts-ignore
+  dragSortHeuristics: PropTypes__default["default"].exact({
+    sortInterval: PropTypes__default["default"].number,
+    minDragDistance: PropTypes__default["default"].number,
+    minBounceBackAngle: PropTypes__default["default"].number
   }),
   // @ts-ignore
-  dragSortPredicate: PropTypes__default['default'].oneOfType([PropTypes__default['default'].func, PropTypes__default['default'].exact({
-    action: PropTypes__default['default'].oneOf(['move', 'swap']),
-    migrateAction: PropTypes__default['default'].oneOf(['move', 'swap']),
-    threshold: PropTypes__default['default'].number
+  dragSortPredicate: PropTypes__default["default"].oneOfType([PropTypes__default["default"].func, PropTypes__default["default"].exact({
+    action: PropTypes__default["default"].oneOf(['move', 'swap']),
+    migrateAction: PropTypes__default["default"].oneOf(['move', 'swap']),
+    threshold: PropTypes__default["default"].number
   })]),
   // @ts-ignore
-  dragRelease: PropTypes__default['default'].exact({
-    duration: PropTypes__default['default'].number,
-    easing: PropTypes__default['default'].string,
-    useDragContainer: PropTypes__default['default'].bool
+  dragRelease: PropTypes__default["default"].exact({
+    duration: PropTypes__default["default"].number,
+    easing: PropTypes__default["default"].string,
+    useDragContainer: PropTypes__default["default"].bool
   }),
   // @ts-ignore
-  dragCssProps: PropTypes__default['default'].exact({
-    touchAction: PropTypes__default['default'].string,
-    userSelect: PropTypes__default['default'].string,
-    userDrag: PropTypes__default['default'].string,
-    tapHighlightColor: PropTypes__default['default'].string,
-    touchCallout: PropTypes__default['default'].string,
-    contentZooming: PropTypes__default['default'].string
+  dragCssProps: PropTypes__default["default"].exact({
+    touchAction: PropTypes__default["default"].string,
+    userSelect: PropTypes__default["default"].string,
+    userDrag: PropTypes__default["default"].string,
+    tapHighlightColor: PropTypes__default["default"].string,
+    touchCallout: PropTypes__default["default"].string,
+    contentZooming: PropTypes__default["default"].string
   }),
   // @ts-ignore
-  dragPlaceholder: PropTypes__default['default'].exact({
-    enabled: PropTypes__default['default'].bool,
-    createElement: PropTypes__default['default'].func,
-    onCreate: PropTypes__default['default'].func,
-    onRemove: PropTypes__default['default'].func,
-    easing: PropTypes__default['default'].string,
-    duration: PropTypes__default['default'].number
+  dragPlaceholder: PropTypes__default["default"].exact({
+    enabled: PropTypes__default["default"].bool,
+    createElement: PropTypes__default["default"].func,
+    onCreate: PropTypes__default["default"].func,
+    onRemove: PropTypes__default["default"].func,
+    easing: PropTypes__default["default"].string,
+    duration: PropTypes__default["default"].number
   }),
-  containerClass: PropTypes__default['default'].string,
-  itemClass: PropTypes__default['default'].string,
-  itemVisibleClass: PropTypes__default['default'].string,
-  itemHiddenClass: PropTypes__default['default'].string,
-  itemPositioningClass: PropTypes__default['default'].string,
-  itemDraggingClass: PropTypes__default['default'].string,
-  itemReleasingClass: PropTypes__default['default'].string,
-  itemPlaceholderClass: PropTypes__default['default'].string
-}; // Default props.
+  containerClass: PropTypes__default["default"].string,
+  itemClass: PropTypes__default["default"].string,
+  itemVisibleClass: PropTypes__default["default"].string,
+  itemHiddenClass: PropTypes__default["default"].string,
+  itemPositioningClass: PropTypes__default["default"].string,
+  itemDraggingClass: PropTypes__default["default"].string,
+  itemReleasingClass: PropTypes__default["default"].string,
+  itemPlaceholderClass: PropTypes__default["default"].string
+};
 
-MuuriComponent.defaultProps = _objectSpread(_objectSpread({}, Muuri__default['default'].defaultOptions), {}, {
+// Default props.
+MuuriComponent.defaultProps = _objectSpread(_objectSpread({}, Muuri__default["default"].defaultOptions), {}, {
   dragEnabled: null
-}); // Display name.
+});
 
+// Display name.
 MuuriComponent.displayName = 'MuuriComponent';
+
+// The method return by the hook.
 
 /**
  * The useData hook allow to set the data to the item in which the hook has been called.
@@ -2914,18 +2834,20 @@ MuuriComponent.displayName = 'MuuriComponent';
  */
 function useData(initialData, options) {
   var _useItemContext = useItemContext(),
-      itemRefController = _useItemContext.itemRefController; // Check if the hook is called inside an item.
+    itemRefController = _useItemContext.itemRefController;
 
+  // Check if the hook is called inside an item.
+  invariant(itemRefController !== undefined, 'The useData hook can be used only inside an Item');
 
-  invariant(itemRefController !== undefined, 'The useData hook can be used only inside an Item'); // Because of memoization, The identity of the function is guaranteed
+  // Because of memoization, The identity of the function is guaranteed
   // to be stable so it will be safe to omit them as a dependency.
-
   var setData = useFunction(function (data, options) {
     // Check if the data is an object.
-    invariant(_typeof__default['default'](data) === 'object', "The data must be an object, founded: ".concat(_typeof__default['default'](data))); // Default options.
+    invariant(_typeof__default["default"](data) === 'object', "The data must be an object, founded: ".concat(_typeof__default["default"](data)));
 
-    options = options || useData.defaultOptions; // Set the data.
-
+    // Default options.
+    options = options || useData.defaultOptions;
+    // Set the data.
     if (options.merge) {
       // Merge.
       var currentData = itemRefController.get('data') || {};
@@ -2934,15 +2856,16 @@ function useData(initialData, options) {
       // Set.
       itemRefController.set('data', data);
     }
-  }); // Set the inital data.
+  });
 
-  if (_typeof__default['default'](initialData) === 'object') {
+  // Set the inital data.
+  if (_typeof__default["default"](initialData) === 'object') {
     setData(initialData, options);
   }
-
   return setData;
-} // Default options.
+}
 
+// Default options.
 useData.defaultOptions = {
   merge: false
 };
@@ -2954,20 +2877,22 @@ useData.defaultOptions = {
  *
  * @returns - If the item is being dragged.
  */
-
 function useDrag() {
   var _useItemContext = useItemContext(),
-      eventController = _useItemContext.eventController;
+    eventController = _useItemContext.eventController;
+  var reRender = useRerender();
 
-  var reRender = useRerender(); // Check if the hook is called inside an item.
+  // Check if the hook is called inside an item.
+  invariant(eventController !== undefined, 'The useDrag hook can be used only inside an Item');
 
-  invariant(eventController !== undefined, 'The useDrag hook can be used only inside an Item'); // Enable the event.
-
+  // Enable the event.
   React.useEffect(function () {
     eventController.enableEvent('drag', reRender);
   }, [eventController, reRender]);
   return eventController.getPayload('drag') || false;
 }
+
+// The method returned by the hook.
 
 /**
  * The useDraggable hook allow to decide if the item (in which the hook has been called)
@@ -2978,9 +2903,9 @@ function useDrag() {
  */
 function useDraggable() {
   var _useItemContext = useItemContext(),
-      itemRefController = _useItemContext.itemRefController; // Check if the hook is called inside an item.
+    itemRefController = _useItemContext.itemRefController;
 
-
+  // Check if the hook is called inside an item.
   invariant(itemRefController !== undefined, 'The useData hook can be used only inside an Item');
   var setDraggable = useFunction(function (draggable) {
     // Set if the item can be dragged.
@@ -2997,16 +2922,18 @@ function useDraggable() {
  */
 function useGrid() {
   var _useItemContext = useItemContext(),
-      eventController = _useItemContext.eventController;
-
+    eventController = _useItemContext.eventController;
   var gridContext = useGridContext();
-  var reRender = useRerender(); // Check if the hook is called inside an item.
+  var reRender = useRerender();
 
-  invariant(eventController !== undefined && gridContext.grid !== undefined, 'The useData hook can be used only inside an Item'); // The context is not updated when the hook is trigger
+  // Check if the hook is called inside an item.
+  invariant(eventController !== undefined && gridContext.grid !== undefined, 'The useData hook can be used only inside an Item');
+
+  // The context is not updated when the hook is trigger
   // so we need to get the updated instance from the eventController.
+  var grid = eventController.getPayload('send') || gridContext.grid;
 
-  var grid = eventController.getPayload('send') || gridContext.grid; // Enable the event.
-
+  // Enable the event.
   React.useEffect(function () {
     eventController.enableEvent('send', reRender);
   }, [eventController, reRender]);
@@ -3017,6 +2944,8 @@ function useGrid() {
   };
 }
 
+// The method returned by the hook.
+
 /**
  * The useRefresh hook allow to notify the MuuriComponent that the
  * item dimensions are changed, so that it can update the layout.
@@ -3026,22 +2955,21 @@ function useGrid() {
  */
 function useRefresh() {
   var deps = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-
   var _useGridContext = useGridContext(),
-      layoutController = _useGridContext.layoutController;
-
+    layoutController = _useGridContext.layoutController;
   var _useItemContext = useItemContext(),
-      itemRefController = _useItemContext.itemRefController; // Check if the hook is called inside an item.
+    itemRefController = _useItemContext.itemRefController;
 
+  // Check if the hook is called inside an item.
+  invariant(itemRefController !== undefined && layoutController !== undefined, 'The useRefresh hook can be used only inside an Item');
 
-  invariant(itemRefController !== undefined && layoutController !== undefined, 'The useRefresh hook can be used only inside an Item'); // Because of memoization, The identity of the function is guaranteed
+  // Because of memoization, The identity of the function is guaranteed
   // to be stable so it will be safe to omit it as a dependency.
-
   var refresh = React.useCallback(function () {
-    if (!itemRefController.hasItem()) return; // Get the item.
-
-    var item = itemRefController.getItem(); // If the component is rendering within the MuuriComponent.
-
+    if (!itemRefController.hasItem()) return;
+    // Get the item.
+    var item = itemRefController.getItem();
+    // If the component is rendering within the MuuriComponent.
     layoutController.refreshItem(item);
   }, [layoutController, itemRefController]);
   React.useEffect(function () {
@@ -3057,20 +2985,22 @@ function useRefresh() {
  *
  * @returns - If the item is showing.
  */
-
 function useShow() {
   var _useItemContext = useItemContext(),
-      eventController = _useItemContext.eventController;
+    eventController = _useItemContext.eventController;
+  var reRender = useRerender();
 
-  var reRender = useRerender(); // Check if the hook is called inside an item.
+  // Check if the hook is called inside an item.
+  invariant(eventController !== undefined, 'The useShow hook can be used only inside an Item');
 
-  invariant(eventController !== undefined, 'The useShow hook can be used only inside an Item'); // Enable the event.
-
+  // Enable the event.
   React.useEffect(function () {
     eventController.enableEvent('show', reRender);
   }, [eventController, reRender]);
   return eventController.getPayload('show');
 }
+
+// The method returned by the hook.
 
 /**
  * The useVisibility hook allow you to show/hide the item in which the hook has been called.
@@ -3079,26 +3009,29 @@ function useShow() {
  */
 function useVisibility() {
   var _useGridContext = useGridContext(),
-      layoutController = _useGridContext.layoutController;
-
+    layoutController = _useGridContext.layoutController;
   var _useItemContext = useItemContext(),
-      eventController = _useItemContext.eventController,
-      itemRefController = _useItemContext.itemRefController; // Check if the hook is called inside an item.
+    eventController = _useItemContext.eventController,
+    itemRefController = _useItemContext.itemRefController;
 
+  // Check if the hook is called inside an item.
+  invariant(itemRefController !== undefined && layoutController !== undefined && eventController !== undefined, 'The useData hook can be used only inside an Item');
 
-  invariant(itemRefController !== undefined && layoutController !== undefined && eventController !== undefined, 'The useData hook can be used only inside an Item'); // Set visibility.
-
+  // Set visibility.
   var setVisibility = useFunction(function (visible, options) {
     if (!itemRefController.hasItem()) return;
-    if (!!visible === eventController.getPayload('show')) return; // Default options.
+    if (!!visible === eventController.getPayload('show')) return;
 
-    options = options || useVisibility.defaultOptions; // Set the visibility.
+    // Default options.
+    options = options || useVisibility.defaultOptions;
 
+    // Set the visibility.
     layoutController.setItemVisibility(itemRefController.getItem(), visible, options.instant === true);
   });
   return setVisibility;
-} // Default options.
+}
 
+// Default options.
 useVisibility.defaultOptions = {
   instant: false
 };
@@ -3124,27 +3057,30 @@ var hooks = /*#__PURE__*/Object.freeze({
  */
 function getResponsiveStyle(options) {
   // Check options.
-  invariant(_typeof__default['default'](options) === 'object', 'You must define options'); // Check columns.
+  invariant(_typeof__default["default"](options) === 'object', 'You must define options');
 
-  invariant(typeof options.columns === 'number' && options.columns > 0 && options.columns <= 1, 'options.columns must be a number between 0 (excluded) and 1 (included)'); // Check height and ratio.
+  // Check columns.
+  invariant(typeof options.columns === 'number' && options.columns > 0 && options.columns <= 1, 'options.columns must be a number between 0 (excluded) and 1 (included)');
 
-  invariant(typeof options.ratio === 'number' || typeof options.height === 'number' || typeof options.height === 'string', 'You must provide at least one option between height and ratio'); // Check that the height and the ratio options are not setted togheter.
+  // Check height and ratio.
+  invariant(typeof options.ratio === 'number' || typeof options.height === 'number' || typeof options.height === 'string', 'You must provide at least one option between height and ratio');
 
-  invariant(typeof options.ratio !== 'number' || typeof options.height !== 'number' && typeof options.height !== 'string', 'You cannot provide both the height and the ratio options'); // The margin values.
+  // Check that the height and the ratio options are not setted togheter.
+  invariant(typeof options.ratio !== 'number' || typeof options.height !== 'number' && typeof options.height !== 'string', 'You cannot provide both the height and the ratio options');
 
+  // The margin values.
   var _getResponsiveMargin = getResponsiveMargin(options.margin || '0px'),
-      margin = _getResponsiveMargin.margin,
-      mStatic = _getResponsiveMargin.mStatic,
-      mDynamic = _getResponsiveMargin.mDynamic; // The item width.
-
-
+    margin = _getResponsiveMargin.margin,
+    mStatic = _getResponsiveMargin.mStatic,
+    mDynamic = _getResponsiveMargin.mDynamic;
+  // The item width.
   var _getResponsiveWidth = getResponsiveWidth(options.columns, mStatic, mDynamic),
-      needCalc = _getResponsiveWidth.needCalc,
-      width = _getResponsiveWidth.width; // If ratio is used set The paddingTop
+    needCalc = _getResponsiveWidth.needCalc,
+    width = _getResponsiveWidth.width;
+
+  // If ratio is used set The paddingTop
   // instad of the heght, the child element must
   // have "display: absolute".
-
-
   return options.ratio ? {
     width: needCalc ? "calc(".concat(width, ")") : width,
     paddingTop: getResponsivePaddingTop(width, options.ratio, needCalc),
@@ -3160,6 +3096,7 @@ function getResponsiveStyle(options) {
     margin: margin
   };
 }
+
 /**
  * Get the responsive width.
  *
@@ -3168,7 +3105,6 @@ function getResponsiveStyle(options) {
  * @param mDynamic - The dynamic margin.
  * @returns - The width.
  */
-
 function getResponsiveWidth(columns, mStatic, mDynamic) {
   var needCalc = mStatic !== 0;
   var rawWidth = columns * 100 - mDynamic;
@@ -3178,6 +3114,7 @@ function getResponsiveWidth(columns, mStatic, mDynamic) {
     width: width
   };
 }
+
 /**
  * Get the responsive paddingTop.
  *
@@ -3186,39 +3123,37 @@ function getResponsiveWidth(columns, mStatic, mDynamic) {
  * @param needCalc - If the width need to be surrounded by calc().
  * @returns - The paddingTop.
  */
-
-
 function getResponsivePaddingTop(width, ratio, needCalc) {
   return needCalc ? "calc((".concat(width, ") / ").concat(ratio, ")") : "".concat(parseFloat(width) / ratio, "%");
 }
+
 /**
  * Get the fixed height.
  *
  * @param height - The mixed height.
  * @returns - The height string.
  */
-
-
 function getFixedHeight(height) {
   return typeof height === 'number' ? "".concat(height, "px") : height;
 }
+
 /**
  * The responsive margin.
  *
  * @param margin - The margin.
  * @returns - The responsive margin.
  */
-
-
 function getResponsiveMargin(margin) {
   if (typeof margin === 'number') margin = "".concat(margin, "px");
-  var margins = margin.trim().split(' '); // Margin default values.
+  var margins = margin.trim().split(' ');
 
+  // Margin default values.
   var leftMargin = '0px';
   var rightMargin = '0px';
   var mDynamic = 0;
-  var mStatic = 0; // Get the values from the input.
+  var mStatic = 0;
 
+  // Get the values from the input.
   if (margins.length === 1) {
     leftMargin = rightMargin = margins[0];
   } else if (margins.length === 2) {
@@ -3228,9 +3163,9 @@ function getResponsiveMargin(margin) {
   } else if (margins.length === 4) {
     leftMargin = margins[3];
     rightMargin = margins[1];
-  } // Set dynamic/static margins.
+  }
 
-
+  // Set dynamic/static margins.
   if (leftMargin.indexOf('%') === -1) mStatic += parseFloat(leftMargin);else mDynamic += parseFloat(leftMargin);
   if (rightMargin.indexOf('%') === -1) mStatic += parseFloat(rightMargin);else mDynamic += parseFloat(rightMargin);
   return {
@@ -3247,20 +3182,23 @@ function getResponsiveMargin(margin) {
  * @returns - The style.
  */
 function getStaticStyle(options) {
-  var style = getResponsiveStyle(options); // Check the options.
+  var style = getResponsiveStyle(options);
 
-  invariant('grid' in options, 'You mast pass the grid instance to get the static style.'); // The sizer element.
+  // Check the options.
+  invariant('grid' in options, 'You mast pass the grid instance to get the static style.');
 
-  var sizerElement = options.grid.getSizerElement(); // Set the style in the sizer.
+  // The sizer element.
+  var sizerElement = options.grid.getSizerElement();
 
-  Object.assign(sizerElement.style, style); // Get the style from the sizer.
+  // Set the style in the sizer.
+  Object.assign(sizerElement.style, style);
 
+  // Get the style from the sizer.
   var _window$getComputedSt = window.getComputedStyle(sizerElement),
-      width = _window$getComputedSt.width,
-      height = _window$getComputedSt.height,
-      paddingTop = _window$getComputedSt.paddingTop,
-      margin = _window$getComputedSt.margin;
-
+    width = _window$getComputedSt.width,
+    height = _window$getComputedSt.height,
+    paddingTop = _window$getComputedSt.paddingTop,
+    margin = _window$getComputedSt.margin;
   return {
     width: width,
     height: height,
@@ -3269,53 +3207,42 @@ function getStaticStyle(options) {
   };
 }
 
-var hooksNames = ['useData', 'useDrag', 'useDraggable', 'useGrid', 'useRefresh', 'useShow', 'useVisibility']; // Handler type.
+// Hook names.
+var hooksNames = ['useData', 'useDrag', 'useDraggable', 'useGrid', 'useRefresh', 'useShow', 'useVisibility'];
+
+// Handler type.
 
 // Hook handlers.
-var HooksHandlers = [['useData',
-/*       */
-getHandler('setData')], ['useDrag',
-/*       */
-getHandler('isDragging')], ['useDraggable',
-/*  */
-getHandler('setDraggable')], ['useGrid',
-/*       */
-getHandler('gridData')], ['useRefresh',
-/*    */
-getHandler('refresh')], ['useShow',
-/*       */
-getHandler('isShowing')], ['useVisibility',
-/* */
-getHandler('setVisibility')]];
+var HooksHandlers = [['useData', /*       */getHandler('setData')], ['useDrag', /*       */getHandler('isDragging')], ['useDraggable', /*  */getHandler('setDraggable')], ['useGrid', /*       */getHandler('gridData')], ['useRefresh', /*    */getHandler('refresh')], ['useShow', /*       */getHandler('isShowing')], ['useVisibility', /* */getHandler('setVisibility')]];
+
 /**
  * Return the handler with the given key.
  *
  * @param key - The key.
  * @returns - The method.
  */
-
 function getHandler(key) {
   return function handler(payload) {
-    return _defineProperty__default['default']({}, key, payload);
+    return _defineProperty__default["default"]({}, key, payload);
   };
 }
+
 /**
  * Run all the handlers and merge all the payloads.
  *
  * @param hooksHandlers - The handlers.
  * @returns - The merged payload.
  */
-
 function getMerged(hooksHandlers) {
-  return Object.assign.apply(Object, [{}].concat(_toConsumableArray__default['default'](hooksHandlers.map(function (_ref2) {
-    var _ref3 = _slicedToArray__default['default'](_ref2, 2),
-        hookName = _ref3[0],
-        handler = _ref3[1];
-
+  return Object.assign.apply(Object, [{}].concat(_toConsumableArray__default["default"](hooksHandlers.map(function (_ref2) {
+    var _ref3 = _slicedToArray__default["default"](_ref2, 2),
+      hookName = _ref3[0],
+      handler = _ref3[1];
     var payload = hooks[hookName]();
     return handler(payload);
   }))));
 }
+
 /**
  * Item HOC for hooks.
  *
@@ -3323,33 +3250,35 @@ function getMerged(hooksHandlers) {
  * @param enabledHooks - The hooks to enable.
  * @returns - The wrapped component.
  */
-
-
 function withHooks(Component, enabledHooks) {
   // There must be an array of hooks to enable.
-  invariant(Array.isArray(enabledHooks), 'An array of hooks name must be provided to wrap an item.'); // All the hooks must be valid.
+  invariant(Array.isArray(enabledHooks), 'An array of hooks name must be provided to wrap an item.');
 
+  // All the hooks must be valid.
   enabledHooks.forEach(function (hookName) {
     invariant(hooksNames.includes(hookName), "Invalid item hook: ".concat(hookName));
-  }); // There must be at least one hook to enable.
+  });
 
-  invariant(enabledHooks.length !== 0, 'To wrap an item at least one hook must be provided.'); // Get the handlers array of the enabled hook.
+  // There must be at least one hook to enable.
+  invariant(enabledHooks.length !== 0, 'To wrap an item at least one hook must be provided.');
 
+  // Get the handlers array of the enabled hook.
   var hooksHandlers = HooksHandlers.filter(function (_ref4) {
-    var _ref5 = _slicedToArray__default['default'](_ref4, 1),
-        hookName = _ref5[0];
-
+    var _ref5 = _slicedToArray__default["default"](_ref4, 1),
+      hookName = _ref5[0];
     return enabledHooks.includes(hookName);
-  }); // Return the HOC.
+  });
 
+  // Return the HOC.
   return function WrappedItem(props) {
     // The hooks will run in the 'getMerged' method.
-    return /*#__PURE__*/React__default['default'].createElement(Component, _extends__default['default']({}, props, getMerged(hooksHandlers)));
+    return /*#__PURE__*/React__default["default"].createElement(Component, _extends__default["default"]({}, props, getMerged(hooksHandlers)));
   };
 }
 
-var AutoScroller = Muuri__default['default'].AutoScroller;
-var ItemDrag = Muuri__default['default'].ItemDrag; // Muuri-react exports.
+// Muuri-exports.
+var AutoScroller = Muuri__default["default"].AutoScroller;
+var ItemDrag = Muuri__default["default"].ItemDrag;
 
 exports.AutoScroller = AutoScroller;
 exports.ChildrenController = ChildrenController;
