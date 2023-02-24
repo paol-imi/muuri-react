@@ -1,5 +1,5 @@
 {
-  "name": "muuri-react",
+  "name": "@namecheap/react-muuri",
   "version": "3.2.0",
   "description": "The layout engine for React.",
   "main": "dist/muuri-react.cjs.js",
