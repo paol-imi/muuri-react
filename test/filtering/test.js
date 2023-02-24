@@ -9,6 +9,8 @@ import {
   VisibilityResponsiveItem,
 } from './components';
 
+const flushPromises = () => new Promise((r) => setTimeout(r, 0));
+
 describe('How items are filtered', () => {
   test('The items are sorted correctly using a function as predicate (propsToData)', () => {
     const data = [{id: '2'}, {id: '1'}, {id: '3'}];
@@ -86,7 +88,7 @@ describe('How <HiddenItem> interact with filtering', () => {
     expect(DOMItems.findById('1').style.display).toBe('none');
   });
 
-  test('The filter has priority over the visibility of the item ', () => {
+  test('The filter has priority over the visibility of the item ', async () => {
     const setVisibilityRef = React.createRef();
 
     const {wrapper, DOMItems} = mount(
@@ -103,7 +105,7 @@ describe('How <HiddenItem> interact with filtering', () => {
 });
 
 describe('How <VisibilityResponsiveItem> interact with filtering', () => {
-  test('The component re-render when its visibility change', () => {
+  test('The component re-render when its visibility change', async () => {
     const onRender = jest.fn();
 
     const {wrapper} = mount(
@@ -113,9 +115,15 @@ describe('How <VisibilityResponsiveItem> interact with filtering', () => {
     );
 
     expect(onRender.mock.calls.length).toBe(1);
-    wrapper.setProps({filter: () => true});
-    expect(onRender.mock.calls.length).toBe(2);
-    wrapper.setProps({filter: () => false});
-    expect(onRender.mock.calls.length).toBe(3);
+
+    wrapper.setProps({filter: () => true}, async () => {
+      await flushPromises();
+      expect(onRender.mock.calls.length).toBe(2);
+    });
+
+    wrapper.setProps({filter: () => false}, async () => {
+      await flushPromises();
+      expect(onRender.mock.calls.length).toBe(3);
+    });
   });
 });

@@ -1,5 +1,5 @@
 import type { DecoratedGrid } from '../interfaces';
-export declare type GridData = {
+export type GridData = {
     id?: string;
     groupIds?: string[];
     grid: DecoratedGrid;

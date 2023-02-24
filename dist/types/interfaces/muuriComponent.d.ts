@@ -71,23 +71,23 @@ export interface GridProps {
     itemPlaceholderClass?: GridOptions['itemPlaceholderClass'];
 }
 /** Maybe ref type. */
-export declare type MaybeRef<T> = RefObject<T | null | undefined> | T;
+export type MaybeRef<T> = RefObject<T | null | undefined> | T;
 /** DragStartPredicate function type. */
-export declare type DecoratedDragStartPredicate = (item: DecoratedItem, event: DraggerStartEvent | DraggerMoveEvent | DraggerEndEvent | DraggerCancelEvent) => boolean | undefined;
+export type DecoratedDragStartPredicate = (item: DecoratedItem, event: DraggerStartEvent | DraggerMoveEvent | DraggerEndEvent | DraggerCancelEvent) => boolean | undefined;
 /** DragSort function type. */
-export declare type DecoratedDragSortGetter = (this: DecoratedGrid, item: DecoratedItem) => DecoratedGrid[] | null | void | undefined;
+export type DecoratedDragSortGetter = (this: DecoratedGrid, item: DecoratedItem) => DecoratedGrid[] | null | void | undefined;
 /** DragSort object type. */
-export declare type DecoratedDragSort = {
+export type DecoratedDragSort = {
     groupId: string;
 };
 /** DragSortPredicate function type. */
-export declare type DecoratedDragSortPredicate = (item: DecoratedItem, e: DraggerEvent) => {
+export type DecoratedDragSortPredicate = (item: DecoratedItem, e: DraggerEvent) => {
     index: number;
     grid: DecoratedGrid;
     action?: 'move' | 'swap';
 };
 /** DragPlaceholder type. */
-export declare type DragPlaceholder = {
+export type DragPlaceholder = {
     /** Enabled. */
     enabled?: boolean;
     /** Generator. */
@@ -98,31 +98,31 @@ export declare type DragPlaceholder = {
     onRemove?(item: DecoratedItem, placeholderElement: HTMLElement): void;
 };
 /** DragAutoScroll element type. */
-export declare type DragAutoScrollElement = HTMLElement | Window;
+export type DragAutoScrollElement = HTMLElement | Window;
 /** DragAutoScroll target element type. */
-export declare type DragAutoScrollTargetElement = RefObject<DragAutoScrollElement | null> | DragAutoScrollElement;
+export type DragAutoScrollTargetElement = RefObject<DragAutoScrollElement | null> | DragAutoScrollElement;
 /** DragAutoScroll target element type. */
-export declare type DragAutoScrollTargetObject = {
+export type DragAutoScrollTargetObject = {
     element: DragAutoScrollTargetElement;
     axis?: number | null;
     priority?: number | null;
     threshold?: number | null;
 };
 /** DragAutoScroll target type. */
-export declare type DragAutoScrollTarget = DragAutoScrollTargetObject | DragAutoScrollTargetElement;
+export type DragAutoScrollTarget = DragAutoScrollTargetObject | DragAutoScrollTargetElement;
 /** DragAutoScrollOnStart type. */
-export declare type DragAutoScrollOnStart = (item: DecoratedItem, scrollElement: DragAutoScrollElement, scrollDirection: number) => void;
+export type DragAutoScrollOnStart = (item: DecoratedItem, scrollElement: DragAutoScrollElement, scrollDirection: number) => void;
 /** DragAutoScrollOnStop type. */
-export declare type DragAutoScrollOnStop = (item: DecoratedItem, scrollElement: DragAutoScrollElement, scrollDirection: number) => void;
+export type DragAutoScrollOnStop = (item: DecoratedItem, scrollElement: DragAutoScrollElement, scrollDirection: number) => void;
 /** DragAutoScrollHandle type. */
-export declare type DragAutoScrollHandle = (item: DecoratedItem, itemClientX: number, itemClientY: number, itemWidth: number, itemHeight: number, pointerClientX: number, pointerClientY: number) => {
+export type DragAutoScrollHandle = (item: DecoratedItem, itemClientX: number, itemClientY: number, itemWidth: number, itemHeight: number, pointerClientX: number, pointerClientY: number) => {
     left: number;
     top: number;
     width: number;
     height: number;
 };
 /** DragAutoScrollSpeed type. */
-export declare type DragAutoScrollSpeed = (item: DecoratedItem, scrollElement: DragAutoScrollElement, scrollData: {
+export type DragAutoScrollSpeed = (item: DecoratedItem, scrollElement: DragAutoScrollElement, scrollData: {
     direction: number;
     threshold: number;
     distance: number;

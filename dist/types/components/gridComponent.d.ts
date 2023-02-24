@@ -6,8 +6,8 @@ export declare namespace GridComponent {
     var propTypes: {
         grid: PropTypes.Validator<object>;
         gridProps: PropTypes.Requireable<object>;
-        filter: PropTypes.Requireable<string | ((...args: any[]) => any)>;
-        sort: PropTypes.Requireable<string | ((...args: any[]) => any) | (string | null | undefined)[]>;
+        filter: PropTypes.Requireable<NonNullable<string | ((...args: any[]) => any) | null | undefined>>;
+        sort: PropTypes.Requireable<NonNullable<string | ((...args: any[]) => any) | (string | null | undefined)[] | null | undefined>>;
         sortOptions: PropTypes.Requireable<Required<PropTypes.InferProps<{
             descending: PropTypes.Requireable<boolean>;
         }>>>;

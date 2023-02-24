@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import type { ItemRefController, EventController } from '../controllers';
-export declare type ItemContextValue = {
+export type ItemContextValue = {
     itemRefController: ItemRefController;
     eventController: EventController;
 };
