@@ -14,7 +14,7 @@
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
     "eslint": "./node_modules/.bin/eslint src/**/*.{js,jsx,ts,tsx} test/**/*.{js,jsx,ts,tsx}",
-    "prettier": "./node_modules/.bin/prettier --write **/*.{js,jsx,ts,tsx,md,mdx,json}",
+    "prettier": "./node_modules/.bin/prettier --write '**/*.{js,jsx,ts,tsx,md,mdx,json}'",
     "prepublishOnly": "npm run type-check && npm run test && npm run prettier && npm run build"
   },
   "homepage": "https://paol-imi.github.io/muuri-react",
