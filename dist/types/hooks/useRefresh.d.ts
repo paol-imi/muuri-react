@@ -1,4 +1,4 @@
-export declare type RefreshMethod = () => void;
+export type RefreshMethod = () => void;
 /**
  * The useRefresh hook allow to notify the MuuriComponent that the
  * item dimensions are changed, so that it can update the layout.

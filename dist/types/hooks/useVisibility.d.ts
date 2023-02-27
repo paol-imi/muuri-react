@@ -1,5 +1,5 @@
-export declare type SetVisibilityMethod = (visible: boolean, options?: UseVisibilityOptions) => void;
-export declare type UseVisibilityOptions = {
+export type SetVisibilityMethod = (visible: boolean, options?: UseVisibilityOptions) => void;
+export type UseVisibilityOptions = {
     /** If the animation should be skipped. */
     instant?: boolean;
 };

@@ -9,7 +9,7 @@ export declare namespace ItemComponent {
         itemClasses: PropTypes.Validator<string[]>;
         propsToData: PropTypes.Requireable<(...args: any[]) => any>;
         children: PropTypes.Validator<PropTypes.ReactElementLike>;
-        grid: PropTypes.Validator<unknown>;
+        grid: PropTypes.Validator<{}>;
     };
     var displayName: string;
 }
