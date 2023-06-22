@@ -4,14 +4,14 @@ title: Components
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-In this chapter we analyze the two categories of components with which we interact when working with this package.
+In this chapter we analyze the two categories of `components` with which we interact when working with this package.
 
 - `MuuriComponent` _(Provided by this package)_.
 - `children` of the MuuriComponent _(You design them)_.
 
 <img
   src={useBaseUrl('images/components.png')}
-  style={{width: '35%', maxWidth: '280px', minWidth: '200px'}}
+  style={{ width: '35%', maxWidth: '280px', minWidth: '200px' }}
 />
 
 We refer to the children of the MuuriComponent as `Items` throughout the documentation. <br/>
@@ -24,7 +24,7 @@ Very few but essential rules to understand how this package works are listed bel
 
 ```js
 // Provided by this package.
-import {MuuriComponent} from 'muuri-react';
+import { MuuriComponent } from 'muuri-react';
 ```
 
 ```jsx
@@ -35,42 +35,42 @@ import {MuuriComponent} from 'muuri-react';
 
 ## Items 🛠️
 
-- Each Item must have a unique `key` **(do not use [indexes as keys](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318))**.
+- Each Item must have a unique `key` _(do not use [indexes as keys](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318))_.
 
 ```js
 // You design it.
-import {Item} from './components';
+import { Item } from './components';
 ```
 
 ```jsx
-const items = [{key: '1'}, {key: '2'}, {key: '3'}];
+const items = [{ key: '1' }, { key: '2' }, { key: '3' }];
 
 const children = items.map((item) => <Item key={item.key} />);
 ```
 
 ## Example 📖
 
-This is one of the [examples](../getting-started/examples) avaible on codesandbox.
+This is one of the [examples](https://paol-imi.github.io/muuri-react/showcase) available on CodeSandbox.
 
 <img
   src={useBaseUrl('images/grid-example.png')}
   className="shadow"
-  style={{width: '50%', maxWidth: '500px', minWidth: '350px'}}
+  style={{ width: '50%', maxWidth: '500px', minWidth: '350px' }}
 />
 
 The example will have a main component like the one below.
 
 ```jsx
 import React from 'react';
-import {MuuriComponent} from 'muuri-react';
-import {Main, Header, Item} from './components';
+import { MuuriComponent } from 'muuri-react';
+import { Main, Header, Item } from './components';
 
 const App = () => {
   // Items.
   const items = [
-    {key: '1', text: 'zl', size: 's', color: 'red'},
-    {key: '2', text: 'zg', size: 'l', color: 'blue'},
-    {key: '3', text: 'nx', size: 'l', color: 'blue'},
+    { key: '1', text: 'zl', size: 's', color: 'red' },
+    { key: '2', text: 'zg', size: 'l', color: 'blue' },
+    { key: '3', text: 'nx', size: 'l', color: 'blue' },
   ];
 
   // Items to components.

@@ -29,7 +29,7 @@ module.exports = {
           label: 'Docs',
           position: 'left',
         },
-        {to: 'showcase', label: 'Showcase', position: 'left'},
+        { to: 'showcase', label: 'Showcase', position: 'left' },
         {
           href: 'https://github.com/paol-imi/muuri-react',
           label: 'GitHub',
@@ -39,7 +39,7 @@ module.exports = {
     },
     footer: {
       style: 'dark',
-      copyright: `Copyright © ${new Date().getFullYear()} Paol-imi. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} paol-imi. Built with Docusaurus.`,
     },
   },
   presets: [

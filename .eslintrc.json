@@ -1,69 +1,15 @@
 {
   "extends": [
-    "airbnb",
-    "prettier",
-    "prettier/react",
-    "plugin:jest/recommended",
-    "plugin:prettier/recommended",
-    "prettier/@typescript-eslint",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/eslint-recommended"
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:react-hooks/recommended",
+    "plugin:jest/recommended"
   ],
   "parser": "@typescript-eslint/parser",
-  "plugins": ["prettier", "react", "react-hooks", "jest", "@typescript-eslint"],
-  "env": {
-    "browser": true,
-    "node": true,
-    "jest": true,
-    "es6": true
-  },
-  "settings": {
-    "import/resolver": {
-      "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
-      }
-    }
-  },
-  "rules": {
-    /** React. */
-    "react/prop-types": 0,
-    "react/forbid-prop-types": 0,
-    "react/jsx-props-no-spreading": 0,
-    "react/jsx-filename-extension": 0,
-    "react/require-default-props": "off",
-    /** React hooks.*/
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
-    /** Import. */
-    "import/prefer-default-export": 0,
-    "import/extensions": 0,
-    /** Disabled. */
-    "no-plusplus": ["error", {"allowForLoopAfterthoughts": true}],
-    "no-underscore-dangle": "off",
-    "no-console": "error",
-    "no-param-reassign": 0,
-    "no-return-assign": 0,
-    "no-multi-assign": 0,
-    "no-else-return": 0,
-    "no-lonely-if": 0,
-    "no-shadow": 0,
-    "no-void": 0,
-    /** Code style. */
-    "prefer-destructuring": 0,
-    "max-classes-per-file": 0,
-    "lines-between-class-members": [
-      "error",
-      "always",
-      {
-        "exceptAfterSingleLine": true
-      }
-    ],
-    /** To remove when Muuri will support typescript.. */
-    "@typescript-eslint/ban-ts-ignore": "off",
-    /** Typescript. */
-    "@typescript-eslint/no-explicit-any": 0,
-    "@typescript-eslint/no-empty-function": 0,
-    "@typescript-eslint/no-use-before-define": 0,
-    "@typescript-eslint/explicit-function-return-type": 0
-  }
+  "plugins": ["@typescript-eslint", "react", "react-hooks", "jest"],
+  // We whitelist in package.json, but we use ingore patterns here for vscode
+  "ignorePatterns": ["dist", "examples/", "jest.config.js", "website/"]
 }

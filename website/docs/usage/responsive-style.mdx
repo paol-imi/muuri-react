@@ -7,6 +7,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 Thanks to the Muuri layout engine, you can create any type of `layout` and size the Items as desired simply by setting the CSS style _(width, height, margin and padding)_.
 
 <div>
+  <img style={{width: '4%'}} />
   <img src={useBaseUrl('gifs/dashboard.gif')} style={{width: '45%'}} />
   <img style={{width: '4%'}} />
   <img
@@ -29,7 +30,7 @@ If you want to create more dynamic styles by managing them directly in the compo
 import {getResponsiveStyle} from 'muuri-react';
 ```
 
-With this utility you can virtually divide the MuuriComponent into `columns` and set the Item to be as wide as `n` of these columns. In addition you can also set the **margin** _(static or dynamic)_, the width / height **ratio** _(dynamic)_ or the **height** _(static)_.
+With this utility you can virtually divide the MuuriComponent into `columns` and set the Item to be as wide as `n` of these columns. In addition you can also set the **margin** _(static or dynamic)_, the **ratio** _(dynamic)_ between width and height or the **height** _(static)_.
 
 ```js
 // The responsive style.
@@ -105,6 +106,10 @@ const Item = () => {
 };
 ```
 
+## Examples 📖
+
+Check the [media query](https://codesandbox.io/s/muuri-react-media-query-q6sy6) example and the [dashboard](https://codesandbox.io/s/muuri-react-dashboard-penbe) example on codesandbox.
+
 ## Gotchas: overflow 🔥
 
 Let's say you have a `overflow-y: auto;` element, which you use as a scroll container. The MuuriComponent is as wide as the container, the items have `width: 25%;`. In each row there should be **4** Items.
@@ -127,5 +132,5 @@ Be careful that the problem does `not` arise `immediately`, in fact the first la
 :::
 
 :::tip solution
-One possible solution is to use `overflox-y: scroll` to make the scroll bar fixed. Check [here](https://github.com/Paol-imi/muuri-react/issues/24) for other possible solutions.
+To solve the problem simply use `overflox-y: scroll` to make the scroll bar fixed.
 :::

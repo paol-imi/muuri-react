@@ -7,7 +7,7 @@ const TITLE = 'Showcase';
 const DESCRIPTION = (
   <>
     See the official demos and check out what&nbsp;
-    <a href="https://github.com/Paol-imi/muuri-react/issues/15">others</a> are
+    <a href="https://github.com/paol-imi/muuri-react/issues/15">others</a> are
     creating with <strong>Muuri-react</strong>
   </>
 );
@@ -37,6 +37,11 @@ const users = [
     id: 'zmypd',
   },
   {
+    type: 'Demo',
+    name: 'Pokedex',
+    id: 'swtf9',
+  },
+  {
     type: 'Example',
     name: 'Drag',
     id: 'xlix7',
@@ -45,6 +50,16 @@ const users = [
     type: 'Example',
     name: 'Sort',
     id: '959o8',
+  },
+  {
+    type: 'Example',
+    name: 'Resize',
+    id: 'penbe',
+  },
+  {
+    type: 'Example',
+    name: 'Responsive',
+    id: 'q6sy6',
   },
   {
     type: 'Example',
@@ -74,8 +89,8 @@ function Showcase() {
     <Layout title={TITLE} description={DESCRIPTION}>
       <div className="container margin-vert--lg">
         <div className="text--center margin-bottom--xl">
-          <h1 style={{fontSize: '46px'}}>{TITLE}</h1>
-          <p style={{fontSize: '25px'}}>{DESCRIPTION}</p>
+          <h1 style={{ fontSize: '46px' }}>{TITLE}</h1>
+          <p style={{ fontSize: '25px' }}>{DESCRIPTION}</p>
         </div>
         <div className="row">
           {users.map((user) => (

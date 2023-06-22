@@ -58,3 +58,15 @@ Muuri.Item.prototype.getData = function getData() {
 Muuri.Item.prototype.setData = function setData(data: object) {
   getDecoration(this).data = data;
 };
+
+/**
+ * Item getter wrap to allow key target.
+ *
+ * @param target - The target.
+ */
+const _getItem = Muuri.prototype.getItem;
+Muuri.prototype.getItem = function getItem(target: any) {
+  return typeof target === 'string'
+    ? this._items.find((item: any) => getDecoration(item).key === target)
+    : _getItem.apply(this, target);
+};

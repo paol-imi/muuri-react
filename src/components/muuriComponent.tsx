@@ -64,8 +64,6 @@ export const MuuriComponent = forwardRef<DecoratedGrid, MuuriComponentProps>(
       // @ts-ignore
       options.dragEnabled = dragEnabled !== null;
 
-      // Allow the drag container to be a React.Ref<HTMLElement>.
-      setDragContainer(options);
       // Allow the option to be an object ({ groupId }).
       setDragSort(options, muuriMap);
       // Allow the target elements to be React.Ref<HTMLElement>.
@@ -75,6 +73,10 @@ export const MuuriComponent = forwardRef<DecoratedGrid, MuuriComponentProps>(
 
       // Generate the instance.
       const grid = getInstance(options);
+
+      // Allow the drag container to be a React.Ref<HTMLElement>.
+      // @ts-ignore
+      setDragContainer(grid._settings);
 
       // Add the instance to the map.
       if (id) muuriMap.set(grid, id);
@@ -180,13 +182,13 @@ MuuriComponent.propTypes = {
       current: PropTypes.instanceOf(HTMLElement).isRequired,
     }),
   ]),
+  dragHandle: PropTypes.string,
   // @ts-ignore
   dragStartPredicate: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.exact({
       distance: PropTypes.number,
       delay: PropTypes.number,
-      handle: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     }),
   ]),
   dragAxis: PropTypes.oneOf(['x', 'y', 'xy'] as const),
@@ -233,8 +235,50 @@ MuuriComponent.propTypes = {
     createElement: PropTypes.func,
     onCreate: PropTypes.func,
     onRemove: PropTypes.func,
-    easing: PropTypes.string,
-    duration: PropTypes.number,
+  }),
+  // @ts-ignore
+  dragAutoScroll: PropTypes.exact({
+    targets: PropTypes.oneOfType([
+      // @ts-ignore
+      PropTypes.instanceOf(window.constructor),
+      PropTypes.instanceOf(HTMLElement),
+      PropTypes.shape({
+        current: PropTypes.oneOfType([
+          // @ts-ignore
+          PropTypes.instanceOf(window.constructor),
+          PropTypes.instanceOf(HTMLElement),
+        ]),
+      }),
+      PropTypes.func,
+      PropTypes.arrayOf(
+        PropTypes.exact({
+          element: PropTypes.oneOfType([
+            // @ts-ignore
+            PropTypes.instanceOf(window.constructor),
+            PropTypes.instanceOf(HTMLElement),
+            PropTypes.shape({
+              current: PropTypes.oneOfType([
+                // @ts-ignore
+                PropTypes.instanceOf(window.constructor),
+                PropTypes.instanceOf(HTMLElement),
+              ]),
+            }),
+          ]).isRequired,
+          axis: PropTypes.number,
+          priority: PropTypes.number,
+          threshold: PropTypes.number,
+        }).isRequired
+      ),
+    ]).isRequired,
+    handle: PropTypes.func,
+    threshold: PropTypes.number,
+    safeZone: PropTypes.number,
+    speed: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
+    sortDuringScroll: PropTypes.bool,
+    syncAfterScroll: PropTypes.bool,
+    smoothStop: PropTypes.bool,
+    onStart: PropTypes.func,
+    onStop: PropTypes.func,
   }),
   containerClass: PropTypes.string,
   itemClass: PropTypes.string,

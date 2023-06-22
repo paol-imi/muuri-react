@@ -18,7 +18,7 @@ export function useDraggable(): SetDraggableMethod {
   // Check if the hook is called inside an item.
   invariant(
     itemRefController !== undefined,
-    'The useData hook can be used only inside an Item'
+    'The useDraggable hook can be used only inside an Item'
   );
 
   const setDraggable = useFunction<SetDraggableMethod>((draggable) => {

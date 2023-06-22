@@ -21,9 +21,11 @@ module.exports = {
       'usage/sorting',
       'usage/hooks',
       'usage/reparenting',
+      'usage/drag-scroll',
       'usage/items-dimensions',
       'usage/responsive-style',
       'usage/server-side-rendering',
+      'usage/layout',
       'usage/muuri',
     ],
     Hooks: [

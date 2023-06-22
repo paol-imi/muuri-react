@@ -53,7 +53,7 @@ Get a single grid item by element or by index. Target can also be a `Muuri.Item`
 
 **Parameters**
 
-- **target** &nbsp;&mdash;&nbsp; _number / element / Muuri.Item_
+- **target** &nbsp;&mdash;&nbsp; _string / number / element / Muuri.Item_
 
 **Returns** &nbsp;&mdash;&nbsp; _Muuri.Item / null_
 
@@ -81,8 +81,8 @@ Get all items in the grid. Optionally you can provide specific targets (indices 
 
 **Parameters**
 
-- **targets** &nbsp;&mdash;&nbsp; _array / number / element / Muuri.Item_
-  - An array of item indices/elements/instances.
+- **targets** &nbsp;&mdash;&nbsp; _array / string / number / element / Muuri.Item_
+  - An array of item keys/indices/elements/instances.
   - Optional.
 
 **Returns** &nbsp;&mdash;&nbsp; _array_
@@ -105,6 +105,9 @@ const activeItems = grid.getItems().filter((item) => item.isActive());
 
 // Get the item instance associated with the <Item> in first position.
 const firstItem = grid.getItems(0)[0];
+
+// Get all active items instances associated with <Item>s with the given keys.
+const items = grid.getItems(['key1', 'key2']);
 ```
 
 ### grid.move( item, position, [options]&nbsp;)
@@ -113,10 +116,10 @@ Move an item to another position in the grid.
 
 **Parameters**
 
-- **item** &nbsp;&mdash;&nbsp; _number / element / Muuri.Item_
-  - Item index, element or instance.
-- **position** &nbsp;&mdash;&nbsp; _number / element / Muuri.Item_
-  - Item index, element or instance.
+- **item** &nbsp;&mdash;&nbsp; _string / number / element / Muuri.Item_
+  - Item key, index, element or instance.
+- **position** &nbsp;&mdash;&nbsp; _string / number / element / Muuri.Item_
+  - Item key, index, element or instance.
 - **options.action** &nbsp;&mdash;&nbsp; _string_
   - Accepts the following values:
     - `'move'`: moves item in place of another item.
@@ -143,6 +146,9 @@ Move an item to another position in the grid.
 // Move the first Item in the grid as the last.
 grid.move(0, -1);
 
+// Swap positions of Items with the keys "key1" and "key2".
+grid.move('key1', 'key2', {action: 'swap'});
+
 // Swap positions of the first and the last Item.
 grid.move(0, -1, {action: 'swap'});
 ```
@@ -153,12 +159,12 @@ Move an item into another grid. See more [here](../usage/reparenting#manual-repa
 
 **Parameters**
 
-- **item** &nbsp;&mdash;&nbsp; _number / element / Muuri.Item_
-  - The item that should be moved. You can define the item with an item index, element or instance.
+- **item** &nbsp;&mdash;&nbsp; _string / number / element / Muuri.Item_
+  - The item that should be moved. You can define the item with an item key, index, element or instance.
 - **grid** &nbsp;&mdash;&nbsp; _Muuri_
   - The grid where the item should be moved to.
-- **position** &nbsp;&mdash;&nbsp; _number / element / Muuri.Item_
-  - To which position should the item be placed to in the new grid? You can define the position with an item index, element or instance.
+- **position** &nbsp;&mdash;&nbsp; _string / number / element / Muuri.Item_
+  - To which position should the item be placed to in the new grid? You can define the position with an item key, index, element or instance.
 - **options.appendTo** &nbsp;&mdash;&nbsp; _element_
   - Which element the item element should be appended to for the duration of the layout animation?
   - Default value: `document.body`.
@@ -189,6 +195,9 @@ Move an item into another grid. See more [here](../usage/reparenting#manual-repa
 ```js
 // Move the first Item of gridA as the last Item of gridB.
 gridA.send(0, gridB, -1);
+
+// Move the Item with the key "key1" of gridA as the last Item of gridB.
+gridA.send('key1', gridB, -1);
 ```
 
 ## Item methods ⚙️
@@ -259,6 +268,7 @@ You can use the muuriMap to access all the Muuri instances of the MuuriComponent
 
 - [get](#muurimapget-id-)
 - [getGroup](#muurimapgetgroup-groupid-)
+- [getAll](#muurimapgetall)
 
 ---
 

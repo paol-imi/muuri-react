@@ -1,96 +1,43 @@
-import babel from 'rollup-plugin-babel';
-import {terser} from 'rollup-plugin-terser';
-import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
+import typescript from '@rollup/plugin-typescript';
 import replace from '@rollup/plugin-replace';
 import pkg from './package.json';
 
-// Common.
 const input = './src/index.ts';
-const extensions = ['.js', '.jsx', '.ts', '.tsx'];
+const external = ['react', 'muuri'];
 const banner = `/**
-* Muuri-react v${pkg.version}
+* muuri-react v${pkg.version}
 * ${pkg.homepage}
-* Copyright (c) 2020-present, Paol-imi
+* Copyright (c) 2020-present, paol-imi
 * Released under the MIT license
-* https://github.com/Paol-imi/muuri-react/blob/master/LICENSE
+* https://github.com/paol-imi/muuri-react/blob/master/LICENSE
 * @license MIT
 */
 `;
 
-// Babel options.
-const getBabelOptions = ({useESModules}) => ({
-  exclude: 'node_modules/**',
-  extensions,
-  runtimeHelpers: true,
-  plugins: [['@babel/transform-runtime', {useESModules}]],
-});
+const plugins = [
+  replace({ __DEV__: "process.env.NODE_ENV === 'production'" }),
+  typescript(),
+];
 
 export default [
-  // Universal module definition (UMD) build
   {
     input,
     output: {
-      file: 'dist/muuri-react.js',
-      format: 'umd',
-      name: 'MuuriReact',
-      globals: {react: 'React', muuri: 'Muuri'},
+      file: pkg.main,
+      format: 'cjs',
       banner,
     },
-    external: ['react', 'muuri'],
-    plugins: [
-      babel(getBabelOptions({useESModules: true})),
-      resolve({extensions}),
-      commonjs({
-        include: 'node_modules/**',
-      }),
-      replace({'process.env.NODE_ENV': JSON.stringify('development')}),
-    ],
+    external,
+    plugins,
   },
-
-  // Minified UMD build
   {
     input,
     output: {
-      file: 'dist/muuri-react.min.js',
-      format: 'umd',
-      name: 'MuuriReact',
-      globals: {react: 'React', muuri: 'Muuri'},
+      file: pkg.module,
+      format: 'es',
       banner,
     },
-    external: ['react', 'muuri'],
-    plugins: [
-      babel(getBabelOptions({useESModules: true})),
-      resolve({extensions}),
-      commonjs({
-        include: 'node_modules/**',
-      }),
-      replace({'process.env.NODE_ENV': JSON.stringify('production')}),
-      terser(),
-    ],
-  },
-
-  // CommonJS (cjs) build
-  // - All external packages are not bundled
-  {
-    input,
-    output: {file: pkg.main, format: 'cjs', banner},
-    external: (id) => !id.startsWith('.') && !id.startsWith('/'),
-    plugins: [
-      resolve({extensions}),
-      babel(getBabelOptions({useESModules: false})),
-    ],
-  },
-
-  // EcmaScript Module (esm) build
-  // - All external packages are not bundled
-  {
-    input,
-    output: {file: pkg.module, format: 'esm', banner},
-    external: (id) => !id.startsWith('.') && !id.startsWith('/'),
-    plugins: [
-      resolve({extensions}),
-      babel(getBabelOptions({useESModules: true})),
-    ],
+    external,
+    plugins,
   },
 ];

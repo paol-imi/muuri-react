@@ -6,12 +6,12 @@
   "scripts": {
     "start": "webpack-dev-server --open --hot --mode development"
   },
-  "homepage": "https://github.com/Paol-imi/muuri-react",
+  "homepage": "https://github.com/paol-imi/muuri-react",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Paol-imi/muuri-react.git"
+    "url": "git+https://github.com/paol-imi/muuri-react.git"
   },
-  "author": "github.com/Paol-imi",
+  "author": "github.com/paol-imi",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.5.5",

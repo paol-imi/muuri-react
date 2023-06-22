@@ -1,9 +1,9 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/Paol-imi/muuri-react/master/website/static/logo/muuri-transparent.png" width="40%" />
+  <img src="https://raw.githubusercontent.com/paol-imi/muuri-react/master/website/static/logo/muuri-transparent.png" width="40%" />
 </div>
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/Paol-imi/muuri-react/master/website/static/logo/muuri-react.png" width="47%" />
+  <img src="https://raw.githubusercontent.com/paol-imi/muuri-react/master/website/static/logo/muuri-react.png" width="47%" />
 </div>
 
 <h1></h1>
@@ -18,7 +18,7 @@
 
 [![npm](https://img.shields.io/npm/v/muuri-react.svg?style=flat-square)](http://npm.im/muuri-react)
 [![React: Component](https://img.shields.io/badge/React-Component-26C9FF?style=flat-square&logo=react)](http://npm.im/muuri-react)
-[![Circle Ci](https://img.shields.io/circleci/build/github/Paol-imi/muuri-react?style=flat-square)](https://app.circleci.com/pipelines/github/Paol-imi/muuri-react)
+[![Circle Ci](https://img.shields.io/circleci/build/github/paol-imi/muuri-react?style=flat-square)](https://app.circleci.com/pipelines/github/paol-imi/muuri-react)
 [![Code style: Prettier](https://img.shields.io/badge/Code_style-Prettier-ff69b4.svg?style=flat-square&logo=prettier)](https://prettier.io/)
 [![Typescript: Codebase](https://img.shields.io/badge/Types-Typescript-red?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 
@@ -26,7 +26,7 @@
 
 <div align="center">
   <a href="https://swtf9.csb.app/">
-    <img src="https://raw.githubusercontent.com/Paol-imi/muuri-react/master/website/static/gifs/pokedex.gif" width="74%" />
+    <img src="https://raw.githubusercontent.com/paol-imi/muuri-react/master/website/static/gifs/pokedex.gif" width="74%" />
   </a>
 </div>
 
@@ -62,8 +62,8 @@ You can find the full documentation [**here**](https://paol-imi.github.io/muuri-
 All [**examples**](https://paol-imi.github.io/muuri-react/showcase) have been created to explain one or more **features** of Muuri-react in an **easy** and direct way.
 
 <div align="center"> 
-<a href="https://1czo5.csb.app/"><img src="https://raw.githubusercontent.com/Paol-imi/muuri-react/master/website/static/gifs/grid.gif" width="53.2%" ></img></a><img width="0.8%"></img><a href="https://zmypd.csb.app/"><img src="https://raw.githubusercontent.com/Paol-imi/muuri-react/master/website/static/gifs/kanban.gif" width="46%" ></img></a>
-<a href="https://penbe.csb.app/"><img src="https://raw.githubusercontent.com/Paol-imi/muuri-react/master/website/static/gifs/dashboard.gif" width="40.6%" ></img></a>
+<a href="https://1czo5.csb.app/"><img src="https://raw.githubusercontent.com/paol-imi/muuri-react/master/website/static/gifs/grid.gif" width="53.2%" ></img></a><img width="0.8%"></img><a href="https://zmypd.csb.app/"><img src="https://raw.githubusercontent.com/paol-imi/muuri-react/master/website/static/gifs/kanban.gif" width="46%" ></img></a>
+<a href="https://penbe.csb.app/"><img src="https://raw.githubusercontent.com/paol-imi/muuri-react/master/website/static/gifs/dashboard.gif" width="40.6%" ></img></a>
 </div>
 
 ## Motivation 👨🏻‍🏫
@@ -80,7 +80,7 @@ The long-term goal of Muuri is to provide a simple (and as low-level as possible
 
 ## Contributing 🎗️
 
-Contributions are always welcome. Before contributing, please read our [**Guidlines**](https://raw.githubusercontent.com/Paol-imi/muuri-react/master/CONTRIBUTING.md).
+Contributions are always welcome. Before contributing, please read our [**Guidlines**](https://raw.githubusercontent.com/paol-imi/muuri-react/master/CONTRIBUTING.md).
 
 ## Credits 🤝
 
@@ -88,4 +88,4 @@ Thanks to [**Niklas Rämö**](https://github.com/niklasramo) for the amazing wor
 
 ## License ©
 
-Copyright © 2020 [**Paolo Longo**](https://github.com/Paol-imi) • [**MIT license**](LICENSE).
+Copyright © 2020 [**Paolo Longo**](https://github.com/paol-imi) • [**MIT license**](LICENSE).

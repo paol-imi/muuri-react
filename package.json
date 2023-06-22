@@ -1,26 +1,21 @@
 {
   "name": "muuri-react",
-  "version": "3.1.5",
+  "version": "3.1.6",
   "description": "The layout engine for React.",
   "main": "dist/muuri-react.cjs.js",
   "module": "dist/muuri-react.esm.js",
   "types": "dist/types/index.d.ts",
   "scripts": {
-    "build:types": "tsc --emitDeclarationOnly",
     "build:js": "rollup -c",
-    "build": "npm run build:types && npm run build:js",
-    "test": "jest test",
-    "test:watch": "jest test --watch",
-    "type-check": "tsc --noEmit",
-    "type-check:watch": "npm run type-check -- --watch",
-    "eslint": "./node_modules/.bin/eslint src/**/*.{js,jsx,ts,tsx} test/**/*.{js,jsx,ts,tsx}",
-    "prettier": "./node_modules/.bin/prettier --write **/*.{js,jsx,ts,tsx,md,mdx,json}",
-    "prepublishOnly": "npm run type-check && npm run test && npm run prettier && npm run build"
+    "build:types": "tsc --declaration --declarationDir dist/types --emitDeclarationOnly",
+    "test": "jest",
+    "eslint": "eslint {*,{src,test}/**/*}.{js,jsx,ts,tsx}",
+    "prettier": "prettier --write {*,{src,test}/**/*}.{js,jsx,ts,tsx,md,mdx,json}",
+    "prepublishOnly": "npm run test && npm run prettier && npm run eslint && npm run build:js && npm run build:types"
   },
-  "homepage": "https://paol-imi.github.io/muuri-react",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Paol-imi/muuri-react.git"
+    "url": "git+https://github.com/paol-imi/muuri-react.git"
   },
   "keywords": [
     "muuri",
@@ -33,51 +28,39 @@
   ],
   "author": "Paolo Longo <paololongo.git@gmail.com>",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/paol-imi/muuri-react/issues"
+  },
+  "homepage": "https://paol-imi.github.io/muuri-react",
   "files": [
     "/dist"
   ],
   "devDependencies": {
-    "@babel/core": "^7.9.0",
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/plugin-proposal-object-rest-spread": "^7.9.0",
-    "@babel/plugin-transform-runtime": "^7.9.0",
-    "@babel/preset-env": "^7.9.0",
-    "@babel/preset-react": "^7.9.4",
-    "@babel/preset-typescript": "^7.9.0",
-    "@rollup/plugin-commonjs": "^11.0.2",
-    "@rollup/plugin-node-resolve": "^7.1.1",
-    "@rollup/plugin-replace": "^2.3.1",
-    "@types/react": "^16.9.31",
-    "@types/react-reconciler": "^0.18.0",
-    "@typescript-eslint/eslint-plugin": "^2.26.0",
-    "@typescript-eslint/parser": "^2.26.0",
+    "@rollup/plugin-replace": "^4.0.0",
+    "@rollup/plugin-typescript": "^8.3.2",
+    "@types/jest": "^27.4.1",
+    "@types/react": "^18.0.8",
+    "@types/react-dom": "^18.0.5",
+    "@types/react-reconciler": "^0.26.6",
+    "@typescript-eslint/eslint-plugin": "^5.21.0",
+    "@typescript-eslint/parser": "^5.21.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb": "^18.0.1",
-    "eslint-config-prettier": "^6.10.1",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-jest": "^23.8.2",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-prettier": "^3.1.2",
-    "eslint-plugin-react": "^7.19.0",
-    "eslint-plugin-react-hooks": "^3.0.0",
-    "jest": "^25.2.6",
-    "muuri": "^0.8.0",
-    "prettier": "^2.0.4",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "rollup": "^2.3.2",
-    "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-terser": "^5.3.0",
-    "typescript": "^3.8.3"
+    "eslint": "^8.14.0",
+    "eslint-plugin-jest": "^26.1.5",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.5.0",
+    "jest": "^28.0.3",
+    "muuri": "^0.9.5",
+    "prettier": "^2.6.2",
+    "rollup": "2.71.1",
+    "ts-jest": "^27.1.4",
+    "tslib": "^2.4.0",
+    "typescript": "^4.6.4"
   },
   "peerDependencies": {
-    "muuri": "^0.8.0",
-    "react": "^16.8.5"
-  },
-  "dependencies": {
-    "@babel/runtime": "^7.9.2",
-    "prop-types": "^15.7.2"
+    "muuri": "^0.9.0",
+    "react": "^18",
+    "react-dom": "^18"
   }
 }

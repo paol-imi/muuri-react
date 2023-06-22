@@ -1,20 +1,29 @@
 /**
-* Muuri-react v3.1.5
-* https://paol-imi.github.io/muuri-react
-* Copyright (c) 2020-present, Paol-imi
-* Released under the MIT license
-* https://github.com/Paol-imi/muuri-react/blob/master/LICENSE
-* @license MIT
-*/
+ * Muuri-react v3.1.6
+ * https://paol-imi.github.io/muuri-react
+ * Copyright (c) 2020-present, paol-imi
+ * Released under the MIT license
+ * https://github.com/paol-imi/muuri-react/blob/master/LICENSE
+ * @license MIT
+ */
 
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('muuri'), require('react')) :
-  typeof define === 'function' && define.amd ? define(['exports', 'muuri', 'react'], factory) :
-  (global = global || self, factory(global.MuuriReact = {}, global.Muuri, global.React));
-}(this, (function (exports, Muuri, React) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined'
+    ? factory(exports, require('muuri'), require('react'))
+    : typeof define === 'function' && define.amd
+    ? define(['exports', 'muuri', 'react'], factory)
+    : ((global =
+        typeof globalThis !== 'undefined' ? globalThis : global || self),
+      factory((global.MuuriReact = {}), global.Muuri, global.React));
+})(this, function (exports, Muuri, React) {
+  'use strict';
 
-  Muuri = Muuri && Object.prototype.hasOwnProperty.call(Muuri, 'default') ? Muuri['default'] : Muuri;
-  var React__default = 'default' in React ? React['default'] : React;
+  function _interopDefaultLegacy(e) {
+    return e && typeof e === 'object' && 'default' in e ? e : { default: e };
+  }
+
+  var Muuri__default = /*#__PURE__*/ _interopDefaultLegacy(Muuri);
+  var React__default = /*#__PURE__*/ _interopDefaultLegacy(React);
 
   function _defineProperty(obj, key, value) {
     if (key in obj) {
@@ -22,7 +31,7 @@
         value: value,
         enumerable: true,
         configurable: true,
-        writable: true
+        writable: true,
       });
     } else {
       obj[key] = value;
@@ -43,9 +52,43 @@
     return !!instance[key];
   }
 
-  function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+  function ownKeys(object, enumerableOnly) {
+    var keys = Object.keys(object);
+    if (Object.getOwnPropertySymbols) {
+      var symbols = Object.getOwnPropertySymbols(object);
+      if (enumerableOnly)
+        symbols = symbols.filter(function (sym) {
+          return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+        });
+      keys.push.apply(keys, symbols);
+    }
+    return keys;
+  }
 
-  function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+  function _objectSpread(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i] != null ? arguments[i] : {};
+      if (i % 2) {
+        ownKeys(Object(source), true).forEach(function (key) {
+          _defineProperty(target, key, source[key]);
+        });
+      } else if (Object.getOwnPropertyDescriptors) {
+        Object.defineProperties(
+          target,
+          Object.getOwnPropertyDescriptors(source)
+        );
+      } else {
+        ownKeys(Object(source)).forEach(function (key) {
+          Object.defineProperty(
+            target,
+            key,
+            Object.getOwnPropertyDescriptor(source, key)
+          );
+        });
+      }
+    }
+    return target;
+  }
 
   /**
    * Add a decoration to the instance.
@@ -86,7 +129,7 @@
    * @returns - The id of the instance.
    */
 
-  Muuri.prototype.getId = function getId() {
+  Muuri__default['default'].prototype.getId = function getId() {
     return getDecoration(this).id;
   };
   /**
@@ -95,8 +138,7 @@
    * @returns - The group ids of the instance.
    */
 
-
-  Muuri.prototype.getGroupIds = function getGroupIds() {
+  Muuri__default['default'].prototype.getGroupIds = function getGroupIds() {
     return getDecoration(this).groupIds;
   };
   /**
@@ -105,18 +147,17 @@
    * @returns - The group ids of the instance.
    */
 
-
-  Muuri.prototype.getSizerElement = function getSizerElement() {
-    return getDecoration(this).sizerElement;
-  };
+  Muuri__default['default'].prototype.getSizerElement =
+    function getSizerElement() {
+      return getDecoration(this).sizerElement;
+    };
   /**
    * Item key getter.
    *
    * @returns - The item component key.
    */
 
-
-  Muuri.Item.prototype.getKey = function getKey() {
+  Muuri__default['default'].Item.prototype.getKey = function getKey() {
     return getDecoration(this).key;
   };
   /**
@@ -125,8 +166,7 @@
    * @returns - The item component props.
    */
 
-
-  Muuri.Item.prototype.getProps = function getProps() {
+  Muuri__default['default'].Item.prototype.getProps = function getProps() {
     return getDecoration(this).props;
   };
   /**
@@ -135,8 +175,7 @@
    * @returns - The item component data.
    */
 
-
-  Muuri.Item.prototype.getData = function getData() {
+  Muuri__default['default'].Item.prototype.getData = function getData() {
     return getDecoration(this).data;
   };
   /**
@@ -145,39 +184,60 @@
    * @param data - The data.
    */
 
-
-  Muuri.Item.prototype.setData = function setData(data) {
+  Muuri__default['default'].Item.prototype.setData = function setData(data) {
     getDecoration(this).data = data;
+  };
+  /**
+   * Item getter wrap to allow key target.
+   *
+   * @param target - The target.
+   */
+
+  var _getItem = Muuri__default['default'].prototype.getItem;
+
+  Muuri__default['default'].prototype.getItem = function getItem(target) {
+    return typeof target === 'string'
+      ? this._items.find(function (item) {
+          return getDecoration(item).key === target;
+        })
+      : _getItem.apply(this, target);
   };
 
   function _extends() {
-    _extends = Object.assign || function (target) {
-      for (var i = 1; i < arguments.length; i++) {
-        var source = arguments[i];
+    _extends =
+      Object.assign ||
+      function (target) {
+        for (var i = 1; i < arguments.length; i++) {
+          var source = arguments[i];
 
-        for (var key in source) {
-          if (Object.prototype.hasOwnProperty.call(source, key)) {
-            target[key] = source[key];
+          for (var key in source) {
+            if (Object.prototype.hasOwnProperty.call(source, key)) {
+              target[key] = source[key];
+            }
           }
         }
-      }
 
-      return target;
-    };
+        return target;
+      };
 
     return _extends.apply(this, arguments);
   }
 
   function _typeof(obj) {
-    "@babel/helpers - typeof";
+    '@babel/helpers - typeof';
 
-    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    if (typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol') {
       _typeof = function _typeof(obj) {
         return typeof obj;
       };
     } else {
       _typeof = function _typeof(obj) {
-        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+        return obj &&
+          typeof Symbol === 'function' &&
+          obj.constructor === Symbol &&
+          obj !== Symbol.prototype
+          ? 'symbol'
+          : typeof obj;
       };
     }
 
@@ -185,180 +245,232 @@
   }
 
   function createCommonjsModule(fn, module) {
-  	return module = { exports: {} }, fn(module, module.exports), module.exports;
+    return (
+      (module = { exports: {} }), fn(module, module.exports), module.exports
+    );
   }
 
   var reactIs_development = createCommonjsModule(function (module, exports) {
+    {
+      (function () {
+        // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
+        // nor polyfill, then a plain number is used for performance.
+        var hasSymbol = typeof Symbol === 'function' && Symbol.for;
+        var REACT_ELEMENT_TYPE = hasSymbol
+          ? Symbol.for('react.element')
+          : 0xeac7;
+        var REACT_PORTAL_TYPE = hasSymbol ? Symbol.for('react.portal') : 0xeaca;
+        var REACT_FRAGMENT_TYPE = hasSymbol
+          ? Symbol.for('react.fragment')
+          : 0xeacb;
+        var REACT_STRICT_MODE_TYPE = hasSymbol
+          ? Symbol.for('react.strict_mode')
+          : 0xeacc;
+        var REACT_PROFILER_TYPE = hasSymbol
+          ? Symbol.for('react.profiler')
+          : 0xead2;
+        var REACT_PROVIDER_TYPE = hasSymbol
+          ? Symbol.for('react.provider')
+          : 0xeacd;
+        var REACT_CONTEXT_TYPE = hasSymbol
+          ? Symbol.for('react.context')
+          : 0xeace; // TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
+        // (unstable) APIs that have been removed. Can we remove the symbols?
 
+        var REACT_ASYNC_MODE_TYPE = hasSymbol
+          ? Symbol.for('react.async_mode')
+          : 0xeacf;
+        var REACT_CONCURRENT_MODE_TYPE = hasSymbol
+          ? Symbol.for('react.concurrent_mode')
+          : 0xeacf;
+        var REACT_FORWARD_REF_TYPE = hasSymbol
+          ? Symbol.for('react.forward_ref')
+          : 0xead0;
+        var REACT_SUSPENSE_TYPE = hasSymbol
+          ? Symbol.for('react.suspense')
+          : 0xead1;
+        var REACT_SUSPENSE_LIST_TYPE = hasSymbol
+          ? Symbol.for('react.suspense_list')
+          : 0xead8;
+        var REACT_MEMO_TYPE = hasSymbol ? Symbol.for('react.memo') : 0xead3;
+        var REACT_LAZY_TYPE = hasSymbol ? Symbol.for('react.lazy') : 0xead4;
+        var REACT_BLOCK_TYPE = hasSymbol ? Symbol.for('react.block') : 0xead9;
+        var REACT_FUNDAMENTAL_TYPE = hasSymbol
+          ? Symbol.for('react.fundamental')
+          : 0xead5;
+        var REACT_RESPONDER_TYPE = hasSymbol
+          ? Symbol.for('react.responder')
+          : 0xead6;
+        var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for('react.scope') : 0xead7;
 
+        function isValidElementType(type) {
+          return (
+            typeof type === 'string' ||
+            typeof type === 'function' || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
+            type === REACT_FRAGMENT_TYPE ||
+            type === REACT_CONCURRENT_MODE_TYPE ||
+            type === REACT_PROFILER_TYPE ||
+            type === REACT_STRICT_MODE_TYPE ||
+            type === REACT_SUSPENSE_TYPE ||
+            type === REACT_SUSPENSE_LIST_TYPE ||
+            (typeof type === 'object' &&
+              type !== null &&
+              (type.$$typeof === REACT_LAZY_TYPE ||
+                type.$$typeof === REACT_MEMO_TYPE ||
+                type.$$typeof === REACT_PROVIDER_TYPE ||
+                type.$$typeof === REACT_CONTEXT_TYPE ||
+                type.$$typeof === REACT_FORWARD_REF_TYPE ||
+                type.$$typeof === REACT_FUNDAMENTAL_TYPE ||
+                type.$$typeof === REACT_RESPONDER_TYPE ||
+                type.$$typeof === REACT_SCOPE_TYPE ||
+                type.$$typeof === REACT_BLOCK_TYPE))
+          );
+        }
 
-  {
-    (function() {
+        function typeOf(object) {
+          if (typeof object === 'object' && object !== null) {
+            var $$typeof = object.$$typeof;
 
-  // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
-  // nor polyfill, then a plain number is used for performance.
-  var hasSymbol = typeof Symbol === 'function' && Symbol.for;
-  var REACT_ELEMENT_TYPE = hasSymbol ? Symbol.for('react.element') : 0xeac7;
-  var REACT_PORTAL_TYPE = hasSymbol ? Symbol.for('react.portal') : 0xeaca;
-  var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for('react.fragment') : 0xeacb;
-  var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for('react.strict_mode') : 0xeacc;
-  var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for('react.profiler') : 0xead2;
-  var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for('react.provider') : 0xeacd;
-  var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; // TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
-  // (unstable) APIs that have been removed. Can we remove the symbols?
+            switch ($$typeof) {
+              case REACT_ELEMENT_TYPE:
+                var type = object.type;
 
-  var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for('react.async_mode') : 0xeacf;
-  var REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for('react.concurrent_mode') : 0xeacf;
-  var REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for('react.forward_ref') : 0xead0;
-  var REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for('react.suspense') : 0xead1;
-  var REACT_SUSPENSE_LIST_TYPE = hasSymbol ? Symbol.for('react.suspense_list') : 0xead8;
-  var REACT_MEMO_TYPE = hasSymbol ? Symbol.for('react.memo') : 0xead3;
-  var REACT_LAZY_TYPE = hasSymbol ? Symbol.for('react.lazy') : 0xead4;
-  var REACT_BLOCK_TYPE = hasSymbol ? Symbol.for('react.block') : 0xead9;
-  var REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for('react.fundamental') : 0xead5;
-  var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for('react.responder') : 0xead6;
-  var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for('react.scope') : 0xead7;
+                switch (type) {
+                  case REACT_ASYNC_MODE_TYPE:
+                  case REACT_CONCURRENT_MODE_TYPE:
+                  case REACT_FRAGMENT_TYPE:
+                  case REACT_PROFILER_TYPE:
+                  case REACT_STRICT_MODE_TYPE:
+                  case REACT_SUSPENSE_TYPE:
+                    return type;
 
-  function isValidElementType(type) {
-    return typeof type === 'string' || typeof type === 'function' || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
-    type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
-  }
+                  default:
+                    var $$typeofType = type && type.$$typeof;
 
-  function typeOf(object) {
-    if (typeof object === 'object' && object !== null) {
-      var $$typeof = object.$$typeof;
+                    switch ($$typeofType) {
+                      case REACT_CONTEXT_TYPE:
+                      case REACT_FORWARD_REF_TYPE:
+                      case REACT_LAZY_TYPE:
+                      case REACT_MEMO_TYPE:
+                      case REACT_PROVIDER_TYPE:
+                        return $$typeofType;
 
-      switch ($$typeof) {
-        case REACT_ELEMENT_TYPE:
-          var type = object.type;
+                      default:
+                        return $$typeof;
+                    }
+                }
 
-          switch (type) {
-            case REACT_ASYNC_MODE_TYPE:
-            case REACT_CONCURRENT_MODE_TYPE:
-            case REACT_FRAGMENT_TYPE:
-            case REACT_PROFILER_TYPE:
-            case REACT_STRICT_MODE_TYPE:
-            case REACT_SUSPENSE_TYPE:
-              return type;
-
-            default:
-              var $$typeofType = type && type.$$typeof;
-
-              switch ($$typeofType) {
-                case REACT_CONTEXT_TYPE:
-                case REACT_FORWARD_REF_TYPE:
-                case REACT_LAZY_TYPE:
-                case REACT_MEMO_TYPE:
-                case REACT_PROVIDER_TYPE:
-                  return $$typeofType;
-
-                default:
-                  return $$typeof;
-              }
-
+              case REACT_PORTAL_TYPE:
+                return $$typeof;
+            }
           }
 
-        case REACT_PORTAL_TYPE:
-          return $$typeof;
-      }
+          return undefined;
+        } // AsyncMode is deprecated along with isAsyncMode
+
+        var AsyncMode = REACT_ASYNC_MODE_TYPE;
+        var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
+        var ContextConsumer = REACT_CONTEXT_TYPE;
+        var ContextProvider = REACT_PROVIDER_TYPE;
+        var Element = REACT_ELEMENT_TYPE;
+        var ForwardRef = REACT_FORWARD_REF_TYPE;
+        var Fragment = REACT_FRAGMENT_TYPE;
+        var Lazy = REACT_LAZY_TYPE;
+        var Memo = REACT_MEMO_TYPE;
+        var Portal = REACT_PORTAL_TYPE;
+        var Profiler = REACT_PROFILER_TYPE;
+        var StrictMode = REACT_STRICT_MODE_TYPE;
+        var Suspense = REACT_SUSPENSE_TYPE;
+        var hasWarnedAboutDeprecatedIsAsyncMode = false; // AsyncMode should be deprecated
+
+        function isAsyncMode(object) {
+          {
+            if (!hasWarnedAboutDeprecatedIsAsyncMode) {
+              hasWarnedAboutDeprecatedIsAsyncMode = true; // Using console['warn'] to evade Babel and ESLint
+
+              console['warn'](
+                'The ReactIs.isAsyncMode() alias has been deprecated, ' +
+                  'and will be removed in React 17+. Update your code to use ' +
+                  'ReactIs.isConcurrentMode() instead. It has the exact same API.'
+              );
+            }
+          }
+
+          return (
+            isConcurrentMode(object) || typeOf(object) === REACT_ASYNC_MODE_TYPE
+          );
+        }
+        function isConcurrentMode(object) {
+          return typeOf(object) === REACT_CONCURRENT_MODE_TYPE;
+        }
+        function isContextConsumer(object) {
+          return typeOf(object) === REACT_CONTEXT_TYPE;
+        }
+        function isContextProvider(object) {
+          return typeOf(object) === REACT_PROVIDER_TYPE;
+        }
+        function isElement(object) {
+          return (
+            typeof object === 'object' &&
+            object !== null &&
+            object.$$typeof === REACT_ELEMENT_TYPE
+          );
+        }
+        function isForwardRef(object) {
+          return typeOf(object) === REACT_FORWARD_REF_TYPE;
+        }
+        function isFragment(object) {
+          return typeOf(object) === REACT_FRAGMENT_TYPE;
+        }
+        function isLazy(object) {
+          return typeOf(object) === REACT_LAZY_TYPE;
+        }
+        function isMemo(object) {
+          return typeOf(object) === REACT_MEMO_TYPE;
+        }
+        function isPortal(object) {
+          return typeOf(object) === REACT_PORTAL_TYPE;
+        }
+        function isProfiler(object) {
+          return typeOf(object) === REACT_PROFILER_TYPE;
+        }
+        function isStrictMode(object) {
+          return typeOf(object) === REACT_STRICT_MODE_TYPE;
+        }
+        function isSuspense(object) {
+          return typeOf(object) === REACT_SUSPENSE_TYPE;
+        }
+
+        exports.AsyncMode = AsyncMode;
+        exports.ConcurrentMode = ConcurrentMode;
+        exports.ContextConsumer = ContextConsumer;
+        exports.ContextProvider = ContextProvider;
+        exports.Element = Element;
+        exports.ForwardRef = ForwardRef;
+        exports.Fragment = Fragment;
+        exports.Lazy = Lazy;
+        exports.Memo = Memo;
+        exports.Portal = Portal;
+        exports.Profiler = Profiler;
+        exports.StrictMode = StrictMode;
+        exports.Suspense = Suspense;
+        exports.isAsyncMode = isAsyncMode;
+        exports.isConcurrentMode = isConcurrentMode;
+        exports.isContextConsumer = isContextConsumer;
+        exports.isContextProvider = isContextProvider;
+        exports.isElement = isElement;
+        exports.isForwardRef = isForwardRef;
+        exports.isFragment = isFragment;
+        exports.isLazy = isLazy;
+        exports.isMemo = isMemo;
+        exports.isPortal = isPortal;
+        exports.isProfiler = isProfiler;
+        exports.isStrictMode = isStrictMode;
+        exports.isSuspense = isSuspense;
+        exports.isValidElementType = isValidElementType;
+        exports.typeOf = typeOf;
+      })();
     }
-
-    return undefined;
-  } // AsyncMode is deprecated along with isAsyncMode
-
-  var AsyncMode = REACT_ASYNC_MODE_TYPE;
-  var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
-  var ContextConsumer = REACT_CONTEXT_TYPE;
-  var ContextProvider = REACT_PROVIDER_TYPE;
-  var Element = REACT_ELEMENT_TYPE;
-  var ForwardRef = REACT_FORWARD_REF_TYPE;
-  var Fragment = REACT_FRAGMENT_TYPE;
-  var Lazy = REACT_LAZY_TYPE;
-  var Memo = REACT_MEMO_TYPE;
-  var Portal = REACT_PORTAL_TYPE;
-  var Profiler = REACT_PROFILER_TYPE;
-  var StrictMode = REACT_STRICT_MODE_TYPE;
-  var Suspense = REACT_SUSPENSE_TYPE;
-  var hasWarnedAboutDeprecatedIsAsyncMode = false; // AsyncMode should be deprecated
-
-  function isAsyncMode(object) {
-    {
-      if (!hasWarnedAboutDeprecatedIsAsyncMode) {
-        hasWarnedAboutDeprecatedIsAsyncMode = true; // Using console['warn'] to evade Babel and ESLint
-
-        console['warn']('The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 17+. Update your code to use ' + 'ReactIs.isConcurrentMode() instead. It has the exact same API.');
-      }
-    }
-
-    return isConcurrentMode(object) || typeOf(object) === REACT_ASYNC_MODE_TYPE;
-  }
-  function isConcurrentMode(object) {
-    return typeOf(object) === REACT_CONCURRENT_MODE_TYPE;
-  }
-  function isContextConsumer(object) {
-    return typeOf(object) === REACT_CONTEXT_TYPE;
-  }
-  function isContextProvider(object) {
-    return typeOf(object) === REACT_PROVIDER_TYPE;
-  }
-  function isElement(object) {
-    return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
-  }
-  function isForwardRef(object) {
-    return typeOf(object) === REACT_FORWARD_REF_TYPE;
-  }
-  function isFragment(object) {
-    return typeOf(object) === REACT_FRAGMENT_TYPE;
-  }
-  function isLazy(object) {
-    return typeOf(object) === REACT_LAZY_TYPE;
-  }
-  function isMemo(object) {
-    return typeOf(object) === REACT_MEMO_TYPE;
-  }
-  function isPortal(object) {
-    return typeOf(object) === REACT_PORTAL_TYPE;
-  }
-  function isProfiler(object) {
-    return typeOf(object) === REACT_PROFILER_TYPE;
-  }
-  function isStrictMode(object) {
-    return typeOf(object) === REACT_STRICT_MODE_TYPE;
-  }
-  function isSuspense(object) {
-    return typeOf(object) === REACT_SUSPENSE_TYPE;
-  }
-
-  exports.AsyncMode = AsyncMode;
-  exports.ConcurrentMode = ConcurrentMode;
-  exports.ContextConsumer = ContextConsumer;
-  exports.ContextProvider = ContextProvider;
-  exports.Element = Element;
-  exports.ForwardRef = ForwardRef;
-  exports.Fragment = Fragment;
-  exports.Lazy = Lazy;
-  exports.Memo = Memo;
-  exports.Portal = Portal;
-  exports.Profiler = Profiler;
-  exports.StrictMode = StrictMode;
-  exports.Suspense = Suspense;
-  exports.isAsyncMode = isAsyncMode;
-  exports.isConcurrentMode = isConcurrentMode;
-  exports.isContextConsumer = isContextConsumer;
-  exports.isContextProvider = isContextProvider;
-  exports.isElement = isElement;
-  exports.isForwardRef = isForwardRef;
-  exports.isFragment = isFragment;
-  exports.isLazy = isLazy;
-  exports.isMemo = isMemo;
-  exports.isPortal = isPortal;
-  exports.isProfiler = isProfiler;
-  exports.isStrictMode = isStrictMode;
-  exports.isSuspense = isSuspense;
-  exports.isValidElementType = isValidElementType;
-  exports.typeOf = typeOf;
-    })();
-  }
   });
   var reactIs_development_1 = reactIs_development.AsyncMode;
   var reactIs_development_2 = reactIs_development.ConcurrentMode;
@@ -390,10 +502,9 @@
   var reactIs_development_28 = reactIs_development.typeOf;
 
   var reactIs = createCommonjsModule(function (module) {
-
-  {
-    module.exports = reactIs_development;
-  }
+    {
+      module.exports = reactIs_development;
+    }
   });
 
   /*
@@ -407,83 +518,89 @@
   var propIsEnumerable = Object.prototype.propertyIsEnumerable;
 
   function toObject(val) {
-  	if (val === null || val === undefined) {
-  		throw new TypeError('Object.assign cannot be called with null or undefined');
-  	}
+    if (val === null || val === undefined) {
+      throw new TypeError(
+        'Object.assign cannot be called with null or undefined'
+      );
+    }
 
-  	return Object(val);
+    return Object(val);
   }
 
   function shouldUseNative() {
-  	try {
-  		if (!Object.assign) {
-  			return false;
-  		}
+    try {
+      if (!Object.assign) {
+        return false;
+      }
 
-  		// Detect buggy property enumeration order in older V8 versions.
+      // Detect buggy property enumeration order in older V8 versions.
 
-  		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
-  		var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
-  		test1[5] = 'de';
-  		if (Object.getOwnPropertyNames(test1)[0] === '5') {
-  			return false;
-  		}
+      // https://bugs.chromium.org/p/v8/issues/detail?id=4118
+      var test1 = new String('abc'); // eslint-disable-line no-new-wrappers
+      test1[5] = 'de';
+      if (Object.getOwnPropertyNames(test1)[0] === '5') {
+        return false;
+      }
 
-  		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-  		var test2 = {};
-  		for (var i = 0; i < 10; i++) {
-  			test2['_' + String.fromCharCode(i)] = i;
-  		}
-  		var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
-  			return test2[n];
-  		});
-  		if (order2.join('') !== '0123456789') {
-  			return false;
-  		}
+      // https://bugs.chromium.org/p/v8/issues/detail?id=3056
+      var test2 = {};
+      for (var i = 0; i < 10; i++) {
+        test2['_' + String.fromCharCode(i)] = i;
+      }
+      var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
+        return test2[n];
+      });
+      if (order2.join('') !== '0123456789') {
+        return false;
+      }
 
-  		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-  		var test3 = {};
-  		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
-  			test3[letter] = letter;
-  		});
-  		if (Object.keys(Object.assign({}, test3)).join('') !==
-  				'abcdefghijklmnopqrst') {
-  			return false;
-  		}
+      // https://bugs.chromium.org/p/v8/issues/detail?id=3056
+      var test3 = {};
+      'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
+        test3[letter] = letter;
+      });
+      if (
+        Object.keys(Object.assign({}, test3)).join('') !==
+        'abcdefghijklmnopqrst'
+      ) {
+        return false;
+      }
 
-  		return true;
-  	} catch (err) {
-  		// We don't expect any of the above to throw, but better to be safe.
-  		return false;
-  	}
+      return true;
+    } catch (err) {
+      // We don't expect any of the above to throw, but better to be safe.
+      return false;
+    }
   }
 
-  var objectAssign = shouldUseNative() ? Object.assign : function (target, source) {
-  	var from;
-  	var to = toObject(target);
-  	var symbols;
+  var objectAssign = shouldUseNative()
+    ? Object.assign
+    : function (target, source) {
+        var from;
+        var to = toObject(target);
+        var symbols;
 
-  	for (var s = 1; s < arguments.length; s++) {
-  		from = Object(arguments[s]);
+        for (var s = 1; s < arguments.length; s++) {
+          from = Object(arguments[s]);
 
-  		for (var key in from) {
-  			if (hasOwnProperty.call(from, key)) {
-  				to[key] = from[key];
-  			}
-  		}
+          for (var key in from) {
+            if (hasOwnProperty.call(from, key)) {
+              to[key] = from[key];
+            }
+          }
 
-  		if (getOwnPropertySymbols) {
-  			symbols = getOwnPropertySymbols(from);
-  			for (var i = 0; i < symbols.length; i++) {
-  				if (propIsEnumerable.call(from, symbols[i])) {
-  					to[symbols[i]] = from[symbols[i]];
-  				}
-  			}
-  		}
-  	}
+          if (getOwnPropertySymbols) {
+            symbols = getOwnPropertySymbols(from);
+            for (var i = 0; i < symbols.length; i++) {
+              if (propIsEnumerable.call(from, symbols[i])) {
+                to[symbols[i]] = from[symbols[i]];
+              }
+            }
+          }
+        }
 
-  	return to;
-  };
+        return to;
+      };
 
   /**
    * Copyright (c) 2013-present, Facebook, Inc.
@@ -496,14 +613,14 @@
 
   var ReactPropTypesSecret_1 = ReactPropTypesSecret;
 
-  var printWarning = function() {};
+  var printWarning = function () {};
 
   {
     var ReactPropTypesSecret$1 = ReactPropTypesSecret_1;
     var loggedTypeFailures = {};
     var has = Function.call.bind(Object.prototype.hasOwnProperty);
 
-    printWarning = function(text) {
+    printWarning = function (text) {
       var message = 'Warning: ' + text;
       if (typeof console !== 'undefined') {
         console.error(message);
@@ -528,7 +645,13 @@
    * @param {?Function} getStack Returns the component stack.
    * @private
    */
-  function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
+  function checkPropTypes(
+    typeSpecs,
+    values,
+    location,
+    componentName,
+    getStack
+  ) {
     {
       for (var typeSpecName in typeSpecs) {
         if (has(typeSpecs, typeSpecName)) {
@@ -541,27 +664,50 @@
             // behavior as without this statement except with a better message.
             if (typeof typeSpecs[typeSpecName] !== 'function') {
               var err = Error(
-                (componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' +
-                'it must be a function, usually from the `prop-types` package, but received `' + typeof typeSpecs[typeSpecName] + '`.'
+                (componentName || 'React class') +
+                  ': ' +
+                  location +
+                  ' type `' +
+                  typeSpecName +
+                  '` is invalid; ' +
+                  'it must be a function, usually from the `prop-types` package, but received `' +
+                  typeof typeSpecs[typeSpecName] +
+                  '`.'
               );
               err.name = 'Invariant Violation';
               throw err;
             }
-            error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret$1);
+            error = typeSpecs[typeSpecName](
+              values,
+              typeSpecName,
+              componentName,
+              location,
+              null,
+              ReactPropTypesSecret$1
+            );
           } catch (ex) {
             error = ex;
           }
           if (error && !(error instanceof Error)) {
             printWarning(
-              (componentName || 'React class') + ': type specification of ' +
-              location + ' `' + typeSpecName + '` is invalid; the type checker ' +
-              'function must return `null` or an `Error` but returned a ' + typeof error + '. ' +
-              'You may have forgotten to pass an argument to the type checker ' +
-              'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' +
-              'shape all require an argument).'
+              (componentName || 'React class') +
+                ': type specification of ' +
+                location +
+                ' `' +
+                typeSpecName +
+                '` is invalid; the type checker ' +
+                'function must return `null` or an `Error` but returned a ' +
+                typeof error +
+                '. ' +
+                'You may have forgotten to pass an argument to the type checker ' +
+                'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' +
+                'shape all require an argument).'
             );
           }
-          if (error instanceof Error && !(error.message in loggedTypeFailures)) {
+          if (
+            error instanceof Error &&
+            !(error.message in loggedTypeFailures)
+          ) {
             // Only monitor this failure once because there tends to be a lot of the
             // same error.
             loggedTypeFailures[error.message] = true;
@@ -569,7 +715,11 @@
             var stack = getStack ? getStack() : '';
 
             printWarning(
-              'Failed ' + location + ' type: ' + error.message + (stack != null ? stack : '')
+              'Failed ' +
+                location +
+                ' type: ' +
+                error.message +
+                (stack != null ? stack : '')
             );
           }
         }
@@ -582,7 +732,7 @@
    *
    * @private
    */
-  checkPropTypes.resetWarningCache = function() {
+  checkPropTypes.resetWarningCache = function () {
     {
       loggedTypeFailures = {};
     }
@@ -591,10 +741,10 @@
   var checkPropTypes_1 = checkPropTypes;
 
   var has$1 = Function.call.bind(Object.prototype.hasOwnProperty);
-  var printWarning$1 = function() {};
+  var printWarning$1 = function () {};
 
   {
-    printWarning$1 = function(text) {
+    printWarning$1 = function (text) {
       var message = 'Warning: ' + text;
       if (typeof console !== 'undefined') {
         console.error(message);
@@ -612,7 +762,7 @@
     return null;
   }
 
-  var factoryWithTypeCheckers = function(isValidElement, throwOnDirectAccess) {
+  var factoryWithTypeCheckers = function (isValidElement, throwOnDirectAccess) {
     /* global Symbol */
     var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
     var FAUX_ITERATOR_SYMBOL = '@@iterator'; // Before Symbol spec.
@@ -632,7 +782,10 @@
      * @return {?function}
      */
     function getIteratorFn(maybeIterable) {
-      var iteratorFn = maybeIterable && (ITERATOR_SYMBOL && maybeIterable[ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL]);
+      var iteratorFn =
+        maybeIterable &&
+        ((ITERATOR_SYMBOL && maybeIterable[ITERATOR_SYMBOL]) ||
+          maybeIterable[FAUX_ITERATOR_SYMBOL]);
       if (typeof iteratorFn === 'function') {
         return iteratorFn;
       }
@@ -748,7 +901,15 @@
         var manualPropTypeCallCache = {};
         var manualPropTypeWarningCount = 0;
       }
-      function checkType(isRequired, props, propName, componentName, location, propFullName, secret) {
+      function checkType(
+        isRequired,
+        props,
+        propName,
+        componentName,
+        location,
+        propFullName,
+        secret
+      ) {
         componentName = componentName || ANONYMOUS;
         propFullName = propFullName || propName;
 
@@ -757,12 +918,12 @@
             // New behavior only for users of `prop-types` package
             var err = new Error(
               'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
-              'Use `PropTypes.checkPropTypes()` to call them. ' +
-              'Read more at http://fb.me/use-check-prop-types'
+                'Use `PropTypes.checkPropTypes()` to call them. ' +
+                'Read more at http://fb.me/use-check-prop-types'
             );
             err.name = 'Invariant Violation';
             throw err;
-          } else if ( typeof console !== 'undefined') {
+          } else if (typeof console !== 'undefined') {
             // Old behavior for people using React.PropTypes
             var cacheKey = componentName + ':' + propName;
             if (
@@ -772,10 +933,15 @@
             ) {
               printWarning$1(
                 'You are manually calling a React.PropTypes validation ' +
-                'function for the `' + propFullName + '` prop on `' + componentName  + '`. This is deprecated ' +
-                'and will throw in the standalone `prop-types` package. ' +
-                'You may be seeing this warning due to a third-party PropTypes ' +
-                'library. See https://fb.me/react-warning-dont-call-proptypes ' + 'for details.'
+                  'function for the `' +
+                  propFullName +
+                  '` prop on `' +
+                  componentName +
+                  '`. This is deprecated ' +
+                  'and will throw in the standalone `prop-types` package. ' +
+                  'You may be seeing this warning due to a third-party PropTypes ' +
+                  'library. See https://fb.me/react-warning-dont-call-proptypes ' +
+                  'for details.'
               );
               manualPropTypeCallCache[cacheKey] = true;
               manualPropTypeWarningCount++;
@@ -785,13 +951,33 @@
         if (props[propName] == null) {
           if (isRequired) {
             if (props[propName] === null) {
-              return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required ' + ('in `' + componentName + '`, but its value is `null`.'));
+              return new PropTypeError(
+                'The ' +
+                  location +
+                  ' `' +
+                  propFullName +
+                  '` is marked as required ' +
+                  ('in `' + componentName + '`, but its value is `null`.')
+              );
             }
-            return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required in ' + ('`' + componentName + '`, but its value is `undefined`.'));
+            return new PropTypeError(
+              'The ' +
+                location +
+                ' `' +
+                propFullName +
+                '` is marked as required in ' +
+                ('`' + componentName + '`, but its value is `undefined`.')
+            );
           }
           return null;
         } else {
-          return validate(props, propName, componentName, location, propFullName);
+          return validate(
+            props,
+            propName,
+            componentName,
+            location,
+            propFullName
+          );
         }
       }
 
@@ -802,7 +988,14 @@
     }
 
     function createPrimitiveTypeChecker(expectedType) {
-      function validate(props, propName, componentName, location, propFullName, secret) {
+      function validate(
+        props,
+        propName,
+        componentName,
+        location,
+        propFullName,
+        secret
+      ) {
         var propValue = props[propName];
         var propType = getPropType(propValue);
         if (propType !== expectedType) {
@@ -811,7 +1004,19 @@
           // 'of type `object`'.
           var preciseType = getPreciseType(propValue);
 
-          return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + preciseType + '` supplied to `' + componentName + '`, expected ') + ('`' + expectedType + '`.'));
+          return new PropTypeError(
+            'Invalid ' +
+              location +
+              ' `' +
+              propFullName +
+              '` of type ' +
+              ('`' +
+                preciseType +
+                '` supplied to `' +
+                componentName +
+                '`, expected ') +
+              ('`' + expectedType + '`.')
+          );
         }
         return null;
       }
@@ -823,17 +1028,47 @@
     }
 
     function createArrayOfTypeChecker(typeChecker) {
-      function validate(props, propName, componentName, location, propFullName) {
+      function validate(
+        props,
+        propName,
+        componentName,
+        location,
+        propFullName
+      ) {
         if (typeof typeChecker !== 'function') {
-          return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside arrayOf.');
+          return new PropTypeError(
+            'Property `' +
+              propFullName +
+              '` of component `' +
+              componentName +
+              '` has invalid PropType notation inside arrayOf.'
+          );
         }
         var propValue = props[propName];
         if (!Array.isArray(propValue)) {
           var propType = getPropType(propValue);
-          return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an array.'));
+          return new PropTypeError(
+            'Invalid ' +
+              location +
+              ' `' +
+              propFullName +
+              '` of type ' +
+              ('`' +
+                propType +
+                '` supplied to `' +
+                componentName +
+                '`, expected an array.')
+          );
         }
         for (var i = 0; i < propValue.length; i++) {
-          var error = typeChecker(propValue, i, componentName, location, propFullName + '[' + i + ']', ReactPropTypesSecret_1);
+          var error = typeChecker(
+            propValue,
+            i,
+            componentName,
+            location,
+            propFullName + '[' + i + ']',
+            ReactPropTypesSecret_1
+          );
           if (error instanceof Error) {
             return error;
           }
@@ -844,11 +1079,28 @@
     }
 
     function createElementTypeChecker() {
-      function validate(props, propName, componentName, location, propFullName) {
+      function validate(
+        props,
+        propName,
+        componentName,
+        location,
+        propFullName
+      ) {
         var propValue = props[propName];
         if (!isValidElement(propValue)) {
           var propType = getPropType(propValue);
-          return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected a single ReactElement.'));
+          return new PropTypeError(
+            'Invalid ' +
+              location +
+              ' `' +
+              propFullName +
+              '` of type ' +
+              ('`' +
+                propType +
+                '` supplied to `' +
+                componentName +
+                '`, expected a single ReactElement.')
+          );
         }
         return null;
       }
@@ -856,11 +1108,28 @@
     }
 
     function createElementTypeTypeChecker() {
-      function validate(props, propName, componentName, location, propFullName) {
+      function validate(
+        props,
+        propName,
+        componentName,
+        location,
+        propFullName
+      ) {
         var propValue = props[propName];
         if (!reactIs.isValidElementType(propValue)) {
           var propType = getPropType(propValue);
-          return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected a single ReactElement type.'));
+          return new PropTypeError(
+            'Invalid ' +
+              location +
+              ' `' +
+              propFullName +
+              '` of type ' +
+              ('`' +
+                propType +
+                '` supplied to `' +
+                componentName +
+                '`, expected a single ReactElement type.')
+          );
         }
         return null;
       }
@@ -868,11 +1137,29 @@
     }
 
     function createInstanceTypeChecker(expectedClass) {
-      function validate(props, propName, componentName, location, propFullName) {
+      function validate(
+        props,
+        propName,
+        componentName,
+        location,
+        propFullName
+      ) {
         if (!(props[propName] instanceof expectedClass)) {
           var expectedClassName = expectedClass.name || ANONYMOUS;
           var actualClassName = getClassName(props[propName]);
-          return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + actualClassName + '` supplied to `' + componentName + '`, expected ') + ('instance of `' + expectedClassName + '`.'));
+          return new PropTypeError(
+            'Invalid ' +
+              location +
+              ' `' +
+              propFullName +
+              '` of type ' +
+              ('`' +
+                actualClassName +
+                '` supplied to `' +
+                componentName +
+                '`, expected ') +
+              ('instance of `' + expectedClassName + '`.')
+          );
         }
         return null;
       }
@@ -884,17 +1171,27 @@
         {
           if (arguments.length > 1) {
             printWarning$1(
-              'Invalid arguments supplied to oneOf, expected an array, got ' + arguments.length + ' arguments. ' +
-              'A common mistake is to write oneOf(x, y, z) instead of oneOf([x, y, z]).'
+              'Invalid arguments supplied to oneOf, expected an array, got ' +
+                arguments.length +
+                ' arguments. ' +
+                'A common mistake is to write oneOf(x, y, z) instead of oneOf([x, y, z]).'
             );
           } else {
-            printWarning$1('Invalid argument supplied to oneOf, expected an array.');
+            printWarning$1(
+              'Invalid argument supplied to oneOf, expected an array.'
+            );
           }
         }
         return emptyFunctionThatReturnsNull;
       }
 
-      function validate(props, propName, componentName, location, propFullName) {
+      function validate(
+        props,
+        propName,
+        componentName,
+        location,
+        propFullName
+      ) {
         var propValue = props[propName];
         for (var i = 0; i < expectedValues.length; i++) {
           if (is(propValue, expectedValues[i])) {
@@ -902,31 +1199,77 @@
           }
         }
 
-        var valuesString = JSON.stringify(expectedValues, function replacer(key, value) {
-          var type = getPreciseType(value);
-          if (type === 'symbol') {
-            return String(value);
+        var valuesString = JSON.stringify(
+          expectedValues,
+          function replacer(key, value) {
+            var type = getPreciseType(value);
+            if (type === 'symbol') {
+              return String(value);
+            }
+            return value;
           }
-          return value;
-        });
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of value `' + String(propValue) + '` ' + ('supplied to `' + componentName + '`, expected one of ' + valuesString + '.'));
+        );
+        return new PropTypeError(
+          'Invalid ' +
+            location +
+            ' `' +
+            propFullName +
+            '` of value `' +
+            String(propValue) +
+            '` ' +
+            ('supplied to `' +
+              componentName +
+              '`, expected one of ' +
+              valuesString +
+              '.')
+        );
       }
       return createChainableTypeChecker(validate);
     }
 
     function createObjectOfTypeChecker(typeChecker) {
-      function validate(props, propName, componentName, location, propFullName) {
+      function validate(
+        props,
+        propName,
+        componentName,
+        location,
+        propFullName
+      ) {
         if (typeof typeChecker !== 'function') {
-          return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside objectOf.');
+          return new PropTypeError(
+            'Property `' +
+              propFullName +
+              '` of component `' +
+              componentName +
+              '` has invalid PropType notation inside objectOf.'
+          );
         }
         var propValue = props[propName];
         var propType = getPropType(propValue);
         if (propType !== 'object') {
-          return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an object.'));
+          return new PropTypeError(
+            'Invalid ' +
+              location +
+              ' `' +
+              propFullName +
+              '` of type ' +
+              ('`' +
+                propType +
+                '` supplied to `' +
+                componentName +
+                '`, expected an object.')
+          );
         }
         for (var key in propValue) {
           if (has$1(propValue, key)) {
-            var error = typeChecker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1);
+            var error = typeChecker(
+              propValue,
+              key,
+              componentName,
+              location,
+              propFullName + '.' + key,
+              ReactPropTypesSecret_1
+            );
             if (error instanceof Error) {
               return error;
             }
@@ -939,7 +1282,9 @@
 
     function createUnionTypeChecker(arrayOfTypeCheckers) {
       if (!Array.isArray(arrayOfTypeCheckers)) {
-         printWarning$1('Invalid argument supplied to oneOfType, expected an instance of array.') ;
+        printWarning$1(
+          'Invalid argument supplied to oneOfType, expected an instance of array.'
+        );
         return emptyFunctionThatReturnsNull;
       }
 
@@ -948,29 +1293,68 @@
         if (typeof checker !== 'function') {
           printWarning$1(
             'Invalid argument supplied to oneOfType. Expected an array of check functions, but ' +
-            'received ' + getPostfixForTypeWarning(checker) + ' at index ' + i + '.'
+              'received ' +
+              getPostfixForTypeWarning(checker) +
+              ' at index ' +
+              i +
+              '.'
           );
           return emptyFunctionThatReturnsNull;
         }
       }
 
-      function validate(props, propName, componentName, location, propFullName) {
+      function validate(
+        props,
+        propName,
+        componentName,
+        location,
+        propFullName
+      ) {
         for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
           var checker = arrayOfTypeCheckers[i];
-          if (checker(props, propName, componentName, location, propFullName, ReactPropTypesSecret_1) == null) {
+          if (
+            checker(
+              props,
+              propName,
+              componentName,
+              location,
+              propFullName,
+              ReactPropTypesSecret_1
+            ) == null
+          ) {
             return null;
           }
         }
 
-        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`.'));
+        return new PropTypeError(
+          'Invalid ' +
+            location +
+            ' `' +
+            propFullName +
+            '` supplied to ' +
+            ('`' + componentName + '`.')
+        );
       }
       return createChainableTypeChecker(validate);
     }
 
     function createNodeChecker() {
-      function validate(props, propName, componentName, location, propFullName) {
+      function validate(
+        props,
+        propName,
+        componentName,
+        location,
+        propFullName
+      ) {
         if (!isNode(props[propName])) {
-          return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`, expected a ReactNode.'));
+          return new PropTypeError(
+            'Invalid ' +
+              location +
+              ' `' +
+              propFullName +
+              '` supplied to ' +
+              ('`' + componentName + '`, expected a ReactNode.')
+          );
         }
         return null;
       }
@@ -978,18 +1362,40 @@
     }
 
     function createShapeTypeChecker(shapeTypes) {
-      function validate(props, propName, componentName, location, propFullName) {
+      function validate(
+        props,
+        propName,
+        componentName,
+        location,
+        propFullName
+      ) {
         var propValue = props[propName];
         var propType = getPropType(propValue);
         if (propType !== 'object') {
-          return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
+          return new PropTypeError(
+            'Invalid ' +
+              location +
+              ' `' +
+              propFullName +
+              '` of type `' +
+              propType +
+              '` ' +
+              ('supplied to `' + componentName + '`, expected `object`.')
+          );
         }
         for (var key in shapeTypes) {
           var checker = shapeTypes[key];
           if (!checker) {
             continue;
           }
-          var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1);
+          var error = checker(
+            propValue,
+            key,
+            componentName,
+            location,
+            propFullName + '.' + key,
+            ReactPropTypesSecret_1
+          );
           if (error) {
             return error;
           }
@@ -1000,11 +1406,26 @@
     }
 
     function createStrictShapeTypeChecker(shapeTypes) {
-      function validate(props, propName, componentName, location, propFullName) {
+      function validate(
+        props,
+        propName,
+        componentName,
+        location,
+        propFullName
+      ) {
         var propValue = props[propName];
         var propType = getPropType(propValue);
         if (propType !== 'object') {
-          return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
+          return new PropTypeError(
+            'Invalid ' +
+              location +
+              ' `' +
+              propFullName +
+              '` of type `' +
+              propType +
+              '` ' +
+              ('supplied to `' + componentName + '`, expected `object`.')
+          );
         }
         // We need to check all keys in case some are required but missing from
         // props.
@@ -1013,12 +1434,29 @@
           var checker = shapeTypes[key];
           if (!checker) {
             return new PropTypeError(
-              'Invalid ' + location + ' `' + propFullName + '` key `' + key + '` supplied to `' + componentName + '`.' +
-              '\nBad object: ' + JSON.stringify(props[propName], null, '  ') +
-              '\nValid keys: ' +  JSON.stringify(Object.keys(shapeTypes), null, '  ')
+              'Invalid ' +
+                location +
+                ' `' +
+                propFullName +
+                '` key `' +
+                key +
+                '` supplied to `' +
+                componentName +
+                '`.' +
+                '\nBad object: ' +
+                JSON.stringify(props[propName], null, '  ') +
+                '\nValid keys: ' +
+                JSON.stringify(Object.keys(shapeTypes), null, '  ')
             );
           }
-          var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1);
+          var error = checker(
+            propValue,
+            key,
+            componentName,
+            location,
+            propFullName + '.' + key,
+            ReactPropTypesSecret_1
+          );
           if (error) {
             return error;
           }
@@ -1168,25 +1606,28 @@
   };
 
   var propTypes = createCommonjsModule(function (module) {
-  /**
-   * Copyright (c) 2013-present, Facebook, Inc.
-   *
-   * This source code is licensed under the MIT license found in the
-   * LICENSE file in the root directory of this source tree.
-   */
+    /**
+     * Copyright (c) 2013-present, Facebook, Inc.
+     *
+     * This source code is licensed under the MIT license found in the
+     * LICENSE file in the root directory of this source tree.
+     */
 
-  {
-    var ReactIs = reactIs;
+    {
+      var ReactIs = reactIs;
 
-    // By explicitly using `prop-types` you are opting into new development behavior.
-    // http://fb.me/prop-types-in-prod
-    var throwOnDirectAccess = true;
-    module.exports = factoryWithTypeCheckers(ReactIs.isElement, throwOnDirectAccess);
-  }
+      // By explicitly using `prop-types` you are opting into new development behavior.
+      // http://fb.me/prop-types-in-prod
+      var throwOnDirectAccess = true;
+      module.exports = factoryWithTypeCheckers(
+        ReactIs.isElement,
+        throwOnDirectAccess
+      );
+    }
   });
 
   // Grid context.
-  var GridContext = React.createContext({}); // Grid provider.
+  var GridContext = /*#__PURE__*/ React.createContext({}); // Grid provider.
 
   var GridProvider = GridContext.Provider; // Grid context hook.
 
@@ -1197,7 +1638,7 @@
   GridContext.displayName = 'GridProvider';
 
   // Item context.
-  var ItemContext = React.createContext({}); // Item provider.
+  var ItemContext = /*#__PURE__*/ React.createContext({}); // Item provider.
 
   var ItemProvider = ItemContext.Provider; // Item context hook.
 
@@ -1209,7 +1650,7 @@
 
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
-      throw new TypeError("Cannot call a class as a function");
+      throw new TypeError('Cannot call a class as a function');
     }
   }
 
@@ -1218,7 +1659,7 @@
       var descriptor = props[i];
       descriptor.enumerable = descriptor.enumerable || false;
       descriptor.configurable = true;
-      if ("value" in descriptor) descriptor.writable = true;
+      if ('value' in descriptor) descriptor.writable = true;
       Object.defineProperty(target, descriptor.key, descriptor);
     }
   }
@@ -1236,83 +1677,84 @@
    * events trigger to the specific item the controller is assigned to.
    * This controllers is used by the hooks to re-render the components.
    */
-  var EventController = /*#__PURE__*/function () {
+  var EventController = /*#__PURE__*/ (function () {
     function EventController() {
       _classCallCheck(this, EventController);
 
-      _defineProperty(this, "_eventsMap", new Map());
+      _defineProperty(this, '_eventsMap', new Map());
 
-      _defineProperty(this, "_payloadsMap", new Map());
+      _defineProperty(this, '_payloadsMap', new Map());
     }
 
-    _createClass(EventController, [{
-      key: "enableEvent",
+    _createClass(EventController, [
+      {
+        key: 'enableEvent',
 
-      /**
-       * Enable an event, it can be emitted.
-       *
-       * @param event - The event name.
-       * @param emitter - The callback.
-       */
-      value: function enableEvent(event, emitter) {
-        this._eventsMap.set(event, emitter);
-      }
-      /**
-       * Set an event payload and emit it the event.
-       *
-       * @param event - The event name.
-       * @param payload - The payload.
-       */
+        /**
+         * Enable an event, it can be emitted.
+         *
+         * @param event - The event name.
+         * @param emitter - The callback.
+         */
+        value: function enableEvent(event, emitter) {
+          this._eventsMap.set(event, emitter);
+        },
+        /**
+         * Set an event payload and emit it the event.
+         *
+         * @param event - The event name.
+         * @param payload - The payload.
+         */
+      },
+      {
+        key: 'emitEvent',
+        value: function emitEvent(event, payload) {
+          if (this.isEnabled(event)) {
+            this._payloadsMap.set(event, payload); // @ts-ignore
 
-    }, {
-      key: "emitEvent",
-      value: function emitEvent(event, payload) {
-        if (this.isEnabled(event)) {
-          this._payloadsMap.set(event, payload); // @ts-ignore
+            this._eventsMap.get(event)();
+          }
+        },
+        /**
+         * Get the payload of the event.
+         *
+         * @param event - The event.
+         * @returns - The payload.
+         */
+      },
+      {
+        key: 'getPayload',
+        value: function getPayload(event) {
+          return this._payloadsMap.get(event);
+        },
+        /**
+         * Returns if at least an event is enabled.
+         *
+         * @param event - The event.
+         * @returns - If at least an event is enabled.
+         */
+      },
+      {
+        key: 'isEnabled',
+        value: function isEnabled(event) {
+          return this._eventsMap.has(event);
+        },
+        /**
+         * Destroy the instance.
+         */
+      },
+      {
+        key: 'destroy',
+        value: function destroy() {
+          this._eventsMap.clear();
 
-
-          this._eventsMap.get(event)();
-        }
-      }
-      /**
-       * Get the payload of the event.
-       *
-       * @param event - The event.
-       * @returns - The payload.
-       */
-
-    }, {
-      key: "getPayload",
-      value: function getPayload(event) {
-        return this._payloadsMap.get(event);
-      }
-      /**
-       * Returns if at least an event is enabled.
-       *
-       * @param event - The event.
-       * @returns - If at least an event is enabled.
-       */
-
-    }, {
-      key: "isEnabled",
-      value: function isEnabled(event) {
-        return this._eventsMap.has(event);
-      }
-      /**
-       * Destroy the instance.
-       */
-
-    }, {
-      key: "destroy",
-      value: function destroy() {
-        this._eventsMap.clear();
-
-        this._payloadsMap.clear();
-      }
-    }]);
+          this._payloadsMap.clear();
+        },
+      },
+    ]);
 
     return EventController;
-  }();
+  })();
 
   /**
    * CONTROLLER: GRID -> ITEM
@@ -1322,95 +1764,101 @@
    * This can be done without knowing the added items and
    * relying only on the useEffect call order of the added items.
    */
-  var ItemAddController = /*#__PURE__*/function () {
+  var ItemAddController = /*#__PURE__*/ (function () {
     function ItemAddController() {
       _classCallCheck(this, ItemAddController);
 
-      _defineProperty(this, "_requests", []);
+      _defineProperty(this, '_requests', []);
     }
 
-    _createClass(ItemAddController, [{
-      key: "useInit",
+    _createClass(ItemAddController, [
+      {
+        key: 'useInit',
 
-      /**
-       * Clear the requests.
-       */
-      value: function useInit() {
-        this._requests = [];
-      }
-      /**
-       * Emit the new items to the
-       * components that made a request.
-       *
-       * @param items - The items.
-       */
-
-    }, {
-      key: "emit",
-      value: function emit(items) {
-        for (var i = 0; i < this._requests.length; i++) {
-          this._requests[i](items[i]);
-        }
-      }
-      /**
-       * Request an item.
-       *
-       * @param cb - The callback.
-       */
-
-    }, {
-      key: "requestItem",
-      value: function requestItem(cb) {
-        this._requests.push(cb);
-      }
-      /**
-       * Destroy the instance.
-       */
-
-    }, {
-      key: "destroy",
-      value: function destroy() {
-        this._requests = [];
-      }
-    }]);
+        /**
+         * Clear the requests.
+         */
+        value: function useInit() {
+          this._requests = [];
+        },
+        /**
+         * Emit the new items to the
+         * components that made a request.
+         *
+         * @param items - The items.
+         */
+      },
+      {
+        key: 'emit',
+        value: function emit(items) {
+          for (var i = 0; i < this._requests.length; i++) {
+            this._requests[i](items[i]);
+          }
+        },
+        /**
+         * Request an item.
+         *
+         * @param cb - The callback.
+         */
+      },
+      {
+        key: 'requestItem',
+        value: function requestItem(cb) {
+          this._requests.push(cb);
+        },
+        /**
+         * Destroy the instance.
+         */
+      },
+      {
+        key: 'destroy',
+        value: function destroy() {
+          this._requests = [];
+        },
+      },
+    ]);
 
     return ItemAddController;
-  }();
+  })();
 
   function _setPrototypeOf(o, p) {
-    _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
-      o.__proto__ = p;
-      return o;
-    };
+    _setPrototypeOf =
+      Object.setPrototypeOf ||
+      function _setPrototypeOf(o, p) {
+        o.__proto__ = p;
+        return o;
+      };
 
     return _setPrototypeOf(o, p);
   }
 
   function _inherits(subClass, superClass) {
-    if (typeof superClass !== "function" && superClass !== null) {
-      throw new TypeError("Super expression must either be null or a function");
+    if (typeof superClass !== 'function' && superClass !== null) {
+      throw new TypeError('Super expression must either be null or a function');
     }
 
     subClass.prototype = Object.create(superClass && superClass.prototype, {
       constructor: {
         value: subClass,
         writable: true,
-        configurable: true
-      }
+        configurable: true,
+      },
     });
     if (superClass) _setPrototypeOf(subClass, superClass);
   }
 
   function _assertThisInitialized(self) {
     if (self === void 0) {
-      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+      throw new ReferenceError(
+        "this hasn't been initialised - super() hasn't been called"
+      );
     }
 
     return self;
   }
 
   function _possibleConstructorReturn(self, call) {
-    if (call && (_typeof(call) === "object" || typeof call === "function")) {
+    if (call && (_typeof(call) === 'object' || typeof call === 'function')) {
       return call;
     }
 
@@ -1418,20 +1866,22 @@
   }
 
   function _getPrototypeOf(o) {
-    _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
-      return o.__proto__ || Object.getPrototypeOf(o);
-    };
+    _getPrototypeOf = Object.setPrototypeOf
+      ? Object.getPrototypeOf
+      : function _getPrototypeOf(o) {
+          return o.__proto__ || Object.getPrototypeOf(o);
+        };
     return _getPrototypeOf(o);
   }
 
   function _isNativeFunction(fn) {
-    return Function.toString.call(fn).indexOf("[native code]") !== -1;
+    return Function.toString.call(fn).indexOf('[native code]') !== -1;
   }
 
   function _isNativeReflectConstruct() {
-    if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+    if (typeof Reflect === 'undefined' || !Reflect.construct) return false;
     if (Reflect.construct.sham) return false;
-    if (typeof Proxy === "function") return true;
+    if (typeof Proxy === 'function') return true;
 
     try {
       Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
@@ -1459,16 +1909,18 @@
   }
 
   function _wrapNativeSuper(Class) {
-    var _cache = typeof Map === "function" ? new Map() : undefined;
+    var _cache = typeof Map === 'function' ? new Map() : undefined;
 
     _wrapNativeSuper = function _wrapNativeSuper(Class) {
       if (Class === null || !_isNativeFunction(Class)) return Class;
 
-      if (typeof Class !== "function") {
-        throw new TypeError("Super expression must either be null or a function");
+      if (typeof Class !== 'function') {
+        throw new TypeError(
+          'Super expression must either be null or a function'
+        );
       }
 
-      if (typeof _cache !== "undefined") {
+      if (typeof _cache !== 'undefined') {
         if (_cache.has(Class)) return _cache.get(Class);
 
         _cache.set(Class, Wrapper);
@@ -1483,8 +1935,8 @@
           value: Wrapper,
           enumerable: false,
           writable: true,
-          configurable: true
-        }
+          configurable: true,
+        },
       });
       return _setPrototypeOf(Wrapper, Class);
     };
@@ -1492,12 +1944,35 @@
     return _wrapNativeSuper(Class);
   }
 
-  function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct$1()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+  function _createSuper(Derived) {
+    var hasNativeReflectConstruct = _isNativeReflectConstruct$1();
+    return function _createSuperInternal() {
+      var Super = _getPrototypeOf(Derived),
+        result;
+      if (hasNativeReflectConstruct) {
+        var NewTarget = _getPrototypeOf(this).constructor;
+        result = Reflect.construct(Super, arguments, NewTarget);
+      } else {
+        result = Super.apply(this, arguments);
+      }
+      return _possibleConstructorReturn(this, result);
+    };
+  }
 
-  function _isNativeReflectConstruct$1() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+  function _isNativeReflectConstruct$1() {
+    if (typeof Reflect === 'undefined' || !Reflect.construct) return false;
+    if (Reflect.construct.sham) return false;
+    if (typeof Proxy === 'function') return true;
+    try {
+      Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
   var prefix = 'Invariant failed'; // Invarianto instance
 
-  var Invariant = /*#__PURE__*/function (_Error) {
+  var Invariant = /*#__PURE__*/ (function (_Error) {
     _inherits(Invariant, _Error);
 
     var _super = _createSuper(Invariant);
@@ -1513,7 +1988,7 @@
     }
 
     return Invariant;
-  }( /*#__PURE__*/_wrapNativeSuper(Error)); // Throw an error if the condition fails
+  })(/*#__PURE__*/ _wrapNativeSuper(Error)); // Throw an error if the condition fails
 
   function invariant(condition, message) {
     if (condition) {
@@ -1523,7 +1998,7 @@
     {
       // When not in production we allow the message to pass through
       // *This block will be removed in production builds*
-      throw new Invariant("".concat(prefix, ": ").concat(message || ''));
+      throw new Invariant(''.concat(prefix, ': ').concat(message || ''));
     }
   }
 
@@ -1534,106 +2009,108 @@
    * to set data in the item also if
    * it has not been created yet.
    */
-  var ItemRefController = /*#__PURE__*/function () {
+  var ItemRefController = /*#__PURE__*/ (function () {
     function ItemRefController() {
       _classCallCheck(this, ItemRefController);
 
-      _defineProperty(this, "_item", null);
+      _defineProperty(this, '_item', null);
 
-      _defineProperty(this, "_instance", {});
+      _defineProperty(this, '_instance', {});
     }
 
-    _createClass(ItemRefController, [{
-      key: "set",
+    _createClass(ItemRefController, [
+      {
+        key: 'set',
 
-      /**
-       * Set a decoration in the item.
-       *
-       * @param key - The decoration key.
-       * @param value - The decoration.
-       */
-      value: function set(key, value) {
-        if (this._item) {
-          addDecoration(this._item, _defineProperty({}, key, value));
-        } else {
-          this._instance[key] = value;
-        }
-      }
-      /**
-       * Get a decoration value from the item.
-       *
-       * @param key - The decoration key.
-       * @returns - The decoration value.
-       */
-
-    }, {
-      key: "get",
-      value: function get(key) {
-        if (this._item) {
-          return getDecoration(this._item)[key];
-        } else {
-          return this._instance[key];
-        }
-      }
-      /**
-       * Remove all the decorations from the item.
-       */
-
-    }, {
-      key: "delete",
-      value: function _delete() {
-        if (this._item) removeDecorations(this._item);
-      }
-      /**
-       * Set the item in the controller.
-       *
-       * @param item - The item.
-       */
-
-    }, {
-      key: "setItem",
-      value: function setItem(item) {
-        this._item = item;
-        addDecoration(this._item, this._instance);
-        this._instance = {};
-      }
-      /**
-       * Item getter.
-       *
-       * @returns - The item.
-       */
-
-    }, {
-      key: "getItem",
-      value: function getItem() {
-        invariant(this._item !== null, 'The item has not been setted yet');
-        return this._item;
-      }
-      /**
-       * Returns if the item has been setted.
-       *
-       * @returns - If the item has been setted.
-       */
-
-    }, {
-      key: "hasItem",
-      value: function hasItem() {
-        return this._item !== null;
-      }
-      /**
-       * Destroy the instance.
-       */
-
-    }, {
-      key: "destroy",
-      value: function destroy() {
-        this._item = null;
-        this._instance = {};
-      }
-    }]);
+        /**
+         * Set a decoration in the item.
+         *
+         * @param key - The decoration key.
+         * @param value - The decoration.
+         */
+        value: function set(key, value) {
+          if (this._item) {
+            addDecoration(this._item, _defineProperty({}, key, value));
+          } else {
+            this._instance[key] = value;
+          }
+        },
+        /**
+         * Get a decoration value from the item.
+         *
+         * @param key - The decoration key.
+         * @returns - The decoration value.
+         */
+      },
+      {
+        key: 'get',
+        value: function get(key) {
+          if (this._item) {
+            return getDecoration(this._item)[key];
+          } else {
+            return this._instance[key];
+          }
+        },
+        /**
+         * Remove all the decorations from the item.
+         */
+      },
+      {
+        key: 'delete',
+        value: function _delete() {
+          if (this._item) removeDecorations(this._item);
+        },
+        /**
+         * Set the item in the controller.
+         *
+         * @param item - The item.
+         */
+      },
+      {
+        key: 'setItem',
+        value: function setItem(item) {
+          this._item = item;
+          addDecoration(this._item, this._instance);
+          this._instance = {};
+        },
+        /**
+         * Item getter.
+         *
+         * @returns - The item.
+         */
+      },
+      {
+        key: 'getItem',
+        value: function getItem() {
+          invariant(this._item !== null, 'The item has not been setted yet');
+          return this._item;
+        },
+        /**
+         * Returns if the item has been setted.
+         *
+         * @returns - If the item has been setted.
+         */
+      },
+      {
+        key: 'hasItem',
+        value: function hasItem() {
+          return this._item !== null;
+        },
+        /**
+         * Destroy the instance.
+         */
+      },
+      {
+        key: 'destroy',
+        value: function destroy() {
+          this._item = null;
+          this._instance = {};
+        },
+      },
+    ]);
 
     return ItemRefController;
-  }();
+  })();
 
   /**
    * CONTROLLER: GRID -> ITEM
@@ -1641,55 +2118,57 @@
    * The purpose of this controller is to find the items to remove
    * based only on the unmount of the ItemComponents.
    */
-  var ItemRemoveController = /*#__PURE__*/function () {
+  var ItemRemoveController = /*#__PURE__*/ (function () {
     function ItemRemoveController() {
       _classCallCheck(this, ItemRemoveController);
 
-      _defineProperty(this, "_itemsToRemove", []);
+      _defineProperty(this, '_itemsToRemove', []);
     }
 
-    _createClass(ItemRemoveController, [{
-      key: "useInit",
+    _createClass(ItemRemoveController, [
+      {
+        key: 'useInit',
 
-      /**
-       * Initialize.
-       */
-      value: function useInit() {
-        this._itemsToRemove = [];
-      }
-      /**
-       * Request an item to be removed.
-       *
-       * @param item - The item to be removed.
-       */
-
-    }, {
-      key: "removeItem",
-      value: function removeItem(item) {
-        this._itemsToRemove.push(item);
-      }
-      /**
-       * Return all the items to remove.
-       */
-
-    }, {
-      key: "getItemsToRemove",
-      value: function getItemsToRemove() {
-        return this._itemsToRemove;
-      }
-      /**
-       * Destroy the instance.
-       */
-
-    }, {
-      key: "destroy",
-      value: function destroy() {
-        this._itemsToRemove = [];
-      }
-    }]);
+        /**
+         * Initialize.
+         */
+        value: function useInit() {
+          this._itemsToRemove = [];
+        },
+        /**
+         * Request an item to be removed.
+         *
+         * @param item - The item to be removed.
+         */
+      },
+      {
+        key: 'removeItem',
+        value: function removeItem(item) {
+          this._itemsToRemove.push(item);
+        },
+        /**
+         * Return all the items to remove.
+         */
+      },
+      {
+        key: 'getItemsToRemove',
+        value: function getItemsToRemove() {
+          return this._itemsToRemove;
+        },
+        /**
+         * Destroy the instance.
+         */
+      },
+      {
+        key: 'destroy',
+        value: function destroy() {
+          this._itemsToRemove = [];
+        },
+      },
+    ]);
 
     return ItemRemoveController;
-  }();
+  })();
 
   /**
    * CONTROLLER: GRID -> ITEMCONTEXT
@@ -1699,7 +2178,7 @@
    * If the GridComponent is re-rendering allow to calculate a
    * single layout and greatly optimize the performance.
    */
-  var LayoutController = /*#__PURE__*/function () {
+  var LayoutController = /*#__PURE__*/ (function () {
     /** The items to refresh. */
 
     /** The items to show. */
@@ -1712,13 +2191,13 @@
     function LayoutController() {
       _classCallCheck(this, LayoutController);
 
-      _defineProperty(this, "_itemsToRefresh", void 0);
+      _defineProperty(this, '_itemsToRefresh', void 0);
 
-      _defineProperty(this, "_itemsToShow", void 0);
+      _defineProperty(this, '_itemsToShow', void 0);
 
-      _defineProperty(this, "_itemsToHide", void 0);
+      _defineProperty(this, '_itemsToHide', void 0);
 
-      _defineProperty(this, "_isRendering", void 0);
+      _defineProperty(this, '_isRendering', void 0);
 
       this._itemsToRefresh = [];
       this._itemsToShow = [];
@@ -1729,123 +2208,128 @@
      * Init.
      */
 
+    _createClass(LayoutController, [
+      {
+        key: 'useInit',
+        value: function useInit() {
+          var _this = this;
 
-    _createClass(LayoutController, [{
-      key: "useInit",
-      value: function useInit() {
-        var _this = this;
+          // Items.
+          this._itemsToRefresh = [];
+          this._itemsToShow = [];
+          this._itemsToHide = []; // State.
 
-        // Items.
-        this._itemsToRefresh = [];
-        this._itemsToShow = [];
-        this._itemsToHide = []; // State.
+          this._isRendering = true; // Change state.
+          // eslint-disable-next-line
 
-        this._isRendering = true; // Change state.
-        // eslint-disable-next-line
-
-        React.useEffect(function () {
-          _this._isRendering = false;
-        });
-      }
-      /**
-       * Refresh an item.
-       *
-       * @param item - The item to refresh.
-       */
-
-    }, {
-      key: "refreshItem",
-      value: function refreshItem(item) {
-        // If the component is rendering within the MuuriComponent.
-        if (this._isRendering) {
-          // The layout is managed by the MuuriComponent
-          // (Performance purpose).
-          this._itemsToRefresh.push(item);
-        } else {
-          // If the item is changing parent this
-          // will get the right parent.
-          var grid = item.getGrid(); // The layout is managed here.
-
-          grid.refreshItems([item]);
-          grid.layout();
-        }
-      }
-      /**
-       * Set an item visibility.
-       *
-       * @param item - The item.
-       * @param visible - The visibility.
-       * @param instant - If the visibility change should happen without animations.
-       */
-
-    }, {
-      key: "setItemVisibility",
-      value: function setItemVisibility(item, visible, instant) {
-        // If the component is rendering within the MuuriComponent.
-        if (this._isRendering) {
-          // The layout is managed by the MuuriComponent
-          // (Performance purpose).
-          if (visible) this._itemsToShow.push(item);else this._itemsToHide.push(item);
-        } else {
-          // If the item is changing parent this
-          // will get the right parent.
-          var grid = item.getGrid(); // The layout is managed here.
-
-          if (visible) grid.show([item], {
-            instant: instant
-          });else grid.hide([item], {
-            instant: instant
+          React.useEffect(function () {
+            _this._isRendering = false;
           });
-        }
-      }
-      /**
-       * Get the items that have to be refreshed.
-       *
-       * @returns - The items.
-       */
+        },
+        /**
+         * Refresh an item.
+         *
+         * @param item - The item to refresh.
+         */
+      },
+      {
+        key: 'refreshItem',
+        value: function refreshItem(item) {
+          // If the component is rendering within the MuuriComponent.
+          if (this._isRendering) {
+            // The layout is managed by the MuuriComponent
+            // (Performance purpose).
+            this._itemsToRefresh.push(item);
+          } else {
+            // If the item is changing parent this
+            // will get the right parent.
+            var grid = item.getGrid(); // The layout is managed here.
 
-    }, {
-      key: "getItemsToRefresh",
-      value: function getItemsToRefresh() {
-        return this._itemsToRefresh;
-      }
-      /**
-       * Get the items that have to be shown.
-       *
-       * @returns - The items.
-       */
+            grid.refreshItems([item]);
+            grid.layout();
+          }
+        },
+        /**
+         * Set an item visibility.
+         *
+         * @param item - The item.
+         * @param visible - The visibility.
+         * @param instant - If the visibility change should happen without animations.
+         */
+      },
+      {
+        key: 'setItemVisibility',
+        value: function setItemVisibility(item, visible, instant) {
+          // If the component is rendering within the MuuriComponent.
+          if (this._isRendering) {
+            // The layout is managed by the MuuriComponent
+            // (Performance purpose).
+            if (visible) this._itemsToShow.push(item);
+            else this._itemsToHide.push(item);
+          } else {
+            // If the item is changing parent this
+            // will get the right parent.
+            var grid = item.getGrid(); // The layout is managed here.
 
-    }, {
-      key: "getItemsToShow",
-      value: function getItemsToShow() {
-        return this._itemsToShow;
-      }
-      /**
-       * Get the items that have to be hidden.
-       *
-       * @returns - The items.
-       */
-
-    }, {
-      key: "getItemsToHide",
-      value: function getItemsToHide() {
-        return this._itemsToHide;
-      }
-      /**
-       * Destroy the instance.
-       */
-
-    }, {
-      key: "destroy",
-      value: function destroy() {
-        this._itemsToRefresh = [];
-        this._itemsToShow = [];
-        this._itemsToHide = [];
-      }
-    }]);
+            if (visible)
+              grid.show([item], {
+                instant: instant,
+              });
+            else
+              grid.hide([item], {
+                instant: instant,
+              });
+          }
+        },
+        /**
+         * Get the items that have to be refreshed.
+         *
+         * @returns - The items.
+         */
+      },
+      {
+        key: 'getItemsToRefresh',
+        value: function getItemsToRefresh() {
+          return this._itemsToRefresh;
+        },
+        /**
+         * Get the items that have to be shown.
+         *
+         * @returns - The items.
+         */
+      },
+      {
+        key: 'getItemsToShow',
+        value: function getItemsToShow() {
+          return this._itemsToShow;
+        },
+        /**
+         * Get the items that have to be hidden.
+         *
+         * @returns - The items.
+         */
+      },
+      {
+        key: 'getItemsToHide',
+        value: function getItemsToHide() {
+          return this._itemsToHide;
+        },
+        /**
+         * Destroy the instance.
+         */
+      },
+      {
+        key: 'destroy',
+        value: function destroy() {
+          this._itemsToRefresh = [];
+          this._itemsToShow = [];
+          this._itemsToHide = [];
+        },
+      },
+    ]);
 
     return LayoutController;
-  }();
+  })();
 
   /**
    * CONTROLLER: GRID
@@ -1853,143 +2337,145 @@
    * The purpose of this controller is to manage the fiber node of the GridElements.
    * The Fiber nodes allow to manage reparenting and easily access new added items elements.
    */
-  var FiberController = /*#__PURE__*/function () {
+  var FiberController = /*#__PURE__*/ (function () {
     function FiberController() {
       _classCallCheck(this, FiberController);
 
-      _defineProperty(this, "_fiber", void 0);
+      _defineProperty(this, '_fiber', void 0);
 
-      _defineProperty(this, "_flag", '0');
+      _defineProperty(this, '_flag', '0');
     }
 
-    _createClass(FiberController, [{
-      key: "useInit",
+    _createClass(FiberController, [
+      {
+        key: 'useInit',
 
-      /**
-       * Init the controller given the grid Element ref.
-       *
-       * @param gridElementRef - the ref of the grid element.
-       */
-      value: function useInit(gridElementRef) {
-        var _this = this;
+        /**
+         * Init the controller given the grid Element ref.
+         *
+         * @param gridElementRef - the ref of the grid element.
+         */
+        value: function useInit(gridElementRef) {
+          var _this = this;
 
-        this.updateFlag(); // eslint-disable-next-line
+          this.updateFlag(); // eslint-disable-next-line
 
-        React.useEffect(function () {
-          invariant(gridElementRef.current !== null);
-          _this._fiber = getFiber(gridElementRef.current);
-        }, []); // eslint-disable-line
-      }
-      /**
-       * Return the DOM elements in the chosen positions.
-       *
-       * @param orderedIndices - The positions.
-       * @returns - The elements.
-       */
+          React.useEffect(function () {
+            invariant(gridElementRef.current !== null);
+            _this._fiber = getFiber(gridElementRef.current);
+          }, []); // eslint-disable-line
+        },
+        /**
+         * Return the DOM elements in the chosen positions.
+         *
+         * @param orderedIndices - The positions.
+         * @returns - The elements.
+         */
+      },
+      {
+        key: 'getStateNodes',
+        value: function getStateNodes(orderedIndices) {
+          var stateNodes = []; // If there aren't indices retun an empty array.
 
-    }, {
-      key: "getStateNodes",
-      value: function getStateNodes(orderedIndices) {
-        var stateNodes = []; // If there aren't indices retun an empty array.
+          if (orderedIndices.length === 0) return stateNodes; // The first child.
 
-        if (orderedIndices.length === 0) return stateNodes; // The first child.
+          var child = getCurrentFiber(this._fiber, this._flag).child; // Fill the state nodes array.
+          // We trust that the user input.
 
-        var child = getCurrentFiber(this._fiber, this._flag).child; // Fill the state nodes array.
-        // We trust that the user input.
-
-        orderedIndices.forEach(function (index) {
-          // @ts-ignore
-          while (child.index !== index) {
+          orderedIndices.forEach(function (index) {
             // @ts-ignore
-            child = child.sibling;
-          } // @ts-ignore
+            while (child.index !== index) {
+              // @ts-ignore
+              child = child.sibling;
+            } // @ts-ignore
 
+            stateNodes.push(getStateNode(child));
+          });
+          return stateNodes;
+        },
+        /**
+         * Append an itemComponent fiber
+         * (the same is done for the alternate if exists).
+         *
+         * @param child - The item.
+         */
+      },
+      {
+        key: 'append',
+        value: function append(itemComponentFiber) {
+          // Get the current fiber.
+          var fiber = getCurrentFiber(this._fiber, this._flag); // Append the fiber.
 
-          stateNodes.push(getStateNode(child));
-        });
-        return stateNodes;
-      }
-      /**
-       * Append an itemComponent fiber
-       * (the same is done for the alternate if exists).
-       *
-       * @param child - The item.
-       */
+          appendFiber(fiber, itemComponentFiber);
 
-    }, {
-      key: "append",
-      value: function append(itemComponentFiber) {
-        // Get the current fiber.
-        var fiber = getCurrentFiber(this._fiber, this._flag); // Append the fiber.
-
-        appendFiber(fiber, itemComponentFiber);
-
-        if (fiber.alternate) {
-          if (itemComponentFiber.alternate) {
-            // Append the alternate.
-            appendFiber(fiber.alternate, itemComponentFiber.alternate);
+          if (fiber.alternate) {
+            if (itemComponentFiber.alternate) {
+              // Append the alternate.
+              appendFiber(fiber.alternate, itemComponentFiber.alternate);
+            }
           }
-        }
-      }
-      /**
-       * Remove an itemComponent fiber given the key of its Item
-       * (The same is done for the alternate if exists).
-       *
-       * @param key - The key of the item.
-       * @returns - The removed item.
-       */
+        },
+        /**
+         * Remove an itemComponent fiber given the key of its Item
+         * (The same is done for the alternate if exists).
+         *
+         * @param key - The key of the item.
+         * @returns - The removed item.
+         */
+      },
+      {
+        key: 'remove',
+        value: function remove(key) {
+          // Get the current fiber.
+          var fiber = getCurrentFiber(this._fiber, this._flag); // Remove the fiber.
 
-    }, {
-      key: "remove",
-      value: function remove(key) {
-        // Get the current fiber.
-        var fiber = getCurrentFiber(this._fiber, this._flag); // Remove the fiber.
+          var removedChild = removeChild(fiber, key);
 
-        var removedChild = removeChild(fiber, key);
-
-        if (fiber.alternate) {
-          if (removedChild.alternate) {
-            // Remove the alternate.
-            removeChild(fiber.alternate, key);
+          if (fiber.alternate) {
+            if (removedChild.alternate) {
+              // Remove the alternate.
+              removeChild(fiber.alternate, key);
+            }
           }
-        }
 
-        return removedChild;
-      }
-      /**
-       * Return the props containing the flag value to add in the grid element.
-       *
-       * @returns - The props.
-       */
-
-    }, {
-      key: "getFlagProp",
-      value: function getFlagProp() {
-        return _defineProperty({}, FlagProp, this._flag);
-      }
-      /**
-       * Update the flag value.
-       */
-
-    }, {
-      key: "updateFlag",
-      value: function updateFlag() {
-        if (this._flag === '0') this._flag = '1';else this._flag = '0';
-      }
-      /**
-       * Destroy the instance.
-       */
-
-    }, {
-      key: "destroy",
-      value: function destroy() {
-        // @ts-ignore
-        this._fiber = null;
-      }
-    }]);
+          return removedChild;
+        },
+        /**
+         * Return the props containing the flag value to add in the grid element.
+         *
+         * @returns - The props.
+         */
+      },
+      {
+        key: 'getFlagProp',
+        value: function getFlagProp() {
+          return _defineProperty({}, FlagProp, this._flag);
+        },
+        /**
+         * Update the flag value.
+         */
+      },
+      {
+        key: 'updateFlag',
+        value: function updateFlag() {
+          if (this._flag === '0') this._flag = '1';
+          else this._flag = '0';
+        },
+        /**
+         * Destroy the instance.
+         */
+      },
+      {
+        key: 'destroy',
+        value: function destroy() {
+          // @ts-ignore
+          this._fiber = null;
+        },
+      },
+    ]);
 
     return FiberController;
-  }();
+  })();
   /**
    * The flag prop name.
    */
@@ -2004,9 +2490,12 @@
 
   function getFiber(grid) {
     var key = Object.keys(grid).find(function (key) {
-      return key.startsWith('__reactInternalInstance$');
+      return (
+        key.startsWith('__reactInternalInstance$') ||
+        key.startsWith('__reactFiber$')
+      );
     });
-    invariant(typeof key === 'string', 'Cannot find the __reactInternalInstance$'); // @ts-ignore
+    invariant(typeof key === 'string', 'Cannot find the __reactFiber$'); // @ts-ignore
 
     return grid[key];
   }
@@ -2026,7 +2515,6 @@
    * @returns - The current fiber.
    */
 
-
   function getCurrentFiber(fiber, currentFlag) {
     if (!fiber.alternate) return fiber; // Flags.
 
@@ -2042,17 +2530,15 @@
       var topFiber = fiber; // Get the top fiber
       // (Not the RootFiber).
 
-      while (topFiber["return"]) {
-        topFiber = topFiber["return"];
+      while (topFiber['return']) {
+        topFiber = topFiber['return'];
       } // Fibers.
-
 
       var rootFiber = topFiber.stateNode;
       var topCurrentFiber = rootFiber.current; // The current fiber.
 
       return topCurrentFiber === topFiber ? fiber : fiber.alternate;
     } // If we got here we can trust the flag prop to find the current Fiber.
-
 
     return fiberFlag === currentFlag ? fiber : fiber.alternate;
   }
@@ -2063,7 +2549,6 @@
    * @param itemComponentFiber - The fiber.
    * @returns - The element.
    */
-
 
   function getStateNode(itemComponentFiber) {
     // ItemComponent -> ItemProvider -> Item.
@@ -2082,7 +2567,6 @@
    * @param parent - The parent fiber.
    * @param child - The child fiber.
    */
-
 
   function appendFiber(parent, child) {
     var _parent$return;
@@ -2103,10 +2587,14 @@
       c.sibling = child;
     } // Update the references.
 
+    child['return'] = parent; // If we are in development.
 
-    child["return"] = parent; // If we are in development.
-
-    if (child._debugOwner) child._debugOwner = (_parent$return = parent["return"]) === null || _parent$return === void 0 ? void 0 : _parent$return["return"];
+    if (child._debugOwner)
+      child._debugOwner =
+        (_parent$return = parent['return']) === null ||
+        _parent$return === void 0
+          ? void 0
+          : _parent$return['return'];
   }
   /**
    * Remove a child with the given key from the fiber.
@@ -2115,7 +2603,6 @@
    * @param key - The key of the item.
    * @return - The removed fiber.
    */
-
 
   function removeChild(parent, key) {
     var child = parent.child;
@@ -2127,7 +2614,6 @@
         // @ts-ignore
         child = child.sibling;
       } // @ts-ignore
-
 
       removedChild = removeSibling(child); // @ts-ignore
 
@@ -2149,7 +2635,6 @@
    * @return - The removed itemComponent fiber.
    */
 
-
   function removeFirstChild(gridElementFiber) {
     var removed = gridElementFiber.child; // @ts-ignore
 
@@ -2164,7 +2649,6 @@
    * @return - The removed sibling.
    */
 
-
   function removeSibling(fiber) {
     var removed = fiber.sibling; // @ts-ignore
 
@@ -2177,7 +2661,6 @@
    *
    * @param itemComponentFiber - The itemComponent fiber.
    */
-
 
   function adjustIndices(itemComponentFiber) {
     while (itemComponentFiber.sibling) {
@@ -2193,7 +2676,6 @@
    * @return - If the itemComponent fiber is not the parent of the item with the given key.
    */
 
-
   function hasNot(itemComponentFiber, key) {
     // ItemComponent -> ItemProvider -> Item.
     return itemComponentFiber.child.child.key !== key;
@@ -2206,139 +2688,144 @@
    * during each render of the component, and provide
    * the indexes of the new children added.
    */
-  var ChildrenController = /*#__PURE__*/function () {
+  var ChildrenController = /*#__PURE__*/ (function () {
     function ChildrenController() {
       _classCallCheck(this, ChildrenController);
 
-      _defineProperty(this, "_oldChildrenArray", []);
+      _defineProperty(this, '_oldChildrenArray', []);
 
-      _defineProperty(this, "_children", []);
+      _defineProperty(this, '_children', []);
 
-      _defineProperty(this, "_indicesToAdd", []);
+      _defineProperty(this, '_indicesToAdd', []);
 
-      _defineProperty(this, "_dragCounter", 0);
+      _defineProperty(this, '_dragCounter', 0);
     }
 
-    _createClass(ChildrenController, [{
-      key: "useInit",
+    _createClass(ChildrenController, [
+      {
+        key: 'useInit',
 
-      /**
-       * Init all the settings given the new children.
-       *
-       * @param newChildren - the new children.
-       */
-      value: function useInit(newChildren) {
-        // @ts-ignore
-        // We need to ensure that the children are in an array.
-        var newChildrenArray = React.Children.toArray(newChildren); // The indices to add.
-
-        this._indicesToAdd = getIndicesToAdd(newChildrenArray, this._oldChildrenArray); // The _children will be used to map all
-        // the child in the render method.
-        // We can't use the ChildrenArray because we need the users
-        // key provided in the components and not the escaped one (e.g. .$1).
-
-        this._children = newChildren || [];
-        this._oldChildrenArray = newChildrenArray;
-      }
-      /**
-       * Remove a child in the given position and return it.
-       *
-       * @param index - The index of the child to remove.
-       * @returns - The removed child.
-       */
-
-    }, {
-      key: "remove",
-      value: function remove(index) {
-        return this._oldChildrenArray.splice(index, 1)[0];
-      }
-      /**
-       * Append a child in the children array.
-       *
-       * @param child - The child to append.
-       */
-
-    }, {
-      key: "append",
-      value: function append(child) {
-        this._oldChildrenArray.push(child);
-      }
-      /**
-       * Returns the ordered array of indices of the added children.
-       */
-
-    }, {
-      key: "getIndicesToAdd",
-      value: function getIndicesToAdd() {
-        return this._indicesToAdd;
-      }
-      /**
-       * Map all the children.
-       *
-       * @param cb - The callback.
-       * @returns - The mapped children.
-       */
-
-    }, {
-      key: "render",
-      value: function render(cb) {
-        var children = React.Children.map(this._children, function (child) {
-          // @ts-ignore
-          // there are rare cases where the keys are not indispensable,
-          // the user may not choose to use at his own risk.
-          return cb(child, child.key);
-        }); // Flush the children.
-
-        this.flush();
-        return children;
         /**
+         * Init all the settings given the new children.
+         *
+         * @param newChildren - the new children.
+         */
+        value: function useInit(newChildren) {
+          // @ts-ignore
+          // We need to ensure that the children are in an array.
+          var newChildrenArray = React.Children.toArray(newChildren); // The indices to add.
+
+          this._indicesToAdd = getIndicesToAdd(
+            newChildrenArray,
+            this._oldChildrenArray
+          ); // The _children will be used to map all
+          // the child in the render method.
+          // We can't use the ChildrenArray because we need the users
+          // key provided in the components and not the escaped one (e.g. .$1).
+
+          this._children = newChildren || [];
+          this._oldChildrenArray = newChildrenArray;
+        },
+        /**
+         * Remove a child in the given position and return it.
+         *
+         * @param index - The index of the child to remove.
+         * @returns - The removed child.
+         */
+      },
+      {
+        key: 'remove',
+        value: function remove(index) {
+          return this._oldChildrenArray.splice(index, 1)[0];
+        },
+        /**
+         * Append a child in the children array.
+         *
+         * @param child - The child to append.
+         */
+      },
+      {
+        key: 'append',
+        value: function append(child) {
+          this._oldChildrenArray.push(child);
+        },
+        /**
+         * Returns the ordered array of indices of the added children.
+         */
+      },
+      {
+        key: 'getIndicesToAdd',
+        value: function getIndicesToAdd() {
+          return this._indicesToAdd;
+        },
+        /**
+         * Map all the children.
+         *
+         * @param cb - The callback.
+         * @returns - The mapped children.
+         */
+      },
+      {
+        key: 'render',
+        value: function render(cb) {
+          var children = React.Children.map(this._children, function (child) {
+            // @ts-ignore
+            // there are rare cases where the keys are not indispensable,
+            // the user may not choose to use at his own risk.
+            return cb(child, child.key);
+          }); // Flush the children.
+
+          this.flush();
+          return children;
+          /**
         // If an item is being dragged we need to ensure
         // that no child is inserted before it.
         return this._dragCounter === 0
           ? children
           : getChildrenInSafePositions(children, this._indicesToAdd);
            */
-      }
-      /**
-       * Increment the drag counter.
-       */
-
-    }, {
-      key: "incrementDragCounter",
-      value: function incrementDragCounter() {
-        this._dragCounter += 1;
-      }
-      /**
-       * Decrement the drag counter.
-       */
-
-    }, {
-      key: "decrementDragCounter",
-      value: function decrementDragCounter() {
-        this._dragCounter -= 1;
-      }
-      /**
-       * Remove the current children so they can be garbage collected.
-       */
-
-    }, {
-      key: "flush",
-      value: function flush() {
-        this._children = [];
-      }
-      /**
-       * Destroy the instance.
-       */
-
-    }, {
-      key: "destroy",
-      value: function destroy() {
-        this.flush();
-      }
-    }]);
+        },
+        /**
+         * Increment the drag counter.
+         */
+      },
+      {
+        key: 'incrementDragCounter',
+        value: function incrementDragCounter() {
+          this._dragCounter += 1;
+        },
+        /**
+         * Decrement the drag counter.
+         */
+      },
+      {
+        key: 'decrementDragCounter',
+        value: function decrementDragCounter() {
+          this._dragCounter -= 1;
+        },
+        /**
+         * Remove the current children so they can be garbage collected.
+         */
+      },
+      {
+        key: 'flush',
+        value: function flush() {
+          this._children = [];
+        },
+        /**
+         * Destroy the instance.
+         */
+      },
+      {
+        key: 'destroy',
+        value: function destroy() {
+          this.flush();
+        },
+      },
+    ]);
 
     return ChildrenController;
-  }();
+  })();
   /**
    * Return an array of positions of the added children.
    * The algorithm is optimized for cases where the order of
@@ -2388,11 +2875,9 @@
       if (is(child, children[index])) return index;
     } // If the child is here the heuristics are not respected.
 
-
     for (var _index = 0; _index < fromIndex; _index++) {
       if (is(child, children[_index])) return _index;
     } // The child is not present.
-
 
     return -1;
   }
@@ -2435,7 +2920,6 @@
    * @returns - If they have the same key.
    */
 
-
   function is(componentA, componentB) {
     return componentA.key === componentB.key;
   }
@@ -2455,7 +2939,7 @@
     sizerElement.classList.add('grid-sizer'); // Set the element.
 
     addDecoration(grid, {
-      sizerElement: sizerElement
+      sizerElement: sizerElement,
     });
     var gridElement = grid.getElement(); // Insert as first child.
 
@@ -2488,7 +2972,6 @@
       gridElement.style.position = positions[0];
     } // Set the grid class.
 
-
     gridElement.classList.add(gridClass); // Ensure that the grid class can't be removed.
 
     var defaultSetAttribute = gridElement.setAttribute.bind(gridElement);
@@ -2497,7 +2980,8 @@
       if (attribute === 'class') {
         var classNames = (gridElement.getAttribute('class') || '').split(' '); // Add the grid class.
 
-        if (!classNames.includes(gridClass)) value = "".concat(value, " ").concat(gridClass);
+        if (!classNames.includes(gridClass))
+          value = ''.concat(value, ' ').concat(gridClass);
       }
 
       defaultSetAttribute(attribute, value);
@@ -2515,15 +2999,16 @@
   function fillItem(item) {
     addDecoration(item, {
       props: {},
-      data: {}
+      data: {},
     }); // Change the sort data.
 
     Object.defineProperty(item, '_sortData', {
       get: function get() {
         return this.getData();
       },
-      set: function set() {// nothing to do here.
-      }
+      set: function set() {
+        // nothing to do here.
+      },
     });
   }
 
@@ -2550,7 +3035,7 @@
           return itemClasses.includes(className);
         }); // Add the Css items classes.
 
-        value = "".concat(value, " ").concat(classNamesToAdd.join(' '));
+        value = ''.concat(value, ' ').concat(classNamesToAdd.join(' '));
       }
 
       defaultSetAttribute(attribute, value);
@@ -2623,7 +3108,6 @@
       cleanUpRef.current = didUpdate();
     } // Catch unmount.
 
-
     React.useEffect(function () {
       return function () {
         if (cleanUpRef.current) cleanUpRef.current();
@@ -2669,12 +3153,12 @@
   // Item component.
   function ItemComponent(_ref) {
     var child = _ref.children,
-        itemClasses = _ref.itemClasses,
-        itemAddController = _ref.itemAddController,
-        itemRemoveController = _ref.itemRemoveController,
-        propsToData = _ref.propsToData,
-        itemKey = _ref.itemKey,
-        grid = _ref.grid;
+      itemClasses = _ref.itemClasses,
+      itemAddController = _ref.itemAddController,
+      itemRemoveController = _ref.itemRemoveController,
+      propsToData = _ref.propsToData,
+      itemKey = _ref.itemKey,
+      grid = _ref.grid;
     // The store provided doesn't change the reference.
     var store = useMemoized(function () {
       // Create the controllers.
@@ -2688,7 +3172,7 @@
         eventController: eventController,
         itemRefController: itemRefController,
         itemRemoveController: itemRemoveController,
-        grid: grid
+        grid: grid,
       };
     }); // Set the props.
 
@@ -2700,11 +3184,15 @@
       // Get the data.
       var data = propsToData(child.props); // Must be an object.
 
-      invariant(_typeof(data) === 'object', "The data returned by 'propsToData' must be an object, founded ".concat(_typeof(data))); // Set the data.
+      invariant(
+        _typeof(data) === 'object',
+        "The data returned by 'propsToData' must be an object, founded ".concat(
+          _typeof(data)
+        )
+      ); // Set the data.
 
       store.itemRefController.set('data', data);
     } // On mount.
-
 
     React.useEffect(function () {
       // Request the item.
@@ -2732,8 +3220,7 @@
           store.grid.getElement().appendChild(element);
         } // Remove the item.
 
-
-        store.itemRefController["delete"]();
+        store.itemRefController['delete']();
         store.itemRemoveController.removeItem(item); // Destroy the controllers instances.
 
         store.itemRefController.destroy();
@@ -2742,9 +3229,13 @@
     }, []); // eslint-disable-line
     // Render.
 
-    return /*#__PURE__*/React__default.createElement(ItemProvider, {
-      value: store
-    }, child);
+    return /*#__PURE__*/ React__default['default'].createElement(
+      ItemProvider,
+      {
+        value: store,
+      },
+      child
+    );
   } // PropTypes.
 
   ItemComponent.propTypes = {
@@ -2752,7 +3243,7 @@
     itemClasses: propTypes.arrayOf(propTypes.string.isRequired).isRequired,
     propsToData: propTypes.func,
     children: propTypes.element.isRequired,
-    grid: propTypes.instanceOf(Muuri).isRequired
+    grid: propTypes.instanceOf(Muuri__default['default']).isRequired,
   }; // Display name.
 
   ItemComponent.displayName = 'ItemComponent';
@@ -2771,15 +3262,19 @@
       // Add the items.
       grid.add(addedDOMItems[i], {
         index: indicesToAdd[i],
-        layout: false
+        layout: false,
       });
     } // Show the added items (usefull just if the items are
     // hidden by default and the filter is not setted).
 
-
-    if (!filter && (addOptions === null || addOptions === void 0 ? void 0 : addOptions.show)) {
+    if (
+      !filter &&
+      addOptions !== null &&
+      addOptions !== void 0 &&
+      addOptions.show
+    ) {
       grid.show(grid.getItems(indicesToAdd), {
-        layout: false
+        layout: false,
       });
     }
   }
@@ -2791,11 +3286,14 @@
    * @param predicate - The filter predicate.
    */
   function filterItems(grid, predicate) {
-    grid.filter(function (item) {
-      return predicate(item.getData(), item);
-    }, {
-      layout: false
-    });
+    grid.filter(
+      function (item) {
+        return predicate(item.getData(), item);
+      },
+      {
+        layout: false,
+      }
+    );
   }
 
   /** Class name. */
@@ -2813,7 +3311,15 @@
   }
 
   /** Class names. */
-  var itemClassNames = ['itemClass', 'itemVisibleClass', 'itemHiddenClass', 'itemPositioningClass', 'itemDraggingClass', 'itemReleasingClass', 'itemPlaceholderClass'];
+  var itemClassNames = [
+    'itemClass',
+    'itemVisibleClass',
+    'itemHiddenClass',
+    'itemPositioningClass',
+    'itemDraggingClass',
+    'itemReleasingClass',
+    'itemPlaceholderClass',
+  ];
   /**
    * Returns the items classes.
    *
@@ -2836,7 +3342,7 @@
    */
   function hideItems(grid, items) {
     grid.hide(items, {
-      layout: false
+      layout: false,
     });
   }
 
@@ -2849,7 +3355,7 @@
   function removeItems(grid, itemsToRemove) {
     grid.remove(itemsToRemove, {
       layout: false,
-      removeElements: false
+      removeElements: false,
     });
   }
 
@@ -2861,13 +3367,47 @@
    */
   function showItems(grid, items) {
     grid.show(items, {
-      layout: false
+      layout: false,
     });
   }
 
-  function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+  function ownKeys$1(object, enumerableOnly) {
+    var keys = Object.keys(object);
+    if (Object.getOwnPropertySymbols) {
+      var symbols = Object.getOwnPropertySymbols(object);
+      if (enumerableOnly)
+        symbols = symbols.filter(function (sym) {
+          return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+        });
+      keys.push.apply(keys, symbols);
+    }
+    return keys;
+  }
 
-  function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$1(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$1(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+  function _objectSpread$1(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i] != null ? arguments[i] : {};
+      if (i % 2) {
+        ownKeys$1(Object(source), true).forEach(function (key) {
+          _defineProperty(target, key, source[key]);
+        });
+      } else if (Object.getOwnPropertyDescriptors) {
+        Object.defineProperties(
+          target,
+          Object.getOwnPropertyDescriptors(source)
+        );
+      } else {
+        ownKeys$1(Object(source)).forEach(function (key) {
+          Object.defineProperty(
+            target,
+            key,
+            Object.getOwnPropertyDescriptor(source, key)
+          );
+        });
+      }
+    }
+    return target;
+  }
 
   /**
    * Sort the items.
@@ -2879,19 +3419,21 @@
   function sortItems(grid, predicate, sortOptions) {
     // Disable the layout.
     // @ts-ignore
-    sortOptions = _objectSpread$1({}, sortOptions || {}, {
-      layout: false
-    }); // Handle a function.
+    sortOptions = _objectSpread$1(
+      _objectSpread$1({}, sortOptions || {}),
+      {},
+      {
+        layout: false,
+      }
+    ); // Handle a function.
 
     if (typeof predicate === 'function') {
       handleFunction(grid, predicate, sortOptions);
     } // Handle a string.
 
-
     if (typeof predicate === 'string') {
       handleString(grid, predicate, sortOptions);
     } // Hanndle an array of keys.
-
 
     if (Array.isArray(predicate)) {
       handleArray(grid, predicate, sortOptions);
@@ -2918,7 +3460,6 @@
    * @param sortOptions - The sort options.
    */
 
-
   function handleString(grid, predicate, sortOptions) {
     grid.sort(predicate, sortOptions);
   }
@@ -2930,7 +3471,6 @@
    * @param predicate - The array of keys.
    * @param sortOptions - The sort options.
    */
-
 
   function handleArray(grid, predicate, sortOptions) {
     var items = grid.getItems(); // Items that can be sorted.
@@ -2952,10 +3492,16 @@
       }
     }); // Sort.
 
-    grid.sort(Array.prototype.concat( // Some position can be empty.
-    sortedItems.filter(function (item) {
-      return !!item;
-    }), otherItems), sortOptions);
+    grid.sort(
+      Array.prototype.concat(
+        // Some position can be empty.
+        sortedItems.filter(function (item) {
+          return !!item;
+        }),
+        otherItems
+      ),
+      sortOptions
+    );
   }
 
   /* Interfaces */
@@ -2963,24 +3509,24 @@
   // Grid component.
   function GridComponent(_ref) {
     var children = _ref.children,
-        gridProps = _ref.gridProps,
-        grid = _ref.grid,
-        filter = _ref.filter,
-        sort = _ref.sort,
-        sortOptions = _ref.sortOptions,
-        addOptions = _ref.addOptions,
-        propsToData = _ref.propsToData,
-        onSend = _ref.onSend,
-        onDragStart = _ref.onDragStart,
-        onDragEnd = _ref.onDragEnd,
-        onFilter = _ref.onFilter,
-        onSort = _ref.onSort,
-        onMount = _ref.onMount,
-        onUnmount = _ref.onUnmount,
-        forceSync = _ref.forceSync,
-        dragFixed = _ref.dragFixed,
-        dragEnabled = _ref.dragEnabled,
-        instantLayout = _ref.instantLayout;
+      gridProps = _ref.gridProps,
+      grid = _ref.grid,
+      filter = _ref.filter,
+      sort = _ref.sort,
+      sortOptions = _ref.sortOptions,
+      addOptions = _ref.addOptions,
+      propsToData = _ref.propsToData,
+      onSend = _ref.onSend,
+      onDragStart = _ref.onDragStart,
+      onDragEnd = _ref.onDragEnd,
+      onFilter = _ref.onFilter,
+      onSort = _ref.onSort,
+      onMount = _ref.onMount,
+      onUnmount = _ref.onUnmount,
+      forceSync = _ref.forceSync,
+      dragFixed = _ref.dragFixed,
+      dragEnabled = _ref.dragEnabled,
+      instantLayout = _ref.instantLayout;
 
     /* ------------------ */
 
@@ -2993,37 +3539,39 @@
       return {
         // Grid and items data.
         gridRef:
-        /*      */
-        React.createRef(),
+          /*#__PURE__*/
+
+          /*      */
+          React.createRef(),
         gridClass:
-        /*    */
-        getGridClass(grid),
+          /*    */
+          getGridClass(grid),
         itemClasses:
-        /*  */
-        getItemClasses(grid),
+          /*  */
+          getItemClasses(grid),
         // Controllers.
         childrenController:
-        /*    */
-        new ChildrenController(),
+          /*    */
+          new ChildrenController(),
         fiberController:
-        /*       */
-        new FiberController(),
+          /*       */
+          new FiberController(),
         itemAddController:
-        /*     */
-        new ItemAddController(),
+          /*     */
+          new ItemAddController(),
         itemRemoveController:
-        /*  */
-        new ItemRemoveController(),
+          /*  */
+          new ItemRemoveController(),
         layoutController:
-        /*      */
-        new LayoutController(),
+          /*      */
+          new LayoutController(),
         // Events.
         onUnmount: onUnmount,
         onDragStart: onDragStart,
         onDragEnd: onDragEnd,
         onFilter: onFilter,
         onSort: onSort,
-        onSend: onSend
+        onSend: onSend,
       };
     }); // Store references of objects
     // that are used inside useEffect.
@@ -3032,45 +3580,45 @@
     var vars = {
       // Items data.
       indicesToAdd:
-      /*   */
-      [],
+        /*   */
+        [],
       addedDOMItems:
-      /*  */
-      [],
+        /*  */
+        [],
       itemsToRemove:
-      /*  */
-      [],
+        /*  */
+        [],
       itemsToRefresh:
-      /* */
-      [],
+        /* */
+        [],
       itemsToShow:
-      /*    */
-      [],
+        /*    */
+        [],
       itemsToHide:
-      /*    */
-      [],
+        /*    */
+        [],
       // Items flags.
       hasAdded:
-      /*      */
-      false,
+        /*      */
+        false,
       hasRemoved:
-      /*    */
-      false,
+        /*    */
+        false,
       hasFiltered:
-      /*   */
-      false,
+        /*   */
+        false,
       hasSorted:
-      /*     */
-      false,
+        /*     */
+        false,
       hasRefreshed:
-      /*  */
-      false,
+        /*  */
+        false,
       hasShown:
-      /*      */
-      false,
+        /*      */
+        false,
       hasHidden:
-      /*     */
-      false
+        /*     */
+        false,
     };
     /* ----------------- */
 
@@ -3087,223 +3635,235 @@
       /* ------------------ */
       // Add all the event handlers.
       grid // "Send" and "receive" events.
-      .on('beforeSend', function (_ref2) {
-        var item = _ref2.item,
+        .on('beforeSend', function (_ref2) {
+          var item = _ref2.item,
             fromGrid = _ref2.fromGrid,
             fromIndex = _ref2.fromIndex;
 
-        if (!getDecoration(item).sentPayload) {
-          // Generate the sentPayload.
-          var sentPayload = {
-            fromChildrenController: store.childrenController,
-            fromFiberController: store.fiberController,
-            fromGrid: fromGrid,
-            fromIndex: fromIndex
-          }; // Add the decoration.
+          if (!getDecoration(item).sentPayload) {
+            // Generate the sentPayload.
+            var sentPayload = {
+              fromChildrenController: store.childrenController,
+              fromFiberController: store.fiberController,
+              fromGrid: fromGrid,
+              fromIndex: fromIndex,
+            }; // Add the decoration.
 
-          addDecoration(item, {
-            sentPayload: sentPayload
-          });
-        }
-      }).on('receive', function (_ref3) {
-        var item = _ref3.item,
+            addDecoration(item, {
+              sentPayload: sentPayload,
+            });
+          }
+        })
+        .on('receive', function (_ref3) {
+          var item = _ref3.item,
             toGrid = _ref3.toGrid,
             toIndex = _ref3.toIndex;
-        // Controllers.
-        var toChildrenController = store.childrenController;
-        var toFiberController = store.fiberController; // If the method is activated by user interaction (the item is being dragged)
-        // the synchronization will be performed during the "dragEnd" event.
-        // If the method is called via Muuri's instance (the item is not being dragged)
-        // the synchronization takes place here, but the onSend callback is not fired.
+          // Controllers.
+          var toChildrenController = store.childrenController;
+          var toFiberController = store.fiberController; // If the method is activated by user interaction (the item is being dragged)
+          // the synchronization will be performed during the "dragEnd" event.
+          // If the method is called via Muuri's instance (the item is not being dragged)
+          // the synchronization takes place here, but the onSend callback is not fired.
 
-        if (item.isDragging()) {
-          // Generate the receivedPayload.
-          var receivedPayload = {
-            toChildrenController: toChildrenController,
-            toFiberController: toFiberController,
-            toGrid: toGrid,
-            toIndex: toIndex
-          }; // Add the decoration.
+          if (item.isDragging()) {
+            // Generate the receivedPayload.
+            var receivedPayload = {
+              toChildrenController: toChildrenController,
+              toFiberController: toFiberController,
+              toGrid: toGrid,
+              toIndex: toIndex,
+            }; // Add the decoration.
 
-          addDecoration(item, {
-            receivedPayload: receivedPayload
-          });
-        } else {
-          // Payloads data.
-          var sentPayload = getDecoration(item).sentPayload; // The payload must have been created in the send method.
+            addDecoration(item, {
+              receivedPayload: receivedPayload,
+            });
+          } else {
+            // Payloads data.
+            var sentPayload = getDecoration(item).sentPayload; // The payload must have been created in the send method.
 
-          invariant(sentPayload !== null && _typeof(sentPayload) === 'object'); // Controllers.
+            invariant(
+              sentPayload !== null && _typeof(sentPayload) === 'object'
+            ); // Controllers.
 
-          var fromChildrenController = sentPayload.fromChildrenController,
+            var fromChildrenController = sentPayload.fromChildrenController,
               fromFiberController = sentPayload.fromFiberController; // Remove the payload.
 
-          addDecoration(item, {
-            sentPayload: null
-          }); // Remove the item instances from the old GridComponent.
-
-          var itemFiber = fromFiberController.remove(item.getKey());
-          var itemComponent = fromChildrenController.remove(itemFiber.index); // Add the item instances to the new GridComponent.
-
-          toFiberController.append(itemFiber);
-          toChildrenController.append(itemComponent);
-        } // Emit the "send" event.
-
-
-        getDecoration(item).eventController.emitEvent('send', grid);
-      }) // Drag events.
-      .on('dragInit', function (item, event) {
-        // The childrenController must change the positions of
-        // the newly added components if any items are being
-        // dragged to add the safely.
-        store.childrenController.incrementDragCounter(); // Emit the "drag" event.
-        // This event is used instead of "dragStart" to allow the
-        // reRender of the component when the item is not inside
-        // the dragContainer, this makes it possible to change
-        // the style of the element safely (e.g. using relative dimensions).
-
-        getDecoration(item).eventController.emitEvent('drag', true); // "onDragStart" Callback.
-
-        if (store.onDragStart) store.onDragStart(item, event);
-      }).on('dragEnd', function (item) {
-        // Payloads.
-        var sentPayload = getDecoration(item).sentPayload;
-        var receivedPayload = getDecoration(item).receivedPayload; // If an item was sent during the drag the
-        // GridComponents are synchronized.
-
-        if (sentPayload && receivedPayload) {
-          // SentPayload data.
-          var fromChildrenController = sentPayload.fromChildrenController,
-              fromFiberController = sentPayload.fromFiberController,
-              fromGrid = sentPayload.fromGrid,
-              fromIndex = sentPayload.fromIndex; // ReceivedPayload data.
-
-          var toChildrenController = receivedPayload.toChildrenController,
-              toFiberController = receivedPayload.toFiberController,
-              toGrid = receivedPayload.toGrid,
-              toIndex = receivedPayload.toIndex; // Reset the payloads.
-
-          addDecoration(item, {
-            sentPayload: null,
-            receivedPayload: null
-          }); // Check if the item has been sended.
-
-          if (fromGrid !== toGrid) {
-            // "onSend" will be called with the receive event.
-            invariant(typeof store.onSend === 'function', 'An item cannot be sent to another MuuriComponent if the ' + "'onSend' property has not been passed to the MuuriComponent."); // Remove the item instances from the old GridComponent.
+            addDecoration(item, {
+              sentPayload: null,
+            }); // Remove the item instances from the old GridComponent.
 
             var itemFiber = fromFiberController.remove(item.getKey());
             var itemComponent = fromChildrenController.remove(itemFiber.index); // Add the item instances to the new GridComponent.
 
             toFiberController.append(itemFiber);
-            toChildrenController.append(itemComponent); // "onSend" callback.
-            // DragEnd is called in the grid where
-            // the drag start, so onSend.
+            toChildrenController.append(itemComponent);
+          } // Emit the "send" event.
 
-            store.onSend({
-              // The key the user has set.
-              key: getDecoration(item).key,
-              // From.
-              fromGrid: fromGrid,
-              fromIndex: fromIndex,
-              fromId: getDecoration(fromGrid).id,
-              fromGroupIds: getDecoration(fromGrid).groupIds,
-              // To.
-              toGrid: toGrid,
-              toIndex: toIndex,
-              toId: getDecoration(toGrid).id,
-              toGroupIds: getDecoration(toGrid).groupIds
-            });
+          getDecoration(item).eventController.emitEvent('send', grid);
+        }) // Drag events.
+        .on('dragInit', function (item, event) {
+          // The childrenController must change the positions of
+          // the newly added components if any items are being
+          // dragged to add the safely.
+          store.childrenController.incrementDragCounter(); // Emit the "drag" event.
+          // This event is used instead of "dragStart" to allow the
+          // reRender of the component when the item is not inside
+          // the dragContainer, this makes it possible to change
+          // the style of the element safely (e.g. using relative dimensions).
+
+          getDecoration(item).eventController.emitEvent('drag', true); // "onDragStart" Callback.
+
+          if (store.onDragStart) store.onDragStart(item, event);
+        })
+        .on('dragEnd', function (item) {
+          // Payloads.
+          var sentPayload = getDecoration(item).sentPayload;
+          var receivedPayload = getDecoration(item).receivedPayload; // If an item was sent during the drag the
+          // GridComponents are synchronized.
+
+          if (sentPayload && receivedPayload) {
+            // SentPayload data.
+            var fromChildrenController = sentPayload.fromChildrenController,
+              fromFiberController = sentPayload.fromFiberController,
+              fromGrid = sentPayload.fromGrid,
+              fromIndex = sentPayload.fromIndex; // ReceivedPayload data.
+
+            var toChildrenController = receivedPayload.toChildrenController,
+              toFiberController = receivedPayload.toFiberController,
+              toGrid = receivedPayload.toGrid,
+              toIndex = receivedPayload.toIndex; // Reset the payloads.
+
+            addDecoration(item, {
+              sentPayload: null,
+              receivedPayload: null,
+            }); // Check if the item has been sended.
+
+            if (fromGrid !== toGrid) {
+              // "onSend" will be called with the receive event.
+              invariant(
+                typeof store.onSend === 'function',
+                'An item cannot be sent to another MuuriComponent if the ' +
+                  "'onSend' property has not been passed to the MuuriComponent."
+              ); // Remove the item instances from the old GridComponent.
+
+              var itemFiber = fromFiberController.remove(item.getKey());
+              var itemComponent = fromChildrenController.remove(
+                itemFiber.index
+              ); // Add the item instances to the new GridComponent.
+
+              toFiberController.append(itemFiber);
+              toChildrenController.append(itemComponent); // "onSend" callback.
+              // DragEnd is called in the grid where
+              // the drag start, so onSend.
+
+              store.onSend({
+                // The key the user has set.
+                key: getDecoration(item).key,
+                // From.
+                fromGrid: fromGrid,
+                fromIndex: fromIndex,
+                fromId: getDecoration(fromGrid).id,
+                fromGroupIds: getDecoration(fromGrid).groupIds,
+                // To.
+                toGrid: toGrid,
+                toIndex: toIndex,
+                toId: getDecoration(toGrid).id,
+                toGroupIds: getDecoration(toGrid).groupIds,
+              });
+            }
           }
-        }
-      }).on('dragReleaseEnd', function (item) {
-        // The childrenController must change the positions of
-        // the newly added components if any items are being
-        // dragged to add the safely.
-        store.childrenController.decrementDragCounter(); // Emit the event.
-        // This event is used instead of "dragEnd" to allow the
-        // reRender of the component when the item is not inside
-        // the dragContainer, this makes it possible to change
-        // the style of the element safely (e.g. using relative dimensions).
+        })
+        .on('dragReleaseEnd', function (item) {
+          // The childrenController must change the positions of
+          // the newly added components if any items are being
+          // dragged to add the safely.
+          store.childrenController.decrementDragCounter(); // Emit the event.
+          // This event is used instead of "dragEnd" to allow the
+          // reRender of the component when the item is not inside
+          // the dragContainer, this makes it possible to change
+          // the style of the element safely (e.g. using relative dimensions).
 
-        getDecoration(item).eventController.emitEvent('drag', false); // Call the event.
+          getDecoration(item).eventController.emitEvent('drag', false); // Call the event.
 
-        if (store.onDragEnd) store.onDragEnd(item);
-      }) // Show and hide events.
-      .on('showStart', function (items) {
-        // The items could be shown before they are decorated.
-        if (!isDecorated(items[0])) return; // Emit the event.
+          if (store.onDragEnd) store.onDragEnd(item);
+        }) // Show and hide events.
+        .on('showStart', function (items) {
+          // The items could be shown before they are decorated.
+          if (!isDecorated(items[0])) return; // Emit the event.
 
-        items.forEach(function (item) {
-          var eventController = getDecoration(item).eventController; // The event is triggered also for items that have not
-          // changed their "visibility" state.
-          // This check is done to avoid useless re-rendering.
+          items.forEach(function (item) {
+            var eventController = getDecoration(item).eventController; // The event is triggered also for items that have not
+            // changed their "visibility" state.
+            // This check is done to avoid useless re-rendering.
 
-          if (eventController.getPayload('show') !== true) {
-            eventController.emitEvent('show', true);
-          }
-        });
-      }).on('hideEnd', function (items) {
-        // Emit the event.
-        items.forEach(function (item) {
-          var eventController = getDecoration(item).eventController; // The event is triggered also for items that have not
-          // changed their "visibility" state.
-          // This check is done to avoid useless re-rendering.
+            if (eventController.getPayload('show') !== true) {
+              eventController.emitEvent('show', true);
+            }
+          });
+        })
+        .on('hideEnd', function (items) {
+          // Emit the event.
+          items.forEach(function (item) {
+            var eventController = getDecoration(item).eventController; // The event is triggered also for items that have not
+            // changed their "visibility" state.
+            // This check is done to avoid useless re-rendering.
 
-          if (eventController.getPayload('show') !== false) {
-            eventController.emitEvent('show', false);
-          }
-        });
-      }) // Filter and sort events.
-      .on('filter', function (shownItems, hiddenItems) {
-        if (store.onFilter) store.onFilter(shownItems, hiddenItems);
-      }).on('sort', function (currentOrder, previousOrder) {
-        if (store.onSort) store.onSort(currentOrder, previousOrder);
-      }); // Fix the dimensions of the items when they are dragged.
+            if (eventController.getPayload('show') !== false) {
+              eventController.emitEvent('show', false);
+            }
+          });
+        }) // Filter and sort events.
+        .on('filter', function (shownItems, hiddenItems) {
+          if (store.onFilter) store.onFilter(shownItems, hiddenItems);
+        })
+        .on('sort', function (currentOrder, previousOrder) {
+          if (store.onSort) store.onSort(currentOrder, previousOrder);
+        }); // Fix the dimensions of the items when they are dragged.
 
       if (dragFixed) {
-        grid.on('dragInit', function (item) {
-          // Let's set fixed widht/height to the dragged item
-          // so that it does not stretch unwillingly when
-          // it's appended to the document body for the
-          // duration of the drag.
-          var element = item.getElement(); // The element must exist.
+        grid
+          .on('dragInit', function (item) {
+            // Let's set fixed widht/height to the dragged item
+            // so that it does not stretch unwillingly when
+            // it's appended to the document body for the
+            // duration of the drag.
+            var element = item.getElement(); // The element must exist.
 
-          invariant(element !== undefined); // Get the computed dimensions.
+            invariant(element !== undefined); // Get the computed dimensions.
 
-          var _getComputedStyle = getComputedStyle(element),
+            var _getComputedStyle = getComputedStyle(element),
               width = _getComputedStyle.width,
               height = _getComputedStyle.height,
               paddingTop = _getComputedStyle.paddingTop; // Save the previous style in case it was setted.
 
+            addDecoration(item, {
+              dragWidth: element.style.width,
+              dragHeight: element.style.height,
+              dragPaddingTop: element.style.paddingTop,
+            }); // Set the new style.
 
-          addDecoration(item, {
-            dragWidth: element.style.width,
-            dragHeight: element.style.height,
-            dragPaddingTop: element.style.paddingTop
-          }); // Set the new style.
+            element.style.width = width;
+            element.style.height = height;
+            element.style.paddingTop = paddingTop;
+          })
+          .on('dragReleaseEnd', function (item) {
+            // Let's remove the fixed width/height from the
+            // dragged item now that it is back in a grid
+            // column and can freely adjust to it's
+            // surroundings.
+            var element = item.getElement(); // The element must exist.
 
-          element.style.width = width;
-          element.style.height = height;
-          element.style.paddingTop = paddingTop;
-        }).on('dragReleaseEnd', function (item) {
-          // Let's remove the fixed width/height from the
-          // dragged item now that it is back in a grid
-          // column and can freely adjust to it's
-          // surroundings.
-          var element = item.getElement(); // The element must exist.
+            invariant(element !== undefined); // Get the old style.
 
-          invariant(element !== undefined); // Get the old style.
-
-          var _getDecoration = getDecoration(item),
+            var _getDecoration = getDecoration(item),
               dragWidth = _getDecoration.dragWidth,
               dragHeight = _getDecoration.dragHeight,
               dragPaddingTop = _getDecoration.dragPaddingTop; // Restore the previous style in case it was setted.
 
-
-          element.style.width = dragWidth;
-          element.style.height = dragHeight;
-          element.style.paddingTop = dragPaddingTop;
-        });
+            element.style.width = dragWidth;
+            element.style.height = dragHeight;
+            element.style.paddingTop = dragPaddingTop;
+          });
       }
       /* ---------------- */
 
@@ -3311,7 +3871,6 @@
 
       /* -----------------*/
       // Check .
-
 
       invariant(store.gridRef.current !== null); // Work with the grid.
       // @ts-ignore
@@ -3351,11 +3910,13 @@
     React.useEffect(function () {
       // Set drag enabled option.
       addDecoration(grid, {
-        dragEnabled: dragEnabled
+        dragEnabled: dragEnabled,
       }); // Set the items data.
 
       vars.indicesToAdd = store.childrenController.getIndicesToAdd();
-      vars.addedDOMItems = store.fiberController.getStateNodes(vars.indicesToAdd);
+      vars.addedDOMItems = store.fiberController.getStateNodes(
+        vars.indicesToAdd
+      );
       vars.itemsToRemove = store.itemRemoveController.getItemsToRemove();
       vars.itemsToRefresh = store.layoutController.getItemsToRefresh();
       vars.itemsToShow = store.layoutController.getItemsToShow();
@@ -3389,9 +3950,14 @@
       } // Add items after the old ones are removed
       // to add them in the right positions.
 
-
       if (vars.indicesToAdd.length) {
-        addItems(grid, vars.addedDOMItems, vars.indicesToAdd, addOptions, filter); // New Items.
+        addItems(
+          grid,
+          vars.addedDOMItems,
+          vars.indicesToAdd,
+          addOptions,
+          filter
+        ); // New Items.
 
         var addedItems = grid.getItems(vars.indicesToAdd); // Emit the new items to the itemComponents.
 
@@ -3406,13 +3972,11 @@
       /* ------------------------- */
       // Filter items.
 
-
       if (filter && (isFilterChanged || vars.hasAdded || forceSync)) {
         filterItems(grid, filter); // Set the flag.
 
         vars.hasFiltered = true;
       } // Sort items.
-
 
       if (sort && (isSortChanged || vars.hasAdded || forceSync)) {
         sortItems(grid, sort, sortOptions); // Set the flag.
@@ -3426,13 +3990,11 @@
       /* ----------------------- */
       // Filter has priority on the items visibility.
 
-
       if (!filter && vars.itemsToShow.length) {
         showItems(grid, vars.itemsToShow); // Set the flag.
 
         vars.hasShown = true;
       } // Filter has priority on the items visibility.
-
 
       if (!filter && vars.itemsToHide.length) {
         hideItems(grid, vars.itemsToHide); // Set the flag.
@@ -3445,7 +4007,6 @@
 
       /* ------------------- */
       // Items with dimensions to refresh.
-
 
       if (vars.itemsToRefresh.length) {
         grid.refreshItems(vars.itemsToRefresh); // Set the flag.
@@ -3460,8 +4021,15 @@
       // Layout is calculated only in the end.
       // Check the previous flags.
 
-
-      if (vars.hasAdded || vars.hasRemoved || vars.hasSorted || vars.hasFiltered || vars.hasRefreshed || vars.hasShown || vars.hasHidden) {
+      if (
+        vars.hasAdded ||
+        vars.hasRemoved ||
+        vars.hasSorted ||
+        vars.hasFiltered ||
+        vars.hasRefreshed ||
+        vars.hasShown ||
+        vars.hasHidden
+      ) {
         grid.layout(instantLayout);
       }
     });
@@ -3475,37 +4043,58 @@
     var value = useMemoized(function () {
       return {
         layoutController: store.layoutController,
-        grid: grid
+        grid: grid,
       };
     }); // render.
 
-    return /*#__PURE__*/React__default.createElement(GridProvider, {
-      value: value
-    }, /*#__PURE__*/React__default.createElement("div", _extends({}, gridProps, {
-      ref: store.gridRef
-    }, store.fiberController.getFlagProp()), store.childrenController.render(function (child, key) {
-      return /*#__PURE__*/React__default.createElement(ItemComponent, {
-        key: key,
-        itemKey: key,
-        grid: grid,
-        propsToData: propsToData,
-        itemClasses: store.itemClasses,
-        itemAddController: store.itemAddController,
-        itemRemoveController: store.itemRemoveController
-      }, child);
-    })));
+    return /*#__PURE__*/ React__default['default'].createElement(
+      GridProvider,
+      {
+        value: value,
+      },
+      /*#__PURE__*/ React__default['default'].createElement(
+        'div',
+        _extends(
+          {},
+          gridProps,
+          {
+            ref: store.gridRef,
+          },
+          store.fiberController.getFlagProp()
+        ),
+        store.childrenController.render(function (child, key) {
+          return /*#__PURE__*/ React__default['default'].createElement(
+            ItemComponent,
+            {
+              key: key,
+              itemKey: key,
+              grid: grid,
+              propsToData: propsToData,
+              itemClasses: store.itemClasses,
+              itemAddController: store.itemAddController,
+              itemRemoveController: store.itemRemoveController,
+            },
+            child
+          );
+        })
+      )
+    );
   } // Proptypes.
 
   GridComponent.propTypes = {
     grid: propTypes.object.isRequired,
     gridProps: propTypes.object,
     filter: propTypes.oneOfType([propTypes.string, propTypes.func]),
-    sort: propTypes.oneOfType([propTypes.string, propTypes.func, propTypes.arrayOf(propTypes.string)]),
+    sort: propTypes.oneOfType([
+      propTypes.string,
+      propTypes.func,
+      propTypes.arrayOf(propTypes.string),
+    ]),
     sortOptions: propTypes.exact({
-      descending: propTypes.bool
+      descending: propTypes.bool,
     }),
     addOptions: propTypes.exact({
-      show: propTypes.bool
+      show: propTypes.bool,
     }),
     onSend: propTypes.func,
     onDragStart: propTypes.func,
@@ -3517,21 +4106,21 @@
     forceSync: propTypes.bool,
     dragFixed: propTypes.bool,
     dragEnabled: propTypes.bool,
-    instantLayout: propTypes.bool
+    instantLayout: propTypes.bool,
   }; // Default props.
 
   GridComponent.defaultProps = {
     gridProps: {},
     addOptions: {
-      show: true
+      show: true,
     },
     sortOptions: {
-      descending: false
+      descending: false,
     },
     forceSync: false,
     dragFixed: false,
     dragEnabled: false,
-    instantLayout: false
+    instantLayout: false,
   }; // Display name.
 
   GridComponent.displayName = 'GridComponent';
@@ -3574,147 +4163,149 @@
    * Map that links the Muuri instances to
    * their id and group ids.
    */
-  var MuuriMap = /*#__PURE__*/function () {
+  var MuuriMap = /*#__PURE__*/ (function () {
     function MuuriMap() {
       _classCallCheck(this, MuuriMap);
 
-      _defineProperty(this, "_idMap", new Map());
+      _defineProperty(this, '_idMap', new Map());
 
-      _defineProperty(this, "_groupMap", new Map());
+      _defineProperty(this, '_groupMap', new Map());
     }
 
-    _createClass(MuuriMap, [{
-      key: "get",
+    _createClass(MuuriMap, [
+      {
+        key: 'get',
 
-      /**
-       * Get the grid instance with the chosen id.
-       *
-       * @param id - The id.
-       * @returns - The grid instance.
-       */
-      value: function get(id) {
-        return this._idMap.get(id) || null;
-      }
-      /**
-       * Get all the grid instances in the group of the given id.
-       * The reference of the group array never changes.
-       *
-       * @param groupId - The group id.
-       * @returns - The array of grid instances.
-       */
+        /**
+         * Get the grid instance with the chosen id.
+         *
+         * @param id - The id.
+         * @returns - The grid instance.
+         */
+        value: function get(id) {
+          return this._idMap.get(id) || null;
+        },
+        /**
+         * Get all the grid instances in the group of the given id.
+         * The reference of the group array never changes.
+         *
+         * @param groupId - The group id.
+         * @returns - The array of grid instances.
+         */
+      },
+      {
+        key: 'getGroup',
+        value: function getGroup(groupId) {
+          var group = this._groupMap.get(groupId);
 
-    }, {
-      key: "getGroup",
-      value: function getGroup(groupId) {
-        var group = this._groupMap.get(groupId);
+          if (!group) {
+            var newGroup = [];
 
-        if (!group) {
-          var newGroup = [];
+            this._groupMap.set(groupId, newGroup);
 
-          this._groupMap.set(groupId, newGroup);
+            return newGroup;
+          } else {
+            return group;
+          }
+        },
+        /**
+         * Get all the grid instances in the map.
+         *
+         * @returns - The grid instances.
+         */
+      },
+      {
+        key: 'getAll',
+        value: function getAll() {
+          return Array.from(this._idMap.values());
+        },
+        /**
+         * Set the grid instance with the given id.
+         *
+         * @param grid - The grid instance.
+         * @param id - The id of the instance.
+         * @returns - The muuriMap.
+         */
+      },
+      {
+        key: 'set',
+        value: function set(grid, id) {
+          this._idMap.set(id, grid);
 
-          return newGroup;
-        } else {
-          return group;
-        }
-      }
-      /**
-       * Get all the grid instances in the map.
-       *
-       * @returns - The grid instances.
-       */
+          return this;
+        },
+        /**
+         * Set the grid instance in the group of the given id.
+         *
+         * @param grid - The grid instance.
+         * @param groupId - The id of the group.
+         * @returns - The muuriMap.
+         */
+      },
+      {
+        key: 'setGroup',
+        value: function setGroup(grid, groupId) {
+          var group = this._groupMap.get(groupId);
 
-    }, {
-      key: "getAll",
-      value: function getAll() {
-        return Array.from(this._idMap.values());
-      }
-      /**
-       * Set the grid instance with the given id.
-       *
-       * @param grid - The grid instance.
-       * @param id - The id of the instance.
-       * @returns - The muuriMap.
-       */
+          if (group) {
+            group.push(grid);
+          } else {
+            this._groupMap.set(groupId, [grid]);
+          }
 
-    }, {
-      key: "set",
-      value: function set(grid, id) {
-        this._idMap.set(id, grid);
+          return this;
+        },
+        /**
+         * Delete the grid instance with the given id.
+         *
+         * @param id - The id of the instance.
+         * @returns - The muuriMap.
+         */
+      },
+      {
+        key: 'delete',
+        value: function _delete(id) {
+          this._idMap['delete'](id);
 
-        return this;
-      }
-      /**
-       * Set the grid instance in the group of the given id.
-       *
-       * @param grid - The grid instance.
-       * @param groupId - The id of the group.
-       * @returns - The muuriMap.
-       */
+          return this;
+        },
+        /**
+         * Delete the instance from the group with the given id.
+         *
+         * @param grid - The grid instance.
+         * @param groupIds - The group ids of the instance.
+         */
+      },
+      {
+        key: 'deleteGroup',
+        value: function deleteGroup(grid, groupId) {
+          var group = this._groupMap.get(groupId);
 
-    }, {
-      key: "setGroup",
-      value: function setGroup(grid, groupId) {
-        var group = this._groupMap.get(groupId);
+          if (group) {
+            var index = group.indexOf(grid);
+            if (index > -1) group.splice(index, 1);
+          }
 
-        if (group) {
-          group.push(grid);
-        } else {
-          this._groupMap.set(groupId, [grid]);
-        }
+          return this;
+        },
+        /**
+         * Clear the maps.
+         */
+      },
+      {
+        key: 'clear',
+        value: function clear() {
+          this._idMap.clear();
 
-        return this;
-      }
-      /**
-       * Delete the grid instance with the given id.
-       *
-       * @param id - The id of the instance.
-       * @returns - The muuriMap.
-       */
+          this._groupMap.clear();
 
-    }, {
-      key: "delete",
-      value: function _delete(id) {
-        this._idMap["delete"](id);
-
-        return this;
-      }
-      /**
-       * Delete the instance from the group with the given id.
-       *
-       * @param grid - The grid instance.
-       * @param groupIds - The group ids of the instance.
-       */
-
-    }, {
-      key: "deleteGroup",
-      value: function deleteGroup(grid, groupId) {
-        var group = this._groupMap.get(groupId);
-
-        if (group) {
-          var index = group.indexOf(grid);
-          if (index > -1) group.splice(index, 1);
-        }
-
-        return this;
-      }
-      /**
-       * Clear the maps.
-       */
-
-    }, {
-      key: "clear",
-      value: function clear() {
-        this._idMap.clear();
-
-        this._groupMap.clear();
-
-        return this;
-      }
-    }]);
+          return this;
+        },
+      },
+    ]);
 
     return MuuriMap;
-  }();
+  })();
   var muuriMap = new MuuriMap();
 
   /**
@@ -3726,11 +4317,11 @@
   function getInstance(options) {
     var el = document.createElement('div'); // The element won't be visible.
 
-    el.style.display = 'none'; // Muuri (0.8.0) need an element in the DOM to be instanciated.
+    el.style.display = 'none'; // Muuri (0.9.0) needs an element in the DOM to be instanciated.
 
     document.body.appendChild(el); // Generate the instance.
 
-    var grid = new Muuri(el, options); // Remove the element.
+    var grid = new Muuri__default['default'](el, options); // Remove the element.
 
     document.body.removeChild(el);
     return grid;
@@ -3761,12 +4352,15 @@
     dragAutoScroll.targets.forEach(function (target) {
       // Check if it is an object to wrap.
       if (isTargetElement(target)) return;
-      invariant('element' in target, 'You must provide an element in each scroll target'); // Scroll target element.
+      invariant(
+        'element' in target,
+        'You must provide an element in each scroll target'
+      ); // Scroll target element.
 
       var element = target.element; // The element ref.
 
       var ref = {
-        current: null
+        current: null,
       }; // Define the element property.
 
       Object.defineProperty(target, 'element', {
@@ -3779,7 +4373,7 @@
           } else {
             ref = element;
           }
-        }
+        },
       }); // Set the element.
 
       target.element = element;
@@ -3793,7 +4387,8 @@
    */
 
   function isTargetElement(target) {
-    return (// A DOM element.
+    return (
+      // A DOM element.
       target instanceof HTMLElement || // The window.
       target instanceof window.constructor
     );
@@ -3809,7 +4404,7 @@
     var dragContainer = options.dragContainer; // The drag container ref.
 
     var ref = {
-      current: null
+      current: null,
     }; // Define the property.
 
     Object.defineProperty(options, 'dragContainer', {
@@ -3822,7 +4417,7 @@
         } else {
           ref = value;
         }
-      }
+      },
     }); // Set the drag container.
 
     options.dragContainer = dragContainer;
@@ -3840,7 +4435,10 @@
 
     if (!dragSort || _typeof(dragSort) !== 'object') return; // Check the options.
 
-    invariant(typeof dragSort.groupId === 'string', 'You must provide a string as groupId'); // The group, its reference doesn't change.
+    invariant(
+      typeof dragSort.groupId === 'string',
+      'You must provide a string as groupId'
+    ); // The group, its reference doesn't change.
 
     var group = globalMap.getGroup(dragSort.groupId); // dragSort method.
 
@@ -3864,7 +4462,8 @@
 
     options.dragStartPredicate = function (item, event) {
       if (!getDecoration(item.getGrid()).dragEnabled) return false;
-      if (isDecorated(item) && getDecoration(item).draggable === false) return false;
+      if (isDecorated(item) && getDecoration(item).draggable === false)
+        return false;
       return defaultStartPredicate(item, event);
     };
   }
@@ -3876,37 +4475,101 @@
    */
 
   function getDefaultStartPredicate(dragStartPredicate) {
-    return typeof dragStartPredicate === 'function' ? dragStartPredicate : function (item, event) {
-      return Muuri.ItemDrag.defaultStartPredicate(item, event, dragStartPredicate);
-    };
+    return typeof dragStartPredicate === 'function'
+      ? dragStartPredicate
+      : function (item, event) {
+          return Muuri__default['default'].ItemDrag.defaultStartPredicate(
+            item,
+            event,
+            dragStartPredicate
+          );
+        };
   }
 
-  function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+  function ownKeys$2(object, enumerableOnly) {
+    var keys = Object.keys(object);
+    if (Object.getOwnPropertySymbols) {
+      var symbols = Object.getOwnPropertySymbols(object);
+      if (enumerableOnly)
+        symbols = symbols.filter(function (sym) {
+          return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+        });
+      keys.push.apply(keys, symbols);
+    }
+    return keys;
+  }
 
-  function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$2(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$2(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+  function _objectSpread$2(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i] != null ? arguments[i] : {};
+      if (i % 2) {
+        ownKeys$2(Object(source), true).forEach(function (key) {
+          _defineProperty(target, key, source[key]);
+        });
+      } else if (Object.getOwnPropertyDescriptors) {
+        Object.defineProperties(
+          target,
+          Object.getOwnPropertyDescriptors(source)
+        );
+      } else {
+        ownKeys$2(Object(source)).forEach(function (key) {
+          Object.defineProperty(
+            target,
+            key,
+            Object.getOwnPropertyDescriptor(source, key)
+          );
+        });
+      }
+    }
+    return target;
+  }
 
-  var MuuriComponent = React.forwardRef(function MuuriComponent(_ref, muuriRef) {
+  var MuuriComponent = /*#__PURE__*/ React.forwardRef(function MuuriComponent(
+    _ref,
+    muuriRef
+  ) {
     var children = _ref.children,
-        id = _ref.id,
-        groupIds = _ref.groupIds,
-        gridProps = _ref.gridProps,
-        filter = _ref.filter,
-        sort = _ref.sort,
-        sortOptions = _ref.sortOptions,
-        addOptions = _ref.addOptions,
-        propsToData = _ref.propsToData,
-        onSend = _ref.onSend,
-        onDragStart = _ref.onDragStart,
-        onDragEnd = _ref.onDragEnd,
-        onFilter = _ref.onFilter,
-        onSort = _ref.onSort,
-        onMount = _ref.onMount,
-        onUnmount = _ref.onUnmount,
-        forceSync = _ref.forceSync,
-        dragFixed = _ref.dragFixed,
-        dragEnabled = _ref.dragEnabled,
-        instantLayout = _ref.instantLayout,
-        options = _objectWithoutProperties(_ref, ["children", "id", "groupIds", "gridProps", "filter", "sort", "sortOptions", "addOptions", "propsToData", "onSend", "onDragStart", "onDragEnd", "onFilter", "onSort", "onMount", "onUnmount", "forceSync", "dragFixed", "dragEnabled", "instantLayout"]);
+      id = _ref.id,
+      groupIds = _ref.groupIds,
+      gridProps = _ref.gridProps,
+      filter = _ref.filter,
+      sort = _ref.sort,
+      sortOptions = _ref.sortOptions,
+      addOptions = _ref.addOptions,
+      propsToData = _ref.propsToData,
+      onSend = _ref.onSend,
+      onDragStart = _ref.onDragStart,
+      onDragEnd = _ref.onDragEnd,
+      onFilter = _ref.onFilter,
+      onSort = _ref.onSort,
+      onMount = _ref.onMount,
+      onUnmount = _ref.onUnmount,
+      forceSync = _ref.forceSync,
+      dragFixed = _ref.dragFixed,
+      dragEnabled = _ref.dragEnabled,
+      instantLayout = _ref.instantLayout,
+      options = _objectWithoutProperties(_ref, [
+        'children',
+        'id',
+        'groupIds',
+        'gridProps',
+        'filter',
+        'sort',
+        'sortOptions',
+        'addOptions',
+        'propsToData',
+        'onSend',
+        'onDragStart',
+        'onDragEnd',
+        'onFilter',
+        'onSort',
+        'onMount',
+        'onUnmount',
+        'forceSync',
+        'dragFixed',
+        'dragEnabled',
+        'instantLayout',
+      ]);
 
     // Generate the Muuri instance.
     var grid = useMemoized(function () {
@@ -3919,9 +4582,7 @@
       // The enabling / disabling of the drag is managed in dragStartPredicate.
       // @ts-ignore
 
-      options.dragEnabled = dragEnabled !== null; // Allow the drag container to be a React.Ref<HTMLElement>.
-
-      setDragContainer(options); // Allow the option to be an object ({ groupId }).
+      options.dragEnabled = dragEnabled !== null; // Allow the option to be an object ({ groupId }).
 
       setDragSort(options, muuriMap); // Allow the target elements to be React.Ref<HTMLElement>.
 
@@ -3929,12 +4590,15 @@
 
       setDragStartPredicate(options); // Generate the instance.
 
-      var grid = getInstance(options); // Add the instance to the map.
+      var grid = getInstance(options); // Allow the drag container to be a React.Ref<HTMLElement>.
+      // @ts-ignore
+
+      setDragContainer(grid._settings); // Add the instance to the map.
 
       if (id) muuriMap.set(grid, id); // Add the decoration.
 
       addDecoration(grid, {
-        id: id
+        id: id,
       }); // Set the ref.
 
       handleRef(muuriRef, grid);
@@ -3950,7 +4614,7 @@
 
         removeDecorations(grid); // Remove the instance from the map.
 
-        if (id) muuriMap["delete"](id); // Destroy the instace
+        if (id) muuriMap['delete'](id); // Destroy the instace
 
         grid.destroy();
       };
@@ -3960,7 +4624,7 @@
     useInstantEffect(function () {
       // decorate the instance
       addDecoration(grid, {
-        groupIds: groupIds
+        groupIds: groupIds,
       }); // Add the instance to the groups.
 
       if (groupIds) {
@@ -3968,7 +4632,6 @@
           muuriMap.setGroup(grid, groupId);
         });
       } // Clean-up.
-
 
       return function () {
         // Remove the instance from the groups.
@@ -3980,26 +4643,30 @@
       };
     }, groupIds || []); // Render.
 
-    return /*#__PURE__*/React__default.createElement(GridComponent, {
-      grid: grid,
-      gridProps: gridProps,
-      filter: filter,
-      sort: sort,
-      sortOptions: sortOptions,
-      addOptions: addOptions,
-      propsToData: propsToData,
-      onSend: onSend,
-      onDragStart: onDragStart,
-      onDragEnd: onDragEnd,
-      onFilter: onFilter,
-      onSort: onSort,
-      onMount: onMount,
-      onUnmount: onUnmount,
-      forceSync: forceSync,
-      dragFixed: dragFixed,
-      dragEnabled: dragEnabled,
-      instantLayout: instantLayout
-    }, children);
+    return /*#__PURE__*/ React__default['default'].createElement(
+      GridComponent,
+      {
+        grid: grid,
+        gridProps: gridProps,
+        filter: filter,
+        sort: sort,
+        sortOptions: sortOptions,
+        addOptions: addOptions,
+        propsToData: propsToData,
+        onSend: onSend,
+        onDragStart: onDragStart,
+        onDragEnd: onDragEnd,
+        onFilter: onFilter,
+        onSort: onSort,
+        onMount: onMount,
+        onUnmount: onUnmount,
+        forceSync: forceSync,
+        dragFixed: dragFixed,
+        dragEnabled: dragEnabled,
+        instantLayout: instantLayout,
+      },
+      children
+    );
   }); // Proptypes.
 
   MuuriComponent.propTypes = {
@@ -4012,46 +4679,62 @@
     visibleStyles: propTypes.shape({}),
     hiddenStyles: propTypes.shape({}),
     // @ts-ignore
-    layout: propTypes.oneOfType([propTypes.func, propTypes.exact({
-      fillGaps: propTypes.bool,
-      horizontal: propTypes.bool,
-      alignRight: propTypes.bool,
-      alignBottom: propTypes.bool,
-      rounding: propTypes.bool
-    })]),
+    layout: propTypes.oneOfType([
+      propTypes.func,
+      propTypes.exact({
+        fillGaps: propTypes.bool,
+        horizontal: propTypes.bool,
+        alignRight: propTypes.bool,
+        alignBottom: propTypes.bool,
+        rounding: propTypes.bool,
+      }),
+    ]),
     layoutOnResize: propTypes.oneOfType([propTypes.bool, propTypes.number]),
     layoutDuration: propTypes.number,
     layoutEasing: propTypes.string,
-    dragContainer: propTypes.oneOfType([propTypes.instanceOf(HTMLElement), propTypes.shape({
-      current: propTypes.instanceOf(HTMLElement).isRequired
-    })]),
+    dragContainer: propTypes.oneOfType([
+      propTypes.instanceOf(HTMLElement),
+      propTypes.shape({
+        current: propTypes.instanceOf(HTMLElement).isRequired,
+      }),
+    ]),
+    dragHandle: propTypes.string,
     // @ts-ignore
-    dragStartPredicate: propTypes.oneOfType([propTypes.func, propTypes.exact({
-      distance: propTypes.number,
-      delay: propTypes.number,
-      handle: propTypes.oneOfType([propTypes.string, propTypes.bool])
-    })]),
+    dragStartPredicate: propTypes.oneOfType([
+      propTypes.func,
+      propTypes.exact({
+        distance: propTypes.number,
+        delay: propTypes.number,
+      }),
+    ]),
     dragAxis: propTypes.oneOf(['x', 'y', 'xy']),
-    dragSort: propTypes.oneOfType([propTypes.bool, propTypes.func, propTypes.exact({
-      groupId: propTypes.string.isRequired
-    })]),
+    dragSort: propTypes.oneOfType([
+      propTypes.bool,
+      propTypes.func,
+      propTypes.exact({
+        groupId: propTypes.string.isRequired,
+      }),
+    ]),
     // @ts-ignore
     dragSortHeuristics: propTypes.exact({
       sortInterval: propTypes.number,
       minDragDistance: propTypes.number,
-      minBounceBackAngle: propTypes.number
+      minBounceBackAngle: propTypes.number,
     }),
     // @ts-ignore
-    dragSortPredicate: propTypes.oneOfType([propTypes.func, propTypes.exact({
-      action: propTypes.oneOf(['move', 'swap']),
-      migrateAction: propTypes.oneOf(['move', 'swap']),
-      threshold: propTypes.number
-    })]),
+    dragSortPredicate: propTypes.oneOfType([
+      propTypes.func,
+      propTypes.exact({
+        action: propTypes.oneOf(['move', 'swap']),
+        migrateAction: propTypes.oneOf(['move', 'swap']),
+        threshold: propTypes.number,
+      }),
+    ]),
     // @ts-ignore
     dragRelease: propTypes.exact({
       duration: propTypes.number,
       easing: propTypes.string,
-      useDragContainer: propTypes.bool
+      useDragContainer: propTypes.bool,
     }),
     // @ts-ignore
     dragCssProps: propTypes.exact({
@@ -4060,7 +4743,7 @@
       userDrag: propTypes.string,
       tapHighlightColor: propTypes.string,
       touchCallout: propTypes.string,
-      contentZooming: propTypes.string
+      contentZooming: propTypes.string,
     }),
     // @ts-ignore
     dragPlaceholder: propTypes.exact({
@@ -4068,8 +4751,50 @@
       createElement: propTypes.func,
       onCreate: propTypes.func,
       onRemove: propTypes.func,
-      easing: propTypes.string,
-      duration: propTypes.number
+    }),
+    // @ts-ignore
+    dragAutoScroll: propTypes.exact({
+      targets: propTypes.oneOfType([
+        // @ts-ignore
+        propTypes.instanceOf(window.constructor),
+        propTypes.instanceOf(HTMLElement),
+        propTypes.shape({
+          current: propTypes.oneOfType([
+            // @ts-ignore
+            propTypes.instanceOf(window.constructor),
+            propTypes.instanceOf(HTMLElement),
+          ]),
+        }),
+        propTypes.func,
+        propTypes.arrayOf(
+          propTypes.exact({
+            element: propTypes.oneOfType([
+              // @ts-ignore
+              propTypes.instanceOf(window.constructor),
+              propTypes.instanceOf(HTMLElement),
+              propTypes.shape({
+                current: propTypes.oneOfType([
+                  // @ts-ignore
+                  propTypes.instanceOf(window.constructor),
+                  propTypes.instanceOf(HTMLElement),
+                ]),
+              }),
+            ]).isRequired,
+            axis: propTypes.number,
+            priority: propTypes.number,
+            threshold: propTypes.number,
+          }).isRequired
+        ),
+      ]).isRequired,
+      handle: propTypes.func,
+      threshold: propTypes.number,
+      safeZone: propTypes.number,
+      speed: propTypes.oneOfType([propTypes.number, propTypes.func]),
+      sortDuringScroll: propTypes.bool,
+      syncAfterScroll: propTypes.bool,
+      smoothStop: propTypes.bool,
+      onStart: propTypes.func,
+      onStop: propTypes.func,
     }),
     containerClass: propTypes.string,
     itemClass: propTypes.string,
@@ -4078,12 +4803,16 @@
     itemPositioningClass: propTypes.string,
     itemDraggingClass: propTypes.string,
     itemReleasingClass: propTypes.string,
-    itemPlaceholderClass: propTypes.string
+    itemPlaceholderClass: propTypes.string,
   }; // Default props.
 
-  MuuriComponent.defaultProps = _objectSpread$2({}, Muuri.defaultOptions, {
-    dragEnabled: null
-  }); // Display name.
+  MuuriComponent.defaultProps = _objectSpread$2(
+    _objectSpread$2({}, Muuri__default['default'].defaultOptions),
+    {},
+    {
+      dragEnabled: null,
+    }
+  ); // Display name.
 
   MuuriComponent.displayName = 'MuuriComponent';
 
@@ -4097,15 +4826,20 @@
    */
   function useData(initialData, options) {
     var _useItemContext = useItemContext(),
-        itemRefController = _useItemContext.itemRefController; // Check if the hook is called inside an item.
+      itemRefController = _useItemContext.itemRefController; // Check if the hook is called inside an item.
 
-
-    invariant(itemRefController !== undefined, 'The useData hook can be used only inside an Item'); // Because of memoization, The identity of the function is guaranteed
+    invariant(
+      itemRefController !== undefined,
+      'The useData hook can be used only inside an Item'
+    ); // Because of memoization, The identity of the function is guaranteed
     // to be stable so it will be safe to omit them as a dependency.
 
     var setData = useFunction(function (data, options) {
       // Check if the data is an object.
-      invariant(_typeof(data) === 'object', "The data must be an object, founded: ".concat(_typeof(data))); // Default options.
+      invariant(
+        _typeof(data) === 'object',
+        'The data must be an object, founded: '.concat(_typeof(data))
+      ); // Default options.
 
       options = options || useData.defaultOptions; // Set the data.
 
@@ -4127,7 +4861,7 @@
   } // Default options.
 
   useData.defaultOptions = {
-    merge: false
+    merge: false,
   };
 
   /**
@@ -4140,15 +4874,21 @@
 
   function useDrag() {
     var _useItemContext = useItemContext(),
-        eventController = _useItemContext.eventController;
+      eventController = _useItemContext.eventController;
 
     var reRender = useRerender(); // Check if the hook is called inside an item.
 
-    invariant(eventController !== undefined, 'The useDrag hook can be used only inside an Item'); // Enable the event.
+    invariant(
+      eventController !== undefined,
+      'The useDrag hook can be used only inside an Item'
+    ); // Enable the event.
 
-    React.useEffect(function () {
-      eventController.enableEvent('drag', reRender);
-    }, [eventController, reRender]);
+    React.useEffect(
+      function () {
+        eventController.enableEvent('drag', reRender);
+      },
+      [eventController, reRender]
+    );
     return eventController.getPayload('drag') || false;
   }
 
@@ -4161,10 +4901,12 @@
    */
   function useDraggable() {
     var _useItemContext = useItemContext(),
-        itemRefController = _useItemContext.itemRefController; // Check if the hook is called inside an item.
+      itemRefController = _useItemContext.itemRefController; // Check if the hook is called inside an item.
 
-
-    invariant(itemRefController !== undefined, 'The useData hook can be used only inside an Item');
+    invariant(
+      itemRefController !== undefined,
+      'The useDraggable hook can be used only inside an Item'
+    );
     var setDraggable = useFunction(function (draggable) {
       // Set if the item can be dragged.
       itemRefController.set('draggable', !!draggable);
@@ -4180,23 +4922,29 @@
    */
   function useGrid() {
     var _useItemContext = useItemContext(),
-        eventController = _useItemContext.eventController;
+      eventController = _useItemContext.eventController;
 
     var gridContext = useGridContext();
     var reRender = useRerender(); // Check if the hook is called inside an item.
 
-    invariant(eventController !== undefined && gridContext.grid !== undefined, 'The useData hook can be used only inside an Item'); // The context is not updated when the hook is trigger
+    invariant(
+      eventController !== undefined && gridContext.grid !== undefined,
+      'The useGrid hook can be used only inside an Item'
+    ); // The context is not updated when the hook is trigger
     // so we need to get the updated instance from the eventController.
 
     var grid = eventController.getPayload('send') || gridContext.grid; // Enable the event.
 
-    React.useEffect(function () {
-      eventController.enableEvent('send', reRender);
-    }, [eventController, reRender]);
+    React.useEffect(
+      function () {
+        eventController.enableEvent('send', reRender);
+      },
+      [eventController, reRender]
+    );
     return {
       id: grid._component.id,
       groupIds: grid._component.groupIds,
-      grid: grid
+      grid: grid,
     };
   }
 
@@ -4208,25 +4956,31 @@
    * @returns - The refresh method.
    */
   function useRefresh() {
-    var deps = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+    var deps =
+      arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 
     var _useGridContext = useGridContext(),
-        layoutController = _useGridContext.layoutController;
+      layoutController = _useGridContext.layoutController;
 
     var _useItemContext = useItemContext(),
-        itemRefController = _useItemContext.itemRefController; // Check if the hook is called inside an item.
+      itemRefController = _useItemContext.itemRefController; // Check if the hook is called inside an item.
 
-
-    invariant(itemRefController !== undefined && layoutController !== undefined, 'The useRefresh hook can be used only inside an Item'); // Because of memoization, The identity of the function is guaranteed
+    invariant(
+      itemRefController !== undefined && layoutController !== undefined,
+      'The useRefresh hook can be used only inside an Item'
+    ); // Because of memoization, The identity of the function is guaranteed
     // to be stable so it will be safe to omit it as a dependency.
 
-    var refresh = React.useCallback(function () {
-      if (!itemRefController.hasItem()) return; // Get the item.
+    var refresh = React.useCallback(
+      function () {
+        if (!itemRefController.hasItem()) return; // Get the item.
 
-      var item = itemRefController.getItem(); // If the component is rendering within the MuuriComponent.
+        var item = itemRefController.getItem(); // If the component is rendering within the MuuriComponent.
 
-      layoutController.refreshItem(item);
-    }, [layoutController, itemRefController]);
+        layoutController.refreshItem(item);
+      },
+      [layoutController, itemRefController]
+    );
     React.useEffect(function () {
       refresh();
     }, deps.concat(refresh)); // eslint-disable-line
@@ -4243,15 +4997,21 @@
 
   function useShow() {
     var _useItemContext = useItemContext(),
-        eventController = _useItemContext.eventController;
+      eventController = _useItemContext.eventController;
 
     var reRender = useRerender(); // Check if the hook is called inside an item.
 
-    invariant(eventController !== undefined, 'The useShow hook can be used only inside an Item'); // Enable the event.
+    invariant(
+      eventController !== undefined,
+      'The useShow hook can be used only inside an Item'
+    ); // Enable the event.
 
-    React.useEffect(function () {
-      eventController.enableEvent('show', reRender);
-    }, [eventController, reRender]);
+    React.useEffect(
+      function () {
+        eventController.enableEvent('show', reRender);
+      },
+      [eventController, reRender]
+    );
     return eventController.getPayload('show');
   }
 
@@ -4262,14 +5022,18 @@
    */
   function useVisibility() {
     var _useGridContext = useGridContext(),
-        layoutController = _useGridContext.layoutController;
+      layoutController = _useGridContext.layoutController;
 
     var _useItemContext = useItemContext(),
-        eventController = _useItemContext.eventController,
-        itemRefController = _useItemContext.itemRefController; // Check if the hook is called inside an item.
+      eventController = _useItemContext.eventController,
+      itemRefController = _useItemContext.itemRefController; // Check if the hook is called inside an item.
 
-
-    invariant(itemRefController !== undefined && layoutController !== undefined && eventController !== undefined, 'The useData hook can be used only inside an Item'); // Set visibility.
+    invariant(
+      itemRefController !== undefined &&
+        layoutController !== undefined &&
+        eventController !== undefined,
+      'The useVisibility hook can be used only inside an Item'
+    ); // Set visibility.
 
     var setVisibility = useFunction(function (visible, options) {
       if (!itemRefController.hasItem()) return;
@@ -4277,16 +5041,20 @@
 
       options = options || useVisibility.defaultOptions; // Set the visibility.
 
-      layoutController.setItemVisibility(itemRefController.getItem(), visible, options.instant === true);
+      layoutController.setItemVisibility(
+        itemRefController.getItem(),
+        visible,
+        options.instant === true
+      );
     });
     return setVisibility;
   } // Default options.
 
   useVisibility.defaultOptions = {
-    instant: false
+    instant: false,
   };
 
-  var hooks = /*#__PURE__*/Object.freeze({
+  var hooks = /*#__PURE__*/ Object.freeze({
     __proto__: null,
     useData: useData,
     useDrag: useDrag,
@@ -4294,7 +5062,7 @@
     useGrid: useGrid,
     useRefresh: useRefresh,
     useShow: useShow,
-    useVisibility: useVisibility
+    useVisibility: useVisibility,
   });
 
   /** Responsive style options. */
@@ -4309,39 +5077,58 @@
     // Check options.
     invariant(_typeof(options) === 'object', 'You must define options'); // Check columns.
 
-    invariant(typeof options.columns === 'number' && options.columns > 0 && options.columns <= 1, 'options.columns must be a number between 0 (excluded) and 1 (included)'); // Check height and ratio.
+    invariant(
+      typeof options.columns === 'number' &&
+        options.columns > 0 &&
+        options.columns <= 1,
+      'options.columns must be a number between 0 (excluded) and 1 (included)'
+    ); // Check height and ratio.
 
-    invariant(typeof options.ratio === 'number' || typeof options.height === 'number' || typeof options.height === 'string', 'You must provide at least one option between height and ratio'); // Check that the height and the ratio options are not setted togheter.
+    invariant(
+      typeof options.ratio === 'number' ||
+        typeof options.height === 'number' ||
+        typeof options.height === 'string',
+      'You must provide at least one option between height and ratio'
+    ); // Check that the height and the ratio options are not setted togheter.
 
-    invariant(typeof options.ratio !== 'number' || typeof options.height !== 'number' && typeof options.height !== 'string', 'You cannot provide both the height and the ratio options'); // The margin values.
+    invariant(
+      typeof options.ratio !== 'number' ||
+        (typeof options.height !== 'number' &&
+          typeof options.height !== 'string'),
+      'You cannot provide both the height and the ratio options'
+    ); // The margin values.
 
     var _getResponsiveMargin = getResponsiveMargin(options.margin || '0px'),
-        margin = _getResponsiveMargin.margin,
-        mStatic = _getResponsiveMargin.mStatic,
-        mDynamic = _getResponsiveMargin.mDynamic; // The item width.
+      margin = _getResponsiveMargin.margin,
+      mStatic = _getResponsiveMargin.mStatic,
+      mDynamic = _getResponsiveMargin.mDynamic; // The item width.
 
-
-    var _getResponsiveWidth = getResponsiveWidth(options.columns, mStatic, mDynamic),
-        needCalc = _getResponsiveWidth.needCalc,
-        width = _getResponsiveWidth.width; // If ratio is used set The paddingTop
+    var _getResponsiveWidth = getResponsiveWidth(
+        options.columns,
+        mStatic,
+        mDynamic
+      ),
+      needCalc = _getResponsiveWidth.needCalc,
+      width = _getResponsiveWidth.width; // If ratio is used set The paddingTop
     // instad of the heght, the child element must
     // have "display: absolute".
 
-
-    return options.ratio ? {
-      width: needCalc ? "calc(".concat(width, ")") : width,
-      paddingTop: getResponsivePaddingTop(width, options.ratio, needCalc),
-      height: "0px",
-      borderWidth: '0px',
-      margin: margin
-    } : {
-      width: needCalc ? "calc(".concat(width, ")") : width,
-      paddingTop: "0px",
-      // @ts-ignore
-      height: getFixedHeight(options.height),
-      borderWidth: '0px',
-      margin: margin
-    };
+    return options.ratio
+      ? {
+          width: needCalc ? 'calc('.concat(width, ')') : width,
+          paddingTop: getResponsivePaddingTop(width, options.ratio, needCalc),
+          height: '0px',
+          borderWidth: '0px',
+          margin: margin,
+        }
+      : {
+          width: needCalc ? 'calc('.concat(width, ')') : width,
+          paddingTop: '0px',
+          // @ts-ignore
+          height: getFixedHeight(options.height),
+          borderWidth: '0px',
+          margin: margin,
+        };
   }
   /**
    * Get the responsive width.
@@ -4355,10 +5142,12 @@
   function getResponsiveWidth(columns, mStatic, mDynamic) {
     var needCalc = mStatic !== 0;
     var rawWidth = columns * 100 - mDynamic;
-    var width = needCalc ? "".concat(rawWidth, "% - ").concat(mStatic, "px") : "".concat(rawWidth, "%");
+    var width = needCalc
+      ? ''.concat(rawWidth, '% - ').concat(mStatic, 'px')
+      : ''.concat(rawWidth, '%');
     return {
       needCalc: needCalc,
-      width: width
+      width: width,
     };
   }
   /**
@@ -4370,9 +5159,10 @@
    * @returns - The paddingTop.
    */
 
-
   function getResponsivePaddingTop(width, ratio, needCalc) {
-    return needCalc ? "calc((".concat(width, ") / ").concat(ratio, ")") : "".concat(parseFloat(width) / ratio, "%");
+    return needCalc
+      ? 'calc(('.concat(width, ') / ').concat(ratio, ')')
+      : ''.concat(parseFloat(width) / ratio, '%');
   }
   /**
    * Get the fixed height.
@@ -4381,9 +5171,8 @@
    * @returns - The height string.
    */
 
-
   function getFixedHeight(height) {
-    return typeof height === 'number' ? "".concat(height, "px") : height;
+    return typeof height === 'number' ? ''.concat(height, 'px') : height;
   }
   /**
    * The responsive margin.
@@ -4392,9 +5181,8 @@
    * @returns - The responsive margin.
    */
 
-
   function getResponsiveMargin(margin) {
-    if (typeof margin === 'number') margin = "".concat(margin, "px");
+    if (typeof margin === 'number') margin = ''.concat(margin, 'px');
     var margins = margin.trim().split(' '); // Margin default values.
 
     var leftMargin = '0px';
@@ -4413,13 +5201,14 @@
       rightMargin = margins[1];
     } // Set dynamic/static margins.
 
-
-    if (leftMargin.indexOf('%') === -1) mStatic += parseFloat(leftMargin);else mDynamic += parseFloat(leftMargin);
-    if (rightMargin.indexOf('%') === -1) mStatic += parseFloat(rightMargin);else mDynamic += parseFloat(rightMargin);
+    if (leftMargin.indexOf('%') === -1) mStatic += parseFloat(leftMargin);
+    else mDynamic += parseFloat(leftMargin);
+    if (rightMargin.indexOf('%') === -1) mStatic += parseFloat(rightMargin);
+    else mDynamic += parseFloat(rightMargin);
     return {
       margin: margin,
       mStatic: mStatic,
-      mDynamic: mDynamic
+      mDynamic: mDynamic,
     };
   }
 
@@ -4432,23 +5221,26 @@
   function getStaticStyle(options) {
     var style = getResponsiveStyle(options); // Check the options.
 
-    invariant('grid' in options, 'You mast pass the grid instance to get the static style.'); // The sizer element.
+    invariant(
+      'grid' in options,
+      'You mast pass the grid instance to get the static style.'
+    ); // The sizer element.
 
     var sizerElement = options.grid.getSizerElement(); // Set the style in the sizer.
 
     Object.assign(sizerElement.style, style); // Get the style from the sizer.
 
     var _window$getComputedSt = window.getComputedStyle(sizerElement),
-        width = _window$getComputedSt.width,
-        height = _window$getComputedSt.height,
-        paddingTop = _window$getComputedSt.paddingTop,
-        margin = _window$getComputedSt.margin;
+      width = _window$getComputedSt.width,
+      height = _window$getComputedSt.height,
+      paddingTop = _window$getComputedSt.paddingTop,
+      margin = _window$getComputedSt.margin;
 
     return {
       width: width,
       height: height,
       paddingTop: paddingTop,
-      margin: margin
+      margin: margin,
     };
   }
 
@@ -4457,14 +5249,19 @@
   }
 
   function _iterableToArrayLimit(arr, i) {
-    if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
+    if (typeof Symbol === 'undefined' || !(Symbol.iterator in Object(arr)))
+      return;
     var _arr = [];
     var _n = true;
     var _d = false;
     var _e = undefined;
 
     try {
-      for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      for (
+        var _i = arr[Symbol.iterator](), _s;
+        !(_n = (_s = _i.next()).done);
+        _n = true
+      ) {
         _arr.push(_s.value);
 
         if (i && _arr.length === i) break;
@@ -4474,7 +5271,7 @@
       _e = err;
     } finally {
       try {
-        if (!_n && _i["return"] != null) _i["return"]();
+        if (!_n && _i['return'] != null) _i['return']();
       } finally {
         if (_d) throw _e;
       }
@@ -4495,19 +5292,27 @@
 
   function _unsupportedIterableToArray(o, minLen) {
     if (!o) return;
-    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+    if (typeof o === 'string') return _arrayLikeToArray(o, minLen);
     var n = Object.prototype.toString.call(o).slice(8, -1);
-    if (n === "Object" && o.constructor) n = o.constructor.name;
-    if (n === "Map" || n === "Set") return Array.from(n);
-    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+    if (n === 'Object' && o.constructor) n = o.constructor.name;
+    if (n === 'Map' || n === 'Set') return Array.from(o);
+    if (n === 'Arguments' || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+      return _arrayLikeToArray(o, minLen);
   }
 
   function _nonIterableRest() {
-    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+    throw new TypeError(
+      'Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.'
+    );
   }
 
   function _slicedToArray(arr, i) {
-    return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+    return (
+      _arrayWithHoles(arr) ||
+      _iterableToArrayLimit(arr, i) ||
+      _unsupportedIterableToArray(arr, i) ||
+      _nonIterableRest()
+    );
   }
 
   function _arrayWithoutHoles(arr) {
@@ -4515,35 +5320,73 @@
   }
 
   function _iterableToArray(iter) {
-    if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
+    if (typeof Symbol !== 'undefined' && Symbol.iterator in Object(iter))
+      return Array.from(iter);
   }
 
   function _nonIterableSpread() {
-    throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+    throw new TypeError(
+      'Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.'
+    );
   }
 
   function _toConsumableArray(arr) {
-    return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
+    return (
+      _arrayWithoutHoles(arr) ||
+      _iterableToArray(arr) ||
+      _unsupportedIterableToArray(arr) ||
+      _nonIterableSpread()
+    );
   }
 
-  var hooksNames = ['useData', 'useDrag', 'useDraggable', 'useGrid', 'useRefresh', 'useShow', 'useVisibility']; // Handler type.
+  var hooksNames = [
+    'useData',
+    'useDrag',
+    'useDraggable',
+    'useGrid',
+    'useRefresh',
+    'useShow',
+    'useVisibility',
+  ]; // Handler type.
 
   // Hook handlers.
-  var HooksHandlers = [['useData',
-  /*       */
-  getHandler('setData')], ['useDrag',
-  /*       */
-  getHandler('isDragging')], ['useDraggable',
-  /*  */
-  getHandler('setDraggable')], ['useGrid',
-  /*       */
-  getHandler('gridData')], ['useRefresh',
-  /*    */
-  getHandler('refresh')], ['useShow',
-  /*       */
-  getHandler('isShowing')], ['useVisibility',
-  /* */
-  getHandler('setVisibility')]];
+  var HooksHandlers = [
+    [
+      'useData',
+      /*       */
+      getHandler('setData'),
+    ],
+    [
+      'useDrag',
+      /*       */
+      getHandler('isDragging'),
+    ],
+    [
+      'useDraggable',
+      /*  */
+      getHandler('setDraggable'),
+    ],
+    [
+      'useGrid',
+      /*       */
+      getHandler('gridData'),
+    ],
+    [
+      'useRefresh',
+      /*    */
+      getHandler('refresh'),
+    ],
+    [
+      'useShow',
+      /*       */
+      getHandler('isShowing'),
+    ],
+    [
+      'useVisibility',
+      /* */
+      getHandler('setVisibility'),
+    ],
+  ];
   /**
    * Return the handler with the given key.
    *
@@ -4564,14 +5407,21 @@
    */
 
   function getMerged(hooksHandlers) {
-    return Object.assign.apply(Object, [{}].concat(_toConsumableArray(hooksHandlers.map(function (_ref2) {
-      var _ref3 = _slicedToArray(_ref2, 2),
-          hookName = _ref3[0],
-          handler = _ref3[1];
+    return Object.assign.apply(
+      Object,
+      [{}].concat(
+        _toConsumableArray(
+          hooksHandlers.map(function (_ref2) {
+            var _ref3 = _slicedToArray(_ref2, 2),
+              hookName = _ref3[0],
+              handler = _ref3[1];
 
-      var payload = hooks[hookName]();
-      return handler(payload);
-    }))));
+            var payload = hooks[hookName]();
+            return handler(payload);
+          })
+        )
+      )
+    );
   }
   /**
    * Item HOC for hooks.
@@ -4581,32 +5431,43 @@
    * @returns - The wrapped component.
    */
 
-
   function withHooks(Component, enabledHooks) {
     // There must be an array of hooks to enable.
-    invariant(Array.isArray(enabledHooks), 'An array of hooks name must be provided to wrap an item.'); // All the hooks must be valid.
+    invariant(
+      Array.isArray(enabledHooks),
+      'An array of hooks name must be provided to wrap an item.'
+    ); // All the hooks must be valid.
 
     enabledHooks.forEach(function (hookName) {
-      invariant(hooksNames.includes(hookName), "Invalid item hook: ".concat(hookName));
+      invariant(
+        hooksNames.includes(hookName),
+        'Invalid item hook: '.concat(hookName)
+      );
     }); // There must be at least one hook to enable.
 
-    invariant(enabledHooks.length !== 0, 'To wrap an item at least one hook must be provided.'); // Get the handlers array of the enabled hook.
+    invariant(
+      enabledHooks.length !== 0,
+      'To wrap an item at least one hook must be provided.'
+    ); // Get the handlers array of the enabled hook.
 
     var hooksHandlers = HooksHandlers.filter(function (_ref4) {
       var _ref5 = _slicedToArray(_ref4, 1),
-          hookName = _ref5[0];
+        hookName = _ref5[0];
 
       return enabledHooks.includes(hookName);
     }); // Return the HOC.
 
     return function WrappedItem(props) {
       // The hooks will run in the 'getMerged' method.
-      return /*#__PURE__*/React__default.createElement(Component, _extends({}, props, getMerged(hooksHandlers)));
+      return /*#__PURE__*/ React__default['default'].createElement(
+        Component,
+        _extends({}, props, getMerged(hooksHandlers))
+      );
     };
   }
 
-  var AutoScroller = Muuri.AutoScroller;
-  var ItemDrag = Muuri.ItemDrag; // Muuri-react exports.
+  var AutoScroller = Muuri__default['default'].AutoScroller;
+  var ItemDrag = Muuri__default['default'].ItemDrag; // Muuri-react exports.
 
   exports.AutoScroller = AutoScroller;
   exports.ChildrenController = ChildrenController;
@@ -4643,5 +5504,4 @@
   exports.withHooks = withHooks;
 
   Object.defineProperty(exports, '__esModule', { value: true });
-
-})));
+});

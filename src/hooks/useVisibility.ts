@@ -28,7 +28,7 @@ export function useVisibility(): SetVisibilityMethod {
     itemRefController !== undefined &&
       layoutController !== undefined &&
       eventController !== undefined,
-    'The useData hook can be used only inside an Item'
+    'The useVisibility hook can be used only inside an Item'
   );
 
   // Set visibility.
