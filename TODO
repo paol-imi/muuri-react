@@ -1,0 +1,11 @@
+# documentation
+
+remove .gif from image name, otherwise github markdown style is broken
+
+# others
+
+https://github.com/pmndrs/its-fine
+
+add sideeEffect: false to pkg
+
+ci sono esempi in stand by so codesandbox
